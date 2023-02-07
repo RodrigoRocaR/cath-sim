@@ -2,31 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] blockVariants;
 
-    private int[,,] _level =
-    {
-        {
-            {0, 0, 0},
-            {0, 0, 0},
-            {0, 0, 0}
-        },
-        {
-            {0, -1, -1},
-            {0, 0, 0},
-            {-1, -1, -1}
-        },
-        {
-            {-1, -1, -1},
-            {-1, 0, -1},
-            {-1, -1, -1}
-        },
-    };
+    private Level _levelObj = new Level();
+    private int[,,] _level;
    
     void Start()
     {
+        _level = _levelObj.GetTestLevel();
         SpawnBlocks();
     }
 
