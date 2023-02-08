@@ -6,7 +6,6 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] blockVariants;
-
     private Level _levelObj = new Level();
     private int[,,] _level;
    
@@ -24,7 +23,9 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnBlocks()
     {
-        int x = 0, y = 0, z = 0;
+        Vector3 blockScale = blockVariants[0].transform.localScale;
+        Debug.Log(blockScale);
+        float x = 0, y = 0.5f, z = 0;
         for (int i=0; i<_level.GetLength(0); i++)
         {
             for (int j=0; j<_level.GetLength(1); j++)
@@ -33,7 +34,8 @@ public class SpawnManager : MonoBehaviour
                 {
                     if (_level[i, j, k] != -1)
                     {
-                        Instantiate(blockVariants[_level[i, j, k]], new Vector3(x+k, y+i, z+j), 
+                        Instantiate(blockVariants[_level[i, j, k]], 
+                            new Vector3((x+k)*blockScale.x, (y+i)*blockScale.y, (z+j)*blockScale.z), 
                             blockVariants[_level[i, j, k]].transform.rotation);
                     }
                 }
