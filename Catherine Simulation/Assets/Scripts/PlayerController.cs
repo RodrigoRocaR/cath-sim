@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private bool _forward, _backward, _right, _left;
     private bool _multipleInputs, _anyInputs;
     private string _currentState; // for animations states
-    private float _distToGround;
+    private bool _isFalling;
 
     private Animator _animator;
     private Collider _collider;
@@ -20,25 +20,22 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _collider = GetComponent<Collider>();
         _rb = GetComponent<Rigidbody>();
-        _distToGround = _collider.bounds.extents.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        _forward = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
-        _backward = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
-        _right = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
-        _left = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
-        _multipleInputs = !(_forward && _backward) && !(_forward && _right) && !(_forward && _left) && 
-                          !(_backward && _right) && !(_backward && _left) && !(_right && _left);
+        GetInputs();
+        _multipleInputs = (_forward && _backward) || (_forward && _right) || (_forward && _left) || 
+                          (_backward && _right) || (_backward && _left) || (_right && _left);
         _anyInputs = _forward || _backward || _right || _left;
+        _isFalling = !_rb.IsSleeping() && _rb.velocity.y < -0.1;
         Move();
     }
 
     private void FixedUpdate() // for physics calculations
     {
-        if (!_anyInputs)
+        if (!_anyInputs || _multipleInputs)
         {
             ChangeAnimationState(_animReg.PlayerIdle);
         }
@@ -50,10 +47,16 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        int currentRotation = (int) transform.eulerAngles.y;
+        if (_multipleInputs)
+        {
+            return;
+        }
+
+
+        float currentRotation = transform.eulerAngles.y;
         if (_left)
         {
-            if (currentRotation != 270) // face left
+            if (currentRotation is > 271 or < 269) // face left (270)
             {
                 transform.Rotate(new Vector3(0, -90,0));
             }
@@ -61,7 +64,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (_right)
         {
-            if (currentRotation != 90) // face right
+            if (currentRotation is > 91 or < 89) // face right (90)
             {
                 transform.Rotate(new Vector3(0, 90,0));
             }
@@ -69,16 +72,16 @@ public class PlayerController : MonoBehaviour
         }
         else if (_backward)
         {
-            if (currentRotation != 180) // face backwards
+            if (currentRotation is > 181 or < 179) // face backwards (180)
             {
-                int rotation = (currentRotation == 0) ? 180 : currentRotation;
+                float rotation = (currentRotation == 0) ? 180 : currentRotation;
                 transform.Rotate(new Vector3(0, rotation,0));
             }
             transform.Translate(Time.deltaTime * speed * Vector3.forward); 
         }
         else if (_forward)
         {
-            if (currentRotation != 0) // face forward
+            if (currentRotation is > 1 or < -1) // face forward (0)
             {
                 transform.Rotate(new Vector3(0, -currentRotation,0));
             }
@@ -86,11 +89,15 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private bool IsGrounded() {
-        return Physics.Raycast(transform.position, Vector3.down, _distToGround + 0.1f);
+    private void GetInputs()
+    {
+        _forward = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
+        _backward = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
+        _right = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
+        _left = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
     }
-
-    void ChangeAnimationState(string newState)
+    
+    private void ChangeAnimationState(string newState)
     {
         if (_currentState == newState) return;
         _animator.Play(newState); // play animation
