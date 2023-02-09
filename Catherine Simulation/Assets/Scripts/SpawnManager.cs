@@ -24,7 +24,6 @@ public class SpawnManager : MonoBehaviour
     private void SpawnBlocks()
     {
         Vector3 blockScale = blockVariants[0].transform.localScale;
-        Debug.Log(blockScale);
         float x = 0, y = 0.5f, z = 0;
         for (int i=0; i<_level.GetLength(0); i++)
         {
