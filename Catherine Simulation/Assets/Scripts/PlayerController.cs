@@ -5,11 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5.5f;
+    public float blockScale;
 
     private bool _forward, _backward, _right, _left;
     private bool _multipleInputs, _anyInputs;
     private string _currentState; // for animations states
     private bool _isFalling;
+    private bool _moving;
+    private Vector3 _target;
 
     private Animator _animator;
     private Collider _collider;
@@ -33,9 +36,9 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
-    private void FixedUpdate() // for physics calculations
+    private void FixedUpdate()
     {
-        if (!_anyInputs || _multipleInputs)
+        if ((!_anyInputs || _multipleInputs) && !_moving)
         {
             ChangeAnimationState(_animReg.PlayerIdle);
         }
@@ -51,42 +54,81 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        if (!_anyInputs && !_moving) return;
+        
+        // Movement
+        if (transform.position == _target)
+        {
+            _moving = false;
+        }
+        
+        if (!_moving)
+        {
+            if (!_anyInputs) return;
+            RotateSelfToMove();
+            transform.position = Vector3.MoveTowards(transform.position, _target, Time.deltaTime * speed);
+            _moving = true;
+        }
+        else // continue moving
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _target, Time.deltaTime * speed);
+        }
+    }
 
-
-        float currentRotation = transform.eulerAngles.y;
+    private void RotateSelfToMove()
+    {
+        int currentRotation = GetRotation();
         if (_left)
         {
-            if (currentRotation is > 271 or < 269) // face left (270)
+            _target = transform.position + Vector3.left * blockScale;
+            if (currentRotation == 270) return; 
+            int rotation = currentRotation switch
             {
-                transform.Rotate(new Vector3(0, -90,0));
-            }
-            transform.Translate(Time.deltaTime * speed * Vector3.forward); 
+                0 => -90,
+                180 => 90,
+                _ => 180
+            };
+            transform.Rotate(new Vector3(0, rotation,0));
         }
         else if (_right)
         {
-            if (currentRotation is > 91 or < 89) // face right (90)
+            _target = transform.position + Vector3.right * blockScale;
+            if (currentRotation == 90) return; 
+            int rotation = currentRotation switch
             {
-                transform.Rotate(new Vector3(0, 90,0));
-            }
-            transform.Translate(Time.deltaTime * speed * Vector3.forward); 
+                0 => 90,
+                180 => -90,
+                _ => -180
+            };
+            transform.Rotate(new Vector3(0, rotation,0));
         }
         else if (_backward)
         {
-            if (currentRotation is > 181 or < 179) // face backwards (180)
-            {
-                float rotation = (currentRotation == 0) ? 180 : currentRotation;
-                transform.Rotate(new Vector3(0, rotation,0));
-            }
-            transform.Translate(Time.deltaTime * speed * Vector3.forward); 
+            _target = transform.position + Vector3.back * blockScale;
+            if (currentRotation == 180) return; 
+            int rotation = (currentRotation == 0) ? 180 : currentRotation;
+            transform.Rotate(new Vector3(0, rotation,0));
         }
         else if (_forward)
         {
+            _target = transform.position + Vector3.forward * blockScale;
             if (currentRotation is > 1 or < -1) // face forward (0)
             {
                 transform.Rotate(new Vector3(0, -currentRotation,0));
             }
-            transform.Translate(Time.deltaTime * speed * Vector3.forward); 
         }
+    }
+
+    private int GetRotation()
+    {
+        float rotation = transform.eulerAngles.y;
+        return rotation switch
+        {
+            < 272 and > 268 => 270,
+            < 182 and > 178 => 180,
+            < 92 and > 88 => 90,
+            _ => 0
+        };
     }
     
     private void GetInputs()
