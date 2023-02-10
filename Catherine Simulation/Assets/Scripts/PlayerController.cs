@@ -7,12 +7,13 @@ public class PlayerController : MonoBehaviour
     public float speed = 5.5f;
     public float blockScale;
 
-    private bool _forward, _backward, _right, _left;
+    private bool _forward, _backward, _right, _left; // capture inputs
     private bool _multipleInputs, _anyInputs;
     private string _currentState; // for animations states
     private bool _isFalling;
-    private bool _moving;
-    private Vector3 _target;
+    private bool _moving; // is the player moving to another tile?
+    private Vector3 _target; // target position to move to
+    private bool _isBlockInFront, _isWallInFront;
 
     private Animator _animator;
     private Collider _collider;
@@ -32,12 +33,12 @@ public class PlayerController : MonoBehaviour
         _multipleInputs = (_forward && _backward) || (_forward && _right) || (_forward && _left) || 
                           (_backward && _right) || (_backward && _left) || (_right && _left);
         _anyInputs = _forward || _backward || _right || _left;
-        _isFalling = !_rb.IsSleeping() && _rb.velocity.y < -0.1;
         Move();
     }
 
     private void FixedUpdate()
     {
+        _isFalling = !_rb.IsSleeping() && _rb.velocity.y < -0.1;
         if ((!_anyInputs || _multipleInputs) && !_moving)
         {
             ChangeAnimationState(_animReg.PlayerIdle);
@@ -50,22 +51,24 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (_multipleInputs)
-        {
-            return;
-        }
+        if (_multipleInputs && !_moving) return;
         if (!_anyInputs && !_moving) return;
         
         // Movement
-        if (transform.position == _target)
-        {
-            _moving = false;
-        }
+        if (transform.position == _target) _moving = false; // we reached the target => reset to false
+        
         
         if (!_moving)
         {
             if (!_anyInputs) return;
-            RotateSelfToMove();
+            RotateAndSetTarget();
+            CheckForBlocksInFront();
+            if (_isWallInFront) return;
+            if (_isBlockInFront)
+            {
+                return;
+            }
+            
             transform.position = Vector3.MoveTowards(transform.position, _target, Time.deltaTime * speed);
             _moving = true;
         }
@@ -75,7 +78,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void RotateSelfToMove()
+    private void CheckForBlocksInFront()
+    {
+        Vector3 verticalOffset = new Vector3(0, transform.localScale.y*0.90f, 0);
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        _isBlockInFront = Physics.Raycast(transform.position+verticalOffset, fwd, blockScale/2);
+        verticalOffset.y += blockScale;
+        _isWallInFront = Physics.Raycast(transform.position+verticalOffset, fwd, blockScale/2);
+    }
+    
+    private void RotateAndSetTarget()
     {
         int currentRotation = GetRotation();
         if (_left)
