@@ -34,7 +34,7 @@ public class Level
         AddPlatform(0);
         AddWall(1, LevelSize-1, 3);
         AddWall(1, LevelSize-1, 3, false);
-        AddWall(1, LevelSize-5, 2, false);
+        AddWall(1, LevelSize-5, 1, false);
         AddWall(1, 0, 3, false);
         return _level;
     }
