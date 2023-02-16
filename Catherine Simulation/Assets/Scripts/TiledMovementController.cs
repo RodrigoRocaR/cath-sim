@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TiledMovement
+public class TiledMovementController
 {
     private readonly Inputs _inputs;
     private readonly Transform _transform;
@@ -9,9 +9,8 @@ public class TiledMovement
     private Vector3 _target; // target position to move to
     private bool _moving; // is the player moving to another tile?
     private bool _isBlockInFront, _isWallInFront;
-    private int blockScale = 2; // todo: remove
 
-    public TiledMovement(Transform transform, Inputs inputs, float speed)
+    public TiledMovementController(Transform transform, Inputs inputs, float speed)
     {
         _transform = transform;
         _speed = speed;
@@ -54,9 +53,9 @@ public class TiledMovement
         Vector3 pos = _transform.position;
         Vector3 verticalOffset = new Vector3(0, _transform.localScale.y*0.90f, 0);
         Vector3 fwd = _transform.TransformDirection(Vector3.forward);
-        _isBlockInFront = Physics.Raycast(pos+verticalOffset, fwd, blockScale/2f);
-        verticalOffset.y += blockScale;
-        _isWallInFront = Physics.Raycast(pos+verticalOffset, fwd, blockScale/2f);
+        _isBlockInFront = Physics.Raycast(pos+verticalOffset, fwd, Level.BlockScale/2f);
+        verticalOffset.y += Level.BlockScale;
+        _isWallInFront = Physics.Raycast(pos+verticalOffset, fwd, Level.BlockScale/2f);
     }
     
     private void RotateAndSetTarget()
@@ -64,7 +63,7 @@ public class TiledMovement
         int currentRotation = GetRotation();
         if (_inputs.Left())
         {
-            _target = _transform.position + Vector3.left * blockScale;
+            _target = _transform.position + Vector3.left * Level.BlockScale;
             if (currentRotation == 270) return; 
             int rotation = currentRotation switch
             {
@@ -76,7 +75,7 @@ public class TiledMovement
         }
         else if (_inputs.Right())
         {
-            _target = _transform.position + Vector3.right * blockScale;
+            _target = _transform.position + Vector3.right * Level.BlockScale;
             if (currentRotation == 90) return; 
             int rotation = currentRotation switch
             {
@@ -88,14 +87,14 @@ public class TiledMovement
         }
         else if (_inputs.Backward())
         {
-            _target = _transform.position + Vector3.back * blockScale;
+            _target = _transform.position + Vector3.back * Level.BlockScale;
             if (currentRotation == 180) return; 
             int rotation = (currentRotation == 0) ? 180 : currentRotation;
             _transform.Rotate(new Vector3(0, rotation,0));
         }
         else if (_inputs.Forward())
         {
-            _target = _transform.position + Vector3.forward * blockScale;
+            _target = _transform.position + Vector3.forward * Level.BlockScale;
             if (currentRotation is > 1 or < -1) // face forward (0)
             {
                 _transform.Rotate(new Vector3(0, -currentRotation,0));
