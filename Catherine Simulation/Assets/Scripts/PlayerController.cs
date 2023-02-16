@@ -6,9 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 5.5f;
 
-
-    private bool _isFalling;
-
     private Animator _animator;
     private Rigidbody _rb;
     private TiledMovementController _tiledMovementController;
@@ -36,5 +33,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         _animationsController.UpdateAnimations(_tiledMovementController.IsMoving());
+        _tiledMovementController.UpdateIsFalling(_rb);
     }
 }

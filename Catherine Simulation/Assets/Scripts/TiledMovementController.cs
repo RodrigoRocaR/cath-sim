@@ -7,7 +7,8 @@ public class TiledMovementController
     private readonly float _speed;
     
     private Vector3 _target; // target position to move to
-    private bool _moving; // is the player moving to another tile?
+    private bool _isMoving; // is the player moving to another tile?
+    private bool _isFalling;
     private bool _isBlockInFront, _isWallInFront;
 
     public TiledMovementController(Transform transform, Inputs inputs, float speed)
@@ -19,11 +20,11 @@ public class TiledMovementController
     
     public void Move()
     {
-        if (_transform.position == _target) _moving = false; // we reached the target => reset to false
-        if (!_moving && (_inputs.MultipleInputs() || !_inputs.AnyInputs())) return;
-        
+        if (_transform.position == _target) _isMoving = false; // we reached the target => reset to false
+        if (_isFalling || (!_isMoving && (_inputs.MultipleInputs() || !_inputs.AnyInputs()))) return;
+
         // Movement
-        if (!_moving)
+        if (!_isMoving)
         {
             if (!_inputs.AnyInputs()) return;
             RotateAndSetTarget();
@@ -35,7 +36,7 @@ public class TiledMovementController
             }
             
             _transform.position = Vector3.MoveTowards(_transform.position, _target, Time.deltaTime * _speed);
-            _moving = true;
+            _isMoving = true;
         }
         else // continue moving
         {
@@ -45,7 +46,13 @@ public class TiledMovementController
 
     public bool IsMoving()
     {
-        return _moving;
+        return _isMoving;
+    }
+
+    public bool UpdateIsFalling(Rigidbody rb)
+    {
+        _isFalling = !rb.IsSleeping() && rb.velocity.y < -0.1;;
+        return _isFalling;
     }
 
     private void CheckForBlocksInFront()
