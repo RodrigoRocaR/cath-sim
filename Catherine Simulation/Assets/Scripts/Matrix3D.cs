@@ -5,14 +5,17 @@ using UnityEngine;
 public class Matrix3D
 {
     private int[,,] _blocks;
-    private int width; // x
-    private int height; // y
-    private int depth; // z
+    public int Width { get; }
+
+    public int Height { get; }
+
+    public int Depth { get; }
+
 
     public Matrix3D(int width, int height, int depth) {
-        this.width = width;
-        this.height = height;
-        this.depth = depth;
+        this.Width = width;
+        this.Height = height;
+        this.Depth = depth;
         this._blocks = new int[width, height, depth];
     }
 

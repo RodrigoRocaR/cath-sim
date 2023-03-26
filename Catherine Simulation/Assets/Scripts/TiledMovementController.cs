@@ -10,7 +10,7 @@ public class TiledMovementController
     private Vector3 _target; // target position to move to
     private bool _isMoving; // is the player moving to another tile?
     private bool _isFalling;
-    private bool _isBlockInFront, _isWallInFront;
+    private bool _hasFoundation, _isBlockInFront, _isWallInFront;
 
     public TiledMovementController(Transform transform, Inputs inputs, float speed)
     {
@@ -47,12 +47,10 @@ public class TiledMovementController
             RotateAndSetTarget(currentRotation);
             CheckForBlocksInFront();
             if (_isWallInFront) return;
-            if (_isBlockInFront)
-            {
-                return;
-            }
-            
-            _transform.position = Vector3.MoveTowards(_transform.position, _target, Time.deltaTime * _speed);
+            if (_isBlockInFront) return;
+            if (!_hasFoundation) return;
+
+                _transform.position = Vector3.MoveTowards(_transform.position, _target, Time.deltaTime * _speed);
             _isMoving = true;
         }
         else // continue moving
@@ -74,22 +72,15 @@ public class TiledMovementController
 
     private void CheckForBlocksInFront()
     {
-        Vector3 checkPos = _target;
-
-        if (Level.IsCoordWithinLevel(checkPos))
-        {
-            checkPos.y += 1;
-            _isBlockInFront = Level.GetBlock(checkPos) != -1;
-            checkPos.y += 1;
-            _isWallInFront = Level.GetBlock(checkPos) != -1;
-        }
-        else
-        {
-            _isBlockInFront = false;
-            _isWallInFront = false;
-        }
-
-        Debug.Log("Checking: " + checkPos[0] + ", " + checkPos[1] + ",  "+  checkPos[2]);
+        Vector3 checkPos = _target; // on top of the block we are going (even height)
+        
+        checkPos.y -= 1;
+        _hasFoundation = Level.GetBlock(checkPos) != -1;
+        checkPos.y += Level.BlockScale;
+        _isBlockInFront = Level.GetBlock(checkPos) != -1;
+        checkPos.y += Level.BlockScale;
+        _isWallInFront = Level.GetBlock(checkPos) != -1;
+        
     }
 
     private void RotateAndSetTarget(int currentRotation)
