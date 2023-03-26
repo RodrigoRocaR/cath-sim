@@ -5,8 +5,7 @@ public class TiledMovementController
     private readonly Inputs _inputs;
     private readonly Transform _transform;
     private readonly float _speed;
-
-    private int _posx, _posy, _posz; // tiled position
+    
     private Vector3 _target; // target position to move to
     private bool _isMoving; // is the player moving to another tile?
     private bool _isFalling;
@@ -17,9 +16,6 @@ public class TiledMovementController
         _transform = transform;
         _speed = speed;
         _inputs = inputs;
-        _posx = (int) _transform.position.x;
-        _posy = (int) _transform.position.y;
-        _posz = (int) _transform.position.z;
     }
     
     public void Move()
@@ -27,15 +23,6 @@ public class TiledMovementController
         if (_transform.position == _target){ 
             _isMoving = false; // we reached the target => reset to false
         }
-        
-        if (!_isMoving)
-        {
-            // Update tiled position
-            _posx = (int)_target.x;
-            _posy = (int)_target.y;
-            _posz = (int)_target.z;
-        }
-        
         
         if (_isFalling || (!_isMoving && (_inputs.MultipleInputs() || !_inputs.AnyInputs()))) return;
 
