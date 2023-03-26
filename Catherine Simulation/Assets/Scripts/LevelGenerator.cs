@@ -1,8 +1,11 @@
 
+using UnityEngine;
+
 public class LevelGenerator 
 {
-    private const int LevelSize = 12;
-    private int[,,] _level = new int[LevelSize, LevelSize, LevelSize];
+    // This stores the level as integers
+    // The dimensions are [y, x, z]
+    private int[,,] _level = new int[Level.LevelSize, Level.LevelSize, Level.LevelSize];
     
     private int[,,] _levelPredefined1 =
     {
@@ -33,22 +36,23 @@ public class LevelGenerator
     {
         InitializeLevel();
         AddPlatform(0);
-        AddWall(1, LevelSize-1, 3);
-        AddWall(1, LevelSize-1, 3, false);
-        AddWall(1, LevelSize-5, 1, false);
+        AddWall(1, Level.LevelSize-1, 3);
+        AddWall(1, Level.LevelSize-1, 3, false);
+        AddWall(1, Level.LevelSize-5, 1, false);
         AddWall(1, 0, 3, false);
+        _level[3, 7, 1] = 0;
         return _level;
     }
 
     private void InitializeLevel()
     {
-        for (int i=0; i<LevelSize; i++)
+        for (int i=0; i<Level.LevelSize; i++)
         {
-            for (int j=0; j<LevelSize; j++)
+            for (int j=0; j<Level.LevelSize; j++)
             {
-                for (int k=0; k<LevelSize; k++)
+                for (int k=0; k<Level.LevelSize; k++)
                 {
-                    _level[i, j, k] = -1;
+                    _level[i, j, k] = Level.EmptyBlock;
                 }
             }
         }
@@ -57,11 +61,11 @@ public class LevelGenerator
 
     private void AddPlatform(int y)
     {
-        for (int j=0; j<LevelSize; j++)
+        for (int j=0; j<Level.LevelSize; j++)
         {
-            for (int k=0; k<LevelSize; k++)
+            for (int k=0; k<Level.LevelSize; k++)
             {
-                _level[y, j, k] = 0;
+                _level[y, j, k] = Level.SolidBlock;
             }
         }
     }
@@ -70,15 +74,15 @@ public class LevelGenerator
     {
         for (int h=0; h<height; h++)
         {
-            for (int k=0; k<LevelSize; k++)
+            for (int k=0; k<Level.LevelSize; k++)
             {
                 if (horizontal)
                 {
-                    _level[y+h, pos, k] = 0;
+                    _level[y + h, pos, k] = Level.SolidBlock;
                 }
                 else
                 {
-                    _level[y+h, k, pos] = 0;
+                    _level[y + h, k, pos] = Level.SolidBlock;
                 }
             }
         }

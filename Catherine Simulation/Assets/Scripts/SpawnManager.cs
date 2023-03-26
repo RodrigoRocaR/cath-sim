@@ -31,7 +31,7 @@ public class SpawnManager : MonoBehaviour
             {
                 for (int k=0; k<_level.GetLength(2); k++)
                 {
-                    if (_level[i, j, k] != -1)
+                    if (_level[i, j, k] != Level.EmptyBlock)
                     {
                         Instantiate(blockVariants[_level[i, j, k]], 
                             new Vector3((x+k)*Level.BlockScale, (y+i)*Level.BlockScale, (z+j)*Level.BlockScale), 

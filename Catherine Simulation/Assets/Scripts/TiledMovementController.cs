@@ -5,7 +5,8 @@ public class TiledMovementController
     private readonly Inputs _inputs;
     private readonly Transform _transform;
     private readonly float _speed;
-    
+
+    private int _posx, _posy, _posz; // tiled position
     private Vector3 _target; // target position to move to
     private bool _isMoving; // is the player moving to another tile?
     private bool _isFalling;
@@ -16,18 +17,34 @@ public class TiledMovementController
         _transform = transform;
         _speed = speed;
         _inputs = inputs;
+        _posx = (int) _transform.position.x;
+        _posy = (int) _transform.position.y;
+        _posz = (int) _transform.position.z;
     }
     
     public void Move()
     {
-        if (_transform.position == _target) _isMoving = false; // we reached the target => reset to false
+        if (_transform.position == _target){ 
+            _isMoving = false; // we reached the target => reset to false
+        }
+        
+        if (!_isMoving)
+        {
+            // Update tiled position
+            _posx = (int)_target.x;
+            _posy = (int)_target.y;
+            _posz = (int)_target.z;
+        }
+        
+        
         if (_isFalling || (!_isMoving && (_inputs.MultipleInputs() || !_inputs.AnyInputs()))) return;
 
         // Movement
         if (!_isMoving)
         {
             if (!_inputs.AnyInputs()) return;
-            RotateAndSetTarget();
+            int currentRotation = GetRotation();
+            RotateAndSetTarget(currentRotation);
             CheckForBlocksInFront();
             if (_isWallInFront) return;
             if (_isBlockInFront)
@@ -49,7 +66,7 @@ public class TiledMovementController
         return _isMoving;
     }
 
-    public bool UpdateIsFalling(Rigidbody rb)
+    public bool UpdateIsFalling(Rigidbody rb) 
     {
         _isFalling = !rb.IsSleeping() && rb.velocity.y < -0.1;;
         return _isFalling;
@@ -57,17 +74,26 @@ public class TiledMovementController
 
     private void CheckForBlocksInFront()
     {
-        Vector3 pos = _transform.position;
-        Vector3 verticalOffset = new Vector3(0, _transform.localScale.y*0.90f, 0);
-        Vector3 fwd = _transform.TransformDirection(Vector3.forward);
-        _isBlockInFront = Physics.Raycast(pos+verticalOffset, fwd, Level.BlockScale/2f);
-        verticalOffset.y += Level.BlockScale;
-        _isWallInFront = Physics.Raycast(pos+verticalOffset, fwd, Level.BlockScale/2f);
+        Vector3 checkPos = _target;
+
+        if (Level.IsCoordWithinLevel(checkPos))
+        {
+            checkPos.y += 1;
+            _isBlockInFront = Level.GetBlock(checkPos) != -1;
+            checkPos.y += 1;
+            _isWallInFront = Level.GetBlock(checkPos) != -1;
+        }
+        else
+        {
+            _isBlockInFront = false;
+            _isWallInFront = false;
+        }
+
+        Debug.Log("Checking: " + checkPos[0] + ", " + checkPos[1] + ",  "+  checkPos[2]);
     }
-    
-    private void RotateAndSetTarget()
+
+    private void RotateAndSetTarget(int currentRotation)
     {
-        int currentRotation = GetRotation();
         if (_inputs.Left())
         {
             _target = _transform.position + Vector3.left * Level.BlockScale;
