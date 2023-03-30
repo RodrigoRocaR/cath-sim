@@ -19,3 +19,6 @@ sysinfo.txt
 *.pidb
 *.booproj
 *.DS_store
+
+### Custom ###
+UserSettings/Layouts/default-2021.dwlt

@@ -40,9 +40,9 @@ public class JumpController
             {
                 _playerState.Target += Vector3.up * Level.BlockScale;
             }
-            else if (_playerState.HasFoundation) // next pos, same level
+            else if (_playerState.IsBlockBelow) // next pos, 1 block down
             {
-                // the target is well set
+                _playerState.Target += Vector3.down * Level.BlockScale;
             }
         }
 
