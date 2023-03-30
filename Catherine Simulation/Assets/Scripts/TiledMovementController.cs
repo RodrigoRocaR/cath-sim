@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TiledMovementController
@@ -29,8 +30,8 @@ public class TiledMovementController
         {
             if (!_inputs.AnyInputs()) return;
             
-            int currentRotation = GetRotation();
-            RotateAndSetTarget(currentRotation);
+            RotateAndSetTarget();
+            UpdateDirection();
             _playerState.CheckForBlocksInFront();
             
             if (_playerState.IsWallInFront) return;
@@ -46,8 +47,9 @@ public class TiledMovementController
         }
     }
 
-    private void RotateAndSetTarget(int currentRotation)
+    private void RotateAndSetTarget()
     {
+        int currentRotation = GetRotation();
         if (_inputs.Left())
         {
             _playerState.Target = _transform.position + Vector3.left * Level.BlockScale;
@@ -79,6 +81,18 @@ public class TiledMovementController
             < 182 and > 178 => 180,
             < 92 and > 88 => 90,
             _ => 0
+        };
+    }
+    
+    private void UpdateDirection()
+    {
+        int rotation = GetRotation();
+        _playerState.Direction = rotation switch
+        {
+            0 => Vector3.forward,
+            90 => Vector3.right,
+            180 => Vector3.back,
+            _ => Vector3.left
         };
     }
 

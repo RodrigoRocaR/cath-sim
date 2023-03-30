@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     
     private Inputs _inputs;
     private TiledMovementController _tiledMovementController;
+    private JumpController _jumpController;
     private AnimationsController _animationsController;
     private PlayerState _playerState;
     
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
         _inputs = new Inputs();
         _playerState = new PlayerState();
         _tiledMovementController = new TiledMovementController(transform, _inputs, _playerState, speed);
+        _jumpController = new JumpController(transform, _inputs, _playerState, 1.15f);
         _animationsController = new AnimationsController(_animator, _rb, _inputs);
     }
 
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         _inputs.UpdateInputs();
         _tiledMovementController.Move();
+        _jumpController.Jump();
     }
 
     private void FixedUpdate()

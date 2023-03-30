@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerState
 {
-
+    
+    public Vector3 Direction { get; set; }
     public Vector3 Target { get; set; }
     public bool IsMoving { get; set; }
     public bool IsFalling { get; set; }
