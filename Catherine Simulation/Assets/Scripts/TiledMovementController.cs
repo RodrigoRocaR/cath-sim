@@ -21,7 +21,8 @@ public class TiledMovementController
             _playerState.IsMoving = false; // we reached the target => reset to false
         }
         
-        if (_playerState.IsFalling || (!_playerState.IsMoving && (_inputs.MultipleInputs() || !_inputs.AnyInputs()))) return;
+        if (_playerState.IsJumping || _playerState.IsFalling || 
+            (!_playerState.IsMoving && (_inputs.MultipleInputs() || !_inputs.AnyInputs()))) return;
 
         // Movement
         if (!_playerState.IsMoving)
@@ -50,41 +51,22 @@ public class TiledMovementController
         if (_inputs.Left())
         {
             _playerState.Target = _transform.position + Vector3.left * Level.BlockScale;
-            if (currentRotation == 270) return; 
-            int rotation = currentRotation switch
-            {
-                0 => -90,
-                180 => 90,
-                _ => 180
-            };
-            _transform.Rotate(new Vector3(0, rotation,0));
+            _transform.Rotate(new Vector3(0, RotateToLeft(currentRotation),0));
         }
         else if (_inputs.Right())
         {
             _playerState.Target = _transform.position + Vector3.right * Level.BlockScale;
-            if (currentRotation == 90) return; 
-            int rotation = currentRotation switch
-            {
-                0 => 90,
-                180 => -90,
-                _ => -180
-            };
-            _transform.Rotate(new Vector3(0, rotation,0));
+            _transform.Rotate(new Vector3(0, RotateToRight(currentRotation),0));
         }
         else if (_inputs.Backward())
         {
             _playerState.Target = _transform.position + Vector3.back * Level.BlockScale;
-            if (currentRotation == 180) return; 
-            int rotation = (currentRotation == 0) ? 180 : currentRotation;
-            _transform.Rotate(new Vector3(0, rotation,0));
+            _transform.Rotate(new Vector3(0, RotateToBack(currentRotation),0));
         }
         else if (_inputs.Forward())
         {
             _playerState.Target = _transform.position + Vector3.forward * Level.BlockScale;
-            if (currentRotation is > 1 or < -1) // face forward (0)
-            {
-                _transform.Rotate(new Vector3(0, -currentRotation,0));
-            }
+            _transform.Rotate(new Vector3(0, RotateToFront(currentRotation),0));
         }
     }
 
@@ -96,6 +78,47 @@ public class TiledMovementController
             < 272 and > 268 => 270,
             < 182 and > 178 => 180,
             < 92 and > 88 => 90,
+            _ => 0
+        };
+    }
+
+    private int RotateToLeft(int currentRotation)
+    {
+        return currentRotation switch
+        {
+            0 => -90,
+            180 => 90,
+            270 => 0,
+            _ => 180
+        };
+    }
+
+    private int RotateToRight(int currentRotation)
+    {
+        return currentRotation switch
+        {
+            0 => 90,
+            90 => 0,
+            180 => -90,
+            _ => -180
+        };
+    }
+
+    private int RotateToBack(int currentRotation)
+    {
+        return currentRotation switch
+        {
+            0 => 180,
+            180 => 0,
+            _ => currentRotation
+        };
+    }
+
+    private int RotateToFront(int currentRotation)
+    {
+        return currentRotation switch
+        {
+            >1 or <-1 => -currentRotation,
             _ => 0
         };
     }
