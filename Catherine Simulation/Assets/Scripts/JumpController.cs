@@ -25,7 +25,7 @@ public class JumpController
     }
 
     public void Jump () {
-        if (_inputs.Jump() && !_playerState.IsJumping) {
+        if (_inputs.Jump() && !_playerState.IsJumping && !_playerState.IsMoving) {
             SetUpJump();
             
             // Set target in front and check blocks

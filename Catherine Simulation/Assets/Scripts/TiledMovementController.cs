@@ -22,8 +22,8 @@ public class TiledMovementController
             _playerState.IsMoving = false; // we reached the target => reset to false
         }
         
-        if (_playerState.IsJumping || _playerState.IsFalling || 
-            (!_playerState.IsMoving && (_inputs.MultipleInputs() || !_inputs.AnyInputs()))) return;
+        if (_playerState.IsJumping || _playerState.IsFalling ||
+            (!_playerState.IsMoving && (_inputs.Jump() || _inputs.MultipleInputs() || !_inputs.AnyInputs()))) return;
 
         // Movement
         if (!_playerState.IsMoving)
