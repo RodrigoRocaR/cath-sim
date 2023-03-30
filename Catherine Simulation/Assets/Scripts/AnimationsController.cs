@@ -11,7 +11,7 @@ public class AnimationsController
     private readonly Animator _animator;
     private readonly Rigidbody _rb;
     private readonly Inputs _inputs;
-    private string _currentState; // for animations states 
+    private string _currentAnimationState; // for animations states 
 
 
     public AnimationsController(Animator animator, Rigidbody rb, Inputs inputs)
@@ -36,8 +36,8 @@ public class AnimationsController
     
     private void ChangeAnimationState(string newState)
     {
-        if (_currentState == newState) return;
+        if (_currentAnimationState == newState) return;
         _animator.Play(newState); // play animation
-        _currentState = newState; 
+        _currentAnimationState = newState; 
     }
 }

@@ -5,76 +5,51 @@ public class TiledMovementController
     private readonly Inputs _inputs;
     private readonly Transform _transform;
     private readonly float _speed;
-    
-    private Vector3 _target; // target position to move to
-    private bool _isMoving; // is the player moving to another tile?
-    private bool _isFalling;
-    private bool _hasFoundation, _isBlockInFront, _isWallInFront;
+    private readonly PlayerState _playerState;
 
-    public TiledMovementController(Transform transform, Inputs inputs, float speed)
+    public TiledMovementController(Transform transform, Inputs inputs, PlayerState playerState, float speed)
     {
         _transform = transform;
         _speed = speed;
         _inputs = inputs;
+        _playerState = playerState;
     }
     
     public void Move()
     {
-        if (_transform.position == _target){ 
-            _isMoving = false; // we reached the target => reset to false
+        if (_transform.position == _playerState.Target){ 
+            _playerState.IsMoving = false; // we reached the target => reset to false
         }
         
-        if (_isFalling || (!_isMoving && (_inputs.MultipleInputs() || !_inputs.AnyInputs()))) return;
+        if (_playerState.IsFalling || (!_playerState.IsMoving && (_inputs.MultipleInputs() || !_inputs.AnyInputs()))) return;
 
         // Movement
-        if (!_isMoving)
+        if (!_playerState.IsMoving)
         {
             if (!_inputs.AnyInputs()) return;
+            
             int currentRotation = GetRotation();
             RotateAndSetTarget(currentRotation);
-            CheckForBlocksInFront();
-            if (_isWallInFront) return;
-            if (_isBlockInFront) return;
-            if (!_hasFoundation) return;
+            _playerState.CheckForBlocksInFront();
+            
+            if (_playerState.IsWallInFront) return;
+            if (_playerState.IsBlockInFront) return;
+            if (!_playerState.HasFoundation) return;
 
-                _transform.position = Vector3.MoveTowards(_transform.position, _target, Time.deltaTime * _speed);
-            _isMoving = true;
+            _transform.position = Vector3.MoveTowards(_transform.position, _playerState.Target, Time.deltaTime * _speed);
+            _playerState.IsMoving = true;
         }
         else // continue moving
         {
-            _transform.position = Vector3.MoveTowards(_transform.position, _target, Time.deltaTime * _speed);
+            _transform.position = Vector3.MoveTowards(_transform.position, _playerState.Target, Time.deltaTime * _speed);
         }
-    }
-
-    public bool IsMoving()
-    {
-        return _isMoving;
-    }
-
-    public bool UpdateIsFalling(Rigidbody rb) 
-    {
-        _isFalling = !rb.IsSleeping() && rb.velocity.y < -0.1;;
-        return _isFalling;
-    }
-
-    private void CheckForBlocksInFront()
-    {
-        Vector3 checkPos = _target; // on top of the block we are going (even height)
-        
-        checkPos.y -= 1;
-        _hasFoundation = Level.GetBlock(checkPos) != -1;
-        checkPos.y += Level.BlockScale;
-        _isBlockInFront = Level.GetBlock(checkPos) != -1;
-        checkPos.y += Level.BlockScale;
-        _isWallInFront = Level.GetBlock(checkPos) != -1;
-        
     }
 
     private void RotateAndSetTarget(int currentRotation)
     {
         if (_inputs.Left())
         {
-            _target = _transform.position + Vector3.left * Level.BlockScale;
+            _playerState.Target = _transform.position + Vector3.left * Level.BlockScale;
             if (currentRotation == 270) return; 
             int rotation = currentRotation switch
             {
@@ -86,7 +61,7 @@ public class TiledMovementController
         }
         else if (_inputs.Right())
         {
-            _target = _transform.position + Vector3.right * Level.BlockScale;
+            _playerState.Target = _transform.position + Vector3.right * Level.BlockScale;
             if (currentRotation == 90) return; 
             int rotation = currentRotation switch
             {
@@ -98,14 +73,14 @@ public class TiledMovementController
         }
         else if (_inputs.Backward())
         {
-            _target = _transform.position + Vector3.back * Level.BlockScale;
+            _playerState.Target = _transform.position + Vector3.back * Level.BlockScale;
             if (currentRotation == 180) return; 
             int rotation = (currentRotation == 0) ? 180 : currentRotation;
             _transform.Rotate(new Vector3(0, rotation,0));
         }
         else if (_inputs.Forward())
         {
-            _target = _transform.position + Vector3.forward * Level.BlockScale;
+            _playerState.Target = _transform.position + Vector3.forward * Level.BlockScale;
             if (currentRotation is > 1 or < -1) // face forward (0)
             {
                 _transform.Rotate(new Vector3(0, -currentRotation,0));

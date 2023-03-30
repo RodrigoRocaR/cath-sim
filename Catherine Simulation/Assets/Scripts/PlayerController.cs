@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour
 
     private Animator _animator;
     private Rigidbody _rb;
-    private TiledMovementController _tiledMovementController;
+    
     private Inputs _inputs;
+    private TiledMovementController _tiledMovementController;
     private AnimationsController _animationsController;
+    private PlayerState _playerState;
     
     
     void Start()
@@ -19,7 +21,8 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         
         _inputs = new Inputs();
-        _tiledMovementController = new TiledMovementController(transform, _inputs, speed);
+        _playerState = new PlayerState();
+        _tiledMovementController = new TiledMovementController(transform, _inputs, _playerState, speed);
         _animationsController = new AnimationsController(_animator, _rb, _inputs);
     }
 
@@ -32,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _animationsController.UpdateAnimations(_tiledMovementController.IsMoving());
-        _tiledMovementController.UpdateIsFalling(_rb);
+        _animationsController.UpdateAnimations(_playerState.IsMoving);
+        _playerState.UpdateIsFalling(_rb);
     }
 }

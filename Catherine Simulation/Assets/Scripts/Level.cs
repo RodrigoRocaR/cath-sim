@@ -112,11 +112,13 @@ public class Level : MonoBehaviour
 
     public static int GetBlock(int x, int y, int z)
     {
-        return _level[x, y, z];
+        return _level == null ? -1 : _level[x, y, z];
     }
     
     public static int GetBlock(Vector3Int coord)
     {
+        if (_level == null) return -1;
+        
         coord.y -= 1;
         coord /= BlockScale;
         return IsCoordWithinLevel(coord.x, coord.y, coord.z) ? _level[coord] : -1;
@@ -124,6 +126,8 @@ public class Level : MonoBehaviour
     
     public static int GetBlock(Vector3 coord)
     {
+        if (_level == null) return -1;
+        
         coord.y -= 1;
         coord /= BlockScale;
         return IsCoordWithinLevel(coord.x, coord.y, coord.z) ? _level[coord] : -1;
