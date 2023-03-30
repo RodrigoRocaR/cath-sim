@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9219590892093308331}
   - component: {fileID: 1887204435647739286}
   - component: {fileID: 2180402152386901746}
-  - component: {fileID: 1096852215754892979}
   m_Layer: 0
   m_Name: BlockSolid
   m_TagString: Block
@@ -98,15 +97,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1096852215754892979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827364657066707518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 678a41be190185b4eb1c8d2103ce1aa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
