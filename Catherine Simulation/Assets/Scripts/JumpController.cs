@@ -30,7 +30,7 @@ public class JumpController
             
             // Set target in front and check blocks
             _playerState.Target = _jumpStartPosition + _playerState.Direction * Level.BlockScale;
-            _playerState.CheckForBlocksInFront();
+            Level.CheckBlocksTarget(_playerState);
 
             if (_playerState.IsWallInFront) // same pos as start, jump on same tile
             {

@@ -32,7 +32,7 @@ public class TiledMovementController
             
             RotateAndSetTarget();
             UpdateDirection();
-            _playerState.CheckForBlocksInFront();
+            Level.CheckBlocksTarget(_playerState);
             
             if (_playerState.IsWallInFront) return;
             if (_playerState.IsBlockInFront) return;

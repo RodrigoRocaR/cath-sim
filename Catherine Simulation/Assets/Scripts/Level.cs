@@ -12,11 +12,11 @@ public class Level : MonoBehaviour
     
     public readonly Vector3 startCoords = new Vector3(0, 0.5f, 0);
 
-    private static Matrix3D _level;
+    private static GameMatrix _level;
 
     void Start()
     {
-        _level = new Matrix3D(LevelSize, LevelSize, LevelSize);
+        _level = new GameMatrix(LevelSize, LevelSize, LevelSize);
         InitializeLevel();
         GetTestLevel();
         SpawnBlocks();
@@ -35,13 +35,14 @@ public class Level : MonoBehaviour
             {
                 for (int k=0; k<_level.Depth; k++)
                 {
-                    if (_level[i, j, k] != EmptyBlock)
+                    int blockInt = _level.GetBlockInt(i, j, k);
+                    if (blockInt != EmptyBlock)
                     {
-                        Instantiate(blockVariants[_level[i, j, k]], 
-                            new Vector3((startCoords.x+i)*BlockScale, 
-                                (startCoords.y+j)*BlockScale, 
-                                (startCoords.z+k)*BlockScale), 
-                            blockVariants[_level[i, j, k]].transform.rotation);
+                        Instantiate(blockVariants[blockInt],
+                            new Vector3((startCoords.x + i) * BlockScale,
+                                (startCoords.y + j) * BlockScale,
+                                (startCoords.z + k) * BlockScale),
+                            blockVariants[blockInt].transform.rotation);
                     }
                 }
             }
@@ -56,7 +57,7 @@ public class Level : MonoBehaviour
             {
                 for (int k=0; k<LevelSize; k++)
                 {
-                    _level[i, j, k] = EmptyBlock;
+                    _level.SetBlockInt(i, j, k, EmptyBlock);
                 }
             }
         }
@@ -69,7 +70,7 @@ public class Level : MonoBehaviour
         AddWall(1, LevelSize-1, 3, false);
         AddWall(1, LevelSize-5, 1, false);
         AddWall(1, 0, 3, false);
-        _level[1, 1, 3] = 0;
+        _level.SetBlockInt(1, 1, 3, SolidBlock);
     }
     
     private void AddPlatform(int y)
@@ -78,7 +79,7 @@ public class Level : MonoBehaviour
         {
             for (int k=0; k<LevelSize; k++)
             {
-                _level[j, y, k] = SolidBlock;
+                _level.SetBlockInt(j, y, k, 0);
             }
         }
     }
@@ -91,45 +92,18 @@ public class Level : MonoBehaviour
             {
                 if (horizontal)
                 {
-                    _level[k, y + h, pos] = SolidBlock;
+                    _level.SetBlockInt(k, y+h, pos, SolidBlock);
                 }
                 else
                 {
-                    _level[pos, y + h, k] = SolidBlock;
+                    _level.SetBlockInt(pos, y+h, k, SolidBlock);
                 }
             }
         }
     }
-    
-    public static bool IsCoordWithinLevel(int x, int y, int z)
-    {
-        return x is < LevelSize and >= 0 && y is < LevelSize and >= 0 && z is < LevelSize and >= 0;
-    }
-    public static bool IsCoordWithinLevel(float x, float y, float z)
-    {
-        return IsCoordWithinLevel((int)Math.Round(x), (int)Math.Round(y), (int)Math.Round(z));
-    }
 
-    public static int GetBlock(int x, int y, int z)
+    public static void CheckBlocksTarget(PlayerState playerState)
     {
-        return _level == null ? -1 : _level[x, y, z];
-    }
-    
-    public static int GetBlock(Vector3Int coord)
-    {
-        if (_level == null) return -1;
-        
-        coord.y -= 1;
-        coord /= BlockScale;
-        return IsCoordWithinLevel(coord.x, coord.y, coord.z) ? _level[coord] : -1;
-    }
-    
-    public static int GetBlock(Vector3 coord)
-    {
-        if (_level == null) return -1;
-        
-        coord.y -= 1;
-        coord /= BlockScale;
-        return IsCoordWithinLevel(coord.x, coord.y, coord.z) ? _level[coord] : -1;
+        _level.CheckBlocksFront(playerState);
     }
 }

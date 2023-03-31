@@ -2,34 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Matrix3D
+public class Matrix3D<T>
 {
-    private int[,,] _blocks;
-    public int Width { get; }
+    private T[,,] _blocks;
+    public int Width { get; set; }
+    public int Height { get; set; }
+    public int Depth { get; set; }
 
-    public int Height { get; }
-
-    public int Depth { get; }
-
-
-    public Matrix3D(int width, int height, int depth) {
-        this.Width = width;
-        this.Height = height;
-        this.Depth = depth;
-        this._blocks = new int[width, height, depth];
+    public Matrix3D(int width, int height, int depth)
+    {
+        Width = width;
+        Height = height;
+        Depth = depth;
+        _blocks = new T[width, height, depth];
     }
 
-    public int this[int x, int y, int z] {
+    public T this[int x, int y, int z]
+    {
         get => _blocks[x, y, z];
         set => _blocks[x, y, z] = value;
     }
-    
-    public int this[Vector3Int coord] {
+
+    public T this[Vector3Int coord]
+    {
         get => _blocks[coord.x, coord.y, coord.z];
         set => _blocks[coord.x, coord.y, coord.z] = value;
     }
-    
-    public int this[Vector3 coord] {
+
+    public T this[Vector3 coord]
+    {
         get
         {
             Vector3Int coordInt = Vector3Int.RoundToInt(coord);
