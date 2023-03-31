@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         _playerState = new PlayerState();
         _tiledMovementController = new TiledMovementController(transform, _inputs, _playerState, speed);
         _jumpController = new JumpController(transform, _inputs, _playerState, 1.15f);
-        _animationsController = new AnimationsController(_animator, _rb, _inputs);
+        _animationsController = new AnimationsController(_animator, _playerState);
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _animationsController.UpdateAnimations(_playerState.IsMoving);
+        _animationsController.UpdateAnimations();
         _playerState.UpdateIsFalling(_rb);
     }
 }

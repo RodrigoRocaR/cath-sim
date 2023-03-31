@@ -9,28 +9,30 @@ public class AnimationsController
     private const string Jump = "Jump";
     
     private readonly Animator _animator;
-    private readonly Rigidbody _rb;
-    private readonly Inputs _inputs;
+    private readonly PlayerState _playerState;
     private string _currentAnimationState; // for animations states 
 
 
-    public AnimationsController(Animator animator, Rigidbody rb, Inputs inputs)
+    public AnimationsController(Animator animator, PlayerState playerState)
     {
         _animator = animator;
-        _rb = rb;
-        _inputs = inputs;
+        _playerState = playerState;
     }
 
-    public void UpdateAnimations(bool isMoving) // should be called in FixedUpdate() function
+    public void UpdateAnimations() // should be called in FixedUpdate() function
     {
         //_isFalling = !_rb.IsSleeping() && _rb.velocity.y < -0.1;
-        if (!isMoving)
+        if (_playerState.IsMoving)
         {
-            ChangeAnimationState(Idle);
+            ChangeAnimationState(Run);
+        }
+        else if (_playerState.IsJumping)
+        {
+            ChangeAnimationState(Jump);
         }
         else
         {
-            ChangeAnimationState(Run);
+            ChangeAnimationState(Idle);
         }
     }
     
