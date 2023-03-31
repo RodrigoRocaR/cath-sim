@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameMatrix
 {
     private Matrix3D<int> _levelInt;
     private Matrix3D<GameObject> _level;
+
+    private GameObject _parentGameObject;
     
     public int Width { get; set; }
 
@@ -15,13 +16,14 @@ public class GameMatrix
 
     public int Depth { get; set; }
 
-    public GameMatrix(int width, int height, int depth)
+    public GameMatrix(int width, int height, int depth, GameObject parentGameObject)
     {
         Width = width;
         Height = height;
         Depth = depth;
         _levelInt = new Matrix3D<int>(width, height, depth);
         _level = new Matrix3D<GameObject>(width, height, depth);
+        _parentGameObject = parentGameObject;
         InitializeMatrices();
     }
     
@@ -43,6 +45,12 @@ public class GameMatrix
     {
         if (!IsCoordWithinLevelInt(x, y, z)) return;
         _levelInt[x, y, z] = val;
+    }
+
+    public void SetBlock(int x, int y, int z, GameObject block)
+    {
+        _level[x, y, z] = block;
+        block.transform.SetParent(_parentGameObject.transform);
     }
     
     private bool IsCoordWithinLevel(float x, float y, float z)
@@ -93,7 +101,6 @@ public class GameMatrix
                 for (int k = 0; k < Depth; k++)
                 {
                     _levelInt[i, j, k] = Level.EmptyBlock;
-                    _level[i, j, k] = new GameObject("MyEmptyObject " + i + " "+ j + " "+ k);
                 }
             }
         }

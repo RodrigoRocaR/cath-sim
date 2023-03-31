@@ -1,10 +1,12 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Level : MonoBehaviour
 {
     public GameObject[] blockVariants;
+    public GameObject levelGameObject;
     public const int EmptyBlock = -1;
     public const int SolidBlock = 0;
     public const int LevelSize = 12;
@@ -16,7 +18,7 @@ public class Level : MonoBehaviour
 
     void Start()
     {
-        _level = new GameMatrix(LevelSize, LevelSize, LevelSize);
+        _level = new GameMatrix(LevelSize, LevelSize, LevelSize, levelGameObject);
         InitializeLevel();
         GetTestLevel();
         SpawnBlocks();
@@ -38,11 +40,12 @@ public class Level : MonoBehaviour
                     int blockInt = _level.GetBlockInt(i, j, k);
                     if (blockInt != EmptyBlock)
                     {
-                        Instantiate(blockVariants[blockInt],
+                        GameObject newBlock = Instantiate(blockVariants[blockInt],
                             new Vector3((startCoords.x + i) * BlockScale,
                                 (startCoords.y + j) * BlockScale,
                                 (startCoords.z + k) * BlockScale),
                             blockVariants[blockInt].transform.rotation);
+                        _level.SetBlock(i, j, k, newBlock);
                     }
                 }
             }
