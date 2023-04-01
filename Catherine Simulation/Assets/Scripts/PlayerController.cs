@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         _playerState.UpdateDirection(transform.eulerAngles);
         _tiledMovementController.Move();
         _jumpController.Jump();
+        Debug.Log(PlayerStats.GetBlocksWalked());
     }
 
     private void FixedUpdate()

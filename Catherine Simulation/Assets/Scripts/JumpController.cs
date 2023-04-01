@@ -44,6 +44,7 @@ public class JumpController
             // Check if the jump is finished
             if (jumpProgress >= 1f) {
                 _playerState.StopJumping();
+                PlayerStats.AddJump();
             }
         }
     }

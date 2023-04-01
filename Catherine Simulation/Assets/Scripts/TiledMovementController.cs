@@ -20,6 +20,8 @@ public class TiledMovementController
     {
         if (_transform.position == _playerState.GetTarget()){ 
             _playerState.StopMoving(); // we reached the target => reset to false
+            PlayerStats.AddBlocksWalked();
+            _playerState.SetTarget(Vector3.positiveInfinity);
         }
         
         if (_playerState.IsJumping() || _playerState.IsFalling() ||
