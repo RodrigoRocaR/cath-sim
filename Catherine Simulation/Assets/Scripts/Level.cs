@@ -105,8 +105,8 @@ public class Level : MonoBehaviour
         }
     }
 
-    public static void CheckBlocksTarget(PlayerState playerState)
+    public static int GetBlockInt(Vector3 pos)
     {
-        _level.CheckBlocksFront(playerState);
+        return _level.GetBlockInt(pos);
     }
 }

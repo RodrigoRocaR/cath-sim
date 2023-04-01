@@ -22,11 +22,11 @@ public class AnimationsController
     public void UpdateAnimations() // should be called in FixedUpdate() function
     {
         //_isFalling = !_rb.IsSleeping() && _rb.velocity.y < -0.1;
-        if (_playerState.IsMoving)
+        if (_playerState.IsMoving())
         {
             ChangeAnimationState(Run);
         }
-        else if (_playerState.IsJumping)
+        else if (_playerState.IsJumping())
         {
             ChangeAnimationState(Jump);
         }

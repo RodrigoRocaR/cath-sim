@@ -63,19 +63,6 @@ public class GameMatrix
         return x < Width && x >= 0 && y < Height && y >= 0 && z < Depth && z >= 0;
     }
     
-    public void CheckBlocksFront(PlayerState playerState)
-    {
-        Vector3 pos = playerState.Target;  // on top of the block we are going (even height)
-        
-        pos.y -= 1 + Level.BlockScale;
-        playerState.IsBlockBelow = GetBlockInt(pos) != -1; // Block below ground
-        pos.y += Level.BlockScale;
-        playerState.HasFoundation = GetBlockInt(pos) != -1; // Ground Level
-        pos.y += Level.BlockScale;
-        playerState.IsBlockInFront = GetBlockInt(pos) != -1; // Block in front
-        pos.y += Level.BlockScale;
-        playerState.IsWallInFront = GetBlockInt(pos) != -1; // Block on top in front
-    }
 
     public bool isEmpty()
     {

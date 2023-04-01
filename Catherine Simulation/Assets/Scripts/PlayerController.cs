@@ -26,12 +26,15 @@ public class PlayerController : MonoBehaviour
         _tiledMovementController = new TiledMovementController(transform, _inputs, _playerState, speed);
         _jumpController = new JumpController(transform, _inputs, _playerState, 1.15f);
         _animationsController = new AnimationsController(_animator, _playerState);
+        
+        _playerState.UpdateDirection(transform.eulerAngles);
     }
 
     // Update is called once per frame
     void Update()
     {
         _inputs.UpdateInputs();
+        _playerState.UpdateDirection(transform.eulerAngles);
         _tiledMovementController.Move();
         _jumpController.Jump();
     }
