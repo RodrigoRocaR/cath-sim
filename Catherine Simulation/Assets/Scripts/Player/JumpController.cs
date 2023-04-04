@@ -1,4 +1,5 @@
 using LevelDS;
+using Tools;
 using UnityEngine;
 
 namespace Player
@@ -8,21 +9,15 @@ namespace Player
         private readonly Inputs _inputs;
         private readonly Transform _transform;
         private readonly PlayerState _playerState;
-    
-        // Variables for jump speed and jump height
-        private float _jumpSpeed;
-        private float _jumpHeight = Level.BlockScale;
+        private MoveLerpParabolic _jumpLerp;
+        private const int JumpHeight = Level.BlockScale;
 
-        // Variables to keep track of jump progress
-        private float _jumpStartTime;
-        private Vector3 _jumpStartPosition;
-
-        public JumpController(Transform transform, Inputs inputs, PlayerState playerState, float jumpSpeed)
+        public JumpController(Transform transform, Inputs inputs, PlayerState playerState, float jumpDuration)
         {
             _transform = transform;
             _inputs = inputs;
             _playerState = playerState;
-            _jumpSpeed = jumpSpeed;
+            _jumpLerp = new MoveLerpParabolic(jumpDuration, JumpHeight);
         }
 
         public void Jump () {
@@ -31,20 +26,13 @@ namespace Player
             }
 
             if (_playerState.IsJumping()) {
-                // Calculate the jump progress
-                float jumpDuration = Time.time - _jumpStartTime;
-                float jumpProgress = Mathf.Clamp01(jumpDuration * _jumpSpeed);
-
-                // Calculate the new position based on a parabolic motion
-                float yOffset = _jumpHeight * Mathf.Sin(jumpProgress * Mathf.PI);
-                Vector3 newPosition = Vector3.Lerp(_jumpStartPosition, _playerState.GetTarget(), jumpProgress) + yOffset * Vector3.up;
-
-                // Move the player to the new position
-                _transform.position = newPosition;
+                
+                _transform.position = _jumpLerp.Lerp();
 
                 // Check if the jump is finished
-                if (jumpProgress >= 1f) {
+                if (_jumpLerp.IsCompleted()) {
                     _playerState.StopJumping();
+                    _jumpLerp.Reset();
                     PlayerStats.AddJump();
                 }
             }
@@ -52,11 +40,9 @@ namespace Player
 
         private void SetUpJump()
         {
-            // Set up the jump
             _playerState.StartJumping();
-            _jumpStartTime = Time.time;
-            _jumpStartPosition = _transform.position;
-            _playerState.SetJumpTarget(_jumpStartPosition);
+            _jumpLerp.StartPos = _transform.position;
+            _jumpLerp.TargetPos = _playerState.SetJumpTarget(_jumpLerp.StartPos);
         }
     }
 }

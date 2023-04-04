@@ -121,7 +121,7 @@ namespace Player
     
     
         // Jump ------------------
-        public void SetJumpTarget(Vector3 jumpStart)
+        public Vector3 SetJumpTarget(Vector3 jumpStart)
         {
             // Set target in front and check blocks
             _target = jumpStart + _direction * Level.BlockScale;
@@ -139,6 +139,8 @@ namespace Player
             {
                 _target += Vector3.down * Level.BlockScale;
             }
+
+            return _target;
         }
 
         public void StartJumping()
