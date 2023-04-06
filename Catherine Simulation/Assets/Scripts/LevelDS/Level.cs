@@ -112,5 +112,15 @@ namespace LevelDS
         {
             return _level.GetBlock(pos);
         }
+
+        public static void UpdateMovedBlock(Vector3 pos, Vector3 finalPos)
+        {
+            // Set up the new one
+            _level.SetBlockInt(finalPos, GetBlockInt(pos));
+            _level.SetBlock(finalPos, GetBlock(pos));
+            
+            // Erase old
+            _level.SetBlockInt(pos,EmptyBlock);
+        }
     }
 }

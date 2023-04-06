@@ -59,7 +59,9 @@ namespace Blocks
         {
             if (_blockProgress.IsCompleted() && _playerProgress.IsCompleted()) // player and block should complete at the same time
             {
-                Debug.Log(_blockProgress.Progress);
+                // Update block position
+                Level.UpdateMovedBlock(_blockProgress.StartPos, _blockProgress.TargetPos);
+                
                 ResetBlockState();
                 _playerState.StopMovingBlock();
             }
@@ -68,11 +70,6 @@ namespace Blocks
             {
                 transform.position = _blockProgress.Lerp();
                 _playerTransform.position = _playerProgress.Lerp();
-
-                if (Vector3.Distance(_blockProgress.TargetPos, transform.position) <= 0.01f)
-                {
-                    var a = 0;
-                }
             }
         }
 
