@@ -21,17 +21,28 @@ namespace Player
         /*
          * Pulls the block in front of the player, if any
          */
-        public void Pull()
+        public void MoveBlocks()
         {
-            if (_input.Pull() && _playerState.CanPull())
+            if (_input.Pull() && _playerState.CanMoveBlocks())
             {
-                GameObject block = Level.GetBlock(_transform.position + Vector3.up + _playerState.GetDirection() * Level.BlockScale);
-                if (block == null) return;
+                BlockSolidController blockSolidController = GetBlockController();
+                if (blockSolidController == null) return;
                 
-                BlockSolidController blockSolidController = block.GetComponent<BlockSolidController>();
                 blockSolidController.TriggerPull(_transform, _playerState);
             }
-            
+            else if (_input.Push() && _playerState.CanMoveBlocks())
+            {
+                BlockSolidController blockSolidController = GetBlockController();
+                if (blockSolidController == null) return;
+                
+                blockSolidController.TriggerPush(_transform, _playerState);
+            }
+        }
+
+        private BlockSolidController GetBlockController()
+        {
+            GameObject block = Level.GetBlock(_transform.position + Vector3.up + _playerState.GetDirection() * Level.BlockScale);
+            return block == null ? null : block.GetComponent<BlockSolidController>();
         }
         
         

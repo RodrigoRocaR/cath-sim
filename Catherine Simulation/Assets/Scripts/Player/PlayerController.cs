@@ -39,7 +39,7 @@ namespace Player
             _playerState.UpdateDirection(transform.eulerAngles);
             _tiledMovementController.Move();
             _jumpController.Jump();
-            _blockInteractController.Pull();
+            _blockInteractController.MoveBlocks();
         }
 
         private void FixedUpdate()

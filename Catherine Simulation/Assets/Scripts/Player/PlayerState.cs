@@ -165,7 +165,7 @@ namespace Player
             return !_isJumping && !_isMoving && !_isMovingBlock;
         }
         
-        // Pull blocks
+        // Move blocks
         public void StartMovingBlock()
         {
             _isMovingBlock = true;
@@ -181,7 +181,7 @@ namespace Player
             return _isMovingBlock;
         }
 
-        public bool CanPull()
+        public bool CanMoveBlocks()
         {
             return !_isJumping && !_isMoving && !_isMovingBlock;
         }

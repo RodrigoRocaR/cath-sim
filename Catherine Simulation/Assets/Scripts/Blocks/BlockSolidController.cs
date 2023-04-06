@@ -11,7 +11,7 @@ namespace Blocks
 
         private MoveLerp _blockProgress;
         private MoveLerp _playerProgress;
-        private bool _isBeingPulled;
+        private bool _isBeingMoved;
         
         private Transform _playerTransform;
         private PlayerState _playerState;
@@ -27,7 +27,7 @@ namespace Blocks
         // Update is called once per frame
         void Update()
         {
-            Pull();
+            Move();
         }
 
         /**
@@ -36,7 +36,7 @@ namespace Blocks
      */
         public void TriggerPull(Transform playerTransform, PlayerState playerState)
         {
-            if (_isBeingPulled && !playerState.CanPull()) return;
+            if (_isBeingMoved || !playerState.CanMoveBlocks()) return; // to double check
 
             _playerTransform = playerTransform;
             _playerState = playerState;
@@ -44,7 +44,7 @@ namespace Blocks
             Vector3 playerPos = playerTransform.position;
             
             // Set up block
-            _isBeingPulled = true;
+            _isBeingMoved = true;
             _blockProgress.TargetPos = playerPos + Vector3.up;
             _blockProgress.StartPos = transform.position;
         
@@ -55,8 +55,31 @@ namespace Blocks
             _playerState.StartMovingBlock();
         }
 
-        private void Pull()
+        public void TriggerPush(Transform playerTransform, PlayerState playerState)
         {
+            if (_isBeingMoved || !playerState.CanMoveBlocks()) return; // to double check
+
+            _playerTransform = playerTransform;
+            _playerState = playerState;
+            
+            Vector3 playerPos = playerTransform.position;
+            
+            // Set up block
+            _isBeingMoved = true;
+            _blockProgress.TargetPos = playerPos + _playerState.GetDirection() * (2 * Level.BlockScale) + Vector3.up;
+            _blockProgress.StartPos = transform.position;
+        
+            // Set up player
+            _playerProgress.TargetPos = playerPos;
+            _playerProgress.StartPos = playerPos;
+            
+            _playerState.StartMovingBlock();
+        }
+
+        private void Move()
+        {
+            if (!_isBeingMoved) return;
+            
             if (_blockProgress.IsCompleted() && _playerProgress.IsCompleted()) // player and block should complete at the same time
             {
                 // Update block position
@@ -65,8 +88,7 @@ namespace Blocks
                 ResetBlockState();
                 _playerState.StopMovingBlock();
             }
-        
-            if (_isBeingPulled)
+            else
             {
                 transform.position = _blockProgress.Lerp();
                 _playerTransform.position = _playerProgress.Lerp();
@@ -75,7 +97,7 @@ namespace Blocks
 
         private void ResetBlockState()
         {
-            _isBeingPulled = false;
+            _isBeingMoved = false;
             _blockProgress.Reset();
             _playerProgress.Reset();
         }
