@@ -24,7 +24,7 @@ namespace Tools
 
         public bool IsCompleted()
         {
-            return ElapsedTime >= Duration && ElapsedTime != 0f;
+            return Progress >= 1f;
         }
 
         public void Reset()

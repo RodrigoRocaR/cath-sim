@@ -13,6 +13,7 @@ namespace Player
         private TiledMovementController _tiledMovementController;
         private JumpController _jumpController;
         private AnimationsController _animationsController;
+        private BlockInteractController _blockInteractController;
         private PlayerState _playerState;
     
     
@@ -26,6 +27,7 @@ namespace Player
             _tiledMovementController = new TiledMovementController(transform, _inputs, _playerState, speed);
             _jumpController = new JumpController(transform, _inputs, _playerState, 0.85f);
             _animationsController = new AnimationsController(_animator, _playerState);
+            _blockInteractController = new BlockInteractController(transform, _playerState, _inputs);
         
             _playerState.UpdateDirection(transform.eulerAngles);
         }
@@ -37,6 +39,7 @@ namespace Player
             _playerState.UpdateDirection(transform.eulerAngles);
             _tiledMovementController.Move();
             _jumpController.Jump();
+            _blockInteractController.Pull();
         }
 
         private void FixedUpdate()

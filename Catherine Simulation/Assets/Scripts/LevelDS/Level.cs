@@ -5,7 +5,6 @@ namespace LevelDS
     public class Level : MonoBehaviour
     {
         public GameObject[] blockVariants;
-        public GameObject levelGameObject;
         public const int EmptyBlock = -1;
         public const int SolidBlock = 0;
         public const int LevelSize = 12;
@@ -17,7 +16,7 @@ namespace LevelDS
 
         void Start()
         {
-            _level = new GameMatrix(LevelSize, LevelSize, LevelSize, levelGameObject);
+            _level = new GameMatrix(LevelSize, LevelSize, LevelSize);
             InitializeLevel();
             GetTestLevel();
             SpawnBlocks();
@@ -107,6 +106,11 @@ namespace LevelDS
         public static int GetBlockInt(Vector3 pos)
         {
             return _level.GetBlockInt(pos);
+        }
+
+        public static GameObject GetBlock(Vector3 pos)
+        {
+            return _level.GetBlock(pos);
         }
     }
 }

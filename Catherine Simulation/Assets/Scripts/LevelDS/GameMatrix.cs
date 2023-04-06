@@ -5,28 +5,28 @@ namespace LevelDS
 {
     public class GameMatrix
     {
+        private readonly GameObject _emptyGameObject = new GameObject();
+        
         private Matrix3D<int> _levelInt;
         private Matrix3D<GameObject> _level;
 
-        private GameObject _parentGameObject;
-    
         public int Width { get; set; }
 
         public int Height { get; set; }
 
         public int Depth { get; set; }
 
-        public GameMatrix(int width, int height, int depth, GameObject parentGameObject)
+        public GameMatrix(int width, int height, int depth)
         {
             Width = width;
             Height = height;
             Depth = depth;
             _levelInt = new Matrix3D<int>(width, height, depth);
             _level = new Matrix3D<GameObject>(width, height, depth);
-            _parentGameObject = parentGameObject;
             InitializeMatrices();
         }
     
+        // Access integer matrix --------------
         public int GetBlockInt(int x, int y, int z)
         {
             return _levelInt == null ? -1 : _levelInt[x, y, z];
@@ -35,10 +35,9 @@ namespace LevelDS
         public int GetBlockInt(Vector3 coord)
         {
             if (_levelInt == null) return -1;
-        
-            coord.y -= 1;
-            coord /= Level.BlockScale;
-            return IsCoordWithinLevel(coord.x, coord.y, coord.z) ? _levelInt[coord] : -1;
+
+            coord = ParseCoords(coord);
+            return IsCoordWithinLevel(coord) ? _levelInt[coord] : -1;
         }
 
         public void SetBlockInt(int x, int y, int z, int val)
@@ -46,16 +45,25 @@ namespace LevelDS
             if (!IsCoordWithinLevelInt(x, y, z)) return;
             _levelInt[x, y, z] = val;
         }
-
+        
+        // Access GameObject matrix --------------
         public void SetBlock(int x, int y, int z, GameObject block)
         {
             _level[x, y, z] = block;
-            block.transform.SetParent(_parentGameObject.transform);
+        }
+        
+        public GameObject GetBlock(Vector3 coord)
+        {
+            if (_levelInt == null) return _emptyGameObject;
+
+            coord = ParseCoords(coord);
+            return IsCoordWithinLevel(coord) ? _level[coord] : _emptyGameObject;
         }
     
-        private bool IsCoordWithinLevel(float x, float y, float z)
+        // Helper functions ------------------------------
+        private bool IsCoordWithinLevel(Vector3 coord)
         {
-            return IsCoordWithinLevelInt((int)Math.Round(x), (int)Math.Round(y), (int)Math.Round(z));
+            return IsCoordWithinLevelInt((int)Math.Round(coord.x), (int)Math.Round(coord.y), (int)Math.Round(coord.z));
         }
     
         private bool IsCoordWithinLevelInt(int x, int y, int z)
@@ -64,7 +72,7 @@ namespace LevelDS
         }
     
 
-        public bool isEmpty()
+        public bool IsEmpty()
         {
             for (int i = 0; i < Width; i++)
             {
@@ -91,6 +99,13 @@ namespace LevelDS
                     }
                 }
             }
+        }
+
+        private Vector3 ParseCoords(Vector3 coords)
+        {
+            coords.y -= 1;
+            coords /= Level.BlockScale;
+            return coords;
         }
     }
 }

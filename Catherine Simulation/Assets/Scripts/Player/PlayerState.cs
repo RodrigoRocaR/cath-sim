@@ -19,6 +19,8 @@ namespace Player
     
         private bool _isJumping;
 
+        private bool _isMovingBlock;
+
         // Direction ------------------
         public Vector3 GetDirection()
         {
@@ -99,7 +101,7 @@ namespace Player
         // Block detection ------------------
         public bool CanMove()
         {
-            return _hasFoundation && !_isBlockInFront && !_isWallInFront;
+            return _hasFoundation && !_isBlockInFront && !_isWallInFront && !_isMovingBlock;
         }
     
         public void CheckBlocksTarget()
@@ -160,7 +162,29 @@ namespace Player
 
         public bool CanJump()
         {
-            return !_isJumping && !_isMoving;
+            return !_isJumping && !_isMoving && !_isMovingBlock;
         }
+        
+        // Pull blocks
+        public void StartMovingBlock()
+        {
+            _isMovingBlock = true;
+        }
+
+        public void StopMovingBlock()
+        {
+            _isMovingBlock = false;
+        }
+
+        public bool IsMovingBlocks()
+        {
+            return _isMovingBlock;
+        }
+
+        public bool CanPull()
+        {
+            return !_isJumping && !_isMoving && !_isMovingBlock;
+        }
+
     }
 }
