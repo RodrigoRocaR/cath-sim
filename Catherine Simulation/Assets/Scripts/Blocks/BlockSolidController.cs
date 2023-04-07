@@ -7,7 +7,7 @@ namespace Blocks
 {
     public class BlockSolidController : MonoBehaviour
     {
-        private const float MoveDuration = 1f;
+        private const float MoveDuration = 0.5f;
 
         private MoveLerp _blockProgress;
         private MoveLerp _playerProgress;
