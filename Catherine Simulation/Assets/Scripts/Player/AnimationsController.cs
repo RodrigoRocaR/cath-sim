@@ -7,6 +7,7 @@ namespace Player
         private const string Idle = "Idle";
         private const string Run = "Run";
         private const string Jump = "Jump";
+        private const string Grab = "Grab";
     
         private readonly Animator _animator;
         private readonly PlayerState _playerState;
@@ -29,6 +30,10 @@ namespace Player
             else if (_playerState.IsJumping())
             {
                 ChangeAnimationState(Jump);
+            }
+            else if (_playerState.IsMovingBlocks())
+            {
+                ChangeAnimationState(Grab);
             }
             else
             {
