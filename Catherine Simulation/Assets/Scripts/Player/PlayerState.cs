@@ -118,7 +118,7 @@ namespace Player
             pos.y += Level.BlockScale;
             _isBlockInFront = Level.GetBlockInt(pos) != Level.EmptyBlock; // Block in front
             pos.y += Level.BlockScale;
-            _isWallInFront = Level.GetBlockInt(pos) != Level.EmptyBlock; // Block on top in front
+            _isWallInFront = Level.GetBlockInt(pos) != Level.EmptyBlock && _isBlockInFront; // Block on top in front
         }
     
     
