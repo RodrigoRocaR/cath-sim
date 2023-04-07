@@ -121,6 +121,7 @@ namespace LevelDS
             
             // Erase old
             _level.SetBlockInt(pos,EmptyBlock);
+            _level.SetBlock(pos, null);
         }
     }
 }
