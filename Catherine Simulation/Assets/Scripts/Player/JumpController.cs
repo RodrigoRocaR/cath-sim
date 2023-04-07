@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Threading.Tasks;
 using LevelDS;
 using Tools;
 using UnityEngine;
@@ -10,7 +12,10 @@ namespace Player
         private readonly Transform _transform;
         private readonly PlayerState _playerState;
         private MoveLerpParabolic _jumpLerp;
+        private bool _isDelayActive;
+        
         private const int JumpHeight = Level.BlockScale;
+        private const int JumpDelayMilli = 50;
 
         public JumpController(Transform transform, Inputs inputs, PlayerState playerState, float jumpDuration)
         {
@@ -21,7 +26,7 @@ namespace Player
         }
 
         public void Jump () {
-            if (_inputs.Jump() && _playerState.CanJump()) {
+            if (_inputs.Jump() && _playerState.CanJump() && !_isDelayActive) {
                 SetUpJump();
             }
 
@@ -34,6 +39,10 @@ namespace Player
                     _playerState.StopJumping();
                     _jumpLerp.Reset();
                     PlayerStats.AddJump();
+                    
+                    // Set delay
+                    _isDelayActive = true;
+                    WaitForJumpDelay();
                 }
             }
         }
@@ -43,6 +52,14 @@ namespace Player
             _playerState.StartJumping();
             _jumpLerp.StartPos = _transform.position;
             _jumpLerp.TargetPos = _playerState.SetJumpTarget(_jumpLerp.StartPos);
+        }
+
+        private void WaitForJumpDelay()
+        {
+            Task.Delay(JumpDelayMilli).ContinueWith(_ =>
+            {
+                _isDelayActive = false;
+            });
         }
     }
 }
