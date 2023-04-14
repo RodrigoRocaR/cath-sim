@@ -116,14 +116,15 @@ namespace LevelDS
 
         private void IncreaseSize(Vector3 coord)
         {
+            coord = ParseCoords(coord);
             IncreaseSize((int)Math.Round(coord.x), (int)Math.Round(coord.y), (int)Math.Round(coord.z));
         }
         
         private void IncreaseSize(int x, int y, int z)
         {
-            int diffx = Math.Abs(_levelInt.Width - Math.Abs(x));
-            int diffy = Math.Abs(_levelInt.Height - Math.Abs(y));
-            int diffz = Math.Abs(_levelInt.Depth - Math.Abs(z));
+            int diffx = Math.Abs(_levelInt.Width - 1 - Math.Abs(x));
+            int diffy = Math.Abs(_levelInt.Height - 1 - Math.Abs(y));
+            int diffz = Math.Abs(_levelInt.Depth - 1 - Math.Abs(z));
             
             _levelInt.IncreaseSize(0, diffx);
             _level.IncreaseSize(0, diffx);
@@ -133,6 +134,10 @@ namespace LevelDS
             
             _levelInt.IncreaseSize(2, diffz);
             _level.IncreaseSize(2, diffz);
+
+            Width += diffx;
+            Height += diffy;
+            Depth += diffz;
         }
 
         private Vector3 ParseCoords(Vector3 coords)

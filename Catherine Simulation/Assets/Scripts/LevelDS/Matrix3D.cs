@@ -83,26 +83,39 @@ namespace LevelDS
 
         public T this[int x, int y, int z]
         {
-            get => _elements[x][y][z];
-            set => _elements[x][y][z] = value;
+            get =>  ValidCoords(x, y, z) ? _elements[x][y][z] : _startValue;
+            set
+            {
+                if (ValidCoords(x, y, z)) _elements[x][y][z] = value;
+            } 
         }
         
         public List<T> this[int x, int y]
         {
-            get => _elements[x][y];
-            set => _elements[x][y] = value;
+            get => ValidCoords(x, y) ? _elements[x][y] : new List<T>();
+            set
+            {
+                if (ValidCoords(x, y)) _elements[x][y] = value;
+            }
+           
         }
         
         public List<List<T>> this[int x]
         {
-            get => _elements[x];
-            set => _elements[x] = value;
+            get => ValidCoords(x) ? _elements[x] : new List<List<T>>();
+            set
+            {
+                if (ValidCoords(x)) _elements[x] = value;
+            } 
         }
 
         public T this[Vector3Int coord]
         {
-            get => _elements[coord.x][coord.y][coord.z];
-            set => _elements[coord.x][coord.y][coord.z] = value;
+            get => ValidCoords(coord) ? _elements[coord.x][coord.y][coord.z] : _startValue;
+            set
+            {
+                if (ValidCoords(coord)) _elements[coord.x][coord.y][coord.z] = value;
+            } 
         }
 
         public T this[Vector3 coord]
@@ -110,13 +123,13 @@ namespace LevelDS
             get
             {
                 Vector3Int coordInt = Vector3Int.RoundToInt(coord);
-                return _elements[coordInt.x][coordInt.y][coordInt.z];
+                return ValidCoords(coordInt) ? _elements[coordInt.x][coordInt.y][coordInt.z] : _startValue;
             }
 
             set
             {
                 Vector3Int coordInt = Vector3Int.RoundToInt(coord);
-                _elements[coordInt.x][coordInt.y][coordInt.z] = value;
+                if (ValidCoords(coordInt)) _elements[coordInt.x][coordInt.y][coordInt.z] = value;
             }
         }
 
@@ -135,5 +148,59 @@ namespace LevelDS
                 }
             }
         }
+
+        private bool ValidCoords(Vector3Int coords)
+        {
+            return ValidCoords(coords.x, coords.y, coords.z);
+        }
+
+        private bool ValidCoords(int x)
+        {
+            if (x >= Width)
+            {
+                LogOutOfBounds(x);
+                return false;
+            }
+
+            return true;
+        }
+        
+        private bool ValidCoords(int x, int y)
+        {
+            if (x >= Width || y >= Height)
+            {
+                LogOutOfBounds(x, y);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidCoords(int x, int y, int z)
+        {
+            if (x >= Width || y >= Height || z >= Depth)
+            {
+                LogOutOfBounds(x, y, z);
+                return false;
+            }
+            return true;
+        }
+
+        private void LogOutOfBounds(int x, int y, int z)
+        {
+            Debug.LogError("Trying to get " + x + ", " + y + ", " + z + 
+                           "; Dims: " + Width + ", " + Height  + ", " + Depth);
+        }
+        
+        private void LogOutOfBounds(int x, int y)
+        {
+            Debug.LogError("Trying to get " + x + ", " + y + "; Dims: " + Width + ", " + Height);
+        }
+        
+        private void LogOutOfBounds(int x)
+        {
+            Debug.LogError("Trying to get " + x + "; Dims: " + Width);
+        }
+        
     }
 }
