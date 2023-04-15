@@ -5,8 +5,7 @@ namespace LevelDS
 {
     public class GameMatrix
     {
-        private readonly GameObject _emptyGameObject = new GameObject();
-        
+
         private Matrix3D<int> _levelInt;
         private Matrix3D<GameObject> _level;
 
@@ -81,10 +80,17 @@ namespace LevelDS
         
         public GameObject GetBlock(Vector3 coord)
         {
-            if (_levelInt == null) return _emptyGameObject;
+            if (_levelInt == null) return null;
 
             coord = ParseCoords(coord);
-            return IsCoordWithinLevel(coord) ? _level[coord] : _emptyGameObject;
+            return IsCoordWithinLevel(coord) ? _level[coord] : null;
+        }
+        
+        public GameObject GetBlock(int x, int y, int z)
+        {
+            if (_levelInt == null) return null;
+            
+            return IsCoordWithinLevel(x, y, z) ? _level[x, y, z] : null;
         }
     
         // Helper functions ------------------------------
