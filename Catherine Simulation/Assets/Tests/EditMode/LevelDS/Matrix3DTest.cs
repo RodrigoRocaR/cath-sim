@@ -1,6 +1,8 @@
 ﻿using System;
 using LevelDS;
 using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Tests.EditMode.LevelDS
 {
@@ -164,6 +166,83 @@ namespace Tests.EditMode.LevelDS
 
             // Assert
             Assert.AreEqual(initialWidth, obj.Width);
+        }
+
+        [Test]
+        public void SetBlockInRange()
+        {
+            // Arrange
+            var matrix = new Matrix3D<int>(4, 4, 4, -1);
+            
+            // Act
+            matrix[3, 3, 3] = 1;
+            
+            // Assert
+            Assert.AreEqual(matrix[3, 3, 3], 1);
+            for (int i=0; i<matrix.Width; i++)
+            {
+                for (int j=0; j<matrix.Height; j++)
+                {
+                    for (int k=0; k<matrix.Depth; k++)
+                    {
+                        if (i != 3 && j != 3 && k != 3) Assert.AreEqual(matrix[i, j, k], -1);
+                    }
+                }
+            }
+        }
+        
+        [Test]
+        public void SetBlockOutOfRange()
+        {
+            // Arrange
+            var matrix = new Matrix3D<int>(4, 4, 4, -1);
+            
+            // Act
+            matrix[4, 4, 4] = 1;
+
+            // Assert
+            LogAssert.Expect(LogType.Error, "Trying to get 4, 4, 4; Dims: 4, 4, 4");
+            for (int i=0; i<matrix.Width; i++)
+            {
+                for (int j=0; j<matrix.Height; j++)
+                {
+                    for (int k=0; k<matrix.Depth; k++)
+                    {
+                        Assert.AreEqual(matrix[i, j, k], -1);
+                    }
+                }
+            }
+        }
+        
+        [Test]
+        public void GetBlockInRange()
+        {
+            // Arrange
+            var matrix = new Matrix3D<int>(4, 4, 4, -1);
+            matrix[3, 3, 3] = 1;
+            
+            // Act
+            int obj = matrix[3, 3, 3];
+            
+            
+            // Assert
+            Assert.AreEqual(obj, 1);
+        }
+        
+        [Test]
+        public void GetBlockOutOfRange()
+        {
+            // Arrange
+            var matrix = new Matrix3D<int>(4, 4, 4, -1);
+            matrix[3, 3, 3] = 1;
+            
+            // Act
+            int obj = matrix[4, 5, 6];
+            
+            
+            // Assert
+            LogAssert.Expect(LogType.Error, "Trying to get 4, 5, 6; Dims: 4, 4, 4");
+            Assert.AreEqual(obj, -1);
         }
     }
 }
