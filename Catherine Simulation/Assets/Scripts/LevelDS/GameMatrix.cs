@@ -43,8 +43,13 @@ namespace LevelDS
             if (!IsCoordWithinLevel(x, y, z))
             {
                 IncreaseSize(x, y, z);
+                Vector3 coord = ClampToZero(x, y, z);
+                _levelInt[coord] = val;
             }
-            _levelInt[x, y, z] = val;
+            else
+            {
+                _levelInt[x, y, z] = val;
+            }
         }
         
         public void SetBlockInt(Vector3 coord, int val)
@@ -53,9 +58,11 @@ namespace LevelDS
             if (!IsCoordWithinLevel(coord))
             {
                 IncreaseSize(coord);
+                coord = ClampToZero(coord);
             }
             _levelInt[coord] = val;
         }
+        
         
         // Access GameObject matrix --------------
         public void SetBlock(int x, int y, int z, GameObject block)
@@ -63,8 +70,13 @@ namespace LevelDS
             if (!IsCoordWithinLevel(x, y, z))
             {
                 IncreaseSize(x, y, z);
+                Vector3 coord = ClampToZero(x, y, z);
+                _level[coord] = block;
             }
-            _level[x, y, z] = block;
+            else
+            {
+                _level[x, y, z] = block;
+            }
         }
         
         public void SetBlock(Vector3 coord, GameObject block)
@@ -73,11 +85,12 @@ namespace LevelDS
             if (!IsCoordWithinLevel(coord))
             {
                 IncreaseSize(coord);
+                coord = ClampToZero(coord);
             }
 
             _level[coord] = block;
         }
-        
+
         public GameObject GetBlock(Vector3 coord)
         {
             if (_levelInt == null) return null;
@@ -128,9 +141,9 @@ namespace LevelDS
         
         private void IncreaseSize(int x, int y, int z)
         {
-            int diffx = Math.Abs(_levelInt.Width - 1 - Math.Abs(x));
-            int diffy = Math.Abs(_levelInt.Height - 1 - Math.Abs(y));
-            int diffz = Math.Abs(_levelInt.Depth - 1 - Math.Abs(z));
+            int diffx = x > 0 ? x - _levelInt.Width + 1 : Math.Abs(x);
+            int diffy = y > 0 ? y - _levelInt.Height + 1 : Math.Abs(y);
+            int diffz = z > 0 ? z - _levelInt.Depth + 1 : Math.Abs(z);
             
             _levelInt.IncreaseSize(0, diffx);
             _level.IncreaseSize(0, diffx);
@@ -151,6 +164,16 @@ namespace LevelDS
             coords.y -= 1;
             coords /= Level.BlockScale;
             return coords;
+        }
+        
+        private Vector3 ClampToZero(Vector3 vector)
+        {
+            return new Vector3(Mathf.Max(0, vector.x), Mathf.Max(0, vector.y), Mathf.Max(0, vector.z));
+        }
+        
+        private Vector3 ClampToZero(int x, int y, int z)
+        {
+            return new Vector3(Mathf.Max(0, x), Mathf.Max(0, y), Mathf.Max(0, z));
         }
     }
 }

@@ -9,108 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
-  m_Script: {fileID: 12004, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PixelRect:
-    serializedVersion: 2
-    x: 0
-    y: 42.666668
-    width: 1706.6667
-    height: 917.3334
-  m_ShowMode: 4
-  m_Title: Game
-  m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 300}
-  m_MaxSize: {x: 10000, y: 10000}
-  m_Maximized: 1
---- !u!114 &2
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12008, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 3}
-  - {fileID: 5}
-  - {fileID: 4}
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1706.6666
-    height: 917.3333
-  m_MinSize: {x: 875, y: 300}
-  m_MaxSize: {x: 10000, y: 10000}
-  m_UseTopView: 1
-  m_TopViewHeight: 30
-  m_UseBottomView: 1
-  m_BottomViewHeight: 20
---- !u!114 &3
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12011, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1706.6666
-    height: 30
-  m_MinSize: {x: 0, y: 0}
-  m_MaxSize: {x: 0, y: 0}
-  m_LastLoadedLayoutName: 
---- !u!114 &4
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12042, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 897.3333
-    width: 1706.6666
-    height: 20
-  m_MinSize: {x: 0, y: 0}
-  m_MaxSize: {x: 0, y: 0}
---- !u!114 &5
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
   m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 6}
-  - {fileID: 9}
-  - {fileID: 12}
+  - {fileID: 3}
+  - {fileID: 8}
+  - {fileID: 13}
   m_Position:
     serializedVersion: 2
     x: 0
@@ -120,190 +25,8 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 15
---- !u!114 &6
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 7}
-  - {fileID: 8}
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1008.6667
-    height: 867.3333
-  m_MinSize: {x: 100, y: 200}
-  m_MaxSize: {x: 8096, y: 16192}
-  vertical: 1
-  controlID: 16
---- !u!114 &7
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1008.6667
-    height: 327.33334
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 13}
-  m_Panes:
-  - {fileID: 14}
-  - {fileID: 13}
-  m_Selected: 1
-  m_LastSelected: 0
---- !u!114 &8
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 327.33334
-    width: 1008.6667
-    height: 540
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 15}
-  m_Panes:
-  - {fileID: 15}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &9
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 10}
-  - {fileID: 11}
-  m_Position:
-    serializedVersion: 2
-    x: 1008.6667
-    y: 0
-    width: 349.99994
-    height: 867.3333
-  m_MinSize: {x: 100, y: 200}
-  m_MaxSize: {x: 8096, y: 16192}
-  vertical: 1
-  controlID: 125
---- !u!114 &10
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 349.99994
-    height: 382
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 16}
-  m_Panes:
-  - {fileID: 16}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &11
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 382
-    width: 349.99994
-    height: 485.3333
-  m_MinSize: {x: 232, y: 271}
-  m_MaxSize: {x: 10002, y: 10021}
-  m_ActualView: {fileID: 17}
-  m_Panes:
-  - {fileID: 17}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &12
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TestRunnerWindow
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 1358.6666
-    y: 0
-    width: 348
-    height: 867.3333
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 19}
-  m_Panes:
-  - {fileID: 18}
-  - {fileID: 19}
-  m_Selected: 1
-  m_LastSelected: 0
---- !u!114 &13
+  controlID: 416
+--- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,7 +55,59 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
     m_OverlaysVisible: 1
---- !u!114 &14
+--- !u!114 &3
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 4}
+  - {fileID: 6}
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1008.6667
+    height: 867.3333
+  m_MinSize: {x: 100, y: 200}
+  m_MaxSize: {x: 8096, y: 16192}
+  vertical: 1
+  controlID: 417
+--- !u!114 &4
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: ConsoleWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1008.6667
+    height: 327.33334
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 2}
+  m_Panes:
+  - {fileID: 5}
+  - {fileID: 2}
+  m_Selected: 1
+  m_LastSelected: 0
+--- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -609,7 +384,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.12980668, y: -0.21580918, z: 0.029010372, w: 0.96737915}
     speed: 2
-    m_Value: {x: 0.12980102, y: -0.21579976, z: 0.029009106, w: 0.96733695}
+    m_Value: {x: -0.12980668, y: 0.21580917, z: -0.029010372, w: -0.96737915}
   m_Size:
     m_Target: 1.584589
     speed: 2
@@ -638,7 +413,33 @@ MonoBehaviour:
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &15
+--- !u!114 &6
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: GameView
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 327.33334
+    width: 1008.6667
+    height: 540
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 7}
+  m_Panes:
+  - {fileID: 7}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -731,7 +532,58 @@ MonoBehaviour:
   m_LowResolutionForAspectRatios: 00000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
---- !u!114 &16
+--- !u!114 &8
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 9}
+  - {fileID: 11}
+  m_Position:
+    serializedVersion: 2
+    x: 1008.6667
+    y: 0
+    width: 333.99994
+    height: 867.3333
+  m_MinSize: {x: 100, y: 200}
+  m_MaxSize: {x: 8096, y: 16192}
+  vertical: 1
+  controlID: 363
+--- !u!114 &9
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 333.99994
+    height: 382
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 10}
+  m_Panes:
+  - {fileID: 10}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -753,7 +605,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1008.6667
     y: 72.66667
-    width: 347.99994
+    width: 331.99994
     height: 361
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -765,7 +617,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4ad0ffffa8d1ffffe2d3ffff8cd5ffff92d7fffff8d8ffff28ddffff5adfffff72eefffff6efffff6cf1ffffa0f3ffff08f5ffff5ef7ffff12f9ffff34fbffff
+      m_ExpandedIDs: 98f8ffff2afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -789,7 +641,33 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: c58fa2f34b92e13449a8933a06dbcc59
---- !u!114 &17
+--- !u!114 &11
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 382
+    width: 333.99994
+    height: 485.3333
+  m_MinSize: {x: 232, y: 271}
+  m_MaxSize: {x: 10002, y: 10021}
+  m_ActualView: {fileID: 12}
+  m_Panes:
+  - {fileID: 12}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -811,7 +689,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1008.6667
     y: 454.6667
-    width: 347.99994
+    width: 331.99994
     height: 464.3333
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -845,7 +723,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: bc5a0000
     m_LastClickedID: 23228
-    m_ExpandedIDs: 00000000386800003a6800003c6800003e68000040680000426800004468000046680000486800004a6800004c6800004e68000050680000526800005468000056680000586800005a6800005c6800005e68000060680000
+    m_ExpandedIDs: ffffffff00000000386800003a6800003c6800003e68000040680000426800004468000046680000486800004a6800004c6800004e68000050680000526800005468000056680000586800005a6800005c6800005e68000060680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -929,7 +807,34 @@ MonoBehaviour:
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 115
---- !u!114 &18
+--- !u!114 &13
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: InspectorWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 1342.6666
+    y: 0
+    width: 364
+    height: 867.3333
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 14}
+  m_Panes:
+  - {fileID: 14}
+  - {fileID: 15}
+  m_Selected: 0
+  m_LastSelected: 1
+--- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -971,7 +876,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
---- !u!114 &19
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -991,9 +896,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1358.6667
+    x: 1342.6667
     y: 72.66667
-    width: 347
+    width: 363
     height: 846.3333
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1061,15 +966,15 @@ MonoBehaviour:
       availableCategories: []
     m_SelectedOption: 0
   m_EditModeTestListGUI:
-    m_Window: {fileID: 19}
+    m_Window: {fileID: 15}
     m_NewResultList:
     - id: 1000
       uniqueId: '[Catherine Simulation][suite]'
       name: Catherine Simulation
       fullName: Catherine Simulation
-      resultStatus: 2
-      duration: 0.516414
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.133026
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -1083,9 +988,9 @@ MonoBehaviour:
       uniqueId: '[EditMode.dll][suite]'
       name: EditMode.dll
       fullName: D:/Unity projects/cath-sim/Catherine Simulation/Library/ScriptAssemblies/EditMode.dll
-      resultStatus: 2
-      duration: 0.4963239
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0896632
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -1099,9 +1004,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/[Tests][suite]
       name: Tests
       fullName: Tests
-      resultStatus: 2
-      duration: 0.4000084
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0876324
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -1115,9 +1020,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/[EditMode][suite]
       name: EditMode
       fullName: Tests.EditMode
-      resultStatus: 2
-      duration: 0.300351
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0825085
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -1131,9 +1036,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/[EditMode][Tests.EditMode.LevelDS][suite]
       name: LevelDS
       fullName: Tests.EditMode.LevelDS
-      resultStatus: 2
-      duration: 0.1999299
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.082179
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -1147,9 +1052,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest][suite]
       name: GameMatrixTest
       fullName: Tests.EditMode.LevelDS.GameMatrixTest
-      resultStatus: 2
-      duration: 0.100057
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0413918
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -1164,7 +1069,7 @@ MonoBehaviour:
       name: DoesNotIncreaseSizeWhenInRange
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.DoesNotIncreaseSizeWhenInRange
       resultStatus: 1
-      duration: 0.0003103
+      duration: 0.0183907
       messages: 
       output: 
       stacktrace: 
@@ -1176,54 +1081,15 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest][suite]
-    - id: 1004
-      uniqueId: EditMode.dll/Tests/EditMode/LevelDS/GameMatrixTest/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftxyz]
-      name: IncreaseSizeLeftxyz
-      fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftxyz
-      resultStatus: 2
-      duration: 0.0004388
-      messages: 'System.ArgumentOutOfRangeException : Index was out of range. Must
-        be non-negative and less than the size of the collection.
-
-        Parameter
-        name: index'
-      output: 
-      stacktrace: "  at System.Collections.Generic.List`1[T].get_Item (System.Int32
-        index) [0x00009] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 \r\n  at LevelDS.Matrix3D`1[T].set_Item
-        (UnityEngine.Vector3 coord, T value) [0x00013] in D:\\Unity projects\\cath-sim\\Catherine
-        Simulation\\Assets\\Scripts\\LevelDS\\Matrix3D.cs:169 \r\n  at LevelDS.GameMatrix.CommonSetBlockInt
-        (UnityEngine.Vector3 coord, System.Int32 val) [0x00019] in D:\\Unity projects\\cath-sim\\Catherine
-        Simulation\\Assets\\Scripts\\LevelDS\\GameMatrix.cs:59 \r\n  at LevelDS.GameMatrix.SetBlockInt
-        (System.Int32 x, System.Int32 y, System.Int32 z, System.Int32 val) [0x00001]
-        in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\LevelDS\\GameMatrix.cs:43
-        \r\n  at Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftxyz () [0x0000a]
-        in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\LevelDS\\GameMatrixTest.cs:83
-        \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-        at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-        invokeAttr, System.Reflection.Binder binder, System.Object[] parameters,
-        System.Globalization.CultureInfo culture) [0x0006a] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 "
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1001
-      parentUniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest][suite]
     - id: 1003
-      uniqueId: EditMode.dll/Tests/EditMode/LevelDS/GameMatrixTest/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightIrregularlyxyz]
-      name: IncreaseSizeRightIrregularlyxyz
-      fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightIrregularlyxyz
-      resultStatus: 2
-      duration: 0.0009699
-      messages: "  Expected: 3\r\n  But was:  5\r\n"
-      output: 'Trying to get 4, 10, 5; Dims: 3, 5, 3
-
-'
-      stacktrace: 'at Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightIrregularlyxyz
-        () [0x00016] in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\LevelDS\GameMatrixTest.cs:52
-
-'
+      uniqueId: EditMode.dll/Tests/EditMode/LevelDS/GameMatrixTest/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeIrregularlyxyz]
+      name: IncreaseSizeIrregularlyxyz
+      fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeIrregularlyxyz
+      resultStatus: 1
+      duration: 0.0026532
+      messages: 
+      output: 
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -1233,19 +1099,14 @@ MonoBehaviour:
       parentId: 1001
       parentUniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest][suite]
     - id: 1002
-      uniqueId: EditMode.dll/Tests/EditMode/LevelDS/GameMatrixTest/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightxyz]
-      name: IncreaseSizeRightxyz
-      fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightxyz
-      resultStatus: 2
-      duration: 0.001105
-      messages: "  Expected: 3\r\n  But was:  5\r\n"
-      output: 'Trying to get 4, 4, 4; Dims: 3, 3, 3
-
-'
-      stacktrace: 'at Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightxyz
-        () [0x00015] in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\LevelDS\GameMatrixTest.cs:18
-
-'
+      uniqueId: EditMode.dll/Tests/EditMode/LevelDS/GameMatrixTest/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizexyz]
+      name: IncreaseSizexyz
+      fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizexyz
+      resultStatus: 1
+      duration: 0.0009865
+      messages: 
+      output: 
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -1259,7 +1120,7 @@ MonoBehaviour:
       name: Matrix3DTest
       fullName: Tests.EditMode.LevelDS.Matrix3DTest
       resultStatus: 1
-      duration: 0.0123667
+      duration: 0.0364138
       messages: 
       output: 
       stacktrace: 
@@ -1275,7 +1136,7 @@ MonoBehaviour:
       name: DoesNotModifyObjectWhenNIsZero
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.DoesNotModifyObjectWhenNIsZero
       resultStatus: 1
-      duration: 0.0001389
+      duration: 0.0002605
       messages: 
       output: 
       stacktrace: 
@@ -1292,7 +1153,7 @@ MonoBehaviour:
       name: GetBlockInRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.GetBlockInRange
       resultStatus: 1
-      duration: 0.0001136
+      duration: 0.0001707
       messages: 
       output: 
       stacktrace: 
@@ -1309,7 +1170,7 @@ MonoBehaviour:
       name: GetBlockOutOfRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.GetBlockOutOfRange
       resultStatus: 1
-      duration: 0.0007911
+      duration: 0.0186642
       messages: 
       output: 'Trying to get 4, 5, 6; Dims: 4, 4, 4
 
@@ -1328,7 +1189,7 @@ MonoBehaviour:
       name: IncreasesDepthByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesDepthByN
       resultStatus: 1
-      duration: 0.0001128
+      duration: 0.0003053
       messages: 
       output: 
       stacktrace: 
@@ -1345,7 +1206,7 @@ MonoBehaviour:
       name: IncreasesHeightByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesHeightByN
       resultStatus: 1
-      duration: 0.0001135
+      duration: 0.0002527
       messages: 
       output: 
       stacktrace: 
@@ -1362,7 +1223,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInXAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInXAxis
       resultStatus: 1
-      duration: 0.0006414
+      duration: 0.0007388
       messages: 
       output: 
       stacktrace: 
@@ -1379,7 +1240,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInYAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInYAxis
       resultStatus: 1
-      duration: 0.000289
+      duration: 0.0004456
       messages: 
       output: 
       stacktrace: 
@@ -1396,7 +1257,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInZAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInZAxis
       resultStatus: 1
-      duration: 0.0003648
+      duration: 0.0006251
       messages: 
       output: 
       stacktrace: 
@@ -1413,7 +1274,7 @@ MonoBehaviour:
       name: IncreasesWidthByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesWidthByN
       resultStatus: 1
-      duration: 0.0001064
+      duration: 0.0003784
       messages: 
       output: 
       stacktrace: 
@@ -1430,7 +1291,7 @@ MonoBehaviour:
       name: SetBlockInRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.SetBlockInRange
       resultStatus: 1
-      duration: 0.0001858
+      duration: 0.0004123
       messages: 
       output: 
       stacktrace: 
@@ -1447,7 +1308,7 @@ MonoBehaviour:
       name: SetBlockOutOfRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.SetBlockOutOfRange
       resultStatus: 1
-      duration: 0.0008988
+      duration: 0.001003
       messages: 
       output: 'Trying to get 4, 4, 4; Dims: 4, 4, 4
 
@@ -1466,7 +1327,7 @@ MonoBehaviour:
       name: ThrowsArgumentExceptionWhenAxisIsWrong
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.ThrowsArgumentExceptionWhenAxisIsWrong
       resultStatus: 1
-      duration: 0.0002383
+      duration: 0.0027491
       messages: 
       output: 
       stacktrace: 
@@ -1478,40 +1339,17 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1003
       parentUniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest][suite]
-    m_ResultText: "IncreaseSizeLeftxyz (0,000s)\n---\nSystem.ArgumentOutOfRangeException
-      : Index was out of range. Must be non-negative and less than the size of the
-      collection.\r\nParameter name: index\n---\nat System.Collections.Generic.List`1[T].get_Item
-      (System.Int32 index) [0x00009] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 \r\n 
-      at LevelDS.Matrix3D`1[T].set_Item (UnityEngine.Vector3 coord, T value) [0x00013]
-      in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\LevelDS\\Matrix3D.cs:169
-      \r\n  at LevelDS.GameMatrix.CommonSetBlockInt (UnityEngine.Vector3 coord, System.Int32
-      val) [0x00019] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\LevelDS\\GameMatrix.cs:59
-      \r\n  at LevelDS.GameMatrix.SetBlockInt (System.Int32 x, System.Int32 y, System.Int32
-      z, System.Int32 val) [0x00001] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\LevelDS\\GameMatrix.cs:43
-      \r\n  at Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftxyz () [0x0000a]
-      in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\LevelDS\\GameMatrixTest.cs:83
-      \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
-      culture) [0x0006a] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0"
-    m_ResultStacktrace: "  at System.Collections.Generic.List`1[T].get_Item (System.Int32
-      index) [0x00009] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 \r\n  at LevelDS.Matrix3D`1[T].set_Item
-      (UnityEngine.Vector3 coord, T value) [0x00013] in D:\\Unity projects\\cath-sim\\Catherine
-      Simulation\\Assets\\Scripts\\LevelDS\\Matrix3D.cs:169 \r\n  at LevelDS.GameMatrix.CommonSetBlockInt
-      (UnityEngine.Vector3 coord, System.Int32 val) [0x00019] in D:\\Unity projects\\cath-sim\\Catherine
-      Simulation\\Assets\\Scripts\\LevelDS\\GameMatrix.cs:59 \r\n  at LevelDS.GameMatrix.SetBlockInt
-      (System.Int32 x, System.Int32 y, System.Int32 z, System.Int32 val) [0x00001]
-      in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\LevelDS\\GameMatrix.cs:43
-      \r\n  at Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftxyz () [0x0000a]
-      in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\LevelDS\\GameMatrixTest.cs:83
-      \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
-      culture) [0x0006a] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 "
+    m_ResultText: 'SetBlockOutOfRange (0,001s)
+
+      ---
+
+      Trying to get 4,
+      4, 4; Dims: 4, 4, 4'
+    m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 34faa2b9
-      m_LastClickedID: -1180501452
+      m_SelectedIDs: f6061e0e
+      m_LastClickedID: 236848886
       m_ExpandedIDs: 9c4580dcd71c52de4d6b105026732a5f1eb49f61993e88644b5ea47cffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0

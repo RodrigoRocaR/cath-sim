@@ -25,59 +25,96 @@ namespace LevelDS
 
         public void IncreaseSize(int axis, int n)
         {
-            if (n <= 0) return;
+            if (n == 0) return;
             
             switch (axis)
             {
                 case 0: // Increase size along the X axis
-                    for (int i=Width; i<Width+n; i++)
+                    if (n > 0)
                     {
-                        _elements.Add(new List<List<T>>(Height));
-                        for (int j=0; j<Height; j++)
-                        {
-                            _elements[i].Add(new List<T>(Depth));
-                            for (int k=0; k<Depth; k++)
-                            {
-                                _elements[i][j].Add(_startValue);
-                            }
-                        }
+                        IncreaseSizeRight(startX: Width, endX: Width + n);
+                        Width += n;
                     }
-                    Width += n;
+                    else
+                    {
+                        IncreaseSizeLeft(endX:-n);
+                        Width -= n;
+                    }
                     break;
 
                 case 1: // Increase size along the Y axis
-                    for (int i=0; i<Width; i++)
+                    if (n > 0)
                     {
-                        for (int j=Height; j<Height+n; j++)
-                        {
-                            _elements[i].Add(new List<T>(Depth));
-                            for (int k=0; k<Depth; k++)
-                            {
-                                _elements[i][j].Add(_startValue);
-                            }
-                        }
+                        IncreaseSizeRight(startY:Height, endY:Height+n);
+                        Height += n;
                     }
-
-                    Height += n;
+                    else
+                    {
+                        IncreaseSizeLeft(endY:-n);
+                        Height -= n;
+                    }
                     break;
 
                 case 2: // Increase size along the Z axis
-                    for (int i=0; i<Width; i++)
+                    if (n > 0)
                     {
-                        for (int j=0; j<Height; j++)
-                        {
-                            for (int k=Depth; k<Depth+n; k++)
-                            {
-                                _elements[i][j].Add(_startValue);
-                            }
-                        }
+                        IncreaseSizeRight(startZ: Depth, endZ:Depth+n);
+                        Depth += n;
                     }
-
-                    Depth += n;
+                    else
+                    {
+                        IncreaseSizeLeft(endZ:-n);
+                        Height -= n;
+                    }
                     break;
                 
                 default:
                     throw new ArgumentException();
+            }
+        }
+
+        private void IncreaseSizeRight(int endX=0, int endY=0, int endZ=0, int startX=0, int startY=0, int startZ=0)
+        {
+            if (endX == 0) endX = Width;
+            if (endY == 0) endY = Height;
+            if (endZ == 0) endZ = Depth;
+
+            bool expandingX = endX != Width, expandingY = endY != Height;
+            
+
+            for (int i=startX; i<endX; i++)
+            {
+                if (expandingX) _elements.Add(new List<List<T>>(Height));
+                for (int j=startY; j<endY; j++)
+                {
+                    if (expandingX || expandingY) _elements[i].Add(new List<T>(Depth));
+                    for (int k=startZ; k<endZ; k++)
+                    {
+                        _elements[i][j].Add(_startValue);
+                    }
+                }
+            }
+        }
+
+        private void IncreaseSizeLeft(int endX=0, int endY=0, int endZ=0)
+        {
+            if (endX == 0) endX = Width;
+            if (endY == 0) endY = Height;
+            if (endZ == 0) endZ = Depth;
+
+            bool expandingX = endX != Width, expandingY = endY != Height;
+            
+            for (int i=0; i<endX; i++)
+            {
+                if (expandingX) _elements.Insert(0, new List<List<T>>(Height));
+                for (int j=0; j<endY; j++)
+                {
+                    if (expandingX || expandingY) _elements[0].Insert(0, new List<T>(Depth));
+                    for (int k=0; k<endZ; k++)
+                    {
+                        _elements[0][0].Insert(0, _startValue);
+                    }
+                }
             }
         }
 

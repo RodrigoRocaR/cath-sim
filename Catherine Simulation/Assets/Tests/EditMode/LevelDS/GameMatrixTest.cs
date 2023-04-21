@@ -6,7 +6,7 @@ namespace Tests.EditMode.LevelDS
     public class GameMatrixTest
     {
         [Test]
-        public void IncreaseSizexyz()
+        public void IncreaseSizeRightxyz()
         {
             // Arrange
             var gameMatrix = new GameMatrix(3, 3, 3);
@@ -38,9 +38,9 @@ namespace Tests.EditMode.LevelDS
                 }
             }
         }
-        
+
         [Test]
-        public void IncreaseSizeIrregularlyxyz()
+        public void IncreaseSizeRightIrregularlyxyz()
         {
             // Arrange
             var gameMatrix = new GameMatrix(3, 3, 3);
@@ -60,6 +60,74 @@ namespace Tests.EditMode.LevelDS
                     for (int k=0; k<gameMatrix.Depth; k++)
                     {
                         if (i == 4 && j == 10 && k == 5)
+                        {
+                            Assert.AreEqual(gameMatrix.GetBlockInt(i, j, k), 1);
+                        }
+                        else
+                        {
+                            Assert.AreEqual(gameMatrix.GetBlockInt(i, j, k), -1);
+                        }
+                        Assert.AreEqual(gameMatrix.GetBlock(i, j, k), null);
+                    }
+                }
+            }
+        }
+        
+        [Test]
+        public void IncreaseSizeLeftxyz()
+        {
+            // Arrange
+            var gameMatrix = new GameMatrix(3, 3, 3);
+            
+            // Act
+            gameMatrix.SetBlockInt(-1, -1, -1, 1);
+            
+            // Assert
+            Assert.AreEqual(gameMatrix.Width, 4);
+            Assert.AreEqual(gameMatrix.Height, 4);
+            Assert.AreEqual(gameMatrix.Depth, 4);
+            
+            for (int i=0; i<gameMatrix.Width; i++)
+            {
+                for (int j=0; j<gameMatrix.Height; j++)
+                {
+                    for (int k=0; k<gameMatrix.Depth; k++)
+                    {
+                        if (i == 0 && j == 0 && k == 0)
+                        {
+                            Assert.AreEqual(gameMatrix.GetBlockInt(i, j, k), 1);
+                        }
+                        else
+                        {
+                            Assert.AreEqual(gameMatrix.GetBlockInt(i, j, k), -1);
+                        }
+                        Assert.AreEqual(gameMatrix.GetBlock(i, j, k), null);
+                    }
+                }
+            }
+        }
+        
+        [Test]
+        public void IncreaseSizeLeftIrregularxyz()
+        {
+            // Arrange
+            var gameMatrix = new GameMatrix(3, 3, 3);
+            
+            // Act
+            gameMatrix.SetBlockInt(-1, 2, -2, 1);
+            
+            // Assert
+            Assert.AreEqual(gameMatrix.Width, 4);
+            Assert.AreEqual(gameMatrix.Height, 3);
+            Assert.AreEqual(gameMatrix.Depth, 5);
+            
+            for (int i=0; i<gameMatrix.Width; i++)
+            {
+                for (int j=0; j<gameMatrix.Height; j++)
+                {
+                    for (int k=0; k<gameMatrix.Depth; k++)
+                    {
+                        if (i == 0 && j == 2 && k == 0)
                         {
                             Assert.AreEqual(gameMatrix.GetBlockInt(i, j, k), 1);
                         }
