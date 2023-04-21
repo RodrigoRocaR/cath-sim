@@ -135,15 +135,14 @@ namespace LevelDS
 
         private void IncreaseSize(Vector3 coord)
         {
-            coord = ParseCoords(coord);
             IncreaseSize((int)Math.Round(coord.x), (int)Math.Round(coord.y), (int)Math.Round(coord.z));
         }
         
         private void IncreaseSize(int x, int y, int z)
         {
-            int diffx = x > 0 ? x - _levelInt.Width + 1 : Math.Abs(x);
-            int diffy = y > 0 ? y - _levelInt.Height + 1 : Math.Abs(y);
-            int diffz = z > 0 ? z - _levelInt.Depth + 1 : Math.Abs(z);
+            int diffx = x > 0 ? Math.Max(0, x - _levelInt.Width + 1) : Math.Abs(x);
+            int diffy = y > 0 ? Math.Max(0, y - _levelInt.Height + 1) : Math.Abs(y);
+            int diffz = z > 0 ? Math.Max(0, z - _levelInt.Depth + 1) : Math.Abs(z);
             
             _levelInt.IncreaseSize(0, diffx);
             _level.IncreaseSize(0, diffx);
