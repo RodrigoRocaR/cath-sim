@@ -64,7 +64,7 @@ namespace LevelDS
                     else
                     {
                         IncreaseSizeLeft(endZ:-n);
-                        Height -= n;
+                        Depth -= n;
                     }
                     break;
                 
@@ -96,23 +96,23 @@ namespace LevelDS
             }
         }
 
-        private void IncreaseSizeLeft(int endX=0, int endY=0, int endZ=0)
+        private void IncreaseSizeLeft(int startX = 0, int startY = 0, int startZ = 0, int endX = 0, int endY = 0, int endZ = 0)
         {
             if (endX == 0) endX = Width;
             if (endY == 0) endY = Height;
             if (endZ == 0) endZ = Depth;
 
             bool expandingX = endX != Width, expandingY = endY != Height;
-            
-            for (int i=0; i<endX; i++)
+
+            for (int i = endX - 1; i >= startX; i--)
             {
-                if (expandingX) _elements.Insert(0, new List<List<T>>(Height));
-                for (int j=0; j<endY; j++)
+                if (expandingX) _elements.Insert(i, new List<List<T>>(Height));
+                for (int j = startY; j < endY; j++)
                 {
-                    if (expandingX || expandingY) _elements[0].Insert(0, new List<T>(Depth));
-                    for (int k=0; k<endZ; k++)
+                    if (expandingX || expandingY) _elements[i].Insert(j, new List<T>(Depth));
+                    for (int k = startZ; k < endZ; k++)
                     {
-                        _elements[0][0].Insert(0, _startValue);
+                        _elements[i][j].Insert(k, _startValue);
                     }
                 }
             }
