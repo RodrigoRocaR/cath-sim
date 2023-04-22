@@ -8,6 +8,7 @@ namespace LevelDS
 
         private Matrix3D<int> _levelInt;
         private Matrix3D<GameObject> _level;
+        private Vector3Int _negativeExpanding;
 
         public int Width { get; set; }
 
@@ -22,43 +23,46 @@ namespace LevelDS
             Depth = depth;
             _levelInt = new Matrix3D<int>(width, height, depth, Level.EmptyBlock);
             _level = new Matrix3D<GameObject>(width, height, depth, null);
+            _negativeExpanding = new Vector3Int(0, 0, 0);
         }
     
         // Access integer matrix --------------
         public int GetBlockInt(int x, int y, int z)
         {
-            return _levelInt == null ? -1 : _levelInt[x, y, z];
+            if (_levelInt == null) return -1;
+
+            (x, y, z) = AdaptNegativeCoords(x, y, z);
+            return IsCoordWithinLevel(x, y, z) ? _levelInt[x, y, z] : -1;
         }
     
         public int GetBlockInt(Vector3 coord)
         {
             if (_levelInt == null) return -1;
-
+            
             coord = ParseCoords(coord);
+            coord = AdaptNegativeCoords(coord);
             return IsCoordWithinLevel(coord) ? _levelInt[coord] : -1;
         }
 
         public void SetBlockInt(int x, int y, int z, int val)
         {
+            (x, y, z) = AdaptNegativeCoords(x, y, z);
             if (!IsCoordWithinLevel(x, y, z))
             {
                 IncreaseSize(x, y, z);
-                Vector3 coord = ClampToZero(x, y, z);
-                _levelInt[coord] = val;
+                (x, y, z) = AdaptNegativeCoords(x, y, z);
             }
-            else
-            {
-                _levelInt[x, y, z] = val;
-            }
+            _levelInt[x, y, z] = val;
         }
         
         public void SetBlockInt(Vector3 coord, int val)
         {
             coord = ParseCoords(coord);
+            coord = AdaptNegativeCoords(coord);
             if (!IsCoordWithinLevel(coord))
             {
                 IncreaseSize(coord);
-                coord = ClampToZero(coord);
+                coord = AdaptNegativeCoords(coord);
             }
             _levelInt[coord] = val;
         }
@@ -67,25 +71,23 @@ namespace LevelDS
         // Access GameObject matrix --------------
         public void SetBlock(int x, int y, int z, GameObject block)
         {
+            (x, y, z) = AdaptNegativeCoords(x, y, z);
             if (!IsCoordWithinLevel(x, y, z))
             {
                 IncreaseSize(x, y, z);
-                Vector3 coord = ClampToZero(x, y, z);
-                _level[coord] = block;
+                (x, y, z) = AdaptNegativeCoords(x, y, z);
             }
-            else
-            {
-                _level[x, y, z] = block;
-            }
+            _level[x, y, z] = block;
         }
         
         public void SetBlock(Vector3 coord, GameObject block)
         {
             coord = ParseCoords(coord);
+            coord = AdaptNegativeCoords(coord);
             if (!IsCoordWithinLevel(coord))
             {
                 IncreaseSize(coord);
-                coord = ClampToZero(coord);
+                coord = AdaptNegativeCoords(coord);
             }
 
             _level[coord] = block;
@@ -94,14 +96,16 @@ namespace LevelDS
         public GameObject GetBlock(Vector3 coord)
         {
             if (_levelInt == null) return null;
-
+            
             coord = ParseCoords(coord);
+            coord = AdaptNegativeCoords(coord);
             return IsCoordWithinLevel(coord) ? _level[coord] : null;
         }
         
         public GameObject GetBlock(int x, int y, int z)
         {
-            if (_levelInt == null) return null;
+            if (_level == null) return null;
+            (x, y, z) = AdaptNegativeCoords(x, y, z);
             
             return IsCoordWithinLevel(x, y, z) ? _level[x, y, z] : null;
         }
@@ -151,9 +155,27 @@ namespace LevelDS
             _levelInt.IncreaseSize(2, diffz);
             _level.IncreaseSize(2, diffz);
 
-            Width += diffx >= 0 ? diffx : -diffx;
-            Height += diffy >= 0 ? diffy : -diffy;;
-            Depth += diffz >= 0 ? diffz : -diffz;;
+            if (diffx >= 0) Width += diffx;
+            else
+            {
+                Width -= diffx;
+                _negativeExpanding.x -= diffx;
+            }
+            
+            if (diffy >= 0) Height += diffy;
+            else
+            {
+                Height -= diffy;
+                _negativeExpanding.y -= diffy;
+            }
+            
+            if (diffz >= 0) Depth += diffz;
+            else
+            {
+                Depth -= diffz;
+                _negativeExpanding.z -= diffz;
+            }
+            
         }
 
         private Vector3 ParseCoords(Vector3 coords)
@@ -162,15 +184,15 @@ namespace LevelDS
             coords /= Level.BlockScale;
             return coords;
         }
-        
-        private Vector3 ClampToZero(Vector3 vector)
+
+        private Vector3 AdaptNegativeCoords(Vector3 coords)
         {
-            return new Vector3(Mathf.Max(0, vector.x), Mathf.Max(0, vector.y), Mathf.Max(0, vector.z));
+            return coords + _negativeExpanding;
         }
         
-        private Vector3 ClampToZero(int x, int y, int z)
+        private (int, int, int) AdaptNegativeCoords(int x, int y, int z)
         {
-            return new Vector3(Mathf.Max(0, x), Mathf.Max(0, y), Mathf.Max(0, z));
+            return (x+_negativeExpanding.x, y+_negativeExpanding.y, z+_negativeExpanding.z);
         }
     }
 }
