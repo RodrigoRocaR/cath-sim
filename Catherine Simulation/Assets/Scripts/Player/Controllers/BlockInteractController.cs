@@ -2,7 +2,7 @@ using Blocks;
 using LevelDS;
 using UnityEngine;
 
-namespace Player
+namespace Player.Controllers
 {
     public class BlockInteractController
     {

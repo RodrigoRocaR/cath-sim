@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Threading.Tasks;
 using LevelDS;
 using Tools;
 using UnityEngine;
 
-namespace Player
+namespace Player.Controllers
 {
     public class JumpController 
     {
