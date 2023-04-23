@@ -4,10 +4,10 @@ namespace Tools
 {
     public class MoveLerp
     {
-        public Vector3 TargetPos { get; set; }
-        public Vector3 StartPos { get; set; }
-        public float Progress { get; set; }
-        public float ElapsedTime { get; set; }  // in seconds
+        protected Vector3 TargetPos;
+        protected Vector3 StartPos;
+        protected float Progress;
+        protected float ElapsedTime; // in seconds
         public float Duration { get; set; }  // total duration in seconds
 
         public MoveLerp(float duration)
@@ -22,6 +22,12 @@ namespace Tools
             return Vector3.Lerp(StartPos, TargetPos, Progress);
         }
 
+        public void Setup(Vector3 start, Vector3 end)
+        {
+            StartPos = start;
+            TargetPos = end;
+        }
+
         public bool IsCompleted()
         {
             return Progress >= 1f;
@@ -31,6 +37,16 @@ namespace Tools
         {
             Progress = 0f;
             ElapsedTime = 0f;
+        }
+
+        public Vector3 GetStart()
+        {
+            return StartPos;
+        }
+        
+        public Vector3 GetEnd()
+        {
+            return TargetPos;
         }
     }
 }

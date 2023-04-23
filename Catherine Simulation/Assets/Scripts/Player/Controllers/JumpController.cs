@@ -49,8 +49,7 @@ namespace Player.Controllers
         private void SetUpJump()
         {
             _playerState.StartJumping();
-            _jumpLerp.StartPos = _transform.position;
-            _jumpLerp.TargetPos = _playerState.SetJumpTarget(_jumpLerp.StartPos);
+            _jumpLerp.Setup(_transform.position, _playerState.SetJumpTarget(_transform.position));
         }
 
         private void WaitForJumpDelay()

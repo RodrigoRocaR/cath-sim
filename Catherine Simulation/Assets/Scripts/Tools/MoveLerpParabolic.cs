@@ -4,7 +4,7 @@ namespace Tools
 {
     public class MoveLerpParabolic : MoveLerp
     {
-        public float YOffset { get; set; }
+        private float _yOffset;
         public float Height { get; set; }
 
         public MoveLerpParabolic(float duration, float height) : base(duration)
@@ -16,8 +16,8 @@ namespace Tools
         {
             Progress = ElapsedTime / Duration;
             ElapsedTime += Time.deltaTime;
-            YOffset = Height * Mathf.Sin(Progress * Mathf.PI);
-            return Vector3.Lerp(StartPos, TargetPos, Progress) + YOffset * Vector3.up;;
+            _yOffset = Height * Mathf.Sin(Progress * Mathf.PI);
+            return Vector3.Lerp(StartPos, TargetPos, Progress) + _yOffset * Vector3.up;;
         }
     }
 }

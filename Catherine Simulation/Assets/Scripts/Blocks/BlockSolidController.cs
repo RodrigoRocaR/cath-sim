@@ -45,13 +45,11 @@ namespace Blocks
             
             // Set up block
             _isBeingMoved = true;
-            _blockProgress.TargetPos = playerPos + Vector3.up;
-            _blockProgress.StartPos = transform.position;
-        
+            _blockProgress.Setup(transform.position,  playerPos + Vector3.up);
+
             // Set up player
-            _playerProgress.TargetPos = playerPos - _playerState.GetDirection() * Level.BlockScale;
-            _playerProgress.StartPos = playerPos;
-            
+            _playerProgress.Setup(playerPos, playerPos - _playerState.GetDirection() * Level.BlockScale);
+
             _playerState.StartMovingBlock();
         }
 
@@ -66,13 +64,11 @@ namespace Blocks
             
             // Set up block
             _isBeingMoved = true;
-            _blockProgress.TargetPos = playerPos + _playerState.GetDirection() * (2 * Level.BlockScale) + Vector3.up;
-            _blockProgress.StartPos = transform.position;
-        
+            _blockProgress.Setup(transform.position,  playerPos + _playerState.GetDirection() * (2 * Level.BlockScale) + Vector3.up);
+
             // Set up player
-            _playerProgress.TargetPos = playerPos;
-            _playerProgress.StartPos = playerPos;
-            
+            _playerProgress.Setup(playerPos, playerPos);
+
             _playerState.StartMovingBlock();
         }
 
@@ -83,7 +79,7 @@ namespace Blocks
             if (_blockProgress.IsCompleted() && _playerProgress.IsCompleted()) // player and block should complete at the same time
             {
                 // Update block position
-                Level.UpdateMovedBlock(_blockProgress.StartPos, _blockProgress.TargetPos);
+                Level.UpdateMovedBlock(_blockProgress.GetStart(), _blockProgress.GetEnd());
                 
                 ResetBlockState();
                 _playerState.StopMovingBlock();
