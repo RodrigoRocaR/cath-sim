@@ -21,6 +21,10 @@ namespace Player
 
         private bool _isMovingBlock;
 
+        private bool _isHangingOnBorder;
+        private bool _isDroppingOnBorder;
+        private bool _isGettingUpFromBorder;
+
         // Direction ------------------
         public Vector3 GetDirection()
         {
@@ -185,6 +189,69 @@ namespace Player
         {
             return !_isJumping && !_isMoving && !_isMovingBlock;
         }
+        
+        // Hang on a border
+        public void HangOnBorder()
+        {
+            _isHangingOnBorder = true;
+        }
+        
+        public void StopHanging()
+        {
+            _isHangingOnBorder = false;
+        }
 
+        public bool IsHangingOnBorder()
+        {
+            return _isHangingOnBorder;
+        }
+
+        public void DropOnBorder()
+        {
+            _isDroppingOnBorder = true;
+        }
+        
+        public void StopDroppingOnBorder()
+        {
+            _isDroppingOnBorder = false;
+        }
+        
+        public bool IsDroppingOnBorder()
+        {
+            return _isDroppingOnBorder;
+        }
+
+        public void GetUpFromBorder()
+        {
+            _isGettingUpFromBorder = true;
+        }
+
+        public void StopGettingUpFromBorder()
+        {
+            _isGettingUpFromBorder = false;
+        }
+
+        public bool IsGettingUpFromBorder()
+        {
+            return _isGettingUpFromBorder;
+        }
+
+        public bool CanHangOnBorder()
+        {
+            return !_hasFoundation && !_isBlockInFront && !_isBlockBelow 
+                   && !_isDroppingOnBorder && !_isGettingUpFromBorder && !_isHangingOnBorder;
+        }
+
+        public bool IsPerformingHangingAction()
+        {
+            return !_isDroppingOnBorder || !_isGettingUpFromBorder || !_isHangingOnBorder;
+        }
+
+        public void StopHangAction()
+        {
+            _isDroppingOnBorder = false;
+            _isHangingOnBorder = false;
+            _isGettingUpFromBorder = false;
+        }
     }
 }

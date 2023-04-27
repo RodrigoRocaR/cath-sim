@@ -9,6 +9,11 @@ namespace Tools
 
         public MultiMoveLerp(float[] durations, Vector3[] points)
         {
+            if (durations.Length != points.Length-1 && durations.Length > 0)
+            {
+                Debug.LogError("Wrong initialization of multi move lerp");
+            }
+            
             MoveLerps = new T[points.Length - 1];
             for (int i = 0; i < points.Length - 1; i++)
             {
