@@ -7,13 +7,13 @@ namespace Tools
         protected T[] MoveLerps;
         protected int CurrentIndex;
 
-        public MultiMoveLerp(float duration, Vector3[] points)
+        public MultiMoveLerp(float[] durations, Vector3[] points)
         {
             MoveLerps = new T[points.Length - 1];
             for (int i = 0; i < points.Length - 1; i++)
             {
                 MoveLerps[i] = System.Activator.CreateInstance<T>();
-                MoveLerps[i].Duration = duration;
+                MoveLerps[i].Duration = durations[i];
                 MoveLerps[i].Setup(points[i], points[i + 1]);
             }
 
