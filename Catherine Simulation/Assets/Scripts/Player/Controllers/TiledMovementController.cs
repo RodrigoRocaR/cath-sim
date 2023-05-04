@@ -26,7 +26,7 @@ namespace Player.Controllers
                 _playerState.SetTarget(Vector3.positiveInfinity);
             }
         
-            if (_playerState.IsJumping() || _playerState.IsFalling() ||
+            if (_playerState.IsJumping() || _playerState.IsFalling() || _playerState.IsPerformingHangingAction() ||
                 (!_playerState.IsMoving() && (_inputs.Jump() || _inputs.MultipleInputs() || !_inputs.AnyInputs()))) return;
 
             // Movement

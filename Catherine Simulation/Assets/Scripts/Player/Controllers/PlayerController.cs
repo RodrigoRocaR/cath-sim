@@ -29,7 +29,7 @@ namespace Player.Controllers
             _jumpController = new JumpController(transform, _inputs, _playerState, 0.85f);
             _animationsController = new AnimationsController(_animator, _playerState);
             _blockInteractController = new BlockInteractController(transform, _playerState, _inputs);
-            _hangController = new HangController(transform, _playerState, _inputs);
+            _hangController = new HangController(transform, _playerState, _inputs, _rb);
         
             _playerState.UpdateDirection(transform.eulerAngles);
         }

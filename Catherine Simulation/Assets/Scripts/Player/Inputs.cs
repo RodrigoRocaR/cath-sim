@@ -45,6 +45,16 @@ namespace Player
             return _multipleInputs;
         }
 
+        public bool Horizontal()
+        {
+            return _right || _left;
+        }
+        
+        public bool Vertical()
+        {
+            return _forward || _backward;
+        }
+
         public bool Jump()
         {
             return _jump;

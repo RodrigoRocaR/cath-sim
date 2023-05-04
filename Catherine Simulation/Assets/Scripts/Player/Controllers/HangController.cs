@@ -6,19 +6,21 @@ namespace Player.Controllers
 {
     public class HangController
     {
-        private const float HangingDistanceToBlock = 0.1f;
+        private const float HangingDistancePercentageToBlock = 1.5f;
 
         private readonly Inputs _inputs;
         private readonly Transform _transform;
         private readonly PlayerState _playerState;
+        private readonly Rigidbody _rigidbody;
 
         private MultiMoveLerp _multiMoveLerp;
 
-        public HangController(Transform transform, PlayerState playerState, Inputs inputs)
+        public HangController(Transform transform, PlayerState playerState, Inputs inputs, Rigidbody rigidbody)
         {
             _transform = transform;
             _inputs = inputs;
             _playerState = playerState;
+            _rigidbody = rigidbody;
         }
 
         // Entry point
@@ -40,20 +42,26 @@ namespace Player.Controllers
             {
                 // TODO: check on state to switch between 3 functions
                 setupDropOnBorder();
+                _rigidbody.useGravity = false;
+            }
+            else if (_playerState.IsHangingOnBorder() && _inputs.Horizontal()) // sliding left / right
+            {
+                
             }
         }
-
-        /*
-         * 1. Center of block to edge of block
-         * 2. Go 1 block below + distance to wall in horizontal
-         */
+        
+         
         private void setupDropOnBorder()
         {
             Vector3 playerPos = _transform.position;
-            Vector3 blockEdge = playerPos + _playerState.GetDirection() * Level.BlockScale / 2;
-            Vector3 hangingPos = V3Calc.AddNum(
-                V3Calc.SubstractNum(blockEdge, Level.BlockScale / 2),
-                HangingDistanceToBlock);
+            
+            Vector3 blockEdge = playerPos + _playerState.GetDirection() * ((Level.BlockScale / 2) * HangingDistancePercentageToBlock);
+            Vector3 hangingPos = blockEdge;
+            hangingPos.y -= Level.BlockScale / 1.5f;
+                
+            Debug.Log("Player initial pos" + playerPos);
+            Debug.Log("Block edge: " + blockEdge);
+            Debug.Log("Hanging pos: " + hangingPos);
 
             _playerState.DropOnBorder();
             _multiMoveLerp = new MultiMoveLerp(
@@ -68,16 +76,17 @@ namespace Player.Controllers
         
         private void StopHangAction()
         {
-            if (_playerState.IsDroppingOnBorder())
+            if (_playerState.IsDroppingOnBorder()) // ended dropping
             {
                 _playerState.StopDroppingOnBorder();
                 _playerState.HangOnBorder();
             }
-            else if (_playerState.IsGettingUpFromBorder())
+            else if (_playerState.IsGettingUpFromBorder()) // ended getting up
             {
                 _playerState.StopGettingUpFromBorder();
+                _playerState.StopHanging();
             }
-            else if (_playerState.IsHangingOnBorder()) _playerState.StopHanging();
+            // if its hanging we don't do anything
         }
     }
 }
