@@ -14,6 +14,7 @@ namespace Player.Controllers
         private JumpController _jumpController;
         private AnimationsController _animationsController;
         private BlockInteractController _blockInteractController;
+        private HangController _hangController;
         private PlayerState _playerState;
     
     
@@ -28,6 +29,7 @@ namespace Player.Controllers
             _jumpController = new JumpController(transform, _inputs, _playerState, 0.85f);
             _animationsController = new AnimationsController(_animator, _playerState);
             _blockInteractController = new BlockInteractController(transform, _playerState, _inputs);
+            _hangController = new HangController(transform, _playerState, _inputs);
         
             _playerState.UpdateDirection(transform.eulerAngles);
         }
@@ -40,6 +42,7 @@ namespace Player.Controllers
             _tiledMovementController.Move();
             _jumpController.Jump();
             _blockInteractController.MoveBlocks();
+            _hangController.Hang();
         }
 
         private void FixedUpdate()

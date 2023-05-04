@@ -12,9 +12,9 @@ namespace Player.Controllers
         private readonly Transform _transform;
         private readonly PlayerState _playerState;
 
-        private MultiMoveLerp<MoveLerp> _multiMoveLerp;
+        private MultiMoveLerp _multiMoveLerp;
 
-        public HangController(Transform transform, Inputs inputs, PlayerState playerState)
+        public HangController(Transform transform, PlayerState playerState, Inputs inputs)
         {
             _transform = transform;
             _inputs = inputs;
@@ -24,19 +24,19 @@ namespace Player.Controllers
         // Entry point
         public void Hang()
         {
-            if (_playerState.IsPerformingHangingAction())
+            if (_multiMoveLerp != null && _playerState.IsPerformingHangingAction())
             {
                 if (_multiMoveLerp.IsCompleted())
                 {
-                    _playerState.StopHangAction();
+                    StopHangAction();
                     _multiMoveLerp = null;
                 }
                 else
                 {
-                    _multiMoveLerp.Lerp();
+                    _transform.position = _multiMoveLerp.Lerp();
                 }
             }
-            else if (_playerState.CanHangOnBorder())
+            else if (_playerState.CanDropOnBorder())
             {
                 // TODO: check on state to switch between 3 functions
                 setupDropOnBorder();
@@ -56,7 +56,7 @@ namespace Player.Controllers
                 HangingDistanceToBlock);
 
             _playerState.DropOnBorder();
-            _multiMoveLerp = new MultiMoveLerp<MoveLerp>(
+            _multiMoveLerp = new MultiMoveLerp(
                 new[] { 1f, 2f },
                 new[]
                 {
@@ -64,6 +64,20 @@ namespace Player.Controllers
                     blockEdge,
                     hangingPos
                 });
+        }
+        
+        private void StopHangAction()
+        {
+            if (_playerState.IsDroppingOnBorder())
+            {
+                _playerState.StopDroppingOnBorder();
+                _playerState.HangOnBorder();
+            }
+            else if (_playerState.IsGettingUpFromBorder())
+            {
+                _playerState.StopGettingUpFromBorder();
+            }
+            else if (_playerState.IsHangingOnBorder()) _playerState.StopHanging();
         }
     }
 }

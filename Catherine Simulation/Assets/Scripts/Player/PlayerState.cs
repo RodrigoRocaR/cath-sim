@@ -236,22 +236,20 @@ namespace Player
             return _isGettingUpFromBorder;
         }
 
-        public bool CanHangOnBorder()
+        public bool CanDropOnBorder()
         {
-            return !_hasFoundation && !_isBlockInFront && !_isBlockBelow 
-                   && !_isDroppingOnBorder && !_isGettingUpFromBorder && !_isHangingOnBorder;
+            return !IsPerformingAction() && _target != Vector3.zero && // todo: avoid this check
+                   !_hasFoundation && !_isBlockInFront && !_isBlockBelow; // block layout correct
         }
 
         public bool IsPerformingHangingAction()
         {
-            return !_isDroppingOnBorder || !_isGettingUpFromBorder || !_isHangingOnBorder;
+            return _isDroppingOnBorder || _isGettingUpFromBorder || _isHangingOnBorder;
         }
 
-        public void StopHangAction()
+        public bool IsPerformingAction()
         {
-            _isDroppingOnBorder = false;
-            _isHangingOnBorder = false;
-            _isGettingUpFromBorder = false;
+            return _isMoving || _isJumping || _isFalling || _isMovingBlock || IsPerformingHangingAction();
         }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Tools
 {
-    public class MultiMoveLerp<T> where T : MoveLerp
+    public class MultiMoveLerp
     {
-        protected T[] MoveLerps;
+        protected MoveLerp[] MoveLerps;
         protected int CurrentIndex;
 
         public MultiMoveLerp(float[] durations, Vector3[] points)
@@ -14,11 +14,10 @@ namespace Tools
                 Debug.LogError("Wrong initialization of multi move lerp");
             }
             
-            MoveLerps = new T[points.Length - 1];
+            MoveLerps = new MoveLerp[points.Length - 1];
             for (int i = 0; i < points.Length - 1; i++)
             {
-                MoveLerps[i] = System.Activator.CreateInstance<T>();
-                MoveLerps[i].Duration = durations[i];
+                MoveLerps[i] = new MoveLerp(durations[i]);
                 MoveLerps[i].Setup(points[i], points[i + 1]);
             }
 
