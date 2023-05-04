@@ -36,7 +36,7 @@ namespace Player
             _direction = direction;
         }
     
-        public void UpdateDirection(int rotation) // rotation obtained from GetRotation method
+        public void UpdateDirection(int rotation) // rotation obtained from GetCurrentRotation method
         {
             _direction = rotation switch
             {
@@ -49,10 +49,10 @@ namespace Player
 
         public void UpdateDirection(Vector3 eulerAngles)
         {
-            UpdateDirection(GetRotation(eulerAngles));
+            UpdateDirection(GetCurrentRotation(eulerAngles));
         }
     
-        public int GetRotation(Vector3 eulerAngles)
+        public int GetCurrentRotation(Vector3 eulerAngles)
         {
             float rotation = eulerAngles.y;
             return rotation switch
@@ -60,6 +60,67 @@ namespace Player
                 < 272 and > 268 => 270,
                 < 182 and > 178 => 180,
                 < 92 and > 88 => 90,
+                _ => 0
+            };
+        }
+
+        public int RotateToLeft(Vector3 eulerAngles)
+        {
+            return RotateToLeft(GetCurrentRotation(eulerAngles));
+        }
+
+        public int RotateToLeft(int currentRotation)
+        {
+            return currentRotation switch
+            {
+                0 => -90,
+                180 => 90,
+                270 => 0,
+                _ => 180
+            };
+        }
+        
+        public int RotateToRight(Vector3 eulerAngles)
+        {
+            return RotateToRight(GetCurrentRotation(eulerAngles));
+        }
+
+        public int RotateToRight(int currentRotation)
+        {
+            return currentRotation switch
+            {
+                0 => 90,
+                90 => 0,
+                180 => -90,
+                _ => -180
+            };
+        }
+        
+        public int RotateToBack(Vector3 eulerAngles)
+        {
+            return RotateToBack(GetCurrentRotation(eulerAngles));
+        }
+
+        public int RotateToBack(int currentRotation)
+        {
+            return currentRotation switch
+            {
+                0 => 180,
+                180 => 0,
+                _ => currentRotation
+            };
+        }
+        
+        public int RotateToFront(Vector3 eulerAngles)
+        {
+            return RotateToLeft(GetCurrentRotation(eulerAngles));
+        }
+
+        public int RotateToFront(int currentRotation)
+        {
+            return currentRotation switch
+            {
+                >1 or <-1 => -currentRotation,
                 _ => 0
             };
         }

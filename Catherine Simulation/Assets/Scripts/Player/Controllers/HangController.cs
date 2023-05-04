@@ -43,25 +43,23 @@ namespace Player.Controllers
                 // TODO: check on state to switch between 3 functions
                 setupDropOnBorder();
                 _rigidbody.useGravity = false;
+                RotateToFaceBlock();
             }
             else if (_playerState.IsHangingOnBorder() && _inputs.Horizontal()) // sliding left / right
             {
                 
             }
         }
-        
-         
+
+
         private void setupDropOnBorder()
         {
             Vector3 playerPos = _transform.position;
-            
-            Vector3 blockEdge = playerPos + _playerState.GetDirection() * ((Level.BlockScale / 2) * HangingDistancePercentageToBlock);
+
+            Vector3 blockEdge = playerPos + _playerState.GetDirection() *
+                ((Level.BlockScale / 2f) * HangingDistancePercentageToBlock);
             Vector3 hangingPos = blockEdge;
             hangingPos.y -= Level.BlockScale / 1.5f;
-                
-            Debug.Log("Player initial pos" + playerPos);
-            Debug.Log("Block edge: " + blockEdge);
-            Debug.Log("Hanging pos: " + hangingPos);
 
             _playerState.DropOnBorder();
             _multiMoveLerp = new MultiMoveLerp(
@@ -73,7 +71,12 @@ namespace Player.Controllers
                     hangingPos
                 });
         }
-        
+
+        private void RotateToFaceBlock()
+        {
+            _transform.Rotate(new Vector3(0, 180,0));
+        }
+
         private void StopHangAction()
         {
             if (_playerState.IsDroppingOnBorder()) // ended dropping
