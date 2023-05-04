@@ -41,18 +41,30 @@ namespace Player.Controllers
             else if (_playerState.CanDropOnBorder())
             {
                 // TODO: check on state to switch between 3 functions
-                setupDropOnBorder();
+                SetupDropOnBorder();
                 _rigidbody.useGravity = false;
                 RotateToFaceBlock();
             }
             else if (_playerState.IsHangingOnBorder() && _inputs.Horizontal()) // sliding left / right
             {
-                
+                SetupHangingSlide();
             }
         }
 
+        private void SetupHangingSlide()
+        {
+            Vector3 direction = _inputs.Right() ? Vector3.right : Vector3.left;
+            Vector3 playerPos = _transform.position;
+            Vector3 targetPos = playerPos + direction * Level.BlockScale;
 
-        private void setupDropOnBorder()
+            _multiMoveLerp = new MultiMoveLerp(
+                new[] { 1f },
+                new[] { playerPos, targetPos }
+            );
+        }
+
+
+        private void SetupDropOnBorder()
         {
             FixDirection();
             
