@@ -58,7 +58,7 @@ namespace Player.Controllers
             Vector3 targetPos = playerPos + direction * Level.BlockScale;
 
             _multiMoveLerp = new MultiMoveLerp(
-                new[] { 1f },
+                new[] { 0.75f },
                 new[] { playerPos, targetPos }
             );
         }
@@ -77,7 +77,7 @@ namespace Player.Controllers
 
             _playerState.DropOnBorder();
             _multiMoveLerp = new MultiMoveLerp(
-                new[] { 1f, 2f },
+                new[] { 0.8f, 0.4f },
                 new[]
                 {
                     playerPos,
