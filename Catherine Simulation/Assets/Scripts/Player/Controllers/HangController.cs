@@ -54,6 +54,8 @@ namespace Player.Controllers
 
         private void setupDropOnBorder()
         {
+            FixDirection();
+            
             Vector3 playerPos = _transform.position;
 
             Vector3 blockEdge = playerPos + _playerState.GetDirection() *
@@ -90,6 +92,15 @@ namespace Player.Controllers
                 _playerState.StopHanging();
             }
             // if its hanging we don't do anything
+        }
+
+        private void FixDirection()
+        {
+            Vector3 actualDirection = (_playerState.GetTarget() - _transform.position) / Level.BlockScale;
+            if (_playerState.GetDirection() != actualDirection)
+            {
+                _playerState.SetDirection(actualDirection);
+            }
         }
     }
 }
