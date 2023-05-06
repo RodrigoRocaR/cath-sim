@@ -185,6 +185,11 @@ namespace Player
             pos.y += Level.BlockScale;
             _isWallInFront = Level.GetBlockInt(pos) != Level.EmptyBlock && _isBlockInFront; // Block on top in front
         }
+
+        public bool IsBlockInFront()
+        {
+            return _isBlockInFront;
+        }
     
     
         // Jump ------------------
