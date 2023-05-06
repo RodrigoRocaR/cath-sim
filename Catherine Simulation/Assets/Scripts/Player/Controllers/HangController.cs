@@ -56,7 +56,6 @@ namespace Player.Controllers
 
         private void SetupHangingSlide()
         {
-            // todo: make direction work when sliding on x axis or play with the cameraTiled
             Vector3 targetHangDirection = GetTargetHangDirection();
             Vector3 playerLookingDirection = _playerState.GetDirection();
             Vector3 playerPos = _transform.position;
