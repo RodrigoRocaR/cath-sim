@@ -82,7 +82,7 @@ namespace Player.Controllers
 
             if (isBlockInTheWay) // corner backward
             {
-                targetPos = midPos - _playerState.GetDirection() * Level.BlockScale / 2;
+                targetPos = midPos - _playerState.GetDirection() * (Level.BlockScale * 0.75f);
                 _multiMoveLerp = new MultiMoveLerp(
                     new[] { 0.33f, 0.32f },
                     new[]
@@ -99,7 +99,7 @@ namespace Player.Controllers
 
             if (isBlockBehind) // corner forward
             {
-                targetPos = midPos + _playerState.GetDirection() * Level.BlockScale / 2;
+                targetPos = midPos + _playerState.GetDirection() * (Level.BlockScale * 0.75f);
                 _multiMoveLerp = new MultiMoveLerp(
                     new[] { 0.33f, 0.32f },
                     new[]
