@@ -54,22 +54,22 @@ namespace Player.Controllers
             int currentRotation = RotateHelper.GetCurrentRotation(_transform.eulerAngles);
             if (_inputs.Left())
             {
-                _playerState.SetTarget(_transform.position + Vector3.left * Level.BlockScale);
+                _playerState.SetTarget(_transform.position + Vector3.left * GameConstants.BlockScale);
                 _transform.Rotate(new Vector3(0,  RotateHelper.RotateToLeft(currentRotation),0));
             }
             else if (_inputs.Right())
             {
-                _playerState.SetTarget(_transform.position + Vector3.right * Level.BlockScale);
+                _playerState.SetTarget(_transform.position + Vector3.right * GameConstants.BlockScale);
                 _transform.Rotate(new Vector3(0, RotateHelper.RotateToRight(currentRotation),0));
             }
             else if (_inputs.Backward())
             {
-                _playerState.SetTarget(_transform.position + Vector3.back * Level.BlockScale);
+                _playerState.SetTarget(_transform.position + Vector3.back * GameConstants.BlockScale);
                 _transform.Rotate(new Vector3(0, RotateHelper.RotateToBack(currentRotation),0));
             }
             else if (_inputs.Forward())
             {
-                _playerState.SetTarget(_transform.position + Vector3.forward * Level.BlockScale);
+                _playerState.SetTarget(_transform.position + Vector3.forward * GameConstants.BlockScale);
                 _transform.Rotate(new Vector3(0, RotateHelper.RotateToFront(currentRotation),0));
             }
         

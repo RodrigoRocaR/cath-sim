@@ -13,7 +13,7 @@ namespace Player.Controllers
         private MoveLerpParabolic _jumpLerp;
         private bool _isDelayActive;
         
-        private const int JumpHeight = Level.BlockScale;
+        private const int JumpHeight = GameConstants.BlockScale;
         private const int JumpDelayMilli = 50;
 
         public JumpController(Transform transform, Inputs inputs, PlayerState playerState, float jumpDuration)

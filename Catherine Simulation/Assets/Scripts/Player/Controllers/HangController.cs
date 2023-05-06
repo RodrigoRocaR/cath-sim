@@ -59,14 +59,14 @@ namespace Player.Controllers
             Vector3 targetHangDirection = GetTargetHangDirection();
             Vector3 playerLookingDirection = _playerState.GetDirection();
             Vector3 playerPos = _transform.position;
-            Vector3 targetPos = playerPos + targetHangDirection * Level.BlockScale;
+            Vector3 targetPos = playerPos + targetHangDirection * GameConstants.BlockScale;
             Vector3 checkPos = PlayerPos2BlockInFrontPos(playerPos);
             
 
-            bool isBlockBehind = Level.IsBlock(checkPos + playerLookingDirection * Level.BlockScale);
-            checkPos += targetHangDirection * Level.BlockScale;
+            bool isBlockBehind = Level.IsBlock(checkPos + playerLookingDirection * GameConstants.BlockScale);
+            checkPos += targetHangDirection * GameConstants.BlockScale;
             bool isBlockSameLevel = Level.IsBlock(checkPos);
-            bool isBlockInTheWay = Level.IsBlock(checkPos - playerLookingDirection * Level.BlockScale);
+            bool isBlockInTheWay = Level.IsBlock(checkPos - playerLookingDirection * GameConstants.BlockScale);
 
             if (isBlockSameLevel && !isBlockInTheWay) // Slide horizontally on the same wall
             {
@@ -78,11 +78,11 @@ namespace Player.Controllers
             }
 
             // Corner case (literally)
-            Vector3 midPos = playerPos + targetHangDirection * (Level.BlockScale / 2f * HangingDistancePercentageToBlock);
+            Vector3 midPos = playerPos + targetHangDirection * (GameConstants.BlockScale / 2f * HangingDistancePercentageToBlock);
 
             if (isBlockInTheWay) // corner backward
             {
-                targetPos = midPos - _playerState.GetDirection() * (Level.BlockScale * 0.75f);
+                targetPos = midPos - _playerState.GetDirection() * (GameConstants.BlockScale * 0.75f);
                 _multiMoveLerp = new MultiMoveLerp(
                     new[] { 0.33f, 0.32f },
                     new[]
@@ -99,7 +99,7 @@ namespace Player.Controllers
 
             if (isBlockBehind) // corner forward
             {
-                targetPos = midPos + _playerState.GetDirection() * (Level.BlockScale * 0.75f);
+                targetPos = midPos + _playerState.GetDirection() * (GameConstants.BlockScale * 0.75f);
                 _multiMoveLerp = new MultiMoveLerp(
                     new[] { 0.33f, 0.32f },
                     new[]
@@ -122,9 +122,9 @@ namespace Player.Controllers
             Vector3 playerPos = _transform.position;
 
             Vector3 blockEdge = playerPos + _playerState.GetDirection() *
-                ((Level.BlockScale / 2f) * HangingDistancePercentageToBlock);
+                ((GameConstants.BlockScale / 2f) * HangingDistancePercentageToBlock);
             Vector3 hangingPos = blockEdge;
-            hangingPos.y -= Level.BlockScale / (0.75f * Level.BlockScale);
+            hangingPos.y -= GameConstants.BlockScale / (0.75f * GameConstants.BlockScale);
 
             _playerState.DropOnBorder();
             _multiMoveLerp = new MultiMoveLerp(
@@ -175,7 +175,7 @@ namespace Player.Controllers
 
         private void FixDirection()
         {
-            Vector3 actualDirection = (_playerState.GetTarget() - _transform.position) / Level.BlockScale;
+            Vector3 actualDirection = (_playerState.GetTarget() - _transform.position) / GameConstants.BlockScale;
             if (_playerState.GetDirection() != actualDirection)
             {
                 _playerState.SetDirection(actualDirection);
@@ -186,7 +186,7 @@ namespace Player.Controllers
         {
             Vector3 direction = _playerState.GetDirection();
             // Fix horizontal coords
-            float horizontalFix = (Level.BlockScale / 2f) * HangingDistancePercentageToBlock;
+            float horizontalFix = (GameConstants.BlockScale / 2f) * HangingDistancePercentageToBlock;
             if (direction == Vector3.forward)
             {
                 hangingPos.z += horizontalFix;
@@ -205,7 +205,7 @@ namespace Player.Controllers
             }
 
             // Fix vertical coords
-            hangingPos.y +=  Level.BlockScale/2f - (Level.BlockScale / (0.75f * Level.BlockScale))/2;
+            hangingPos.y +=  GameConstants.BlockScale/2f - (GameConstants.BlockScale / (0.75f * GameConstants.BlockScale))/2;
 
             return hangingPos;
         }

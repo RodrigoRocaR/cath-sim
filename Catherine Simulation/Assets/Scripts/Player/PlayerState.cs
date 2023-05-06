@@ -104,14 +104,14 @@ namespace Player
 
         public void CheckBlocks(Vector3 pos)
         {
-            pos.y -= 1 + Level.BlockScale;
-            _isBlockBelow = Level.GetBlockInt(pos) != Level.EmptyBlock; // Block below ground
-            pos.y += Level.BlockScale;
-            _hasFoundation = Level.GetBlockInt(pos) != Level.EmptyBlock; // Ground Level
-            pos.y += Level.BlockScale;
-            _isBlockInFront = Level.GetBlockInt(pos) != Level.EmptyBlock; // Block in front
-            pos.y += Level.BlockScale;
-            _isWallInFront = Level.GetBlockInt(pos) != Level.EmptyBlock && _isBlockInFront; // Block on top in front
+            pos.y -= 1 + GameConstants.BlockScale;
+            _isBlockBelow = Level.GetBlockInt(pos) != GameConstants.EmptyBlock; // Block below ground
+            pos.y += GameConstants.BlockScale;
+            _hasFoundation = Level.GetBlockInt(pos) != GameConstants.EmptyBlock; // Ground Level
+            pos.y += GameConstants.BlockScale;
+            _isBlockInFront = Level.GetBlockInt(pos) != GameConstants.EmptyBlock; // Block in front
+            pos.y += GameConstants.BlockScale;
+            _isWallInFront = Level.GetBlockInt(pos) != GameConstants.EmptyBlock && _isBlockInFront; // Block on top in front
         }
 
         public bool IsBlockInFront()
@@ -124,7 +124,7 @@ namespace Player
         public Vector3 SetJumpTarget(Vector3 jumpStart)
         {
             // Set target in front and check blocks
-            _target = jumpStart + _direction * Level.BlockScale;
+            _target = jumpStart + _direction * GameConstants.BlockScale;
             CheckBlocksTarget();
 
             if (_isWallInFront) // same pos as start, jump on same tile
@@ -133,11 +133,11 @@ namespace Player
             }
             else if (_isBlockInFront) // 1 block up
             {
-                _target += Vector3.up * Level.BlockScale;
+                _target += Vector3.up * GameConstants.BlockScale;
             }
             else if (_isBlockBelow && !_hasFoundation) // 1 block down
             {
-                _target += Vector3.down * Level.BlockScale;
+                _target += Vector3.down * GameConstants.BlockScale;
             }
 
             return _target;

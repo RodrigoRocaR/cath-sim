@@ -42,21 +42,21 @@ namespace Player.Controllers
         private BlockSolidController GetBlockController()
         {
             GameObject block =
-                Level.GetBlock(_transform.position + Vector3.up + _playerState.GetDirection() * Level.BlockScale);
+                Level.GetBlock(_transform.position + Vector3.up + _playerState.GetDirection() * GameConstants.BlockScale);
             return block == null ? null : block.GetComponent<BlockSolidController>();
         }
 
         private bool IsBlockBehindPlayer()
         {
-            return Level.GetBlockInt(_transform.position - _playerState.GetDirection() * Level.BlockScale +
+            return Level.GetBlockInt(_transform.position - _playerState.GetDirection() * GameConstants.BlockScale +
                                      Vector3.up) !=
-                   Level.EmptyBlock;
+                   GameConstants.EmptyBlock;
         }
 
         private bool IsBlockBehindBlockInFront()
         {
-            return Level.GetBlockInt(_transform.position + _playerState.GetDirection() * (2 * Level.BlockScale) +
-                                     Vector3.up) != Level.EmptyBlock;
+            return Level.GetBlockInt(_transform.position + _playerState.GetDirection() * (2 * GameConstants.BlockScale) +
+                                     Vector3.up) != GameConstants.EmptyBlock;
         }
     }
 }

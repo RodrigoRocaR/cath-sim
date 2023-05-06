@@ -6,12 +6,8 @@ namespace LevelDS
     public class Level : MonoBehaviour
     {
         public GameObject[] blockVariants;
-        public const int EmptyBlock = -1;
-        public const int SolidBlock = 0;
-        public const int LevelSize = 12;
-        public const int BlockScale = 2;
-    
-        public readonly Vector3 startCoords = new Vector3(0, 0.5f, 0);
+        private const int LevelSize = 12;
+        private readonly Vector3 _startCoords = new Vector3(0, 0.5f, 0);
 
         private static GameMatrix _level;
 
@@ -30,12 +26,12 @@ namespace LevelDS
                     for (int k=0; k<_level.Depth; k++)
                     {
                         int blockInt = _level.GetBlockInt(i, j, k);
-                        if (blockInt != EmptyBlock)
+                        if (blockInt != GameConstants.EmptyBlock)
                         {
                             GameObject newBlock = Instantiate(blockVariants[blockInt],
-                                new Vector3((startCoords.x + i) * BlockScale,
-                                    (startCoords.y + j) * BlockScale,
-                                    (startCoords.z + k) * BlockScale),
+                                new Vector3((_startCoords.x + i) * GameConstants.BlockScale,
+                                    (_startCoords.y + j) * GameConstants.BlockScale,
+                                    (_startCoords.z + k) * GameConstants.BlockScale),
                                 blockVariants[blockInt].transform.rotation);
                             _level.SetBlock(i, j, k, newBlock);
                         }
@@ -52,7 +48,7 @@ namespace LevelDS
                 .AddWall(1, LevelSize - 1, 3, false)
                 .AddWall(1, LevelSize - 5, 1, false)
                 .AddWall(1, 0, 3, false)
-                .AddIndividualBlock(1, 1, 3, SolidBlock)
+                .AddIndividualBlock(1, 1, 3, GameConstants.SolidBlock)
                 .Build();
         }
         
@@ -68,7 +64,7 @@ namespace LevelDS
 
         public static bool IsBlock(Vector3 pos)
         {
-            return _level.GetBlockInt(pos) != EmptyBlock;
+            return _level.GetBlockInt(pos) != GameConstants.EmptyBlock;
         }
 
         public static void UpdateMovedBlock(Vector3 pos, Vector3 finalPos)
@@ -78,7 +74,7 @@ namespace LevelDS
             _level.SetBlock(finalPos, GetBlock(pos));
             
             // Erase old
-            _level.SetBlockInt(pos,EmptyBlock);
+            _level.SetBlockInt(pos,GameConstants.EmptyBlock);
             _level.SetBlock(pos, null);
         }
     }

@@ -21,7 +21,7 @@ namespace LevelDS
             Width = width;
             Height = height;
             Depth = depth;
-            _levelInt = new Matrix3D<int>(width, height, depth, Level.EmptyBlock);
+            _levelInt = new Matrix3D<int>(width, height, depth, GameConstants.EmptyBlock);
             _level = new Matrix3D<GameObject>(width, height, depth, null);
             _negativeExpanding = new Vector3Int(0, 0, 0);
         }
@@ -130,7 +130,7 @@ namespace LevelDS
                 {
                     for (int k = 0; k < Depth; k++)
                     {
-                        if (_levelInt[i, j, k] != Level.EmptyBlock) return false;
+                        if (_levelInt[i, j, k] != GameConstants.EmptyBlock) return false;
                     }
                 }
             }
@@ -181,7 +181,7 @@ namespace LevelDS
         private Vector3 ParseCoords(Vector3 coords)
         {
             coords.y -= 1;
-            coords /= Level.BlockScale;
+            coords /= GameConstants.BlockScale;
             return coords;
         }
 

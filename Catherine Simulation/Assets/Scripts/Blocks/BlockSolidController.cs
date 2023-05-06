@@ -48,7 +48,7 @@ namespace Blocks
             _blockProgress.Setup(transform.position,  playerPos + Vector3.up);
 
             // Set up player
-            _playerProgress.Setup(playerPos, playerPos - _playerState.GetDirection() * Level.BlockScale);
+            _playerProgress.Setup(playerPos, playerPos - _playerState.GetDirection() * GameConstants.BlockScale);
 
             _playerState.StartMovingBlock();
         }
@@ -64,7 +64,7 @@ namespace Blocks
             
             // Set up block
             _isBeingMoved = true;
-            _blockProgress.Setup(transform.position,  playerPos + _playerState.GetDirection() * (2 * Level.BlockScale) + Vector3.up);
+            _blockProgress.Setup(transform.position,  playerPos + _playerState.GetDirection() * (2 * GameConstants.BlockScale) + Vector3.up);
 
             // Set up player
             _playerProgress.Setup(playerPos, playerPos);

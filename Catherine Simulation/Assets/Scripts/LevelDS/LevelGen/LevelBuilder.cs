@@ -25,7 +25,7 @@
                 {
                     for (int k=0; k<_levelSize; k++)
                     {
-                        _level.SetBlockInt(i, j, k, Level.EmptyBlock);
+                        _level.SetBlockInt(i, j, k, GameConstants.EmptyBlock);
                     }
                 }
             }
@@ -37,7 +37,7 @@
             {
                 for (int k=0; k<_levelSize; k++)
                 {
-                    _level.SetBlockInt(j, y, k, Level.SolidBlock);
+                    _level.SetBlockInt(j, y, k, GameConstants.SolidBlock);
                 }
             }
 
@@ -52,11 +52,11 @@
                 {
                     if (horizontal)
                     {
-                        _level.SetBlockInt(k, y+h, pos, Level.SolidBlock);
+                        _level.SetBlockInt(k, y+h, pos, GameConstants.SolidBlock);
                     }
                     else
                     {
-                        _level.SetBlockInt(pos, y+h, k, Level.SolidBlock);
+                        _level.SetBlockInt(pos, y+h, k, GameConstants.SolidBlock);
                     }
                 }
             }
