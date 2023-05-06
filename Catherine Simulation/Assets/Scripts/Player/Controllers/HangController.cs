@@ -43,7 +43,7 @@ namespace Player.Controllers
                 // TODO: check on state to switch between 3 functions
                 SetupDropOnBorder();
                 _rigidbody.useGravity = false;
-                RotateToFaceBlock();
+                RotateToFaceBlockOnDrop();
             }
             else if (_playerState.IsHangingOnBorder() && _inputs.Horizontal()) // sliding left / right
             {
@@ -53,6 +53,7 @@ namespace Player.Controllers
 
         private void SetupHangingSlide()
         {
+            // todo: make direction work when sliding on x axis or play with the camera
             Vector3 direction = _inputs.Right() ? Vector3.right : Vector3.left;
             Vector3 playerLookingDirection = _playerState.GetDirection();
             Vector3 playerPos = _transform.position;
@@ -90,6 +91,7 @@ namespace Player.Controllers
                         targetPos
                     }
                 );
+                RotateToFaceBlockCornerBackward();
                 return;
             }
 
@@ -105,6 +107,7 @@ namespace Player.Controllers
                         targetPos
                     }
                 );
+                RotateToFaceBlockCornerForward();
             }
         }
 
@@ -131,9 +134,21 @@ namespace Player.Controllers
                 });
         }
 
-        private void RotateToFaceBlock()
+        private void RotateToFaceBlockOnDrop()
         {
             _transform.Rotate(new Vector3(0, 180, 0));
+            _playerState.UpdateDirection(_transform.eulerAngles);
+        }
+        
+        private void RotateToFaceBlockCornerForward()
+        {
+            _transform.Rotate(new Vector3(0, 90, 0));
+            _playerState.UpdateDirection(_transform.eulerAngles);
+        }
+        
+        private void RotateToFaceBlockCornerBackward()
+        {
+            _transform.Rotate(new Vector3(0, -90, 0));
             _playerState.UpdateDirection(_transform.eulerAngles);
         }
 
