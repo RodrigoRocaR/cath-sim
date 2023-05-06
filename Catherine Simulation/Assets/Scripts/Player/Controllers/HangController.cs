@@ -15,6 +15,7 @@ namespace Player.Controllers
         private readonly CameraTiled _cameraTiled;
 
         private MultiMoveLerp _multiMoveLerp;
+        private bool _slidingLeft;
 
         public HangController(Transform transform, PlayerState playerState, Inputs inputs, Rigidbody rigidbody, CameraTiled cameraTiled)
         {
@@ -92,7 +93,7 @@ namespace Player.Controllers
                         targetPos
                     }
                 );
-                RotateToFaceBlockCornerBackward(targetHangDirection);
+                RotateToFaceBlockCorner(false, targetHangDirection);
                 _cameraTiled.RotateCamera(_playerState.GetDirection());
                 return;
             }
@@ -109,7 +110,7 @@ namespace Player.Controllers
                         targetPos
                     }
                 );
-                RotateToFaceBlockCornerForward(targetHangDirection);
+                RotateToFaceBlockCorner(true, targetHangDirection);
                 _cameraTiled.RotateCamera(_playerState.GetDirection());
             }
         }
@@ -143,32 +144,21 @@ namespace Player.Controllers
             _playerState.UpdateDirection(_transform.eulerAngles);
         }
         
-        private void RotateToFaceBlockCornerForward(Vector3 dir)
+        private void RotateToFaceBlockCorner(bool forward, Vector3 dir)
         {
-            if (dir == Vector3.left)
+            if (_slidingLeft)
             {
-                _transform.Rotate(new Vector3(0, 90, 0));
+                int rotation = forward ? 90 : -90;
+                _transform.Rotate(new Vector3(0, rotation, 0));
             }
             else
             {
-                _transform.Rotate(new Vector3(0, -90, 0));
+                int rotation = forward ? -90 : 90;
+                _transform.Rotate(new Vector3(0, rotation, 0));
             }
             _playerState.UpdateDirection(_transform.eulerAngles);
         }
         
-        private void RotateToFaceBlockCornerBackward(Vector3 dir)
-        {
-            if (dir == Vector3.back)
-            {
-                _transform.Rotate(new Vector3(0, 90, 0));
-            }
-            else
-            {
-                _transform.Rotate(new Vector3(0, -90, 0));
-            }
-            _playerState.UpdateDirection(_transform.eulerAngles);
-        }
-
         private void StopHangAction()
         {
             if (_playerState.IsDroppingOnBorder()) // ended dropping
@@ -241,6 +231,8 @@ namespace Player.Controllers
             {
                 hangDir = _inputs.Right() ? Vector3.left : Vector3.right;
             }
+
+            _slidingLeft = _inputs.Left(); // to rotate character late
             return hangDir;
         }
     }
