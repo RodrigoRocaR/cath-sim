@@ -12,15 +12,17 @@ namespace Player.Controllers
         private readonly Transform _transform;
         private readonly PlayerState _playerState;
         private readonly Rigidbody _rigidbody;
+        private readonly CameraTiled _cameraTiled;
 
         private MultiMoveLerp _multiMoveLerp;
 
-        public HangController(Transform transform, PlayerState playerState, Inputs inputs, Rigidbody rigidbody)
+        public HangController(Transform transform, PlayerState playerState, Inputs inputs, Rigidbody rigidbody, CameraTiled cameraTiled)
         {
             _transform = transform;
             _inputs = inputs;
             _playerState = playerState;
             _rigidbody = rigidbody;
+            _cameraTiled = cameraTiled;
         }
 
         // Entry point
@@ -53,7 +55,7 @@ namespace Player.Controllers
 
         private void SetupHangingSlide()
         {
-            // todo: make direction work when sliding on x axis or play with the camera
+            // todo: make direction work when sliding on x axis or play with the cameraTiled
             Vector3 targetHangDirection = GetTargetHangDirection();
             Vector3 playerLookingDirection = _playerState.GetDirection();
             Vector3 playerPos = _transform.position;
@@ -91,6 +93,7 @@ namespace Player.Controllers
                     }
                 );
                 RotateToFaceBlockCornerBackward(targetHangDirection);
+                _cameraTiled.RotateCamera(_playerState.GetDirection());
                 return;
             }
 
@@ -107,6 +110,7 @@ namespace Player.Controllers
                     }
                 );
                 RotateToFaceBlockCornerForward(targetHangDirection);
+                _cameraTiled.RotateCamera(_playerState.GetDirection());
             }
         }
 
