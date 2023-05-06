@@ -54,16 +54,15 @@ namespace Player.Controllers
         private void SetupHangingSlide()
         {
             // todo: make direction work when sliding on x axis or play with the camera
-            Vector3 direction = _inputs.Right() ? Vector3.right : Vector3.left;
+            Vector3 targetHangDirection = GetTargetHangDirection();
             Vector3 playerLookingDirection = _playerState.GetDirection();
             Vector3 playerPos = _transform.position;
-            Vector3 targetPos = playerPos + direction * Level.BlockScale;
+            Vector3 targetPos = playerPos + targetHangDirection * Level.BlockScale;
             Vector3 checkPos = PlayerPos2BlockInFrontPos(playerPos);
-
-            Debug.Log(checkPos);
+            
 
             bool isBlockBehind = Level.IsBlock(checkPos + playerLookingDirection * Level.BlockScale);
-            checkPos += direction * Level.BlockScale;
+            checkPos += targetHangDirection * Level.BlockScale;
             bool isBlockSameLevel = Level.IsBlock(checkPos);
             bool isBlockInTheWay = Level.IsBlock(checkPos - playerLookingDirection * Level.BlockScale);
 
@@ -77,7 +76,7 @@ namespace Player.Controllers
             }
 
             // Corner case (literally)
-            Vector3 midPos = playerPos + direction * (Level.BlockScale / 2f * HangingDistancePercentageToBlock);
+            Vector3 midPos = playerPos + targetHangDirection * (Level.BlockScale / 2f * HangingDistancePercentageToBlock);
 
             if (isBlockInTheWay) // corner backward
             {
@@ -91,7 +90,7 @@ namespace Player.Controllers
                         targetPos
                     }
                 );
-                RotateToFaceBlockCornerBackward();
+                RotateToFaceBlockCornerBackward(targetHangDirection);
                 return;
             }
 
@@ -107,7 +106,7 @@ namespace Player.Controllers
                         targetPos
                     }
                 );
-                RotateToFaceBlockCornerForward();
+                RotateToFaceBlockCornerForward(targetHangDirection);
             }
         }
 
@@ -140,15 +139,29 @@ namespace Player.Controllers
             _playerState.UpdateDirection(_transform.eulerAngles);
         }
         
-        private void RotateToFaceBlockCornerForward()
+        private void RotateToFaceBlockCornerForward(Vector3 dir)
         {
-            _transform.Rotate(new Vector3(0, 90, 0));
+            if (dir == Vector3.left)
+            {
+                _transform.Rotate(new Vector3(0, 90, 0));
+            }
+            else
+            {
+                _transform.Rotate(new Vector3(0, -90, 0));
+            }
             _playerState.UpdateDirection(_transform.eulerAngles);
         }
         
-        private void RotateToFaceBlockCornerBackward()
+        private void RotateToFaceBlockCornerBackward(Vector3 dir)
         {
-            _transform.Rotate(new Vector3(0, -90, 0));
+            if (dir == Vector3.back)
+            {
+                _transform.Rotate(new Vector3(0, 90, 0));
+            }
+            else
+            {
+                _transform.Rotate(new Vector3(0, -90, 0));
+            }
             _playerState.UpdateDirection(_transform.eulerAngles);
         }
 
@@ -202,6 +215,21 @@ namespace Player.Controllers
             hangingPos.y +=  Level.BlockScale/2f - (Level.BlockScale / (0.75f * Level.BlockScale))/2;
 
             return hangingPos;
+        }
+
+        private Vector3 GetTargetHangDirection()
+        {
+            Vector3 playerDir = _playerState.GetDirection();
+            Vector3 hangDir;
+            if (playerDir == Vector3.forward || playerDir == Vector3.back)
+            {
+                hangDir = _inputs.Right() ? Vector3.right : Vector3.left;
+            }
+            else
+            {
+                hangDir = _inputs.Right() ? Vector3.back : Vector3.forward;
+            }
+            return hangDir;
         }
     }
 }
