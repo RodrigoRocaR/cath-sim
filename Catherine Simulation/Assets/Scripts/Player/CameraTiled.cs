@@ -84,18 +84,15 @@ namespace Player
             {
                 return CameraDir.Forward;
             }
-            else if (dir == Vector3.back)
+            if (dir == Vector3.back)
             {
                 return CameraDir.Backward;
             }
-            else if (dir == Vector3.right)
+            if (dir == Vector3.right)
             {
                 return CameraDir.Right;
             }
-            else
-            {
-                return CameraDir.Left;
-            }
+            return CameraDir.Left;
         }
     }
 }
