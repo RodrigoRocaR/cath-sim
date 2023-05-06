@@ -1,3 +1,4 @@
+using LevelDS.LevelGen;
 using UnityEngine;
 
 namespace LevelDS
@@ -16,15 +17,8 @@ namespace LevelDS
 
         void Start()
         {
-            _level = new GameMatrix(LevelSize, LevelSize, LevelSize);
-            InitializeLevel();
-            GetTestLevel();
+            _level = GetTestLevel();
             SpawnBlocks();
-        }
-
-        void Update()
-        {
-        
         }
 
         private void SpawnBlocks()
@@ -50,59 +44,18 @@ namespace LevelDS
             }
         }
 
-        private void InitializeLevel()
+        private GameMatrix GetTestLevel()
         {
-            for (int i=0; i<LevelSize; i++)
-            {
-                for (int j=0; j<LevelSize; j++)
-                {
-                    for (int k=0; k<LevelSize; k++)
-                    {
-                        _level.SetBlockInt(i, j, k, EmptyBlock);
-                    }
-                }
-            }
+            return new LevelBuilder(LevelSize)
+                .AddPlatform(0)
+                .AddWall(1, LevelSize - 1, 3)
+                .AddWall(1, LevelSize - 1, 3, false)
+                .AddWall(1, LevelSize - 5, 1, false)
+                .AddWall(1, 0, 3, false)
+                .AddIndividualBlock(1, 1, 3, SolidBlock)
+                .Build();
         }
-
-        private void GetTestLevel()
-        {
-            AddPlatform(0);
-            AddWall(1, LevelSize-1, 3);
-            AddWall(1, LevelSize-1, 3, false);
-            AddWall(1, LevelSize-5, 1, false);
-            AddWall(1, 0, 3, false);
-            _level.SetBlockInt(1, 1, 3, SolidBlock);
-        }
-    
-        private void AddPlatform(int y)
-        {
-            for (int j=0; j<LevelSize; j++)
-            {
-                for (int k=0; k<LevelSize; k++)
-                {
-                    _level.SetBlockInt(j, y, k, 0);
-                }
-            }
-        }
-
-        private void AddWall(int y,  int pos, int height = 2, bool horizontal = true)
-        {
-            for (int h=0; h<height; h++)
-            {
-                for (int k=0; k<LevelSize; k++)
-                {
-                    if (horizontal)
-                    {
-                        _level.SetBlockInt(k, y+h, pos, SolidBlock);
-                    }
-                    else
-                    {
-                        _level.SetBlockInt(pos, y+h, k, SolidBlock);
-                    }
-                }
-            }
-        }
-
+        
         public static int GetBlockInt(Vector3 pos)
         {
             return _level.GetBlockInt(pos);
