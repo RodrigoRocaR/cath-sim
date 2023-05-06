@@ -225,13 +225,21 @@ namespace Player.Controllers
         {
             Vector3 playerDir = _playerState.GetDirection();
             Vector3 hangDir;
-            if (playerDir == Vector3.forward || playerDir == Vector3.back)
+            if (playerDir == Vector3.forward)
             {
                 hangDir = _inputs.Right() ? Vector3.right : Vector3.left;
             }
-            else
+            else if (playerDir == Vector3.right)
             {
                 hangDir = _inputs.Right() ? Vector3.back : Vector3.forward;
+            }
+            else if (playerDir == Vector3.left)
+            {
+                hangDir = _inputs.Right() ? Vector3.forward : Vector3.back;
+            }
+            else // back
+            {
+                hangDir = _inputs.Right() ? Vector3.left : Vector3.right;
             }
             return hangDir;
         }
