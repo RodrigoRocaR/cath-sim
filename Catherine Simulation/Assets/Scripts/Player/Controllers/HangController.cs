@@ -48,6 +48,7 @@ namespace Player.Controllers
         // Entry point
         public void Hang()
         {
+            _playerState.CheckBlocksTarget();
             if (_multiMoveLerp != null && _playerState.IsPerformingHangingAction())
             {
                 if (_multiMoveLerp.IsCompleted())
