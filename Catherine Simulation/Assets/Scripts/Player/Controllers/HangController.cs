@@ -14,7 +14,8 @@ namespace Player.Controllers
 
         private const float VerticalOffset = GameConstants.BlockScale / (0.75f * GameConstants.BlockScale);
 
-        private const float DistanceCorneringFromMidPosToTarget = GameConstants.BlockScale * 0.75f;
+        private const float CorneringForwardDistanceFromMidPosToTarget = GameConstants.BlockScale * 0.75f;
+        private const float CorneringBackwardDistanceFromMidPosToTarget = GameConstants.BlockScale * 0.25f;
         
         // Times
         private const float FromBlockToEdgeTime = 0.75f;
@@ -125,7 +126,9 @@ namespace Player.Controllers
 
             if (isBlockInTheWay) // corner backward
             {
-                targetPos = midPos - _playerState.GetDirection() * DistanceCorneringFromMidPosToTarget;
+                // the block is in the way so the mid pos cant be in the edge
+                midPos -= targetHangDirection * GameConstants.BlockScale / 2; 
+                targetPos = midPos - _playerState.GetDirection() * CorneringBackwardDistanceFromMidPosToTarget;
                 _multiMoveLerp = new MultiMoveLerp(
                     new[] { HangSlideToCornerEdgeTime, HangSlideFromCornerEdgeToTargetTime },
                     new[]
@@ -142,7 +145,7 @@ namespace Player.Controllers
 
             if (isBlockBehind) // corner forward
             {
-                targetPos = midPos + _playerState.GetDirection() * DistanceCorneringFromMidPosToTarget;
+                targetPos = midPos + _playerState.GetDirection() * CorneringForwardDistanceFromMidPosToTarget;
                 _multiMoveLerp = new MultiMoveLerp(
                     new[] { HangSlideToCornerEdgeTime, HangSlideFromCornerEdgeToTargetTime },
                     new[]
