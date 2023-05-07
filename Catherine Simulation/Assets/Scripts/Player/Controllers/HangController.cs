@@ -217,6 +217,7 @@ namespace Player.Controllers
             {
                 _playerState.StopGettingUpFromBorder();
                 _rigidbody.useGravity = true;
+                _cameraTiled.ResetCameraRotation();
             }
             // if its hanging we don't do anything
         }

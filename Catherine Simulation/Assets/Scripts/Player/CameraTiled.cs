@@ -94,5 +94,10 @@ namespace Player
             }
             return CameraDir.Left;
         }
+
+        public void ResetCameraRotation()
+        {
+            RotateCamera(Vector3.forward);
+        }
     }
 }
