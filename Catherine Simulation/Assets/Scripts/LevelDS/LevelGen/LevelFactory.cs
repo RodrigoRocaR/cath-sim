@@ -15,5 +15,15 @@
                 .AddIndividualBlock(1, 1, 3, GameConstants.SolidBlock)
                 .Build();
         }
+
+        public GameMatrix GetTestHangingLevel()
+        {
+            int levelSize = 10;
+            return new LevelBuilder(levelSize, levelSize, levelSize)
+                .AddSquareBorder(0, levelSize)
+                .AddBlockRowX(5, 0)
+                .AddBlockRowZ(5, 0)
+                .Build();
+        }
     }
 }
