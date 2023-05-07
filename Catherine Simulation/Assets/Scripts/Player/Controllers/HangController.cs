@@ -6,6 +6,7 @@ namespace Player.Controllers
 {
     public class HangController
     {
+        // Distance constants
         private const float DistancePercentageToBlock = 1.5f;
 
         private const float HorizontalOffset =
@@ -14,6 +15,15 @@ namespace Player.Controllers
         private const float VerticalOffset = GameConstants.BlockScale / (0.75f * GameConstants.BlockScale);
 
         private const float DistanceCorneringFromMidPosToTarget = GameConstants.BlockScale * 0.75f;
+        
+        // Times
+        private const float FromBlockToEdgeTime = 0.75f;
+        private const float FromEdgeToHangTime = 0.35f;
+        
+        private const float HangSlideTime = 0.6f;
+        
+        private const float HangSlideToCornerEdgeTime = 0.3f;
+        private const float HangSlideFromCornerEdgeToTargetTime = 0.3f;
 
         private readonly Inputs _inputs;
         private readonly Transform _transform;
@@ -78,7 +88,7 @@ namespace Player.Controllers
             _playerState.StopHanging();
             
             _multiMoveLerp = new MultiMoveLerp(
-                new[] { 0.8f, 0.4f },
+                new[] { FromEdgeToHangTime, FromBlockToEdgeTime },
                 new[]
                 {
                     playerPos,
@@ -104,7 +114,7 @@ namespace Player.Controllers
             if (isBlockSameLevel && !isBlockInTheWay) // Slide horizontally on the same wall
             {
                 _multiMoveLerp = new MultiMoveLerp(
-                    new[] { 0.75f },
+                    new[] { HangSlideTime },
                     new[] { playerPos, targetPos }
                 );
                 return;
@@ -117,7 +127,7 @@ namespace Player.Controllers
             {
                 targetPos = midPos - _playerState.GetDirection() * DistanceCorneringFromMidPosToTarget;
                 _multiMoveLerp = new MultiMoveLerp(
-                    new[] { 0.33f, 0.32f },
+                    new[] { HangSlideToCornerEdgeTime, HangSlideFromCornerEdgeToTargetTime },
                     new[]
                     {
                         playerPos,
@@ -134,7 +144,7 @@ namespace Player.Controllers
             {
                 targetPos = midPos + _playerState.GetDirection() * DistanceCorneringFromMidPosToTarget;
                 _multiMoveLerp = new MultiMoveLerp(
-                    new[] { 0.33f, 0.32f },
+                    new[] { HangSlideToCornerEdgeTime, HangSlideFromCornerEdgeToTargetTime },
                     new[]
                     {
                         playerPos,
@@ -160,7 +170,7 @@ namespace Player.Controllers
 
             _playerState.DropOnBorder();
             _multiMoveLerp = new MultiMoveLerp(
-                new[] { 0.8f, 0.4f },
+                new[] { FromBlockToEdgeTime, FromEdgeToHangTime },
                 new[]
                 {
                     playerPos,
