@@ -2,13 +2,18 @@
 {
     public class LevelBuilder
     {
-        private int _levelSize;
+        private readonly int _levelSizeX;
+        private readonly int _levelSizeY;
+        private readonly int _levelSizeZ;
+        
         private GameMatrix _level;
         
-        public LevelBuilder(int levelSize)
+        public LevelBuilder(int levelSizeX, int levelSizeY, int levelSizeZ)
         {
-            _levelSize = levelSize;
-            _level = new GameMatrix(_levelSize, _levelSize, _levelSize);
+            _levelSizeX = levelSizeX;
+            _levelSizeY = levelSizeY;
+            _levelSizeZ = levelSizeZ;
+            _level = new GameMatrix(_levelSizeX, _levelSizeY, _levelSizeZ);
             InitializeLevel();
         }
 
@@ -19,11 +24,11 @@
         
         private void InitializeLevel()
         {
-            for (int i=0; i<_levelSize; i++)
+            for (int i=0; i<_levelSizeX; i++)
             {
-                for (int j=0; j<_levelSize; j++)
+                for (int j=0; j<_levelSizeY; j++)
                 {
-                    for (int k=0; k<_levelSize; k++)
+                    for (int k=0; k<_levelSizeZ; k++)
                     {
                         _level.SetBlockInt(i, j, k, GameConstants.EmptyBlock);
                     }
@@ -33,9 +38,9 @@
 
         public LevelBuilder AddPlatform(int y)
         {
-            for (int j=0; j<_levelSize; j++)
+            for (int j=0; j<_levelSizeX; j++)
             {
-                for (int k=0; k<_levelSize; k++)
+                for (int k=0; k<_levelSizeZ; k++)
                 {
                     _level.SetBlockInt(j, y, k, GameConstants.SolidBlock);
                 }
@@ -46,9 +51,10 @@
 
         public LevelBuilder AddWall(int y,  int pos, int height = 2, bool horizontal = true)
         {
+            int wallLength = horizontal ? _levelSizeX : _levelSizeZ;
             for (int h=0; h<height; h++)
             {
-                for (int k=0; k<_levelSize; k++)
+                for (int k=0; k<wallLength; k++)
                 {
                     if (horizontal)
                     {

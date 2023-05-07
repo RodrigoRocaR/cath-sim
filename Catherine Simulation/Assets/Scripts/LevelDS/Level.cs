@@ -6,7 +6,6 @@ namespace LevelDS
     public class Level : MonoBehaviour
     {
         public GameObject[] blockVariants;
-        private const int LevelSize = 12;
         private readonly Vector3 _startCoords = new Vector3(0, 0.5f, 0);
 
         private static GameMatrix _level;
@@ -14,7 +13,7 @@ namespace LevelDS
 
         void Start()
         {
-            _levelFactory = new LevelFactory(LevelSize);
+            _levelFactory = new LevelFactory();
             _level = _levelFactory.GetTestLevel();
             SpawnBlocks();
         }

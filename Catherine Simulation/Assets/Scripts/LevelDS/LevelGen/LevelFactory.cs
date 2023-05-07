@@ -2,20 +2,15 @@
 {
     public class LevelFactory
     {
-        private readonly int _levelSize;
 
-        public LevelFactory(int levelSize)
-        {
-            _levelSize = levelSize;
-        }
-        
         public GameMatrix GetTestLevel()
         {
-            return new LevelBuilder(_levelSize)
+            int levelSize = 12;
+            return new LevelBuilder(levelSize, levelSize, levelSize)
                 .AddPlatform(0)
-                .AddWall(1, _levelSize - 1, 3)
-                .AddWall(1, _levelSize - 1, 3, false)
-                .AddWall(1, _levelSize - 5, 1, false)
+                .AddWall(1, levelSize - 1, 3) // wall at the front
+                .AddWall(1, levelSize - 1, 3, false) // wall at the right
+                .AddWall(1, levelSize - 5, 1, false) // wall at the left
                 .AddWall(1, 0, 3, false)
                 .AddIndividualBlock(1, 1, 3, GameConstants.SolidBlock)
                 .Build();
