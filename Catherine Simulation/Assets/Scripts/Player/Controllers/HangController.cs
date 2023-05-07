@@ -49,9 +49,8 @@ namespace Player.Controllers
                     _transform.position = _multiMoveLerp.Lerp();
                 }
             }
-            else if (_playerState.CanDropOnBorder())
+            else if (_playerState.CanDropOnBorder() && _inputs.AnyInputs())
             {
-                // TODO: check on state to switch between 3 functions
                 SetupDropOnBorder();
                 _rigidbody.useGravity = false;
                 RotateToFaceBlockOnDrop();
@@ -60,6 +59,32 @@ namespace Player.Controllers
             {
                 SetupHangingSlide();
             }
+            else if (_playerState.IsHangingOnBorder() && _inputs.Forward()) // get back up
+            {
+                if (!Level.IsBlock(PlayerPos2BlockInFrontPos(_transform.position) + Vector3.up * GameConstants.BlockScale))
+                {
+                    SetupGetBack();
+                }
+            }
+        }
+
+        private void SetupGetBack()
+        {
+            Vector3 playerPos = _transform.position;
+            Vector3 blockEdge = playerPos + Vector3.up * VerticalOffset;
+            Vector3 targetPos = blockEdge + _playerState.GetDirection() * HorizontalOffset;
+            
+            _playerState.GetUpFromBorder();
+            _playerState.StopHanging();
+            
+            _multiMoveLerp = new MultiMoveLerp(
+                new[] { 0.8f, 0.4f },
+                new[]
+                {
+                    playerPos,
+                    blockEdge,
+                    targetPos
+                });
         }
 
         private void SetupHangingSlide()
@@ -176,7 +201,7 @@ namespace Player.Controllers
             else if (_playerState.IsGettingUpFromBorder()) // ended getting up
             {
                 _playerState.StopGettingUpFromBorder();
-                _playerState.StopHanging();
+                _rigidbody.useGravity = true;
             }
             // if its hanging we don't do anything
         }
