@@ -10,10 +10,12 @@ namespace LevelDS
         private readonly Vector3 _startCoords = new Vector3(0, 0.5f, 0);
 
         private static GameMatrix _level;
+        private static LevelFactory _levelFactory;
 
         void Start()
         {
-            _level = GetTestLevel();
+            _levelFactory = new LevelFactory(LevelSize);
+            _level = _levelFactory.GetTestLevel();
             SpawnBlocks();
         }
 
@@ -40,18 +42,6 @@ namespace LevelDS
             }
         }
 
-        private GameMatrix GetTestLevel()
-        {
-            return new LevelBuilder(LevelSize)
-                .AddPlatform(0)
-                .AddWall(1, LevelSize - 1, 3)
-                .AddWall(1, LevelSize - 1, 3, false)
-                .AddWall(1, LevelSize - 5, 1, false)
-                .AddWall(1, 0, 3, false)
-                .AddIndividualBlock(1, 1, 3, GameConstants.SolidBlock)
-                .Build();
-        }
-        
         public static int GetBlockInt(Vector3 pos)
         {
             return _level.GetBlockInt(pos);
