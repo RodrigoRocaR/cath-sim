@@ -232,7 +232,7 @@ namespace Player
 
         public bool CanDropOnBorder()
         {
-            return !IsPerformingAction() && _target != Vector3.zero && // todo: avoid this check
+            return !IsPerformingAction() &&
                    !_hasFoundation && !_isBlockInFront && !_isBlockBelow; // block layout correct
         }
 
