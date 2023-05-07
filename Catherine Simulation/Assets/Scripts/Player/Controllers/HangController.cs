@@ -6,7 +6,14 @@ namespace Player.Controllers
 {
     public class HangController
     {
-        private const float HangingDistancePercentageToBlock = 1.5f;
+        private const float DistancePercentageToBlock = 1.5f;
+
+        private const float HorizontalOffset =
+            GameConstants.BlockScale / 2f * DistancePercentageToBlock;
+
+        private const float VerticalOffset = GameConstants.BlockScale / (0.75f * GameConstants.BlockScale);
+
+        private const float DistanceCorneringFromMidPosToTarget = GameConstants.BlockScale * 0.75f;
 
         private readonly Inputs _inputs;
         private readonly Transform _transform;
@@ -17,7 +24,8 @@ namespace Player.Controllers
         private MultiMoveLerp _multiMoveLerp;
         private bool _slidingLeft;
 
-        public HangController(Transform transform, PlayerState playerState, Inputs inputs, Rigidbody rigidbody, CameraTiled cameraTiled)
+        public HangController(Transform transform, PlayerState playerState, Inputs inputs, Rigidbody rigidbody,
+            CameraTiled cameraTiled)
         {
             _transform = transform;
             _inputs = inputs;
@@ -61,7 +69,7 @@ namespace Player.Controllers
             Vector3 playerPos = _transform.position;
             Vector3 targetPos = playerPos + targetHangDirection * GameConstants.BlockScale;
             Vector3 checkPos = PlayerPos2BlockInFrontPos(playerPos);
-            
+
 
             bool isBlockBehind = Level.IsBlock(checkPos + playerLookingDirection * GameConstants.BlockScale);
             checkPos += targetHangDirection * GameConstants.BlockScale;
@@ -78,11 +86,11 @@ namespace Player.Controllers
             }
 
             // Corner case (literally)
-            Vector3 midPos = playerPos + targetHangDirection * (GameConstants.BlockScale / 2f * HangingDistancePercentageToBlock);
+            Vector3 midPos = playerPos + targetHangDirection * HorizontalOffset;
 
             if (isBlockInTheWay) // corner backward
             {
-                targetPos = midPos - _playerState.GetDirection() * (GameConstants.BlockScale * 0.75f);
+                targetPos = midPos - _playerState.GetDirection() * DistanceCorneringFromMidPosToTarget;
                 _multiMoveLerp = new MultiMoveLerp(
                     new[] { 0.33f, 0.32f },
                     new[]
@@ -92,14 +100,14 @@ namespace Player.Controllers
                         targetPos
                     }
                 );
-                RotateToFaceBlockCorner(false, targetHangDirection);
+                RotateToFaceBlockCorner(false);
                 _cameraTiled.RotateCamera(_playerState.GetDirection());
                 return;
             }
 
             if (isBlockBehind) // corner forward
             {
-                targetPos = midPos + _playerState.GetDirection() * (GameConstants.BlockScale * 0.75f);
+                targetPos = midPos + _playerState.GetDirection() * DistanceCorneringFromMidPosToTarget;
                 _multiMoveLerp = new MultiMoveLerp(
                     new[] { 0.33f, 0.32f },
                     new[]
@@ -109,7 +117,7 @@ namespace Player.Controllers
                         targetPos
                     }
                 );
-                RotateToFaceBlockCorner(true, targetHangDirection);
+                RotateToFaceBlockCorner(true);
                 _cameraTiled.RotateCamera(_playerState.GetDirection());
             }
         }
@@ -121,10 +129,9 @@ namespace Player.Controllers
 
             Vector3 playerPos = _transform.position;
 
-            Vector3 blockEdge = playerPos + _playerState.GetDirection() *
-                ((GameConstants.BlockScale / 2f) * HangingDistancePercentageToBlock);
+            Vector3 blockEdge = playerPos + _playerState.GetDirection() * HorizontalOffset;
             Vector3 hangingPos = blockEdge;
-            hangingPos.y -= GameConstants.BlockScale / (0.75f * GameConstants.BlockScale);
+            hangingPos.y -= VerticalOffset;
 
             _playerState.DropOnBorder();
             _multiMoveLerp = new MultiMoveLerp(
@@ -142,8 +149,8 @@ namespace Player.Controllers
             _transform.Rotate(new Vector3(0, 180, 0));
             _playerState.UpdateDirection(_transform.eulerAngles);
         }
-        
-        private void RotateToFaceBlockCorner(bool forward, Vector3 dir)
+
+        private void RotateToFaceBlockCorner(bool forward)
         {
             if (_slidingLeft)
             {
@@ -155,9 +162,10 @@ namespace Player.Controllers
                 int rotation = forward ? -90 : 90;
                 _transform.Rotate(new Vector3(0, rotation, 0));
             }
+
             _playerState.UpdateDirection(_transform.eulerAngles);
         }
-        
+
         private void StopHangAction()
         {
             if (_playerState.IsDroppingOnBorder()) // ended dropping
@@ -186,26 +194,25 @@ namespace Player.Controllers
         {
             Vector3 direction = _playerState.GetDirection();
             // Fix horizontal coords
-            float horizontalFix = (GameConstants.BlockScale / 2f) * HangingDistancePercentageToBlock;
             if (direction == Vector3.forward)
             {
-                hangingPos.z += horizontalFix;
+                hangingPos.z += HorizontalOffset;
             }
             else if (direction == Vector3.back)
             {
-                hangingPos.z -= horizontalFix;
+                hangingPos.z -= HorizontalOffset;
             }
             else if (direction == Vector3.right)
             {
-                hangingPos.x += horizontalFix;
+                hangingPos.x += HorizontalOffset;
             }
             else if (direction == Vector3.left)
             {
-                hangingPos.x -= horizontalFix;
+                hangingPos.x -= HorizontalOffset;
             }
 
             // Fix vertical coords
-            hangingPos.y +=  GameConstants.BlockScale/2f - (GameConstants.BlockScale / (0.75f * GameConstants.BlockScale))/2;
+            hangingPos.y += GameConstants.BlockScale / 2f - VerticalOffset / 2f;
 
             return hangingPos;
         }
