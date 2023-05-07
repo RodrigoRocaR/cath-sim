@@ -177,6 +177,7 @@ namespace Player.Controllers
                     blockEdge,
                     hangingPos
                 });
+            _cameraTiled.RotateCamera(_playerState.GetDirection() * -1);
         }
 
         private void RotateToFaceBlockOnDrop()
