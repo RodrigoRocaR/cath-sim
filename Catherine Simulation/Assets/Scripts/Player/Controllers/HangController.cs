@@ -78,6 +78,12 @@ namespace Player.Controllers
                     SetupGetBack();
                 }
             }
+            else if (_playerState.IsHangingOnBorder() && _inputs.Backward())
+            {
+                _rigidbody.useGravity = true;
+                _playerState.StopHanging();
+                _cameraTiled.ResetCameraRotation();
+            }
         }
 
         private void SetupGetBack()
