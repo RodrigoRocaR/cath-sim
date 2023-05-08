@@ -22,23 +22,23 @@ namespace Player
 
         public bool Forward()
         {
-            return _forward;
+            return _forward && !_multipleInputs;
         }
         public bool Backward()
         {
-            return _backward;
+            return _backward && !_multipleInputs;
         }
         public bool Right()
         {
-            return _right;
+            return _right && !_multipleInputs;
         }
         public bool Left()
         {
-            return _left;
+            return _left && !_multipleInputs;
         }
         public bool AnyInputs()
         {
-            return _anyInputs;
+            return _anyInputs && !_multipleInputs;
         }
         public bool MultipleInputs()
         {
@@ -47,12 +47,12 @@ namespace Player
 
         public bool Horizontal()
         {
-            return _right || _left;
+            return (_right || _left) && !_multipleInputs;
         }
         
         public bool Vertical()
         {
-            return _forward || _backward;
+            return (_forward || _backward) && !_multipleInputs;
         }
 
         public bool Jump()
