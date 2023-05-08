@@ -107,8 +107,7 @@ namespace Player.Controllers
             Vector3 targetPos = playerPos + targetHangDirection * GameConstants.BlockScale;
             Vector3 checkPos = PlayerPos2BlockInFrontPos(playerPos);
 
-
-            bool isBlockBehind = Level.IsBlock(checkPos + playerLookingDirection * GameConstants.BlockScale);
+            
             checkPos += targetHangDirection * GameConstants.BlockScale;
             bool isBlockSameLevel = Level.IsBlock(checkPos);
             bool isBlockInTheWay = Level.IsBlock(checkPos - playerLookingDirection * GameConstants.BlockScale);
@@ -144,21 +143,19 @@ namespace Player.Controllers
                 return;
             }
 
-            if (isBlockBehind) // corner forward
-            {
-                targetPos = midPos + _playerState.GetDirection() * CorneringForwardDistanceFromMidPosToTarget;
-                _multiMoveLerp = new MultiMoveLerp(
-                    new[] { HangSlideToCornerEdgeTime, HangSlideFromCornerEdgeToTargetTime },
-                    new[]
-                    {
-                        playerPos,
-                        midPos,
-                        targetPos
-                    }
-                );
-                RotateToFaceBlockCorner(true);
-                _cameraTiled.RotateCamera(_playerState.GetDirection());
-            }
+            // corner forward
+            targetPos = midPos + _playerState.GetDirection() * CorneringForwardDistanceFromMidPosToTarget;
+            _multiMoveLerp = new MultiMoveLerp(
+                new[] { HangSlideToCornerEdgeTime, HangSlideFromCornerEdgeToTargetTime },
+                new[]
+                {
+                    playerPos,
+                    midPos,
+                    targetPos
+                }
+            );
+            RotateToFaceBlockCorner(true);
+            _cameraTiled.RotateCamera(_playerState.GetDirection());
         }
 
 
