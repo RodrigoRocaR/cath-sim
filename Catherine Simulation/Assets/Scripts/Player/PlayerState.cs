@@ -25,6 +25,9 @@ namespace Player
         private bool _isHangingOnBorder;
         private bool _isDroppingOnBorder;
         private bool _isGettingUpFromBorder;
+        private bool _isDroppingFromHanging;
+        
+        private bool _gravityDesiredValue = true;
 
         // Direction ------------------
         public Vector3 GetDirection()
@@ -238,12 +241,42 @@ namespace Player
 
         public bool IsPerformingHangingAction()
         {
-            return _isDroppingOnBorder || _isGettingUpFromBorder || _isHangingOnBorder;
+            return _isDroppingOnBorder || _isGettingUpFromBorder || _isHangingOnBorder || _isDroppingFromHanging;
         }
 
         public bool IsPerformingAction()
         {
             return _isMoving || _isJumping || _isFalling || _isMovingBlock || IsPerformingHangingAction();
+        }
+
+        public void DropFromHanging()
+        {
+            _isDroppingFromHanging = true;
+        }
+
+        public void StopDropFromHanging()
+        {
+            _isDroppingFromHanging = false;
+        }
+
+        public bool IsDroppingFromHanging()
+        {
+            return _isDroppingFromHanging;
+        }
+
+        public void GravityOn()
+        {
+            _gravityDesiredValue = true;
+        }
+
+        public void GravityOff()
+        {
+            _gravityDesiredValue = false;
+        }
+
+        public bool GetGravityDesiredValue()
+        {
+            return _gravityDesiredValue;
         }
     }
 }

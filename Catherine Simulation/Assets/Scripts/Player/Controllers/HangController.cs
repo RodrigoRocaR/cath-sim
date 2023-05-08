@@ -1,3 +1,4 @@
+using System.Threading;
 using Tools;
 using UnityEngine;
 using LevelDS;
@@ -16,32 +17,31 @@ namespace Player.Controllers
 
         private const float CorneringForwardDistanceFromMidPosToTarget = GameConstants.BlockScale * 0.75f;
         private const float CorneringBackwardDistanceFromMidPosToTarget = GameConstants.BlockScale * 0.25f;
-        
+
         // Times
         private const float FromBlockToEdgeTime = 0.75f;
         private const float FromEdgeToHangTime = 0.35f;
-        
+
         private const float HangSlideTime = 0.6f;
-        
+
         private const float HangSlideToCornerEdgeTime = 0.3f;
         private const float HangSlideFromCornerEdgeToTargetTime = 0.3f;
+
+        private const float SeparateFromBorderToFallTime = 0.35f;
 
         private readonly Inputs _inputs;
         private readonly Transform _transform;
         private readonly PlayerState _playerState;
-        private readonly Rigidbody _rigidbody;
         private readonly CameraTiled _cameraTiled;
 
         private MultiMoveLerp _multiMoveLerp;
         private bool _slidingLeft;
 
-        public HangController(Transform transform, PlayerState playerState, Inputs inputs, Rigidbody rigidbody,
-            CameraTiled cameraTiled)
+        public HangController(Transform transform, PlayerState playerState, Inputs inputs, CameraTiled cameraTiled)
         {
             _transform = transform;
             _inputs = inputs;
             _playerState = playerState;
-            _rigidbody = rigidbody;
             _cameraTiled = cameraTiled;
         }
 
@@ -64,7 +64,7 @@ namespace Player.Controllers
             else if (_playerState.CanDropOnBorder() && _inputs.AnyInputs())
             {
                 SetupDropOnBorder();
-                _rigidbody.useGravity = false;
+                _playerState.GravityOff();
                 RotateToFaceBlockOnDrop();
             }
             else if (_playerState.IsHangingOnBorder() && _inputs.Horizontal()) // sliding left / right
@@ -73,17 +73,34 @@ namespace Player.Controllers
             }
             else if (_playerState.IsHangingOnBorder() && _inputs.Forward()) // get back up
             {
-                if (!Level.IsBlock(PlayerPos2BlockInFrontPos(_transform.position) + Vector3.up * GameConstants.BlockScale))
+                if (!Level.IsBlock(PlayerPos2BlockInFrontPos(_transform.position) +
+                                   Vector3.up * GameConstants.BlockScale))
                 {
                     SetupGetBack();
                 }
             }
-            else if (_playerState.IsHangingOnBorder() && _inputs.Backward())
+            else if (_playerState.IsHangingOnBorder() && _inputs.Backward()) // drop and begin to fall
             {
-                _rigidbody.useGravity = true;
-                _playerState.StopHanging();
-                _cameraTiled.ResetCameraRotation();
+                SetupDropFromHanging();
             }
+        }
+
+        private void SetupDropFromHanging()
+        {
+            Vector3 playerPos = _transform.position;
+            Vector3 targetPos = playerPos - _playerState.GetDirection() * (0.25f * GameConstants.BlockScale);
+
+            _multiMoveLerp = _multiMoveLerp = new MultiMoveLerp(
+                new[] { SeparateFromBorderToFallTime },
+                new[]
+                {
+                    playerPos,
+                    targetPos
+                });
+
+
+            _playerState.StopHanging();
+            _playerState.DropFromHanging();
         }
 
         private void SetupGetBack()
@@ -91,10 +108,10 @@ namespace Player.Controllers
             Vector3 playerPos = _transform.position;
             Vector3 blockEdge = playerPos + Vector3.up * VerticalOffset;
             Vector3 targetPos = blockEdge + _playerState.GetDirection() * HorizontalOffset;
-            
+
             _playerState.GetUpFromBorder();
             _playerState.StopHanging();
-            
+
             _multiMoveLerp = new MultiMoveLerp(
                 new[] { FromEdgeToHangTime, FromBlockToEdgeTime },
                 new[]
@@ -113,7 +130,7 @@ namespace Player.Controllers
             Vector3 targetPos = playerPos + targetHangDirection * GameConstants.BlockScale;
             Vector3 checkPos = PlayerPos2BlockInFrontPos(playerPos);
 
-            
+
             checkPos += targetHangDirection * GameConstants.BlockScale;
             bool isBlockSameLevel = Level.IsBlock(checkPos);
             bool isBlockInTheWay = Level.IsBlock(checkPos - playerLookingDirection * GameConstants.BlockScale);
@@ -133,7 +150,7 @@ namespace Player.Controllers
             if (isBlockInTheWay) // corner backward
             {
                 // the block is in the way so the mid pos cant be in the edge
-                midPos -= targetHangDirection * GameConstants.BlockScale / 2; 
+                midPos -= targetHangDirection * GameConstants.BlockScale / 2;
                 targetPos = midPos - _playerState.GetDirection() * CorneringBackwardDistanceFromMidPosToTarget;
                 _multiMoveLerp = new MultiMoveLerp(
                     new[] { HangSlideToCornerEdgeTime, HangSlideFromCornerEdgeToTargetTime },
@@ -219,7 +236,13 @@ namespace Player.Controllers
             else if (_playerState.IsGettingUpFromBorder()) // ended getting up
             {
                 _playerState.StopGettingUpFromBorder();
-                _rigidbody.useGravity = true;
+                _playerState.GravityOn();
+                _cameraTiled.ResetCameraRotation();
+            }
+            else if (_playerState.IsDroppingFromHanging())
+            {
+                _playerState.GravityOn();
+                _playerState.StopDropFromHanging();
                 _cameraTiled.ResetCameraRotation();
             }
             // if its hanging we don't do anything

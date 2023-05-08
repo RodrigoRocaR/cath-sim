@@ -36,7 +36,7 @@ namespace Player.Controllers
             _jumpController = new JumpController(transform, _inputs, _playerState, 0.85f);
             _animationsController = new AnimationsController(_animator, _playerState);
             _blockInteractController = new BlockInteractController(transform, _playerState, _inputs);
-            _hangController = new HangController(transform, _playerState, _inputs, _rb, _cameraTiled);
+            _hangController = new HangController(transform, _playerState, _inputs, _cameraTiled);
         
             _playerState.UpdateDirection(transform.eulerAngles);
         }
@@ -61,6 +61,7 @@ namespace Player.Controllers
         private void LateUpdate()
         {
             _cameraTiled.LateUpdate();
+            _rb.useGravity = _playerState.GetGravityDesiredValue();
         }
     }
 }
