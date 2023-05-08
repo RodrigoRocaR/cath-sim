@@ -163,7 +163,7 @@ namespace Player
 
         public bool CanJump()
         {
-            return !_isJumping && !_isMoving && !_isMovingBlock;
+            return !IsPerformingAction();
         }
         
         // Move blocks
