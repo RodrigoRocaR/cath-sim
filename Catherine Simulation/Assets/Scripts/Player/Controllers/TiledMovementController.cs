@@ -28,7 +28,7 @@ namespace Player.Controllers
             }
         
             if (_playerState.IsJumping() || _playerState.IsFalling() || _playerState.IsPerformingHangingAction() ||
-                (!_playerState.IsMoving() && (_inputs.Jump() || _inputs.MultipleInputs() || !_inputs.AnyInputs()))) return;
+                (!_playerState.IsMoving() && (_inputs.Jump() || !_inputs.AnyInputs()))) return;
 
             // Movement
             if (!_playerState.IsMoving())

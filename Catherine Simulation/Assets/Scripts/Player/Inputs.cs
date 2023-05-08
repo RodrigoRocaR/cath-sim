@@ -40,10 +40,6 @@ namespace Player
         {
             return _anyInputs && !_multipleInputs;
         }
-        public bool MultipleInputs()
-        {
-            return _multipleInputs;
-        }
 
         public bool Horizontal()
         {
