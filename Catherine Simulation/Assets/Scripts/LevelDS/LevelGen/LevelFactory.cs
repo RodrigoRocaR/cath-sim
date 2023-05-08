@@ -18,11 +18,12 @@
 
         public GameMatrix GetTestHangingLevel()
         {
-            int levelSize = 10;
+            int levelSize = 11;
             return new LevelBuilder(levelSize, levelSize, levelSize)
                 .AddSquareBorder(0, levelSize)
                 .AddBlockRowX(5, 0)
                 .AddBlockRowZ(5, 0)
+                .AddPyramid2D(1, 5, 10, 4)
                 .Build();
         }
     }

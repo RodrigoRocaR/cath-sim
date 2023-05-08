@@ -103,6 +103,49 @@
 
             return this;
         }
+
+        public LevelBuilder AddPyramid2D(int y, int centerX, int centerZ, int width, bool axisX = true)
+        {
+            int start, end;
+            int pyramidBase = y;
+
+            if (axisX)
+            {
+                start = centerX - width > 0 ? centerX - width : 0;
+                end = centerX + width <= _levelSizeX - 1 ? centerX + width : _levelSizeX - 1;
+            }
+            else
+            {
+                start = centerZ - width > 0 ? centerZ - width : 0;
+                end = centerZ + width <= _levelSizeZ - 1 ? centerZ + width : _levelSizeZ - 1;
+            }
+
+            for (int i=start; i<=end; i++)
+            {
+                if (axisX)
+                {
+                    _level.SetBlockInt(i, y, centerZ, GameConstants.SolidBlock);
+                    
+                    for (int j=y-1; j>=pyramidBase; j--) 
+                        _level.SetBlockInt(i, j, centerZ, GameConstants.SolidBlock);
+
+                    if (i < centerX) y++;
+                    else y--;
+                }
+                else
+                {
+                    _level.SetBlockInt(centerX, y, i, GameConstants.SolidBlock);
+                    
+                    for (int j=y-1; j>=pyramidBase; j--) 
+                        _level.SetBlockInt(centerX, j, i, GameConstants.SolidBlock);
+                    
+                    if (i < centerZ) y++;
+                    else y--;
+                }
+            }
+            
+            return this;
+        }
         
     }
 }
