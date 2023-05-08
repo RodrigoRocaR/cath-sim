@@ -8,6 +8,7 @@ namespace Player.Controllers
         private const string Run = "Run";
         private const string Jump = "Jump";
         private const string Grab = "Grab";
+        private const string Hang = "Hang";
     
         private readonly Animator _animator;
         private readonly PlayerState _playerState;
@@ -34,6 +35,10 @@ namespace Player.Controllers
             else if (_playerState.IsMovingBlocks())
             {
                 ChangeAnimationState(Grab);
+            }
+            else if (_playerState.IsHangingOnBorder())
+            {
+                ChangeAnimationState(Hang);
             }
             else
             {
