@@ -12,7 +12,7 @@ namespace Tools.Lerps
             _height = height;
         }
 
-        public override Vector3 Interpolate()
+        protected override Vector3 Interpolate()
         {
             _yOffset = _height * Mathf.Sin(Progress * Mathf.PI);
             return Vector3.Lerp(Start, End, Progress) + _yOffset * Vector3.up;;

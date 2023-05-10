@@ -9,7 +9,7 @@ namespace Tools.Lerps
         {
         }
 
-        public override Quaternion Interpolate()
+        protected override Quaternion Interpolate()
         {
             return Quaternion.Slerp(Start, End, Progress);
         }

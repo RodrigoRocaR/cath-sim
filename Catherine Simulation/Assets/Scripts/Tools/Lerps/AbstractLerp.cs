@@ -9,21 +9,21 @@ namespace Tools.Lerps
 
         private float _elapsedTime;
         protected float Progress;
-        protected float Duration;
+        private float _duration;
 
         protected AbstractLerp(float duration)
         {
-            Duration = duration;
+            _duration = duration;
         }
 
         public T Lerp()
         {
-            Progress = _elapsedTime / Duration;
+            Progress = _elapsedTime / _duration;
             _elapsedTime += Time.deltaTime;
             return Interpolate();
         }
 
-        public abstract T Interpolate();
+        protected abstract T Interpolate();
 
 
         public void Setup(T start, T end)
@@ -55,12 +55,12 @@ namespace Tools.Lerps
 
         public float GetDuration()
         {
-            return Duration;
+            return _duration;
         }
 
         public void SetDuration(float duration)
         {
-            Duration = duration;
+            _duration = duration;
         }
     }
 }

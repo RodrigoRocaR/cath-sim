@@ -8,7 +8,7 @@ namespace Tools.Lerps
         {
         }
 
-        public override Vector3 Interpolate()
+        protected override Vector3 Interpolate()
         {
             return Vector3.Lerp(Start, End, Progress);
         }
