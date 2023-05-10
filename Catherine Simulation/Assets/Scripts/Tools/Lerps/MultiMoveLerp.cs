@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-namespace Tools
+namespace Tools.Lerps
 {
     public class MultiMoveLerp
     {
-        protected MoveLerp[] MoveLerps;
-        protected int CurrentIndex;
+        private MoveLerp[] _moveLerps;
+        private int _currentIndex;
 
         public MultiMoveLerp(float[] durations, Vector3[] points)
         {
@@ -14,52 +14,52 @@ namespace Tools
                 Debug.LogError("Wrong initialization of multi move lerp");
             }
             
-            MoveLerps = new MoveLerp[points.Length - 1];
+            _moveLerps = new MoveLerp[points.Length - 1];
             for (int i = 0; i < points.Length - 1; i++)
             {
-                MoveLerps[i] = new MoveLerp(durations[i]);
-                MoveLerps[i].Setup(points[i], points[i + 1]);
+                _moveLerps[i] = new MoveLerp(durations[i]);
+                _moveLerps[i].Setup(points[i], points[i + 1]);
             }
 
-            CurrentIndex = 0;
+            _currentIndex = 0;
         }
 
         public Vector3 Lerp()
         {
-            if (MoveLerps[CurrentIndex].IsCompleted())
+            if (_moveLerps[_currentIndex].IsCompleted())
             {
-                if (CurrentIndex < MoveLerps.Length - 1)
+                if (_currentIndex < _moveLerps.Length - 1)
                 {
-                    CurrentIndex++;
+                    _currentIndex++;
                 }
             }
 
-            return MoveLerps[CurrentIndex].Lerp();
+            return _moveLerps[_currentIndex].Lerp();
         }
 
         public void Reset()
         {
-            foreach (var moveLerp in MoveLerps)
+            foreach (var moveLerp in _moveLerps)
             {
                 moveLerp.Reset();
             }
 
-            CurrentIndex = 0;
+            _currentIndex = 0;
         }
 
         public Vector3 GetStart()
         {
-            return MoveLerps[CurrentIndex].GetStart();
+            return _moveLerps[_currentIndex].GetStart();
         }
 
         public Vector3 GetEnd()
         {
-            return MoveLerps[CurrentIndex].GetEnd();
+            return _moveLerps[_currentIndex].GetEnd();
         }
 
         public bool IsCompleted()
         {
-            return MoveLerps[^1].IsCompleted(); // last lerp is completed
+            return _moveLerps[^1].IsCompleted(); // last lerp is completed
         }
     }
 }

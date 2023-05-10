@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using LevelDS;
-using Tools;
+using Tools.Lerps;
 using UnityEngine;
 
 namespace Player.Controllers
