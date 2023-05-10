@@ -13,5 +13,11 @@ namespace Tools.Lerps
         {
             return Quaternion.Slerp(Start, End, Progress);
         }
+
+        public void Setup(Vector3 startEulers, Vector3 endEulers)
+        {
+            Start = Quaternion.Euler(startEulers);
+            End = Quaternion.Euler(endEulers);
+        }
     }
 }

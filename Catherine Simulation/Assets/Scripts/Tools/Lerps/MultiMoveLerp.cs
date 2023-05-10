@@ -61,5 +61,16 @@ namespace Tools.Lerps
         {
             return _moveLerps[^1].IsCompleted(); // last lerp is completed
         }
+
+        public float GetTotalDuration()
+        {
+            float total = 0f;
+            foreach (var moveLerp in _moveLerps)
+            {
+                total += moveLerp.GetDuration();
+            }
+
+            return total;
+        }
     }
 }

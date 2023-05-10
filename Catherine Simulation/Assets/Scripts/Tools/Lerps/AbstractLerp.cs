@@ -37,6 +37,11 @@ namespace Tools.Lerps
             return Progress >= 1f;
         }
 
+        public bool HasStarted()
+        {
+            return Progress > 0.00f;
+        }
+
         public void Reset()
         {
             Progress = 0f;

@@ -1,13 +1,22 @@
 using System;
 using Tools;
+using Tools.Lerps;
 using UnityEngine;
 
 namespace Player
 {
     public class CameraTiled
     {
+
         private GameObject _cam;
         private GameObject _target;
+
+        private bool _rotating;
+        private RotateSlerp _rotateSlerp;
+        private MoveLerp _moveLerp;
+        
+        private Vector3 _targetFinalPos;
+        private float _duration;
 
         public CameraTiled(GameObject cam, GameObject target)
         {
@@ -25,7 +34,7 @@ namespace Player
         }
 
         private CameraDir _cameraDir = CameraDir.Forward;
-            
+
         private readonly Vector3[] _offset =
         {
             new Vector3(0, 4, -6.5f), // forward
@@ -36,12 +45,77 @@ namespace Player
 
         public void LateUpdate()
         {
-            _cam.transform.position = _target.transform.position + _offset[(int)_cameraDir];
+            if (_rotating)
+            {
+                if (!_moveLerp.HasStarted())
+                {
+                    _moveLerp.Setup(_cam.transform.position, _targetFinalPos + _offset[(int)_cameraDir]);
+                }
+
+                if (!_rotateSlerp.IsCompleted()) _cam.transform.rotation = _rotateSlerp.Lerp();
+                if (!_moveLerp.IsCompleted()) _cam.transform.position = _moveLerp.Lerp();
+
+                if (_rotateSlerp.IsCompleted() && _moveLerp.IsCompleted())
+                {
+                    _rotateSlerp.Reset();
+                    _moveLerp.Reset();
+                    _rotating = false;
+                }
+            }
+            else
+            {
+                _cam.transform.position = _target.transform.position + _offset[(int)_cameraDir];
+            }
         }
-    
+
+        public void RotateCameraSmooth(Vector3 newCamDirVector, Vector3 targetFinalPos, float duration)
+        {
+            _targetFinalPos = targetFinalPos;
+            CameraDir newCamDir = Vector3ToEnum(newCamDirVector);
+            
+            if (_cameraDir == newCamDir) return;
+            _cameraDir = newCamDir;
+
+            if (duration < 0f)
+            {
+                _rotateSlerp = null;
+                _moveLerp = null;
+                return;
+            }
+            
+            
+            _rotateSlerp = new RotateSlerp(duration);
+            _moveLerp = new MoveLerp(duration);
+            _rotating = true;
+            
+
+            Vector3 globalRotation = _cam.transform.rotation.eulerAngles;
+            float camRotX = globalRotation.x, camRotZ = globalRotation.z;
+
+            switch (newCamDir)
+            {
+                case CameraDir.Forward:
+                    _rotateSlerp.Setup(globalRotation, new Vector3(camRotX, 0, camRotZ));
+                    break;
+                case CameraDir.Backward:
+                    _rotateSlerp.Setup(globalRotation, new Vector3(camRotX, 180, camRotZ));
+                    break;
+                case CameraDir.Right:
+                    _rotateSlerp.Setup(globalRotation, new Vector3(camRotX, 90, camRotZ));
+                    break;
+                case CameraDir.Left:
+                    _rotateSlerp.Setup(globalRotation, new Vector3(camRotX, -90, camRotZ));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        
         public void RotateCamera(Vector3 newCamDirVector)
         {
             CameraDir newCamDir = Vector3ToEnum(newCamDirVector);
+            if (_cameraDir == newCamDir) return;
+            
             int rotation = GetCurrentRotation();
             Vector3 camWorldPivot = new Vector3(0, _cam.transform.position.y, 0); // pivot point in world space
             
@@ -64,6 +138,7 @@ namespace Player
             }
 
             _cameraDir = newCamDir;
+            _rotating = false;
         }
 
         private int GetCurrentRotation()
@@ -84,14 +159,17 @@ namespace Player
             {
                 return CameraDir.Forward;
             }
+
             if (dir == Vector3.back)
             {
                 return CameraDir.Backward;
             }
+
             if (dir == Vector3.right)
             {
                 return CameraDir.Right;
             }
+
             return CameraDir.Left;
         }
 

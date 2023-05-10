@@ -161,7 +161,7 @@ namespace Player.Controllers
                     }
                 );
                 RotateToFaceBlockCorner(false);
-                _cameraTiled.RotateCamera(_playerState.GetDirection());
+                _cameraTiled.RotateCameraSmooth(_playerState.GetDirection(), targetPos, _multiMoveLerp.GetTotalDuration());
                 return;
             }
 
@@ -177,7 +177,7 @@ namespace Player.Controllers
                 }
             );
             RotateToFaceBlockCorner(true);
-            _cameraTiled.RotateCamera(_playerState.GetDirection());
+            _cameraTiled.RotateCameraSmooth(_playerState.GetDirection(), targetPos, _multiMoveLerp.GetTotalDuration());
         }
 
 
@@ -200,7 +200,7 @@ namespace Player.Controllers
                     blockEdge,
                     hangingPos
                 });
-            _cameraTiled.RotateCamera(_playerState.GetDirection() * -1);
+            _cameraTiled.RotateCameraSmooth(_playerState.GetDirection() * -1, hangingPos, _multiMoveLerp.GetTotalDuration());
         }
 
         private void RotateToFaceBlockOnDrop()
