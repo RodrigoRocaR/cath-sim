@@ -267,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockVariants:
   - {fileID: 3827364657066707518, guid: 8913c62c6b4bba64b834a518cf093bf0, type: 3}
+  - {fileID: 4368294939256708167, guid: b6c5dda44cae3ae4fb70b6a260eb7f7e, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
