@@ -1,4 +1,5 @@
 using Blocks;
+using Blocks.BlockTypes;
 using LevelDS;
 using UnityEngine;
 
@@ -9,7 +10,6 @@ namespace Player.Controllers
         private readonly Transform _transform;
         private readonly PlayerState _playerState;
         private readonly Inputs _input;
-
 
         public BlockInteractController(Transform playerTransform, PlayerState playerState, Inputs input)
         {
@@ -25,25 +25,20 @@ namespace Player.Controllers
         {
             if (_input.Pull() && _playerState.CanMoveBlocks() && !IsBlockBehindPlayer())
             {
-                BlockSolidController blockSolidController = GetBlockController();
-                if (blockSolidController == null) return;
+                IBlock block = Level.GetBlock(_transform.position + Vector3.up +
+                                                   _playerState.GetDirection() * GameConstants.BlockScale);
+                if (block == null) return;
 
-                blockSolidController.TriggerPull(_transform, _playerState);
+                block.TriggerPull(_transform, _playerState);
             }
             else if (_input.Push() && _playerState.CanMoveBlocks() && !IsBlockBehindBlockInFront())
             {
-                BlockSolidController blockSolidController = GetBlockController();
-                if (blockSolidController == null) return;
+                IBlock block = Level.GetBlock(_transform.position + Vector3.up +
+                                                   _playerState.GetDirection() * GameConstants.BlockScale);
+                if (block == null) return;
 
-                blockSolidController.TriggerPush(_transform, _playerState);
+                block.TriggerPush(_transform, _playerState);
             }
-        }
-
-        private BlockSolidController GetBlockController()
-        {
-            GameObject block =
-                Level.GetBlock(_transform.position + Vector3.up + _playerState.GetDirection() * GameConstants.BlockScale);
-            return block == null ? null : block.GetComponent<BlockSolidController>();
         }
 
         private bool IsBlockBehindPlayer()
@@ -55,7 +50,8 @@ namespace Player.Controllers
 
         private bool IsBlockBehindBlockInFront()
         {
-            return Level.GetBlockInt(_transform.position + _playerState.GetDirection() * (2 * GameConstants.BlockScale) +
+            return Level.GetBlockInt(_transform.position +
+                                     _playerState.GetDirection() * (2 * GameConstants.BlockScale) +
                                      Vector3.up) != GameConstants.EmptyBlock;
         }
     }

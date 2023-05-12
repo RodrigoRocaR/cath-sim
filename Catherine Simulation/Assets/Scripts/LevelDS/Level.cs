@@ -1,3 +1,6 @@
+using Blocks;
+using Blocks.BlockControllers;
+using Blocks.BlockTypes;
 using LevelDS.LevelGen;
 using UnityEngine;
 
@@ -20,11 +23,11 @@ namespace LevelDS
 
         private void SpawnBlocks()
         {
-            for (int i=0; i<_level.Width; i++)
+            for (int i = 0; i < _level.Width; i++)
             {
-                for (int j=0; j<_level.Height; j++)
+                for (int j = 0; j < _level.Height; j++)
                 {
-                    for (int k=0; k<_level.Depth; k++)
+                    for (int k = 0; k < _level.Depth; k++)
                     {
                         int blockInt = _level.GetBlockInt(i, j, k);
                         if (blockInt != GameConstants.EmptyBlock)
@@ -34,7 +37,9 @@ namespace LevelDS
                                     (_startCoords.y + j) * GameConstants.BlockScale,
                                     (_startCoords.z + k) * GameConstants.BlockScale),
                                 blockVariants[blockInt].transform.rotation);
-                            _level.SetBlock(i, j, k, newBlock);
+
+                            _level.SetBlock(i, j, k,
+                                newBlock.GetComponent<GenericBlockController>().GetBlockInstantiate());
                         }
                     }
                 }
@@ -46,7 +51,7 @@ namespace LevelDS
             return _level.GetBlockInt(pos);
         }
 
-        public static GameObject GetBlock(Vector3 pos)
+        public static IBlock GetBlock(Vector3 pos)
         {
             return _level.GetBlock(pos);
         }
@@ -61,9 +66,9 @@ namespace LevelDS
             // Set up the new one
             _level.SetBlockInt(finalPos, GetBlockInt(pos));
             _level.SetBlock(finalPos, GetBlock(pos));
-            
+
             // Erase old
-            _level.SetBlockInt(pos,GameConstants.EmptyBlock);
+            _level.SetBlockInt(pos, GameConstants.EmptyBlock);
             _level.SetBlock(pos, null);
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using Blocks.BlockTypes;
 using UnityEngine;
 
 namespace LevelDS
@@ -7,7 +8,7 @@ namespace LevelDS
     {
 
         private Matrix3D<int> _levelInt;
-        private Matrix3D<GameObject> _level;
+        private Matrix3D<IBlock> _level;
         private Vector3Int _negativeExpanding;
 
         public int Width { get; set; }
@@ -22,7 +23,7 @@ namespace LevelDS
             Height = height;
             Depth = depth;
             _levelInt = new Matrix3D<int>(width, height, depth, GameConstants.EmptyBlock);
-            _level = new Matrix3D<GameObject>(width, height, depth, null);
+            _level = new Matrix3D<IBlock>(width, height, depth, null);
             _negativeExpanding = new Vector3Int(0, 0, 0);
         }
     
@@ -69,7 +70,7 @@ namespace LevelDS
         
         
         // Access GameObject matrix --------------
-        public void SetBlock(int x, int y, int z, GameObject block)
+        public void SetBlock(int x, int y, int z, IBlock block)
         {
             (x, y, z) = AdaptNegativeCoords(x, y, z);
             if (!IsCoordWithinLevel(x, y, z))
@@ -80,7 +81,7 @@ namespace LevelDS
             _level[x, y, z] = block;
         }
         
-        public void SetBlock(Vector3 coord, GameObject block)
+        public void SetBlock(Vector3 coord, IBlock block)
         {
             coord = ParseCoords(coord);
             coord = AdaptNegativeCoords(coord);
@@ -93,7 +94,7 @@ namespace LevelDS
             _level[coord] = block;
         }
 
-        public GameObject GetBlock(Vector3 coord)
+        public IBlock GetBlock(Vector3 coord)
         {
             if (_levelInt == null) return null;
             
@@ -102,7 +103,7 @@ namespace LevelDS
             return IsCoordWithinLevel(coord) ? _level[coord] : null;
         }
         
-        public GameObject GetBlock(int x, int y, int z)
+        public IBlock GetBlock(int x, int y, int z)
         {
             if (_level == null) return null;
             (x, y, z) = AdaptNegativeCoords(x, y, z);

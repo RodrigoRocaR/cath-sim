@@ -1,52 +1,40 @@
-using LevelDS;
+﻿using LevelDS;
 using Player;
-using Tools;
 using Tools.Lerps;
 using UnityEngine;
 
-namespace Blocks
+namespace Blocks.BlockTypes
 {
-    public class BlockSolidController : MonoBehaviour
+    public abstract class MovableBlock : IBlock
     {
-        private const float MoveDuration = 0.5f;
-
         private MoveLerp _blockProgress;
         private MoveLerp _playerProgress;
         private bool _isBeingMoved;
-        
+
         private Transform _playerTransform;
+        private Transform _blockTransform;
         private PlayerState _playerState;
-    
-        // Start is called before the first frame update
-        void Start()
+
+        protected MovableBlock(Transform blockTransform, float moveDuration)
         {
-            _blockProgress = new MoveLerp(MoveDuration);
-            _playerProgress = new MoveLerp(MoveDuration);
-            ResetBlockState();
+            _blockTransform = blockTransform;
+            _blockProgress = new MoveLerp(moveDuration);
+            _playerProgress = new MoveLerp(moveDuration);
+            //ResetBlockState();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            Move();
-        }
-
-        /**
-     * This method should be called when the player pulls this block
-     *  This triggers the pull. Moving the object and player
-     */
         public void TriggerPull(Transform playerTransform, PlayerState playerState)
         {
             if (_isBeingMoved || !playerState.CanMoveBlocks()) return; // to double check
 
             _playerTransform = playerTransform;
             _playerState = playerState;
-            
+
             Vector3 playerPos = playerTransform.position;
-            
+
             // Set up block
             _isBeingMoved = true;
-            _blockProgress.Setup(transform.position,  playerPos + Vector3.up);
+            _blockProgress.Setup(_blockTransform.position, playerPos + Vector3.up);
 
             // Set up player
             _playerProgress.Setup(playerPos, playerPos - _playerState.GetDirection() * GameConstants.BlockScale);
@@ -60,12 +48,13 @@ namespace Blocks
 
             _playerTransform = playerTransform;
             _playerState = playerState;
-            
+
             Vector3 playerPos = playerTransform.position;
-            
+
             // Set up block
             _isBeingMoved = true;
-            _blockProgress.Setup(transform.position,  playerPos + _playerState.GetDirection() * (2 * GameConstants.BlockScale) + Vector3.up);
+            _blockProgress.Setup(_blockTransform.position,
+                playerPos + _playerState.GetDirection() * (2 * GameConstants.BlockScale) + Vector3.up);
 
             // Set up player
             _playerProgress.Setup(playerPos, playerPos);
@@ -73,21 +62,22 @@ namespace Blocks
             _playerState.StartMovingBlock();
         }
 
-        private void Move()
+        public void UpdatePostionIfMoved()
         {
             if (!_isBeingMoved) return;
-            
-            if (_blockProgress.IsCompleted() && _playerProgress.IsCompleted()) // player and block should complete at the same time
+
+            if (_blockProgress.IsCompleted() &&
+                _playerProgress.IsCompleted()) // player and block should complete at the same time
             {
                 // Update block position
                 Level.UpdateMovedBlock(_blockProgress.GetStart(), _blockProgress.GetEnd());
-                
+
                 ResetBlockState();
                 _playerState.StopMovingBlock();
             }
             else
             {
-                transform.position = _blockProgress.Lerp();
+                _blockTransform.position = _blockProgress.Lerp();
                 _playerTransform.position = _playerProgress.Lerp();
             }
         }
