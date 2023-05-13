@@ -11,6 +11,8 @@ namespace Player.Controllers
         private readonly PlayerState _playerState;
         private readonly Inputs _input;
 
+        private Vector3 _pressedBlockPlayerPos;
+
         public BlockInteractController(Transform playerTransform, PlayerState playerState, Inputs input)
         {
             _transform = playerTransform;
@@ -18,10 +20,17 @@ namespace Player.Controllers
             _input = input;
         }
 
+        // Entry point
+        public void InteractWithBlocks()
+        {
+            PressBlockBelow();
+            MoveBlocks();
+        }
+
         /*
-         * Pulls the block in front of the player, if any
+         * Pulls / pushes the block in front of the player
          */
-        public void MoveBlocks()
+        private void MoveBlocks()
         {
             if (_input.Pull() && _playerState.CanMoveBlocks() && !IsBlockBehindPlayer())
             {
@@ -41,6 +50,17 @@ namespace Player.Controllers
             }
         }
 
+        private void PressBlockBelow()
+        {
+            if (Level.IsInBlockSpaceCoords(_transform.position) && _transform.position != _pressedBlockPlayerPos)
+            {
+                IBlock block = GetBlockBelowPlayer();
+                if (block == null) return;
+                _pressedBlockPlayerPos = _transform.position;
+                block.OnPlayerStepOn();
+            }
+        }
+
         private bool IsBlockBehindPlayer()
         {
             return Level.GetBlockInt(_transform.position - _playerState.GetDirection() * GameConstants.BlockScale +
@@ -53,6 +73,11 @@ namespace Player.Controllers
             return Level.GetBlockInt(_transform.position +
                                      _playerState.GetDirection() * (2 * GameConstants.BlockScale) +
                                      Vector3.up) != GameConstants.EmptyBlock;
+        }
+
+        private IBlock GetBlockBelowPlayer()
+        {
+            return Level.GetBlock(_transform.position + Vector3.down * GameConstants.BlockScale);
         }
     }
 }

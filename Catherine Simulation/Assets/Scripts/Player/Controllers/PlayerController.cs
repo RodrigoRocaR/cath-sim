@@ -48,7 +48,7 @@ namespace Player.Controllers
             _playerState.UpdateDirection(transform.eulerAngles);
             _tiledMovementController.Move();
             _jumpController.Jump();
-            _blockInteractController.MoveBlocks();
+            _blockInteractController.InteractWithBlocks();
             _hangController.Hang();
         }
 

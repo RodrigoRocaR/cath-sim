@@ -1,3 +1,4 @@
+using System;
 using Blocks;
 using Blocks.BlockControllers;
 using Blocks.BlockTypes;
@@ -70,6 +71,19 @@ namespace LevelDS
             // Erase old
             _level.SetBlockInt(pos, GameConstants.EmptyBlock);
             _level.SetBlock(pos, null);
+        }
+
+        public static bool IsInBlockSpaceCoords(Vector3 playerPos)
+        {
+            Vector3 slotPos = new Vector3(playerPos.x % GameConstants.BlockScale,
+                playerPos.y % GameConstants.BlockScale,
+                playerPos.z % GameConstants.BlockScale);
+            const float closeToBlock = GameConstants.BlockScale - 0.01f;
+
+            return
+                slotPos.x is 0 or >= closeToBlock &&
+                slotPos.y is 0 or >= closeToBlock &&
+                slotPos.z is 0 or >= closeToBlock;
         }
     }
 }

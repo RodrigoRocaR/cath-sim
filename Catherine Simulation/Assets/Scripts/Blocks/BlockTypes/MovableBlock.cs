@@ -82,6 +82,10 @@ namespace Blocks.BlockTypes
             }
         }
 
+        public virtual void OnPlayerStepOn()
+        {
+        }
+
         private void ResetBlockState()
         {
             _isBeingMoved = false;

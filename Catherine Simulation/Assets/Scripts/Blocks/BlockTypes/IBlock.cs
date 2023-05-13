@@ -7,5 +7,6 @@ namespace Blocks.BlockTypes
     {
         public void TriggerPull(Transform playerTransform, PlayerState playerState);
         public void TriggerPush(Transform playerTransform, PlayerState playerState);
+        public void OnPlayerStepOn();
     }
 }
