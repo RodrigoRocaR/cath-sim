@@ -17,7 +17,7 @@ namespace LevelDS
         void Start()
         {
             _levelFactory = new LevelFactory();
-            _level = _levelFactory.GetTestHangingLevel();
+            _level = _levelFactory.GetTestLevel();
             SpawnBlocks();
         }
 

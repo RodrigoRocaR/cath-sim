@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5965096750770312089}
   - component: {fileID: 3016421060096003663}
   - component: {fileID: 7232843070655345661}
+  - component: {fileID: 3463877874387696325}
   m_Layer: 0
   m_Name: BlockVictory
   m_TagString: Block
@@ -97,3 +98,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3463877874387696325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368294939256708167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77530e3638434633866f637420fd73d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

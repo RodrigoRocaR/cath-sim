@@ -13,6 +13,7 @@
                 .AddWall(1, levelSize - 5, 1, false) // wall at the left
                 .AddWall(1, 0, 3, false)
                 .AddIndividualBlock(1, 1, 3, GameConstants.SolidBlock)
+                .AddIndividualBlock(2, 4, 11, GameConstants.VictoryBlock)
                 .Build();
         }
 

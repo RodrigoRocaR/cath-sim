@@ -5,6 +5,11 @@ namespace Blocks.BlockControllers
 {
     public abstract class GenericBlockController : MonoBehaviour
     {
-        public abstract IBlock GetBlockInstantiate();
+        public IBlock GetBlockInstantiate()
+        {
+            return InstantiateBlock();
+        }
+        
+        protected abstract IBlock InstantiateBlock();
     }
 }

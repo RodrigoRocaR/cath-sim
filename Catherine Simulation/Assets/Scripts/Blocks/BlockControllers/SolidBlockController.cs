@@ -2,7 +2,7 @@
 
 namespace Blocks.BlockControllers
 {
-    public class BlockSolidController : GenericBlockController
+    public class SolidBlockController : GenericBlockController
     {
         private BlockSolid _bs;
         private const float MoveDuration = 0.5f;
@@ -17,16 +17,11 @@ namespace Blocks.BlockControllers
         {
             _bs.UpdatePostionIfMoved();
         }
-        
-        public override IBlock GetBlockInstantiate()
-        {
-            InstantiateBlock();
-            return _bs;
-        }
 
-        private void InstantiateBlock()
+        protected override IBlock InstantiateBlock()
         {
             _bs = new BlockSolid(transform, MoveDuration);
+            return _bs;
         }
     }
 }
