@@ -1,6 +1,5 @@
-using System;
+using LevelDS;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player.Controllers
 {
@@ -44,8 +43,12 @@ namespace Player.Controllers
         // Update is called once per frame
         void Update()
         {
+            if (Level.IsCleared()) return;
+
             _inputs.UpdateInputs();
             _playerState.UpdateDirection(transform.eulerAngles);
+
+            // Actions
             _tiledMovementController.Move();
             _jumpController.Jump();
             _blockInteractController.InteractWithBlocks();

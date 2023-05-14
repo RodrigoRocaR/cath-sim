@@ -1,5 +1,3 @@
-using System;
-using Blocks;
 using Blocks.BlockControllers;
 using Blocks.BlockTypes;
 using LevelDS.LevelGen;
@@ -11,7 +9,8 @@ namespace LevelDS
     {
         public GameObject[] blockVariants;
         private readonly Vector3 _startCoords = new Vector3(0, 0.5f, 0);
-
+        
+        private static bool _isCleared;
         private static GameMatrix _level;
         private static LevelFactory _levelFactory;
 
@@ -84,6 +83,16 @@ namespace LevelDS
                 slotPos.x is 0 or >= closeToBlock &&
                 slotPos.y is 0 or >= closeToBlock &&
                 slotPos.z is 0 or >= closeToBlock;
+        }
+
+        public static bool IsCleared()
+        {
+            return _isCleared;
+        }
+
+        public static void Finish()
+        {
+            _isCleared = true;
         }
     }
 }

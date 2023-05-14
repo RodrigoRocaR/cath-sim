@@ -1,4 +1,5 @@
-﻿using Player;
+﻿using LevelDS;
+using Player;
 using UnityEngine;
 
 namespace Blocks.BlockTypes
@@ -16,6 +17,7 @@ namespace Blocks.BlockTypes
         {
             // Game victory
             _victoryCanvas.SetActive(true);
+            Level.Finish();
         }
 
         // Can not be moved
