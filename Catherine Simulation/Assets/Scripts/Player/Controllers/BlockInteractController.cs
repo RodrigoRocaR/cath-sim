@@ -77,7 +77,7 @@ namespace Player.Controllers
 
         private IBlock GetBlockBelowPlayer()
         {
-            return Level.GetBlock(_transform.position + Vector3.down * GameConstants.BlockScale);
+            return Level.GetBlock(_transform.position + Vector3.down);
         }
     }
 }

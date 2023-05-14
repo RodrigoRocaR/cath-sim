@@ -110,3 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77530e3638434633866f637420fd73d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victoryCanvas: {fileID: 5150841587669654528, guid: 07bce4c0c11c5494498c041efc3ab329, type: 3}
