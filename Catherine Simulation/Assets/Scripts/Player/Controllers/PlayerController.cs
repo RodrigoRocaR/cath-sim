@@ -8,6 +8,8 @@ namespace Player.Controllers
         public float speed = 5.5f;
         public GameObject cameraGameObject;
 
+        private bool _freezed;
+
         private Animator _animator;
         private Rigidbody _rb;
     
@@ -43,7 +45,14 @@ namespace Player.Controllers
         // Update is called once per frame
         void Update()
         {
-            if (Level.IsCleared()) return;
+            if (_freezed) return;
+            
+            if (Level.IsCleared())
+            {
+                _playerState.Reset();
+                _freezed = true;
+                return;
+            }
 
             _inputs.UpdateInputs();
             _playerState.UpdateDirection(transform.eulerAngles);

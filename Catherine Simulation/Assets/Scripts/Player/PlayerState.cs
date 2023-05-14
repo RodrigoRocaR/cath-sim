@@ -29,6 +29,32 @@ namespace Player
         
         private bool _gravityDesiredValue = true;
 
+        public void Reset()
+        {
+            _direction = Vector3.forward;
+            _target = Vector3.positiveInfinity;
+            
+            _isMoving = false;
+            _isFalling = false;
+            
+            _hasFoundation = false;
+            _isBlockBelow = false;
+            _isWallInFront = false;
+            _isBlockBelow = false;
+
+            _isJumping = false;
+
+            _isMovingBlock = false;
+
+            _isHangingOnBorder = false;
+            _isDroppingOnBorder = false;
+            _isGettingUpFromBorder = false;
+            _isDroppingFromHanging = false;
+            
+            _gravityDesiredValue = true;
+        }
+        
+        
         // Direction ------------------
         public Vector3 GetDirection()
         {
