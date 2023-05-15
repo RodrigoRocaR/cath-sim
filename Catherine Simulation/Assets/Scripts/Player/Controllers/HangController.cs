@@ -19,6 +19,7 @@ namespace Player.Controllers
 
         // Times
         private const float FromBlockToEdgeTime = 0.75f;
+        private const float FromBlockToEdgeTimeWhenGrabbing = 0.5f;
         private const float FromEdgeToHangTime = 0.35f;
 
         private const float HangSlideTime = 0.6f;
@@ -59,6 +60,11 @@ namespace Player.Controllers
                 {
                     _transform.position = _multiMoveLerp.Lerp();
                 }
+            }
+            else if (_playerState.IsMovingBlockAndHang())
+            {
+                SetupDropOnBorderAfterHang();
+                _playerState.GravityOff();
             }
             else if (_playerState.CanDropOnBorder() && _inputs.AnyInputs())
             {
@@ -202,6 +208,26 @@ namespace Player.Controllers
                 });
             _cameraTiled.RotateCameraSmooth(_playerState.GetDirection() * -1, hangingPos, _multiMoveLerp.GetTotalDuration());
         }
+        
+        private void SetupDropOnBorderAfterHang()
+        {
+            Vector3 playerPos = _transform.position;
+
+            Vector3 blockEdge = playerPos - _playerState.GetDirection() * HorizontalOffset;
+            Vector3 hangingPos = blockEdge;
+            hangingPos.y -= VerticalOffset;
+
+            _playerState.DropOnBorder();
+            _multiMoveLerp = new MultiMoveLerp(
+                new[] { FromBlockToEdgeTimeWhenGrabbing, FromEdgeToHangTime },
+                new[]
+                {
+                    playerPos,
+                    blockEdge,
+                    hangingPos
+                });
+            _cameraTiled.RotateCameraSmooth(_playerState.GetDirection(), hangingPos, _multiMoveLerp.GetTotalDuration());
+        }
 
         private void RotateToFaceBlockOnDrop()
         {
@@ -229,6 +255,7 @@ namespace Player.Controllers
         {
             if (_playerState.IsDroppingOnBorder()) // ended dropping
             {
+                _playerState.StopMovingAndHang();
                 _playerState.StopDroppingOnBorder();
                 _playerState.HangOnBorder();
             }

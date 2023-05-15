@@ -6,7 +6,7 @@ namespace Blocks.BlockTypes
     public class BlockImmovable : IBlock
     {
         // Can not be moved
-        public void TriggerPull(Transform playerTransform, PlayerState playerState)
+        public void TriggerPull(Transform playerTransform, PlayerState playerState, bool goingToHang = false)
         {
         }
 

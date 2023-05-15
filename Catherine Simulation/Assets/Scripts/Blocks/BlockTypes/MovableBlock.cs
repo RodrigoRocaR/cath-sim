@@ -20,10 +20,9 @@ namespace Blocks.BlockTypes
             _blockTransform = blockTransform;
             _blockProgress = new MoveLerp(moveDuration);
             _playerProgress = new MoveLerp(moveDuration);
-            //ResetBlockState();
         }
 
-        public void TriggerPull(Transform playerTransform, PlayerState playerState)
+        public void TriggerPull(Transform playerTransform, PlayerState playerState, bool goingToHang = false)
         {
             if (_isBeingMoved || !playerState.CanMoveBlocks()) return; // to double check
 
@@ -37,7 +36,9 @@ namespace Blocks.BlockTypes
             _blockProgress.Setup(_blockTransform.position, playerPos + Vector3.up);
 
             // Set up player
-            _playerProgress.Setup(playerPos, playerPos - _playerState.GetDirection() * GameConstants.BlockScale);
+            if (!goingToHang)
+                _playerProgress.Setup(playerPos, playerPos - _playerState.GetDirection() * GameConstants.BlockScale);
+            else playerState.StartMovingAndHang();
 
             _playerState.StartMovingBlock();
         }

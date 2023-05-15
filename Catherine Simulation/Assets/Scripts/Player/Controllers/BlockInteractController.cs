@@ -35,15 +35,15 @@ namespace Player.Controllers
             if (_input.Pull() && _playerState.CanMoveBlocks() && !IsBlockBehindPlayer())
             {
                 IBlock block = Level.GetBlock(_transform.position + Vector3.up +
-                                                   _playerState.GetDirection() * GameConstants.BlockScale);
+                                              _playerState.GetDirection() * GameConstants.BlockScale);
                 if (block == null) return;
 
-                block.TriggerPull(_transform, _playerState);
+                block.TriggerPull(_transform, _playerState, !IsFoundationBehindPlayer());
             }
             else if (_input.Push() && _playerState.CanMoveBlocks() && !IsBlockBehindBlockInFront())
             {
                 IBlock block = Level.GetBlock(_transform.position + Vector3.up +
-                                                   _playerState.GetDirection() * GameConstants.BlockScale);
+                                              _playerState.GetDirection() * GameConstants.BlockScale);
                 if (block == null) return;
 
                 block.TriggerPush(_transform, _playerState);
@@ -64,8 +64,13 @@ namespace Player.Controllers
         private bool IsBlockBehindPlayer()
         {
             return Level.GetBlockInt(_transform.position - _playerState.GetDirection() * GameConstants.BlockScale +
-                                     Vector3.up) !=
-                   GameConstants.EmptyBlock;
+                                     Vector3.up) != GameConstants.EmptyBlock;
+        }
+        
+        private bool IsFoundationBehindPlayer()
+        {
+            return Level.GetBlockInt(_transform.position - _playerState.GetDirection() * GameConstants.BlockScale +
+                                     Vector3.down) != GameConstants.EmptyBlock;
         }
 
         private bool IsBlockBehindBlockInFront()

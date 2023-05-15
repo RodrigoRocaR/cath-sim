@@ -21,6 +21,7 @@ namespace Player
         private bool _isJumping;
 
         private bool _isMovingBlock;
+        private bool _isMovingBlockAndHang;
 
         private bool _isHangingOnBorder;
         private bool _isDroppingOnBorder;
@@ -45,6 +46,7 @@ namespace Player
             _isJumping = false;
 
             _isMovingBlock = false;
+            _isMovingBlockAndHang = false;
 
             _isHangingOnBorder = false;
             _isDroppingOnBorder = false;
@@ -212,6 +214,22 @@ namespace Player
         {
             return !_isJumping && !_isMoving && !_isMovingBlock;
         }
+
+        public void StartMovingAndHang()
+        {
+            _isMovingBlockAndHang = true;
+        }
+        
+        public void StopMovingAndHang()
+        {
+            _isMovingBlockAndHang = false;
+        }
+        
+        public bool IsMovingBlockAndHang()
+        {
+            return _isMovingBlockAndHang;
+        }
+        
         
         // Hang on a border
         public void HangOnBorder()
