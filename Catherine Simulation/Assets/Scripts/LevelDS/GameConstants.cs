@@ -7,5 +7,9 @@
         public const int SolidBlock = 0;
         public const int VictoryBlock = 1;
         public const int ImmovableBlock = 2;
+
+        public const string SolidBlockName = "BlockSolid";
+        public const string VictoryBlockName = "BlockVictory";
+        public const string ImmovableBlockName = "BlockImmovable";
     }
 }

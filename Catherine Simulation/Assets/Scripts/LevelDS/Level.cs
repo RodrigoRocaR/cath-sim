@@ -18,9 +18,16 @@ namespace LevelDS
         void Start()
         {
             _levelFactory = new LevelFactory();
-            if (SceneManager.GetActiveScene().name != "TestScene") return;
-            _level = _levelFactory.GetTestLevel();
-            SpawnBlocks();
+            if (SceneManager.GetActiveScene().name != "TestScene")
+            {
+                _level = new GameMatrix(50, 250, 250);
+                GetBlocksFromScene();   
+            }
+            else
+            {
+                _level = _levelFactory.GetTestLevel();
+                SpawnBlocks();
+            }
         }
 
         private void SpawnBlocks()
@@ -45,6 +52,28 @@ namespace LevelDS
                         }
                     }
                 }
+            }
+        }
+
+        private void GetBlocksFromScene()
+        {
+            GameObject[] allBlocks = GameObject.FindGameObjectsWithTag("Block");
+            foreach (var block in allBlocks)
+            {
+                Vector3 pos = block.transform.position;
+                if (block.name.Contains(GameConstants.SolidBlockName))
+                {
+                    _level.SetBlockInt(pos, GameConstants.SolidBlock);
+                }
+                else if (block.name.Contains(GameConstants.ImmovableBlockName))
+                {
+                    _level.SetBlockInt(pos, GameConstants.ImmovableBlock);
+                }
+                else if (block.name.Contains(GameConstants.VictoryBlockName))
+                {
+                    _level.SetBlockInt(pos, GameConstants.VictoryBlock);
+                }
+                _level.SetBlock(pos, block.GetComponent<GenericBlockController>().GetBlockInstantiate());
             }
         }
 
