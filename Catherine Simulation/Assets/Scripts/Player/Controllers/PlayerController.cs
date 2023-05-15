@@ -34,7 +34,7 @@ namespace Player.Controllers
             
             // Child controllers
             _tiledMovementController = new TiledMovementController(transform, _inputs, _playerState, speed);
-            _jumpController = new JumpController(transform, _inputs, _playerState, 0.85f);
+            _jumpController = new JumpController(transform, _inputs, _playerState, 0.7f);
             _animationsController = new AnimationsController(_animator, _playerState);
             _blockInteractController = new BlockInteractController(transform, _playerState, _inputs);
             _hangController = new HangController(transform, _playerState, _inputs, _cameraTiled);
