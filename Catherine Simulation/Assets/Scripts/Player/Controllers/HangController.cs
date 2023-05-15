@@ -19,7 +19,7 @@ namespace Player.Controllers
 
         // Times
         private const float FromBlockToEdgeTime = 0.75f;
-        private const float FromBlockToEdgeTimeWhenGrabbing = 0.5f;
+        private const float FromBlockToEdgeTimeWhenGrabbing = 0.35f;
         private const float FromEdgeToHangTime = 0.35f;
 
         private const float HangSlideTime = 0.6f;

@@ -10,6 +10,7 @@ namespace Blocks.BlockTypes
         private MoveLerp _blockProgress;
         private MoveLerp _playerProgress;
         private bool _isBeingMoved;
+        private bool _moveOnlyBlock;
 
         private Transform _playerTransform;
         private Transform _blockTransform;
@@ -38,7 +39,11 @@ namespace Blocks.BlockTypes
             // Set up player
             if (!goingToHang)
                 _playerProgress.Setup(playerPos, playerPos - _playerState.GetDirection() * GameConstants.BlockScale);
-            else playerState.StartMovingAndHang();
+            else
+            {
+                playerState.StartMovingAndHang();
+                _moveOnlyBlock = true;
+            }
 
             _playerState.StartMovingBlock();
         }
@@ -57,8 +62,7 @@ namespace Blocks.BlockTypes
             _blockProgress.Setup(_blockTransform.position,
                 playerPos + _playerState.GetDirection() * (2 * GameConstants.BlockScale) + Vector3.up);
 
-            // Set up player
-            _playerProgress.Setup(playerPos, playerPos);
+            _moveOnlyBlock = true;
 
             _playerState.StartMovingBlock();
         }
@@ -67,19 +71,23 @@ namespace Blocks.BlockTypes
         {
             if (!_isBeingMoved) return;
 
-            if (_blockProgress.IsCompleted() &&
-                _playerProgress.IsCompleted()) // player and block should complete at the same time
+            if (_moveOnlyBlock)
             {
-                // Update block position
-                Level.UpdateMovedBlock(_blockProgress.GetStart(), _blockProgress.GetEnd());
-
-                ResetBlockState();
-                _playerState.StopMovingBlock();
+                _blockTransform.position = _blockProgress.Lerp();
+                if (_blockProgress.IsCompleted()) FinishMovement();
             }
             else
             {
-                _blockTransform.position = _blockProgress.Lerp();
-                _playerTransform.position = _playerProgress.Lerp();
+                if (_blockProgress.IsCompleted() &&
+                    _playerProgress.IsCompleted()) // player and block should complete at the same time
+                {
+                    FinishMovement();
+                }
+                else
+                {
+                    _blockTransform.position = _blockProgress.Lerp();
+                    _playerTransform.position = _playerProgress.Lerp();
+                } 
             }
         }
 
@@ -90,8 +98,17 @@ namespace Blocks.BlockTypes
         private void ResetBlockState()
         {
             _isBeingMoved = false;
+            _moveOnlyBlock = false;
             _blockProgress.Reset();
             _playerProgress.Reset();
+        }
+
+        private void FinishMovement()
+        {
+            Level.UpdateMovedBlock(_blockProgress.GetStart(), _blockProgress.GetEnd());
+
+            ResetBlockState();
+            _playerState.StopMovingBlock();
         }
     }
 }

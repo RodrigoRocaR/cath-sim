@@ -285,7 +285,7 @@ namespace Player
 
         public bool IsPerformingHangingAction()
         {
-            return _isDroppingOnBorder || _isGettingUpFromBorder || _isHangingOnBorder || _isDroppingFromHanging;
+            return _isDroppingOnBorder || _isGettingUpFromBorder || _isHangingOnBorder || _isDroppingFromHanging || _isMovingBlockAndHang;
         }
 
         public bool IsPerformingAction()

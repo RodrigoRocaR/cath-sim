@@ -546,6 +546,10 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3119862507923306987, guid: 34993209cc13e475999759793043db60, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5952095501245879809, guid: 34993209cc13e475999759793043db60, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.307883
