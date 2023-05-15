@@ -2,6 +2,7 @@ using Blocks.BlockControllers;
 using Blocks.BlockTypes;
 using LevelDS.LevelGen;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LevelDS
 {
@@ -17,6 +18,7 @@ namespace LevelDS
         void Start()
         {
             _levelFactory = new LevelFactory();
+            if (SceneManager.GetActiveScene().name != "TestScene") return;
             _level = _levelFactory.GetTestLevel();
             SpawnBlocks();
         }
