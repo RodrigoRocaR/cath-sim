@@ -212,7 +212,7 @@ namespace Player
 
         public bool CanMoveBlocks()
         {
-            return !_isJumping && !_isMoving && !_isMovingBlock;
+            return !IsPerformingAction();
         }
 
         public void StartMovingAndHang()
