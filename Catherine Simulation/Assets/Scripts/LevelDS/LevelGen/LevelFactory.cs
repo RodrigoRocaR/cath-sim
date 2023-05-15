@@ -10,8 +10,8 @@
                 .AddPlatform(0)
                 .AddWall(1, levelSize - 1, 3) // wall at the front
                 .AddWall(1, levelSize - 1, 3, false) // wall at the right
-                .AddWall(1, levelSize - 5, 1, false) // wall at the left
-                .AddWall(1, 0, 3, false)
+                .AddWall(1, levelSize - 5, 1, false, GameConstants.ImmovableBlock) 
+                .AddWall(1, 0, 3, false) // wall at the left
                 .AddIndividualBlock(1, 1, 3, GameConstants.SolidBlock)
                 .AddIndividualBlock(6, 1, 6, GameConstants.VictoryBlock)
                 .Build();

@@ -49,7 +49,8 @@
             return this;
         }
 
-        public LevelBuilder AddWall(int y, int pos, int height = 2, bool horizontal = true)
+        public LevelBuilder AddWall(int y, int pos, int height = 2, bool horizontal = true,
+            int blockType = GameConstants.SolidBlock)
         {
             int wallLength = horizontal ? _levelSizeX : _levelSizeZ;
             for (int h = 0; h < height; h++)
@@ -58,11 +59,11 @@
                 {
                     if (horizontal)
                     {
-                        _level.SetBlockInt(k, y + h, pos, GameConstants.SolidBlock);
+                        _level.SetBlockInt(k, y + h, pos, blockType);
                     }
                     else
                     {
-                        _level.SetBlockInt(pos, y + h, k, GameConstants.SolidBlock);
+                        _level.SetBlockInt(pos, y + h, k, blockType);
                     }
                 }
             }
@@ -120,13 +121,13 @@
                 end = centerZ + width <= _levelSizeZ - 1 ? centerZ + width : _levelSizeZ - 1;
             }
 
-            for (int i=start; i<=end; i++)
+            for (int i = start; i <= end; i++)
             {
                 if (axisX)
                 {
                     _level.SetBlockInt(i, y, centerZ, GameConstants.SolidBlock);
-                    
-                    for (int j=y-1; j>=pyramidBase; j--) 
+
+                    for (int j = y - 1; j >= pyramidBase; j--)
                         _level.SetBlockInt(i, j, centerZ, GameConstants.SolidBlock);
 
                     if (i < centerX) y++;
@@ -135,17 +136,16 @@
                 else
                 {
                     _level.SetBlockInt(centerX, y, i, GameConstants.SolidBlock);
-                    
-                    for (int j=y-1; j>=pyramidBase; j--) 
+
+                    for (int j = y - 1; j >= pyramidBase; j--)
                         _level.SetBlockInt(centerX, j, i, GameConstants.SolidBlock);
-                    
+
                     if (i < centerZ) y++;
                     else y--;
                 }
             }
-            
+
             return this;
         }
-        
     }
 }

@@ -268,6 +268,7 @@ MonoBehaviour:
   blockVariants:
   - {fileID: 3827364657066707518, guid: 8913c62c6b4bba64b834a518cf093bf0, type: 3}
   - {fileID: 4368294939256708167, guid: b6c5dda44cae3ae4fb70b6a260eb7f7e, type: 3}
+  - {fileID: 1246852512825604134, guid: 8bf6988301312c444b711bb720278c5f, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
