@@ -18,14 +18,14 @@ namespace Player.Controllers
         private const float CorneringBackwardDistanceFromMidPosToTarget = GameConstants.BlockScale * 0.25f;
 
         // Times
-        private const float FromBlockToEdgeTime = 0.75f;
-        private const float FromBlockToEdgeTimeWhenGrabbing = 0.35f;
-        private const float FromEdgeToHangTime = 0.35f;
+        private const float FromBlockToEdgeTime = 0.35f;
+        private const float FromBlockToEdgeTimeWhenGrabbing = 0.15f;
+        private const float FromEdgeToHangTime = 0.15f;
 
-        private const float HangSlideTime = 0.6f;
+        private const float HangSlideTime = 0.5f;
 
-        private const float HangSlideToCornerEdgeTime = 0.3f;
-        private const float HangSlideFromCornerEdgeToTargetTime = 0.3f;
+        private const float HangSlideToCornerEdgeTime = 0.25f;
+        private const float HangSlideFromCornerEdgeToTargetTime = 0.25f;
 
         private const float SeparateFromBorderToFallTime = 0.35f;
 
