@@ -7,8 +7,10 @@ namespace Player.Controllers
     {
         public float speed = 5.5f;
         public GameObject cameraGameObject;
+        public GameObject gameOverCanvas;
 
         private bool _freezed;
+        private Vector3 _freezedPos;
 
         private Animator _animator;
         private Rigidbody _rb;
@@ -20,6 +22,7 @@ namespace Player.Controllers
         private AnimationsController _animationsController;
         private BlockInteractController _blockInteractController;
         private HangController _hangController;
+        private GameOverController _gameOverController;
         private PlayerState _playerState;
     
     
@@ -38,6 +41,7 @@ namespace Player.Controllers
             _animationsController = new AnimationsController(_animator, _playerState);
             _blockInteractController = new BlockInteractController(transform, _playerState, _inputs);
             _hangController = new HangController(transform, _playerState, _inputs, _cameraTiled);
+            _gameOverController = new GameOverController(transform, gameOverCanvas);
         
             _playerState.UpdateDirection(transform.eulerAngles);
         }
@@ -45,12 +49,18 @@ namespace Player.Controllers
         // Update is called once per frame
         void Update()
         {
-            if (_freezed) return;
+            if (_freezed)
+            {
+                transform.position = _freezedPos;
+                return;
+            }
+            _gameOverController.CheckForGameOver();
             
-            if (Level.IsCleared())
+            if (Level.IsCleared() || Level.IsGameOver())
             {
                 _playerState.Reset();
                 _freezed = true;
+                _freezedPos = transform.position;
                 return;
             }
 

@@ -13,5 +13,7 @@
         public const string ImmovableBlockName = "BlockImmovable";
         public const string TimerTextName = "TextTimer";
         public const string TimerDisplayOnCornerName = "TimerDisplay";
+
+        public const float GameOverMinimumY = -20;
     }
 }

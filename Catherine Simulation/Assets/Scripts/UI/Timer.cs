@@ -16,7 +16,7 @@ namespace UI
 
         private void Update()
         {
-            if (Level.IsCleared())
+            if (Level.IsCleared() || Level.IsGameOver())
             {
                 gameObject.SetActive(false);
                 return;

@@ -11,7 +11,7 @@ namespace LevelDS
         public GameObject[] blockVariants;
         private readonly Vector3 _startCoords = new Vector3(0, 0.5f, 0);
         
-        private static bool _isCleared;
+        private static bool _isCleared, _isGameOver;
         private static GameMatrix _level;
         private static LevelFactory _levelFactory;
 
@@ -124,6 +124,16 @@ namespace LevelDS
         public static void Finish()
         {
             _isCleared = true;
+        }
+
+        public static void GameOver()
+        {
+            _isGameOver = true;
+        }
+
+        public static bool IsGameOver()
+        {
+            return _isGameOver;
         }
     }
 }
