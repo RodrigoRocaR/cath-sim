@@ -16,7 +16,11 @@ namespace UI
 
         private void Update()
         {
-            if (Level.IsCleared()) return;
+            if (Level.IsCleared())
+            {
+                gameObject.SetActive(false);
+                return;
+            }
             float elapsedTime = Time.time - _startTime;
 
             int minutes = (int)(elapsedTime / 60);

@@ -55,7 +55,6 @@ namespace Blocks.BlockTypes
             if (timerTextVictory != null && timerTextCorner != null)
             {
                 timerTextVictory.SetText(timerTextCorner.text);
-                timerTextCornerGameObject.SetActive(false);
             }
             else
             {
