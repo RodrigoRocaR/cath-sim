@@ -11,5 +11,7 @@
         public const string SolidBlockName = "BlockSolid";
         public const string VictoryBlockName = "BlockVictory";
         public const string ImmovableBlockName = "BlockImmovable";
+        public const string TimerTextName = "TextTimer";
+        public const string TimerDisplayOnCornerName = "TimerDisplay";
     }
 }

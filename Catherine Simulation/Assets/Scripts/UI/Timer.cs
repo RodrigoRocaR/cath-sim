@@ -1,12 +1,12 @@
 ﻿using LevelDS;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI
 {
     public class Timer : MonoBehaviour
     {
-        public Text timerText;
+        public TextMeshProUGUI timerText;
         private float _startTime;
 
         private void Start()
