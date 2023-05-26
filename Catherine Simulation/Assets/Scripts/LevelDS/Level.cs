@@ -1,6 +1,7 @@
 using Blocks.BlockControllers;
 using Blocks.BlockTypes;
 using LevelDS.LevelGen;
+using Tools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,9 @@ namespace LevelDS
     public class Level : MonoBehaviour
     {
         public GameObject[] blockVariants;
+        public GameObject player;
+        public PlayerIdentity playerIdentity;
+        
         private readonly Vector3 _startCoords = new Vector3(0, 0.5f, 0);
         
         private static bool _isCleared, _isGameOver;
@@ -17,7 +21,7 @@ namespace LevelDS
 
         void Start()
         {
-            _levelFactory = new LevelFactory();
+            CharacterMaterialSwitcher.Switch(player, playerIdentity);
             if (SceneManager.GetActiveScene().name != "TestScene")
             {
                 _level = new GameMatrix(50, 250, 250);
@@ -25,6 +29,7 @@ namespace LevelDS
             }
             else
             {
+                _levelFactory = new LevelFactory();
                 _level = _levelFactory.GetTestLevel();
                 SpawnBlocks();
             }
