@@ -22,7 +22,8 @@ namespace LevelDS
         void Start()
         {
             CharacterMaterialSwitcher.Switch(player, playerIdentity);
-            if (SceneManager.GetActiveScene().name != "TestScene")
+            string sceneName = SceneManager.GetActiveScene().name;
+            if (sceneName != "TestScene")
             {
                 _level = new GameMatrix(50, 250, 250);
                 GetBlocksFromScene();   
@@ -33,6 +34,7 @@ namespace LevelDS
                 _level = _levelFactory.GetTestLevel();
                 SpawnBlocks();
             }
+            SetPlayerInitialPosition(sceneName);
         }
 
         private void SpawnBlocks()
@@ -79,6 +81,14 @@ namespace LevelDS
                     _level.SetBlockInt(pos, GameConstants.VictoryBlock);
                 }
                 _level.SetBlock(pos, block.GetComponent<GenericBlockController>().GetBlockInstantiate());
+            }
+        }
+
+        private void SetPlayerInitialPosition(string sceneName)
+        {
+            if (GameConstants.PlayerInitialPosition.ContainsKey(sceneName))
+            {
+                player.transform.position = GameConstants.PlayerInitialPosition[sceneName];
             }
         }
 
