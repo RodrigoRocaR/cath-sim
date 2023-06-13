@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace LevelDS
@@ -20,7 +21,31 @@ namespace LevelDS
             Depth = depth;
             _startValue = startValue;
             _elements =  new List<List<List<T>>>();
-            Initiliaze(startValue);
+            Initiliaze(_startValue);
+        }
+        
+        public Matrix3D(int width, int height, int depth)
+        {
+            Width = width;
+            Height = height;
+            Depth = depth;
+
+            if (typeof(T) == typeof(int))
+            { 
+                _startValue = (T)(object)-1;
+            }
+            
+            _elements =  new List<List<List<T>>>();
+            Initiliaze(_startValue);
+        }
+
+        public Matrix3D(T[][][] values, T startValue)
+        {
+            _elements = ArrayToList(values);
+            Width = _elements.Count;
+            Height = _elements[0].Count;
+            Depth = _elements[0][0].Count;
+            _startValue = startValue;
         }
 
         public void IncreaseSize(int axis, int n)
@@ -184,6 +209,26 @@ namespace LevelDS
                     }
                 }
             }
+        }
+
+        private List<List<List<T>>> ArrayToList(T[][][] elems)
+        {
+            List<List<List<T>>> listOfLists = new List<List<List<T>>>();
+
+            foreach (T[][] array2D in elems)
+            {
+                List<List<T>> innerList = new List<List<T>>();
+
+                foreach (T[] array1D in array2D)
+                {
+                    List<T> innermostList = new List<T>(array1D);
+                    innerList.Add(innermostList);
+                }
+
+                listOfLists.Add(innerList);
+            }
+
+            return listOfLists;
         }
 
         private bool ValidCoords(Vector3Int coords)
