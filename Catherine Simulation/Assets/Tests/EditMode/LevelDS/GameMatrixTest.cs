@@ -93,7 +93,7 @@ namespace Tests.EditMode.LevelDS
                 {
                     for (int k=0; k<gameMatrix.Depth; k++)
                     {
-                        if (i == 0 && j == 0 && k == 0)
+                        if (i == -1 && j == -1 && k == -1)
                         {
                             Assert.AreEqual(gameMatrix.GetBlockInt(i, j, k), 1);
                         }
@@ -127,7 +127,7 @@ namespace Tests.EditMode.LevelDS
                 {
                     for (int k=0; k<gameMatrix.Depth; k++)
                     {
-                        if (i == 0 && j == 2 && k == 0)
+                        if (i == -1 && j == 2 && k == -2)
                         {
                             Assert.AreEqual(gameMatrix.GetBlockInt(i, j, k), 1);
                         }
