@@ -32,7 +32,11 @@ namespace LevelDS
 
             if (typeof(T) == typeof(int))
             { 
-                _startValue = (T)(object)-1;
+                _startValue = (T)(object)GameConstants.EmptyBlock;
+            }
+            else
+            {
+                Debug.LogError("Cannot properly initialize Matrix due unknown start value");
             }
             
             _elements =  new List<List<List<T>>>();
@@ -46,6 +50,23 @@ namespace LevelDS
             Height = _elements[0].Count;
             Depth = _elements[0][0].Count;
             _startValue = startValue;
+        }
+        
+        public Matrix3D(T[][][] values)
+        {
+            _elements = ArrayToList(values);
+            Width = _elements.Count;
+            Height = _elements[0].Count;
+            Depth = _elements[0][0].Count;
+            
+            if (typeof(T) == typeof(int))
+            { 
+                _startValue = (T)(object)GameConstants.EmptyBlock;
+            }
+            else
+            {
+                Debug.LogError("Cannot properly initialize Matrix due unknown start value");
+            }
         }
 
         public void IncreaseSize(int axis, int n)
