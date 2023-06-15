@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 121
+  controlID: 106
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 98
+  controlID: 72
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 20
+  controlID: 107
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1881,7 +1881,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 8ed0ffff40d5ffffbed7ffffc6daffff9adcffff98deffff6ce0ffff5ce2ffff4ae5ffff0ae8ffff42eaffff88ecffff32eeffff94f0ffff66f3ffff8ef5ffff7ef7ffff34fbffff
+      m_ExpandedIDs: 5addffff92dfffff76e1ffffcae3ffffa8e7ffff6ceaffff08ecffffd0edfffff4f0ffffe0f3ffff6cf8ffff2cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1960,7 +1960,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: bc5a0000
     m_LastClickedID: 23228
-    m_ExpandedIDs: 000000009e6a0000a06a0000a26a0000a46a0000a66a0000a86a0000aa6a0000ac6a0000ae6a0000b06a0000b26a0000b46a0000b66a0000b86a0000ba6a0000bc6a0000be6a0000c06a0000c26a0000c46a0000c66a0000c86a0000ca6a0000cc6a0000ce6a0000d06a0000d26a0000d46a0000
+    m_ExpandedIDs: 00000000a86a0000aa6a0000ac6a0000ae6a0000b06a0000b26a0000b46a0000b66a0000b86a0000ba6a0000bc6a0000be6a0000c06a0000c26a0000c46a0000c66a0000c86a0000ca6a0000cc6a0000ce6a0000d06a0000d26a0000d46a0000d66a0000d86a0000da6a0000dc6a0000de6a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1988,7 +1988,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff000000009e6a0000a06a0000a26a0000a46a0000a66a0000a86a0000aa6a0000ac6a0000ae6a0000b06a0000b26a0000b46a0000b66a0000b86a0000ba6a0000bc6a0000be6a0000c06a0000c26a0000c46a0000c66a0000c86a0000ca6a0000cc6a0000ce6a0000d06a0000d26a0000d46a0000
+    m_ExpandedIDs: ffffffff00000000a86a0000aa6a0000ac6a0000ae6a0000b06a0000b26a0000b46a0000b66a0000b86a0000ba6a0000bc6a0000be6a0000c06a0000c26a0000c46a0000c66a0000c86a0000ca6a0000cc6a0000ce6a0000d06a0000d26a0000d46a0000d66a0000d86a0000da6a0000dc6a0000de6a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2116,7 +2116,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_Spl:
-    ID: 171
+    ID: 143
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
@@ -2183,7 +2183,7 @@ MonoBehaviour:
       name: Catherine Simulation
       fullName: Catherine Simulation
       resultStatus: 1
-      duration: 0.0746613
+      duration: 0.0773209
       messages: 
       output: 
       stacktrace: 
@@ -2199,7 +2199,7 @@ MonoBehaviour:
       name: EditMode.dll
       fullName: D:/Unity projects/cath-sim/Catherine Simulation/Library/ScriptAssemblies/EditMode.dll
       resultStatus: 1
-      duration: 0.0418065
+      duration: 0.0420592
       messages: 
       output: 
       stacktrace: 
@@ -2215,7 +2215,7 @@ MonoBehaviour:
       name: Tests
       fullName: Tests
       resultStatus: 1
-      duration: 0.0411533
+      duration: 0.0412536
       messages: 
       output: 
       stacktrace: 
@@ -2231,7 +2231,7 @@ MonoBehaviour:
       name: EditMode
       fullName: Tests.EditMode
       resultStatus: 1
-      duration: 0.040894
+      duration: 0.0409149
       messages: 
       output: 
       stacktrace: 
@@ -2242,154 +2242,12 @@ MonoBehaviour:
       categories: []
       parentId: 1015
       parentUniqueId: EditMode.dll/[Tests][suite]
-    - id: 1100
-      uniqueId: EditMode.dll/Tests/EditMode/[EditMode][Tests.EditMode.Bots][suite]
-      name: Bots
-      fullName: Tests.EditMode.Bots
-      resultStatus: 1
-      duration: 0.0379181
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1098
-      parentUniqueId: EditMode.dll/Tests/[EditMode][suite]
-    - id: 1090
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Level2DTests][suite]
-      name: Level2DTests
-      fullName: Tests.EditMode.Bots.Level2DTests
-      resultStatus: 1
-      duration: 0.0337781
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1100
-      parentUniqueId: EditMode.dll/Tests/EditMode/[EditMode][Tests.EditMode.Bots][suite]
-    - id: 1093
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/Level2DTests/[EditMode][Tests.EditMode.Bots.Level2DTests.GetCoordOffset_DistinctCoords]
-      name: GetCoordOffset_DistinctCoords
-      fullName: Tests.EditMode.Bots.Level2DTests.GetCoordOffset_DistinctCoords
-      resultStatus: 1
-      duration: 0.0184217
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1090
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Level2DTests][suite]
-    - id: 1091
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/Level2DTests/[EditMode][Tests.EditMode.Bots.Level2DTests.GetCoordOffset_Empty]
-      name: GetCoordOffset_Empty
-      fullName: Tests.EditMode.Bots.Level2DTests.GetCoordOffset_Empty
-      resultStatus: 1
-      duration: 0.0003408
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1090
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Level2DTests][suite]
-    - id: 1024
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/Level2DTests/[EditMode][Tests.EditMode.Bots.Level2DTests.GetCoordOffset_XPriorityVsZ]
-      name: GetCoordOffset_XPriorityVsZ
-      fullName: Tests.EditMode.Bots.Level2DTests.GetCoordOffset_XPriorityVsZ
-      resultStatus: 1
-      duration: 0.0191821
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1020
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Level2DTests][suite]
-    - id: 1092
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/Level2DTests/[EditMode][Tests.EditMode.Bots.Level2DTests.GetCoordOffset_Zero]
-      name: GetCoordOffset_Zero
-      fullName: Tests.EditMode.Bots.Level2DTests.GetCoordOffset_Zero
-      resultStatus: 1
-      duration: 0.0002281
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1090
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Level2DTests][suite]
-    - id: 1094
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/Level2DTests/[EditMode][Tests.EditMode.Bots.Level2DTests.TranslateTo2D_Empty]
-      name: TranslateTo2D_Empty
-      fullName: Tests.EditMode.Bots.Level2DTests.TranslateTo2D_Empty
-      resultStatus: 2
-      duration: 0.0088536
-      messages: "  Expected: < < -1, -1, -1 >, < -1, -1, -1 >, < -1, -1, -1 > >\r\n 
-        But was:  <Bots.Level2D>\r\n"
-      output: 
-      stacktrace: 'at Tests.EditMode.Bots.Level2DTests.TranslateTo2D_Empty () [0x00127]
-        in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\Bots\Level2DTests.cs:92
-
-'
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1090
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Level2DTests][suite]
-    - id: 1095
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/Level2DTests/[EditMode][Tests.EditMode.Bots.Level2DTests.TranslateTo2D_Full]
-      name: TranslateTo2D_Full
-      fullName: Tests.EditMode.Bots.Level2DTests.TranslateTo2D_Full
-      resultStatus: 2
-      duration: 0.0005713
-      messages: "  Expected: < < 0, 0, 0 >, < 0, 0, 0 >, < 0, 0, 0 > >\r\n  But was: 
-        <Bots.Level2D>\r\n"
-      output: 
-      stacktrace: 'at Tests.EditMode.Bots.Level2DTests.TranslateTo2D_Full () [0x000a3]
-        in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\Bots\Level2DTests.cs:132
-
-'
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1090
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Level2DTests][suite]
     - id: 1017
       uniqueId: EditMode.dll/Tests/EditMode/[EditMode][Tests.EditMode.LevelDS][suite]
       name: LevelDS
       fullName: Tests.EditMode.LevelDS
       resultStatus: 1
-      duration: 0.0419659
+      duration: 0.0379039
       messages: 
       output: 
       stacktrace: 
@@ -2501,6 +2359,56 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest][suite]
+    - id: 1007
+      uniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.Level2DTest][suite]
+      name: Level2DTest
+      fullName: Tests.EditMode.LevelDS.Level2DTest
+      resultStatus: 1
+      duration: 0.0331789
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1025
+      parentUniqueId: EditMode.dll/Tests/EditMode/[EditMode][Tests.EditMode.LevelDS][suite]
+    - id: 1008
+      uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Level2DTest/[EditMode][Tests.EditMode.LevelDS.Level2DTest.TestInitialize]
+      name: TestInitialize
+      fullName: Tests.EditMode.LevelDS.Level2DTest.TestInitialize
+      resultStatus: 1
+      duration: 0.0167706
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1007
+      parentUniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.Level2DTest][suite]
+    - id: 1008
+      uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Level2DTest/[EditMode][Tests.EditMode.LevelDS.Level2DTest.TestTranslateTo2D]
+      name: TestTranslateTo2D
+      fullName: Tests.EditMode.LevelDS.Level2DTest.TestTranslateTo2D
+      resultStatus: 1
+      duration: 0.0017942
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1007
+      parentUniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.Level2DTest][suite]
     - id: 1003
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest][suite]
       name: Matrix3DTest
@@ -2725,13 +2633,13 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1003
       parentUniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest][suite]
-    m_ResultText: GetCoordOffset_XPriorityVsZ (0,019s)
+    m_ResultText: Level2DTest (0,033s)
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f1ee9c2e
-      m_LastClickedID: 782036721
-      m_ExpandedIDs: c9d362c49c4580dcd71c52de8b46ec244d6b105026732a5f1eb49f61993e88644b5ea47cffffff7f
+      m_SelectedIDs: aac7351a
+      m_LastClickedID: 439732138
+      m_ExpandedIDs: c9d362c49c4580dcd71c52deaac7351a8b46ec244d6b105026732a5f1eb49f61993e88644b5ea47cffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
