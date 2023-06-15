@@ -1,4 +1,6 @@
-﻿namespace LevelDS
+﻿using LevelDS;
+
+namespace Bots.DS
 {
     /**
      * Made to make some algorithms work easier with the level data by flattening the level into 2 dimensions
