@@ -59,6 +59,7 @@ namespace Bots
 
         public void AddRange(List<Action> listActions)
         {
+            if (listActions.Count == 0) return;
             _done = false;
             foreach (var action in listActions)
             {
