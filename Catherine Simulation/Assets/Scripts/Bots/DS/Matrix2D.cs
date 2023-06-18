@@ -20,8 +20,8 @@ namespace Bots.DS
         public Matrix2D(T[][] elements)
         {
             _elements = elements;
-            _width = _elements.Length;
-            _height = elements[0].Length;
+            _height = _elements.Length;
+            _width = elements[0].Length;
             InferStartValueAsEmptyBlock();
         }
 
