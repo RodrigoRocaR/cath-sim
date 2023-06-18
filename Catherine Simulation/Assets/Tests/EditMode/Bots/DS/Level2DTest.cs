@@ -3,22 +3,20 @@ using Bots.DS;
 using LevelDS;
 using NUnit.Framework;
 
-namespace Tests.EditMode.LevelDS
+namespace Tests.EditMode.Bots.DS
 {
     public class Level2DTest
     {
         private bool AreLevel2DEqual(Level2D l1, Level2D l2)
         {
-            var dims1 = l1.GetSize();
-            var dims2 = l2.GetSize();
-            if (dims1[0] != dims2[0] || dims1[1] != dims2[0])
+            if (l1.Width() != l2.Width() || l1.Height() != l2.Height())
             {
                 return false;
             }
 
-            for (int i = 0; i < dims1[0]; i++)
+            for (int i = 0; i < l1.Width(); i++)
             {
-                for (int j = 0; j < dims2[0]; j++)
+                for (int j = 0; j < l1.Width(); j++)
                 {
                     if (l1.Get(i, j) != l2.Get(i, j))
                     {
@@ -40,12 +38,11 @@ namespace Tests.EditMode.LevelDS
             Level2D l2d = new Level2D(empty);
 
             // Assert
-            var size = l2d.GetSize();
-            Assert.AreEqual(5, size[0]); // depth
-            Assert.AreEqual(3, size[1]); // width
-            for (int i=0; i<size[0]; i++)
+            Assert.AreEqual(5, l2d.Width()); // depth
+            Assert.AreEqual(3, l2d.Height()); // width
+            for (int i=0; i<l2d.Width(); i++)
             {
-                for (int j = 0; j < size[1]; j++)
+                for (int j = 0; j < l2d.Height(); j++)
                 {
                     Assert.AreEqual(GameConstants.EmptyBlock, l2d.Get(i,j));
                 }
