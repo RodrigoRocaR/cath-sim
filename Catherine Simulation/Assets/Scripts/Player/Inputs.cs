@@ -7,12 +7,21 @@ namespace Player
 {
     public class Inputs
     {
+        private static Inputs _instance;
+        
         private bool _forward, _backward, _right, _left, _multipleInputs, _anyInputs, _jump, _pull, _push;
         private bool _isHuman;
 
-        public Inputs()
+        private Inputs()
         {
             _isHuman = Level.GetPlayerIdentity() == PlayerIdentity.Player;
+        }
+
+        public static Inputs GetInstance()
+        {
+            if (_instance == null)
+                _instance = new Inputs();
+            return _instance;
         }
 
         public void UpdateInputs()

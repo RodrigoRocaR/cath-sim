@@ -19,7 +19,7 @@ public static class GameConstants
 
     public const float GameOverMinimumY = -20;
 
-    public static IReadOnlyDictionary<string, Vector3> PlayerInitialPosition = new Dictionary<string, Vector3>
+    public static readonly IReadOnlyDictionary<string, Vector3> PlayerInitialPosition = new Dictionary<string, Vector3>
     {   
         { "TestScene", new Vector3(2, 10, 2) },
         { "Level01", new Vector3(12, 3, 10) }

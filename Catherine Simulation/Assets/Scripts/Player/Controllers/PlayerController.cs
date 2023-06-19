@@ -31,7 +31,7 @@ namespace Player.Controllers
             _animator = GetComponentInChildren<Animator>();
             _rb = GetComponent<Rigidbody>();
         
-            _inputs = new Inputs();
+            _inputs = Inputs.GetInstance();
             _playerState = new PlayerState();
             _cameraTiled = new CameraTiled(cameraGameObject, gameObject);
             
