@@ -6,8 +6,6 @@ namespace Bots
 {
     public class ActionExecutor
     {
-        private Queue<Action> _actionQueue;
-
         private readonly Dictionary<Action, int> _actionDelay = new Dictionary<Action, int>
         {
             { Action.Forward, 1000 },
@@ -29,8 +27,7 @@ namespace Bots
             { Action.Push, 200 },
             { Action.Pull, 200 },
         };
-
-        private bool _done = true;
+        
         private readonly Inputs _inputs;
 
         public ActionExecutor(Inputs inputs)
@@ -38,38 +35,15 @@ namespace Bots
             _inputs = inputs;
         }
 
-        public async void ExecuteAll()
+        public async void Execute(ActionStream actionStream)
         {
-            foreach (var action in _actionQueue)
+            foreach (var action in actionStream.GetAsList())
             {
                 _inputs.StartAction(action);
                 await Task.Delay(_actionDelay[action]);
                 _inputs.StopAction(action);
                 await Task.Delay(_postActionDelay[action]);
             }
-
-            _done = true;
-        }
-
-        public void Add(Action a)
-        {
-            _done = false;
-            _actionQueue.Enqueue(a);
-        }
-
-        public void AddRange(List<Action> listActions)
-        {
-            if (listActions.Count == 0) return;
-            _done = false;
-            foreach (var action in listActions)
-            {
-                _actionQueue.Enqueue(action);
-            }
-        }
-
-        public bool IsDone()
-        {
-            return _done;
         }
     }
 }

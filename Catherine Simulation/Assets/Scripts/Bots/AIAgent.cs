@@ -31,7 +31,8 @@ namespace Bots
         {
             var bfs = new BFS();
             Vector3 pos = transform.position;
-            bfs.Explore(_level2D, (int)pos.z, (int)pos.x);
+            ActionStream actionStream = bfs.Explore(_level2D, (int)pos.z, (int)pos.x);
+            _actionExecutor.Execute(actionStream);
         }
     }
 }

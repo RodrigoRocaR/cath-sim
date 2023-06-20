@@ -10,7 +10,7 @@ namespace Bots
         private HashSet<(int, int)> _visited;
         private Dictionary<(int, int), ((int, int), int)> _pathToPos; // pos_wanted : (pos_previous, length_of_path)
 
-        public List<(int, int)> Explore(Level2D level2D, int i, int j)
+        public ActionStream Explore(Level2D level2D, int i, int j)
         {
             EnqueueUnvisited(level2D, i, j);
             
@@ -39,8 +39,12 @@ namespace Bots
                 path.Add(_pathToPos[pos].Item1);
                 pos = _pathToPos[pos].Item1;
             }
+            path.Add((i, j));
+            path.Reverse(); // from deepest point --> start to start --> deepest point
 
-            return path;
+            ActionStream stream = new ActionStream();
+            stream.CreateFromPositions(path);
+            return stream;
         }
 
         private void EnqueueUnvisited(Level2D l2d, int i, int j)
@@ -78,6 +82,7 @@ namespace Bots
         private void AddPath((int, int) target, (int, int) origin)
         {
             int length = _pathToPos[origin].Item2 + 1;
+            // if we do not know how to get here before or the path we discovered is shorter
             if (!_pathToPos.ContainsKey(target) || _pathToPos[target].Item2 > length)
             {
                 _pathToPos[target] = (origin, length);
