@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1692
     height: 902.6667
   m_ShowMode: 4
-  m_Title: Test Runner
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 118
+  controlID: 83
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 88
+  controlID: 84
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -195,8 +195,8 @@ MonoBehaviour:
     y: 290
     width: 1095.3334
     height: 562.6667
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 119
+  controlID: 97
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -272,8 +272,8 @@ MonoBehaviour:
     y: 390.66666
     width: 299.33325
     height: 462.00003
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
+  m_MinSize: {x: 232, y: 271}
+  m_MaxSize: {x: 10002, y: 10021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -1879,9 +1879,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 366b0000
       m_LastClickedID: 0
-      m_ExpandedIDs: c2f8ffff
+      m_ExpandedIDs: 38f6ffff98f8ffff12fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1946,7 +1946,8 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
-    m_Folders: []
+    m_Folders:
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 0
@@ -1960,7 +1961,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: bc5a0000
     m_LastClickedID: 23228
-    m_ExpandedIDs: 00000000f26a0000f46a0000f66a0000f86a0000fa6a0000fc6a0000fe6a0000006b0000026b0000046b0000066b0000086b00000a6b00000c6b00000e6b0000106b0000126b0000146b0000166b0000186b00001a6b00001c6b00001e6b0000206b0000226b0000246b0000266b0000286b0000
+    m_ExpandedIDs: 00000000c26a0000c46a0000c66a0000c86a0000ca6a0000cc6a0000ce6a0000d06a0000d26a0000d46a0000d66a0000d86a0000da6a0000dc6a0000de6a0000e06a0000e26a0000e46a0000e66a0000e86a0000ea6a0000ec6a0000ee6a0000f06a0000f26a0000f46a0000f66a0000f86a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1988,7 +1989,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000f26a0000f46a0000f66a0000f86a0000fa6a0000fc6a0000fe6a0000006b0000026b0000046b0000066b0000086b00000a6b00000c6b00000e6b0000106b0000126b0000146b0000166b0000186b00001a6b00001c6b00001e6b0000206b0000226b0000246b0000266b0000286b0000
+    m_ExpandedIDs: ffffffff00000000c26a0000c46a0000c66a0000c86a0000ca6a0000cc6a0000ce6a0000d06a0000d26a0000d46a0000d66a0000d86a0000da6a0000dc6a0000de6a0000e06a0000e26a0000e46a0000e66a0000e86a0000ea6a0000ec6a0000ee6a0000f06a0000f26a0000f46a0000f66a0000f86a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2079,7 +2080,7 @@ MonoBehaviour:
     m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 27446
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -2182,9 +2183,9 @@ MonoBehaviour:
       uniqueId: '[Catherine Simulation][suite]'
       name: Catherine Simulation
       fullName: Catherine Simulation
-      resultStatus: 1
-      duration: 0.1222717
-      messages: 
+      resultStatus: 2
+      duration: 0.1653501
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2198,9 +2199,9 @@ MonoBehaviour:
       uniqueId: '[EditMode.dll][suite]'
       name: EditMode.dll
       fullName: D:/Unity projects/cath-sim/Catherine Simulation/Library/ScriptAssemblies/EditMode.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
+      resultStatus: 2
+      duration: 0.1326139
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2214,9 +2215,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/[Tests][suite]
       name: Tests
       fullName: Tests
-      resultStatus: 0
-      duration: 0
-      messages: 
+      resultStatus: 2
+      duration: 0.1289605
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2230,9 +2231,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/[EditMode][suite]
       name: EditMode
       fullName: Tests.EditMode
-      resultStatus: 0
-      duration: 0
-      messages: 
+      resultStatus: 2
+      duration: 0.1287683
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2246,9 +2247,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/[Bots][suite]
       name: Bots
       fullName: Tests.EditMode.Bots
-      resultStatus: 0
-      duration: 0
-      messages: 
+      resultStatus: 2
+      duration: 0.0364358
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2262,9 +2263,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.DS][suite]
       name: DS
       fullName: Tests.EditMode.Bots.DS
-      resultStatus: 0
-      duration: 0
-      messages: 
+      resultStatus: 2
+      duration: 0.0343987
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2278,9 +2279,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/DS/[EditMode][Tests.EditMode.Bots.DS.Level2DTest][suite]
       name: Level2DTest
       fullName: Tests.EditMode.Bots.DS.Level2DTest
-      resultStatus: 0
-      duration: 0
-      messages: 
+      resultStatus: 2
+      duration: 0.0312894
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2294,11 +2295,23 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/DS/Level2DTest/[EditMode][Tests.EditMode.Bots.DS.Level2DTest.TestInitialize]
       name: TestInitialize
       fullName: Tests.EditMode.Bots.DS.Level2DTest.TestInitialize
-      resultStatus: 0
-      duration: 0
-      messages: 
+      resultStatus: 2
+      duration: 0.0121809
+      messages: 'System.NullReferenceException : Object reference not set to an instance
+        of an object'
       output: 
-      stacktrace: 
+      stacktrace: "  at Bots.DS.Matrix2D`1[T].Initialize () [0x00008] in D:\\Unity
+        projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Matrix2D.cs:42
+        \r\n  at Bots.DS.Matrix2D`1[T]..ctor (System.Int32 width, System.Int32 height)
+        [0x0001a] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Matrix2D.cs:33
+        \r\n  at Bots.DS.Level2D..ctor (LevelDS.Matrix3D`1[T] m) [0x00006] in D:\\Unity
+        projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Level2D.cs:15
+        \r\n  at Tests.EditMode.Bots.DS.Level2DTest.TestInitialize () [0x00008] in
+        D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\Bots\\DS\\Level2DTest.cs:38
+        \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
+        at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
+        invokeAttr, System.Reflection.Binder binder, System.Object[] parameters,
+        System.Globalization.CultureInfo culture) [0x0006a] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 "
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -2311,11 +2324,23 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/DS/Level2DTest/[EditMode][Tests.EditMode.Bots.DS.Level2DTest.TestTranslateTo2D]
       name: TestTranslateTo2D
       fullName: Tests.EditMode.Bots.DS.Level2DTest.TestTranslateTo2D
-      resultStatus: 0
-      duration: 0
-      messages: 
+      resultStatus: 2
+      duration: 0.0014987
+      messages: 'System.NullReferenceException : Object reference not set to an instance
+        of an object'
       output: 
-      stacktrace: 
+      stacktrace: "  at Bots.DS.Matrix2D`1[T].Initialize () [0x00008] in D:\\Unity
+        projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Matrix2D.cs:42
+        \r\n  at Bots.DS.Matrix2D`1[T]..ctor (System.Int32 width, System.Int32 height)
+        [0x0001a] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Matrix2D.cs:33
+        \r\n  at Bots.DS.Level2D..ctor (LevelDS.Matrix3D`1[T] m) [0x00006] in D:\\Unity
+        projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Level2D.cs:15
+        \r\n  at Tests.EditMode.Bots.DS.Level2DTest.TestTranslateTo2D () [0x00114]
+        in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\Bots\\DS\\Level2DTest.cs:93
+        \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
+        at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
+        invokeAttr, System.Reflection.Binder binder, System.Object[] parameters,
+        System.Globalization.CultureInfo culture) [0x0006a] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 "
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -2328,8 +2353,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/[EditMode][Tests.EditMode.LevelDS][suite]
       name: LevelDS
       fullName: Tests.EditMode.LevelDS
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0760073
       messages: 
       output: 
       stacktrace: 
@@ -2344,8 +2369,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest][suite]
       name: GameMatrixTest
       fullName: Tests.EditMode.LevelDS.GameMatrixTest
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0299921
       messages: 
       output: 
       stacktrace: 
@@ -2360,8 +2385,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/GameMatrixTest/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest.DoesNotIncreaseSizeWhenInRange]
       name: DoesNotIncreaseSizeWhenInRange
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.DoesNotIncreaseSizeWhenInRange
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0138012
       messages: 
       output: 
       stacktrace: 
@@ -2377,8 +2402,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/GameMatrixTest/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftIrregularxyz]
       name: IncreaseSizeLeftIrregularxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftIrregularxyz
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0023302
       messages: 
       output: 
       stacktrace: 
@@ -2394,8 +2419,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/GameMatrixTest/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftxyz]
       name: IncreaseSizeLeftxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftxyz
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0012347
       messages: 
       output: 
       stacktrace: 
@@ -2411,8 +2436,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/GameMatrixTest/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightIrregularlyxyz]
       name: IncreaseSizeRightIrregularlyxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightIrregularlyxyz
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.005322
       messages: 
       output: 
       stacktrace: 
@@ -2428,8 +2453,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/GameMatrixTest/[EditMode][Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightxyz]
       name: IncreaseSizeRightxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightxyz
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0021618
       messages: 
       output: 
       stacktrace: 
@@ -2445,8 +2470,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest][suite]
       name: Matrix3DTest
       fullName: Tests.EditMode.LevelDS.Matrix3DTest
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0344567
       messages: 
       output: 
       stacktrace: 
@@ -2461,8 +2486,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.DoesNotModifyObjectWhenNIsZero]
       name: DoesNotModifyObjectWhenNIsZero
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.DoesNotModifyObjectWhenNIsZero
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0004679
       messages: 
       output: 
       stacktrace: 
@@ -2478,8 +2503,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.GetBlockInRange]
       name: GetBlockInRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.GetBlockInRange
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0003181
       messages: 
       output: 
       stacktrace: 
@@ -2495,10 +2520,12 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.GetBlockOutOfRange]
       name: GetBlockOutOfRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.GetBlockOutOfRange
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.004705
       messages: 
-      output: 
+      output: 'Trying to get 4, 5, 6; Dims: 4, 4, 4
+
+'
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
@@ -2512,8 +2539,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.IncreasesDepthByN]
       name: IncreasesDepthByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesDepthByN
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0003284
       messages: 
       output: 
       stacktrace: 
@@ -2529,8 +2556,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.IncreasesHeightByN]
       name: IncreasesHeightByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesHeightByN
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0004062
       messages: 
       output: 
       stacktrace: 
@@ -2546,8 +2573,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInXAxis]
       name: IncreasesNumberOfElementsInXAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInXAxis
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0092944
       messages: 
       output: 
       stacktrace: 
@@ -2563,8 +2590,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInYAxis]
       name: IncreasesNumberOfElementsInYAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInYAxis
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0005702
       messages: 
       output: 
       stacktrace: 
@@ -2580,8 +2607,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInZAxis]
       name: IncreasesNumberOfElementsInZAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInZAxis
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.000531
       messages: 
       output: 
       stacktrace: 
@@ -2597,8 +2624,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.IncreasesWidthByN]
       name: IncreasesWidthByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesWidthByN
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0002904
       messages: 
       output: 
       stacktrace: 
@@ -2614,8 +2641,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.SetBlockInRange]
       name: SetBlockInRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.SetBlockInRange
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0003083
       messages: 
       output: 
       stacktrace: 
@@ -2631,10 +2658,12 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.SetBlockOutOfRange]
       name: SetBlockOutOfRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.SetBlockOutOfRange
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0009815
       messages: 
-      output: 
+      output: 'Trying to get 4, 4, 4; Dims: 4, 4, 4
+
+'
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
@@ -2648,8 +2677,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/LevelDS/Matrix3DTest/[EditMode][Tests.EditMode.LevelDS.Matrix3DTest.ThrowsArgumentExceptionWhenAxisIsWrong]
       name: ThrowsArgumentExceptionWhenAxisIsWrong
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.ThrowsArgumentExceptionWhenAxisIsWrong
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0026914
       messages: 
       output: 
       stacktrace: 
@@ -2665,8 +2694,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/[Tools][suite]
       name: Tools
       fullName: Tests.EditMode.Tools
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0155743
       messages: 
       output: 
       stacktrace: 
@@ -2681,8 +2710,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Tools/[EditMode][Tests.EditMode.Tools.DS][suite]
       name: DS
       fullName: Tests.EditMode.Tools.DS
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.004707
       messages: 
       output: 
       stacktrace: 
@@ -2697,8 +2726,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Tools/DS/[EditMode][Tests.EditMode.Tools.DS.PriorityQueue][suite]
       name: PriorityQueue
       fullName: Tests.EditMode.Tools.DS.PriorityQueue
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0026766
       messages: 
       output: 
       stacktrace: 
@@ -2713,8 +2742,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Tools/DS/PriorityQueue/[EditMode][Tests.EditMode.Tools.DS.PriorityQueue.TestEnqueueDequeue]
       name: TestEnqueueDequeue
       fullName: Tests.EditMode.Tools.DS.PriorityQueue.TestEnqueueDequeue
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0011186
       messages: 
       output: 
       stacktrace: 
@@ -2730,8 +2759,8 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Tools/DS/PriorityQueue/[EditMode][Tests.EditMode.Tools.DS.PriorityQueue.TestPeek]
       name: TestPeek
       fullName: Tests.EditMode.Tools.DS.PriorityQueue.TestPeek
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0002686
       messages: 
       output: 
       stacktrace: 
@@ -2743,13 +2772,13 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: EditMode.dll/Tests/EditMode/Tools/DS/[EditMode][Tests.EditMode.Tools.DS.PriorityQueue][suite]
-    m_ResultText: 
+    m_ResultText: TestPeek (0,000s)
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 6dfe3dbc
       m_LastClickedID: -1136787859
-      m_ExpandedIDs: b1395ca657b094aac9d362c49c4580dcd71c52deaac7351a8b46ec248e42d54d4d6b105026732a5f1eb49f61993e88644b5ea47cffffff7f
+      m_ExpandedIDs: b1395ca657b094aac9d362c49c4580dcd71c52deab800de8da3f5a04cbc4920daac7351a8b46ec248e42d54d4d6b105026732a5f1eb49f61993e88644b5ea47cffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

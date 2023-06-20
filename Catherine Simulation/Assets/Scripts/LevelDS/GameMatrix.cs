@@ -195,5 +195,15 @@ namespace LevelDS
         {
             return (x+_negativeExpanding.x, y+_negativeExpanding.y, z+_negativeExpanding.z);
         }
+
+        public Matrix3D<int> GetMatrixInt()
+        {
+            return _levelInt;
+        }
+        
+        public Matrix3D<IBlock> GetMatrixBlocks()
+        {
+            return _level;
+        }
     }
 }
