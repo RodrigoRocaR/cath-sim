@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1692
     height: 902.6667
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Test Runner
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 112
+  controlID: 111
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 152
+  controlID: 138
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,8 +165,8 @@ MonoBehaviour:
     y: 0
     width: 1095.3334
     height: 290
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -195,8 +195,8 @@ MonoBehaviour:
     y: 290
     width: 1095.3334
     height: 562.6667
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 113
+  controlID: 62
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -298,8 +298,8 @@ MonoBehaviour:
     y: 0
     width: 297.33337
     height: 852.6667
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 21}
@@ -676,7 +676,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.088679254, y: 0.047694977, z: -0.0044251336, w: -0.99496686}
     speed: 2
-    m_Value: {x: -0.08867925, y: 0.047694977, z: -0.004425133, w: -0.99496686}
+    m_Value: {x: -0.08867405, y: 0.04769218, z: -0.004424874, w: -0.9949085}
   m_Size:
     m_Target: 1.6111865
     speed: 2
@@ -1881,7 +1881,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 24fbffff
+      m_ExpandedIDs: 4a22ffff882fffff623cffff9249ffff5056ffff1063ffffda75ffff7c82ffffc88fffff069dffffbaa9ffff7eb6ffffc0c3ffffb2d1ffff54deffff7cedffff34fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1960,7 +1960,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: bc5a0000
     m_LastClickedID: 23228
-    m_ExpandedIDs: 00000000906c0000926c0000946c0000966c0000986c00009a6c00009c6c00009e6c0000a06c0000a26c0000a46c0000a66c0000a86c0000aa6c0000ac6c0000ae6c0000b06c0000b26c0000b46c0000b66c0000b86c0000ba6c0000bc6c0000be6c0000c06c0000c26c0000c46c0000c66c0000
+    m_ExpandedIDs: 00000000826c0000846c0000866c0000886c00008a6c00008c6c00008e6c0000906c0000926c0000946c0000966c0000986c00009a6c00009c6c00009e6c0000a06c0000a26c0000a46c0000a66c0000a86c0000aa6c0000ac6c0000ae6c0000b06c0000b26c0000b46c0000b66c0000b86c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1988,7 +1988,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000906c0000926c0000946c0000966c0000986c00009a6c00009c6c00009e6c0000a06c0000a26c0000a46c0000a66c0000a86c0000aa6c0000ac6c0000ae6c0000b06c0000b26c0000b46c0000b66c0000b86c0000ba6c0000bc6c0000be6c0000c06c0000c26c0000c46c0000c66c0000
+    m_ExpandedIDs: ffffffff00000000826c0000846c0000866c0000886c00008a6c00008c6c00008e6c0000906c0000926c0000946c0000966c0000986c00009a6c00009c6c00009e6c0000a06c0000a26c0000a46c0000a66c0000a86c0000aa6c0000ac6c0000ae6c0000b06c0000b26c0000b46c0000b66c0000b86c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2079,7 +2079,7 @@ MonoBehaviour:
     m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 27446
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -2182,9 +2182,9 @@ MonoBehaviour:
       uniqueId: '[Catherine Simulation][suite]'
       name: Catherine Simulation
       fullName: Catherine Simulation
-      resultStatus: 2
-      duration: 0.1653501
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0822679
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2198,9 +2198,9 @@ MonoBehaviour:
       uniqueId: '[EditMode.dll][suite]'
       name: EditMode.dll
       fullName: D:/Unity projects/cath-sim/Catherine Simulation/Library/ScriptAssemblies/EditMode.dll
-      resultStatus: 2
-      duration: 0.1326139
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.04683
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2214,9 +2214,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/[Tests][suite]
       name: Tests
       fullName: Tests
-      resultStatus: 2
-      duration: 0.1289605
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0461607
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2230,9 +2230,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/[EditMode][suite]
       name: EditMode
       fullName: Tests.EditMode
-      resultStatus: 2
-      duration: 0.1287683
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0459021
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2246,9 +2246,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/[Bots][suite]
       name: Bots
       fullName: Tests.EditMode.Bots
-      resultStatus: 2
-      duration: 0.0364358
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0429876
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2258,13 +2258,62 @@ MonoBehaviour:
       categories: []
       parentId: 1028
       parentUniqueId: EditMode.dll/Tests/[EditMode][suite]
+    - id: 1036
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Actions][suite]
+      name: Actions
+      fullName: Tests.EditMode.Bots.Actions
+      resultStatus: 1
+      duration: 0.0397903
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1034
+      parentUniqueId: EditMode.dll/Tests/EditMode/[Bots][suite]
+    - id: 1026
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Actions/[EditMode][Tests.EditMode.Bots.Actions.ActionStreamTest][suite]
+      name: ActionStreamTest
+      fullName: Tests.EditMode.Bots.Actions.ActionStreamTest
+      resultStatus: 1
+      duration: 0.035513
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1036
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Actions][suite]
+    - id: 1027
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Actions/ActionStreamTest/[EditMode][Tests.EditMode.Bots.Actions.ActionStreamTest.TestCreateFromPositions]
+      name: TestCreateFromPositions
+      fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TestCreateFromPositions
+      resultStatus: 1
+      duration: 0.0194175
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1026
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Actions/[EditMode][Tests.EditMode.Bots.Actions.ActionStreamTest][suite]
     - id: 1033
       uniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.DS][suite]
       name: DS
       fullName: Tests.EditMode.Bots.DS
-      resultStatus: 2
-      duration: 0.0343987
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0119497
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2278,9 +2327,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/DS/[EditMode][Tests.EditMode.Bots.DS.Level2DTest][suite]
       name: Level2DTest
       fullName: Tests.EditMode.Bots.DS.Level2DTest
-      resultStatus: 2
-      duration: 0.0312894
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0087546
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2294,23 +2343,11 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/DS/Level2DTest/[EditMode][Tests.EditMode.Bots.DS.Level2DTest.TestInitialize]
       name: TestInitialize
       fullName: Tests.EditMode.Bots.DS.Level2DTest.TestInitialize
-      resultStatus: 2
-      duration: 0.0121809
-      messages: 'System.NullReferenceException : Object reference not set to an instance
-        of an object'
+      resultStatus: 1
+      duration: 0.0046936
+      messages: 
       output: 
-      stacktrace: "  at Bots.DS.Matrix2D`1[T].Initialize () [0x00008] in D:\\Unity
-        projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Matrix2D.cs:42
-        \r\n  at Bots.DS.Matrix2D`1[T]..ctor (System.Int32 width, System.Int32 height)
-        [0x0001a] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Matrix2D.cs:33
-        \r\n  at Bots.DS.Level2D..ctor (LevelDS.Matrix3D`1[T] m) [0x00006] in D:\\Unity
-        projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Level2D.cs:15
-        \r\n  at Tests.EditMode.Bots.DS.Level2DTest.TestInitialize () [0x00008] in
-        D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\Bots\\DS\\Level2DTest.cs:38
-        \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-        at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-        invokeAttr, System.Reflection.Binder binder, System.Object[] parameters,
-        System.Globalization.CultureInfo culture) [0x0006a] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 "
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -2323,23 +2360,11 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/DS/Level2DTest/[EditMode][Tests.EditMode.Bots.DS.Level2DTest.TestTranslateTo2D]
       name: TestTranslateTo2D
       fullName: Tests.EditMode.Bots.DS.Level2DTest.TestTranslateTo2D
-      resultStatus: 2
-      duration: 0.0014987
-      messages: 'System.NullReferenceException : Object reference not set to an instance
-        of an object'
+      resultStatus: 1
+      duration: 0.0001271
+      messages: 
       output: 
-      stacktrace: "  at Bots.DS.Matrix2D`1[T].Initialize () [0x00008] in D:\\Unity
-        projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Matrix2D.cs:42
-        \r\n  at Bots.DS.Matrix2D`1[T]..ctor (System.Int32 width, System.Int32 height)
-        [0x0001a] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Matrix2D.cs:33
-        \r\n  at Bots.DS.Level2D..ctor (LevelDS.Matrix3D`1[T] m) [0x00006] in D:\\Unity
-        projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\DS\\Level2D.cs:15
-        \r\n  at Tests.EditMode.Bots.DS.Level2DTest.TestTranslateTo2D () [0x00114]
-        in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\Bots\\DS\\Level2DTest.cs:93
-        \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-        at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-        invokeAttr, System.Reflection.Binder binder, System.Object[] parameters,
-        System.Globalization.CultureInfo culture) [0x0006a] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 "
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -2771,13 +2796,13 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: EditMode.dll/Tests/EditMode/Tools/DS/[EditMode][Tests.EditMode.Tools.DS.PriorityQueue][suite]
-    m_ResultText: TestPeek (0,000s)
+    m_ResultText: TestCreateFromPositions (0,019s)
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 6dfe3dbc
-      m_LastClickedID: -1136787859
-      m_ExpandedIDs: b1395ca657b094aac9d362c49c4580dcd71c52deab800de8da3f5a04cbc4920daac7351a8b46ec248e42d54d4d6b105026732a5f1eb49f61993e88644b5ea47cffffff7f
+      m_SelectedIDs: b8d00b25
+      m_LastClickedID: 621531320
+      m_ExpandedIDs: b1395ca657b094aac9d362c49c4580dcd71c52deab800de8da3f5a04cbc4920daac7351a8b46ec24b1276f448e42d54d4d6b1050899e9c5826732a5f1eb49f61993e88644b5ea47cffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

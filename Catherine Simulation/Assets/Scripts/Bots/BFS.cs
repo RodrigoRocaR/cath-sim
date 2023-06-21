@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Bots.Action;
 using Bots.DS;
 
 namespace Bots
@@ -42,7 +43,7 @@ namespace Bots
             path.Add((i, j));
             path.Reverse(); // from deepest point --> start to start --> deepest point
 
-            ActionStream stream = new ActionStream();
+            ActionStream stream = new ActionStream(level2D);
             stream.CreateFromPositions(path);
             return stream;
         }

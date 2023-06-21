@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Player;
 
-namespace Bots
+namespace Bots.Action
 {
     public class ActionExecutor
     {

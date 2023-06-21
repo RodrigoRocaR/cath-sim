@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
+using Bots.DS;
+using LevelDS;
 using UnityEngine;
 
-namespace Bots
+namespace Bots.Action
 {
     public class ActionStream
     {
         private List<Action> _actions;
+        private readonly Level2D _level2D;
 
-        public ActionStream()
+        public ActionStream(Level2D level2D)
         {
             _actions = new List<Action>();
+            _level2D = level2D;
         }
 
         public List<Action> GetAsList()
@@ -30,20 +34,40 @@ namespace Bots
                 _actions.Add(GetActionFromPosDiff(previousPos, positions[i]));
                 previousPos = positions[i];
             }
+
+            TranslateActionsTo3D(positions);
+        }
+
+        public void TranslateActionsTo3D(List<(int, int)> positions)
+        {
+            if (_level2D.Width() == 0 || _level2D.Height() == 0) return;
+            int currheightLevel = _level2D.Get(positions[0].Item1, positions[0].Item2);
+            int offset = 0;
+            for (int i=1; i<positions.Count; i++)
+            {
+                int newHeight = _level2D.Get(positions[i].Item1, positions[i].Item2);
+                if (newHeight != currheightLevel)
+                {
+                    _actions.Insert(i+offset, Action.Jump);
+                    currheightLevel = newHeight;
+                    offset++;
+                }
+            }
         }
 
         private Action GetActionFromPosDiff((int, int) original, (int, int) target)
         {
-            int zDiff = original.Item1 - target.Item1;
+            int zDiff = original.Item2 - target.Item2;
             switch (zDiff)
             {
                 case -1:
                     return Action.Forward;
                 case 1:
                     return Action.Backward;
+                
             }
-
-            int xDiff = original.Item2 - target.Item2;
+            
+            int xDiff = original.Item1 - target.Item1;
             switch (xDiff)
             {
                 case -1:

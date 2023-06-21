@@ -1,7 +1,7 @@
 using System;
 using LevelDS;
 using UnityEngine;
-using Action = Bots.Action;
+using Action = Bots.Action.Action;
 
 namespace Player
 {

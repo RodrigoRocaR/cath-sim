@@ -21,7 +21,8 @@ namespace Bots.DS
         {
             _elements = elements;
             _height = _elements.Length;
-            _width = elements[0].Length;
+            if (_height > 0)
+                _width = elements[0].Length;
             InferStartValueAsEmptyBlock();
         }
 
@@ -35,7 +36,7 @@ namespace Bots.DS
 
         private void Initialize()
         {
-            _elements = new T[_width][];   
+            _elements = new T[_width][];
             for (int i = 0; i < _width; i++)
             {
                 _elements[i] = new T[_height];

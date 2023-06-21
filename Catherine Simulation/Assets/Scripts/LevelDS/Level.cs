@@ -158,12 +158,12 @@ namespace LevelDS
 
         public static Matrix3D<int> GetLevelAsMatrixInt()
         {
-            return _level.GetMatrixInt();
+            return _level?.GetMatrixInt();
         }
         
         public static Matrix3D<IBlock> GetLevelAsMatrixBlocks()
         {
-            return _level.GetMatrixBlocks();
+            return _level?.GetMatrixBlocks();
         }
     }
 }

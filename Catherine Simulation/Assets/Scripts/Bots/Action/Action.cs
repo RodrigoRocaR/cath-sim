@@ -1,4 +1,4 @@
-﻿namespace Bots
+﻿namespace Bots.Action
 {
     public enum Action
     {

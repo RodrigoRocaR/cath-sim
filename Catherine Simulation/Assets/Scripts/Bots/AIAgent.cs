@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using Bots.Action;
 using Bots.DS;
 using LevelDS;
 using Player;
@@ -31,7 +31,7 @@ namespace Bots
         {
             var bfs = new BFS();
             Vector3 pos = transform.position;
-            ActionStream actionStream = bfs.Explore(_level2D, (int)pos.z, (int)pos.x);
+            var actionStream = bfs.Explore(_level2D, (int)pos.z, (int)pos.x);
             _actionExecutor.Execute(actionStream);
         }
     }

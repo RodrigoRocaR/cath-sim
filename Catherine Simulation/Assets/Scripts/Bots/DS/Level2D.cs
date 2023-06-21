@@ -22,6 +22,13 @@ namespace Bots.DS
             _level2D = new Matrix2D<int>(values);
         }
 
+        public Level2D()
+        {
+            // for tests
+            _level2D = new Matrix2D<int>(new int[][] { });
+        }
+
+
         /**
          *  The y in 2D represents the z value in the level
          *  The x value correlates
@@ -48,12 +55,12 @@ namespace Bots.DS
         {
             return _level2D.GetWidth();
         }
-        
+
         public int Height()
         {
             return _level2D.GetHeight();
         }
-        
+
         public int Get(int x, int y)
         {
             return _level2D[x, y];
