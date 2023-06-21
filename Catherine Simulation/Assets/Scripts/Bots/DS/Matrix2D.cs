@@ -35,8 +35,10 @@ namespace Bots.DS
 
         private void Initialize()
         {
+            _elements = new T[_width][];   
             for (int i = 0; i < _width; i++)
             {
+                _elements[i] = new T[_height];
                 for (int j = 0; j < _height; j++)
                 {
                     _elements[i][j] = _startValue;

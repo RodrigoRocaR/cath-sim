@@ -37,7 +37,7 @@ namespace Bots.DS
                     {
                         if (m[i, j, k] != GameConstants.EmptyBlock)
                         {
-                            _level2D[k, i] = j;
+                            _level2D[i, k] = j;
                         }
                     }
                 }
