@@ -11,28 +11,45 @@ namespace Bots
         private Inputs _inputs;
         private ActionExecutor _actionExecutor;
         private Level2D _level2D;
+        private BotState _botState;
+        private BFS _bfs;
 
         private void Start()
         {
             _inputs = Inputs.GetInstance();
             _actionExecutor = new ActionExecutor(_inputs);
             _level2D = new Level2D(Level.GetLevelAsMatrixInt());
+            _botState = new BotState();
         }
 
         private void Update()
         {
             if (Level.GetPlayerIdentity() != PlayerIdentity.AI) return;
-            
-            // Manage states
-            
+
+            if (_botState.CanExplore())
+            {
+                Explore();
+            } 
+            else
+            {
+                // climb
+            }
+
         }
 
-        private void PathFinding()
+        private void Explore()
         {
-            var bfs = new BFS();
+            _bfs = new BFS(_level2D);
             Vector3 pos = transform.position;
-            var actionStream = bfs.Explore(_level2D, (int)pos.z, (int)pos.x);
-            _actionExecutor.Execute(actionStream);
+            _botState.StartExploring();
+            _bfs.Explore((int)pos.z, (int)pos.x, OnFinishExplore);
+        }
+
+        private void OnFinishExplore()
+        {
+            _actionExecutor.Execute(_bfs.GetActions());
+            _bfs = null;
+            _botState.StopExploring();
         }
     }
 }

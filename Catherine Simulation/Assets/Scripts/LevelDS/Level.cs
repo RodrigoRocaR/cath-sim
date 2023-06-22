@@ -11,6 +11,7 @@ namespace LevelDS
     {
         public GameObject[] blockVariants;
         public GameObject player;
+        public PlayerIdentity playerIdentityValue;
         public static PlayerIdentity PlayerIdentity;
         
         private readonly Vector3 _startCoords = new Vector3(0, 0.5f, 0);
@@ -21,6 +22,7 @@ namespace LevelDS
 
         void Start()
         {
+            AssignPlayerIdentity(playerIdentityValue);
             CharacterMaterialSwitcher.Switch(player, PlayerIdentity);
             string sceneName = SceneManager.GetActiveScene().name;
             if (sceneName != "TestScene")
@@ -164,6 +166,12 @@ namespace LevelDS
         public static Matrix3D<IBlock> GetLevelAsMatrixBlocks()
         {
             return _level?.GetMatrixBlocks();
+        }
+        
+        
+        private static void AssignPlayerIdentity(PlayerIdentity playerIdentity)
+        {
+            PlayerIdentity = playerIdentity;
         }
     }
 }

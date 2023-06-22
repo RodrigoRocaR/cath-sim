@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Bots.Action;
 using Bots.DS;
 
@@ -11,10 +13,23 @@ namespace Bots
         private HashSet<(int, int)> _visited;
         private Dictionary<(int, int), ((int, int), int)> _pathToPos; // pos_wanted : (pos_previous, length_of_path)
 
-        public ActionStream Explore(Level2D level2D, int i, int j)
+        private ActionStream _actionStream;
+        private Level2D _level2D;
+
+        public BFS(Level2D level2D)
         {
-            EnqueueUnvisited(level2D, i, j);
-            
+            _level2D = level2D;
+            _actionStream = new ActionStream(level2D);
+            _visited = new HashSet<(int, int)>();
+            _unvisited = new Queue<(int, int)>();
+            _pathToPos = new Dictionary<(int, int), ((int, int), int)>();
+        }
+
+        private void ExploreAlgorithm(int i, int j)
+        {
+            _pathToPos[(i, j)] = ((0, 0), 0);
+            EnqueueUnvisited(_level2D, i, j);
+
             _pathToPos[(i, j)] = ((0, 0), 0);
             (int, int) deepestPointReached = (i, j);
             (int, int) pos;
@@ -27,11 +42,11 @@ namespace Bots
                 {
                     deepestPointReached = pos;
                 }
-                
+
                 _visited.Add(pos);
-                EnqueueUnvisited(level2D, pos.Item1, pos.Item2);
+                EnqueueUnvisited(_level2D, pos.Item1, pos.Item2);
             }
-            
+
             // Get deepest point and traceback path
             List<(int, int)> path = new List<(int, int)>();
             pos = deepestPointReached;
@@ -40,12 +55,29 @@ namespace Bots
                 path.Add(_pathToPos[pos].Item1);
                 pos = _pathToPos[pos].Item1;
             }
+
             path.Add((i, j));
             path.Reverse(); // from deepest point --> start to start --> deepest point
 
-            ActionStream stream = new ActionStream(level2D);
-            stream.CreateFromPositions(path);
-            return stream;
+            _actionStream.CreateFromPositions(path);
+        }
+
+        public async void Explore(int i, int j, System.Action callback)
+        {
+            await ExploreTask(i, j);
+            callback();
+        }
+        
+        private Task ExploreTask(int i, int j)
+        {
+            ExploreAlgorithm(i, j);
+            return Task.CompletedTask;
+        }
+        
+
+        public ActionStream GetActions()
+        {
+            return _actionStream;
         }
 
         private void EnqueueUnvisited(Level2D l2d, int i, int j)
