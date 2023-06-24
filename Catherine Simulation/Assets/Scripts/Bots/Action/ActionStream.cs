@@ -31,7 +31,12 @@ namespace Bots.Action
             var previousPos = positions[0];
             for (int i = 1; i < positions.Count; i++)
             {
-                _actions.Add(GetActionFromPosDiff(previousPos, positions[i]));
+                Action? a = GetActionFromPosDiff(previousPos, positions[i]);
+                if (a != null)
+                {
+                    _actions.Add((Action)a);
+                }
+                
                 previousPos = positions[i];
             }
 
@@ -55,7 +60,7 @@ namespace Bots.Action
             }
         }
 
-        private Action GetActionFromPosDiff((int, int) original, (int, int) target)
+        private Action? GetActionFromPosDiff((int, int) original, (int, int) target)
         {
             int zDiff = original.Item2 - target.Item2;
             switch (zDiff)
@@ -74,6 +79,8 @@ namespace Bots.Action
                     return Action.Right;
                 case 1:
                     return Action.Left;
+                case 0: // same pos, no action required
+                    return null;
                 default:
                     Debug.LogError("Failed to generate a movement action from positions");
                     return Action.Forward;

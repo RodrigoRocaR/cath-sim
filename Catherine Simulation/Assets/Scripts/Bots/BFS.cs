@@ -29,8 +29,7 @@ namespace Bots
         {
             _pathToPos[(i, j)] = ((0, 0), 0);
             EnqueueUnvisited(_level2D, i, j);
-
-            _pathToPos[(i, j)] = ((0, 0), 0);
+            
             (int, int) deepestPointReached = (i, j);
             (int, int) pos;
 

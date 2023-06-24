@@ -13,6 +13,7 @@ namespace Bots
         private Level2D _level2D;
         private BotState _botState;
         private BFS _bfs;
+        private Rigidbody _rb;
 
         private void Start()
         {
@@ -20,11 +21,13 @@ namespace Bots
             _actionExecutor = new ActionExecutor(_inputs);
             _level2D = new Level2D(Level.GetLevelAsMatrixInt());
             _botState = new BotState();
+            _rb = GetComponent<Rigidbody>();
         }
 
         private void Update()
         {
             if (Level.GetPlayerIdentity() != PlayerIdentity.AI) return;
+            if (IsFalling()) return;
 
             if (_botState.CanExplore())
             {
@@ -50,6 +53,11 @@ namespace Bots
             _actionExecutor.Execute(_bfs.GetActions());
             _bfs = null;
             _botState.StopExploring();
+        }
+
+        private bool IsFalling()
+        {
+            return !_rb.IsSleeping() && _rb.velocity.y < -0.1;
         }
     }
 }
