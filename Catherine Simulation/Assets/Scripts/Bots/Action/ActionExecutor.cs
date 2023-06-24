@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Threading;
 using Player;
 
 namespace Bots.Action
@@ -8,15 +8,15 @@ namespace Bots.Action
     {
         private readonly Dictionary<Action, int> _actionDelay = new Dictionary<Action, int>
         {
-            { Action.Forward, 1000 },
-            { Action.Backward, 1000 },
-            { Action.Right, 1000 },
-            { Action.Left, 1000 },
-            { Action.Jump, 1000 },
-            { Action.Push, 1000 },
-            { Action.Pull, 1000 },
+            { Action.Forward, 10_000 },
+            { Action.Backward, 10_000 },
+            { Action.Right, 10_000 },
+            { Action.Left, 10_000 },
+            { Action.Jump, 10_000 },
+            { Action.Push, 10_000 },
+            { Action.Pull, 10_000 }
         };
-        
+
         private readonly Dictionary<Action, int> _postActionDelay = new Dictionary<Action, int>
         {
             { Action.Forward, 200 },
@@ -27,7 +27,7 @@ namespace Bots.Action
             { Action.Push, 200 },
             { Action.Pull, 200 },
         };
-        
+
         private readonly Inputs _inputs;
 
         public ActionExecutor(Inputs inputs)
@@ -35,14 +35,20 @@ namespace Bots.Action
             _inputs = inputs;
         }
 
-        public async void Execute(ActionStream actionStream)
+        /**
+         * Should be called as a  separate thread
+         */
+        public void Execute(object actionStreamObject)
         {
+            // Cast the parameter to its appropriate type
+            ActionStream actionStream = (ActionStream)actionStreamObject;
+
             foreach (var action in actionStream.GetAsList())
             {
                 _inputs.StartAction(action);
-                await Task.Delay(_actionDelay[action]);
+                Thread.Sleep(_actionDelay[action]);
                 _inputs.StopAction(action);
-                await Task.Delay(_postActionDelay[action]);
+                Thread.Sleep(_postActionDelay[action]);
             }
         }
     }

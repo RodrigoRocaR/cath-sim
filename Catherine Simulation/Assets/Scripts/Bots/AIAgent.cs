@@ -1,4 +1,5 @@
-﻿using Bots.Action;
+﻿using System.Threading;
+using Bots.Action;
 using Bots.DS;
 using LevelDS;
 using Player;
@@ -50,9 +51,11 @@ namespace Bots
 
         private void OnFinishExplore()
         {
-            _actionExecutor.Execute(_bfs.GetActions());
+            Thread thread = new Thread(_actionExecutor.Execute);
+            thread.Start(_bfs.GetActions());
+            
             _bfs = null;
-            _botState.StopExploring();
+            //_botState.StopExploring();
         }
 
         private bool IsFalling()
