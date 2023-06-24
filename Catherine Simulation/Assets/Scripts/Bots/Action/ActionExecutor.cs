@@ -8,13 +8,13 @@ namespace Bots.Action
     {
         private readonly Dictionary<Action, int> _actionDelay = new Dictionary<Action, int>
         {
-            { Action.Forward, 10_000 },
-            { Action.Backward, 10_000 },
-            { Action.Right, 10_000 },
-            { Action.Left, 10_000 },
-            { Action.Jump, 10_000 },
-            { Action.Push, 10_000 },
-            { Action.Pull, 10_000 }
+            { Action.Forward, 3_000 },
+            { Action.Backward, 3_000 },
+            { Action.Right, 3_000 },
+            { Action.Left, 3_000 },
+            { Action.Jump, 3_000 },
+            { Action.Push, 3_000 },
+            { Action.Pull, 3_000 }
         };
 
         private readonly Dictionary<Action, int> _postActionDelay = new Dictionary<Action, int>

@@ -32,7 +32,7 @@
 
         public bool CanExplore()
         {
-            return _canExplore;
+            return _canExplore && !_isExploring;
         }
         
         
