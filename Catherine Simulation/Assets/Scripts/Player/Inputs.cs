@@ -26,6 +26,9 @@ namespace Player
 
         public void UpdateInputs()
         {
+            _multipleInputs = (_forward && _backward) || (_forward && _right) || (_forward && _left) ||
+                              (_backward && _right) || (_backward && _left) || (_right && _left);
+            _anyInputs = _forward || _backward || _right || _left;
             if (!_isHuman) return;
             _forward = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
             _backward = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
@@ -34,9 +37,6 @@ namespace Player
             _jump = Input.GetKey(KeyCode.Space);
             _pull = Input.GetKey(KeyCode.Q);
             _push = Input.GetKey(KeyCode.E);
-            _multipleInputs = (_forward && _backward) || (_forward && _right) || (_forward && _left) ||
-                              (_backward && _right) || (_backward && _left) || (_right && _left);
-            _anyInputs = _forward || _backward || _right || _left;
         }
 
         public bool Forward()
