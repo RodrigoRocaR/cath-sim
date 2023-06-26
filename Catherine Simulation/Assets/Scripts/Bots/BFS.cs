@@ -16,6 +16,8 @@ namespace Bots
         private ActionStream _actionStream;
         private Level2D _level2D;
 
+        private List<(int, int)> _path;
+
         public BFS(Level2D level2D)
         {
             _level2D = level2D;
@@ -29,7 +31,7 @@ namespace Bots
         {
             _pathToPos[(i, j)] = ((0, 0), 0);
             EnqueueUnvisited(_level2D, i, j);
-            
+
             (int, int) deepestPointReached = (i, j);
             (int, int) pos;
 
@@ -37,28 +39,26 @@ namespace Bots
             {
                 pos = _unvisited.Dequeue();
 
-                if (pos.Item1 > deepestPointReached.Item1)
+                if (pos.Item2 > deepestPointReached.Item2)
                 {
                     deepestPointReached = pos;
                 }
-
-                _visited.Add(pos);
+                
                 EnqueueUnvisited(_level2D, pos.Item1, pos.Item2);
             }
 
             // Get deepest point and traceback path
-            List<(int, int)> path = new List<(int, int)>();
+            _path = new List<(int, int)> { deepestPointReached };
             pos = deepestPointReached;
             while (_pathToPos[pos].Item2 > 0)
             {
-                path.Add(_pathToPos[pos].Item1);
+                _path.Add(_pathToPos[pos].Item1);
                 pos = _pathToPos[pos].Item1;
             }
-
-            path.Add((i, j));
-            path.Reverse(); // from deepest point --> start to start --> deepest point
-
-            _actionStream.CreateFromPositions(path);
+            
+            _path.Reverse(); // from deepest point --> start to start --> deepest point
+            
+            _actionStream.CreateFromPositions(_path);
         }
 
         public async void Explore(int i, int j, System.Action callback)
@@ -66,27 +66,34 @@ namespace Bots
             await ExploreTask(i, j);
             callback();
         }
-        
+
         private Task ExploreTask(int i, int j)
         {
             ExploreAlgorithm(i, j);
             return Task.CompletedTask;
         }
-        
+
 
         public ActionStream GetActions()
         {
             return _actionStream;
         }
 
+        public List<(int, int)> GetPath()
+        {
+            return _path;
+        }
+
         private void EnqueueUnvisited(Level2D l2d, int i, int j)
         {
+            _visited.Add((i, j));
             int currHeight = l2d.Get(i, j);
             if (i + 1 < l2d.Height() && !_visited.Contains((i + 1, j)) &&
                 IsNotTooHigh(currHeight, l2d.Get(i + 1, j))) // forward
             {
                 _unvisited.Enqueue((i + 1, j));
                 AddPath((i + 1, j), (i, j));
+                _visited.Add((i + 1, j));
             }
 
             if (j + 1 < l2d.Width() && !_visited.Contains((i, j + 1)) &&
@@ -94,6 +101,7 @@ namespace Bots
             {
                 _unvisited.Enqueue((i, j + 1));
                 AddPath((i, j + 1), (i, j));
+                _visited.Add((i, j + 1));
             }
 
             if (i - 1 >= 0 && !_visited.Contains((i - 1, j)) &&
@@ -101,6 +109,7 @@ namespace Bots
             {
                 _unvisited.Enqueue((i - 1, j));
                 AddPath((i - 1, j), (i, j));
+                _visited.Add((i - 1, j));
             }
 
             if (j - 1 >= 0 && !_visited.Contains((i, j - 1)) &&
@@ -108,6 +117,7 @@ namespace Bots
             {
                 _unvisited.Enqueue((i, j - 1));
                 AddPath((i, j - 1), (i, j));
+                _visited.Add((i, j - 1));
             }
         }
 
