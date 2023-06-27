@@ -29,6 +29,9 @@ namespace Bots
 
         private void ExploreAlgorithm(int i, int j)
         {
+            i /= GameConstants.BlockScale;
+            j /= GameConstants.BlockScale;
+            
             _pathToPos[(i, j)] = ((0, 0), 0);
             EnqueueUnvisited(_level2D, i, j);
 

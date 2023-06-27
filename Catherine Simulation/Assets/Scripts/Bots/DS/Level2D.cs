@@ -65,5 +65,10 @@ namespace Bots.DS
         {
             return _level2D[x, y];
         }
+        
+        public int GetFromCoords(int coordx, int coordy)
+        {
+            return _level2D[coordx / GameConstants.BlockScale, coordy / GameConstants.BlockScale];
+        }
     }
 }

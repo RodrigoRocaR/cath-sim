@@ -126,5 +126,19 @@ namespace Tests.EditMode.Bots.DS
                 Assert.True(AreLevel2DEqual(l2d, levelPair.Value));
             }
         }
+
+        [Test]
+        public void TestGet()
+        {
+            // This test might seem dumb but there could be problems when parsing coordinates from one system to another
+            Level2D l2d = new Level2D(new[]
+            {
+                new[] { 0, 0, 0 },
+                new[] { 0, 0, 3 },
+                new[] { 0, 0, 0 }
+            });
+            
+            Assert.AreEqual(3, l2d.Get(1, 2));
+        }
     }
 }
