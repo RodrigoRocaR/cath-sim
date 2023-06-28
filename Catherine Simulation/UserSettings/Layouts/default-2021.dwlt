@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1706.6667
     height: 917.3334
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -44,8 +44,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1706.6666
-    height: 917.3333
+    width: 1706.6667
+    height: 917.3334
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -69,7 +69,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1706.6666
+    width: 1706.6667
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 897.3333
-    width: 1706.6666
+    y: 897.3334
+    width: 1706.6667
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -115,12 +115,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 1706.6666
-    height: 867.3333
+    width: 1706.6667
+    height: 867.3334
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 18
+  controlID: 58
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,12 +140,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1144.6666
-    height: 867.3333
+    width: 1144
+    height: 867.3334
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 49
+  controlID: 59
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -163,8 +163,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1144.6666
-    height: 451.33334
+    width: 1144
+    height: 412
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
@@ -192,9 +192,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 451.33334
-    width: 1144.6666
-    height: 415.99997
+    y: 412
+    width: 1144
+    height: 455.33337
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}
@@ -219,14 +219,14 @@ MonoBehaviour:
   - {fileID: 11}
   m_Position:
     serializedVersion: 2
-    x: 1144.6666
+    x: 1144
     y: 0
-    width: 266
-    height: 867.3333
+    width: 265.33337
+    height: 867.3334
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 59
+  controlID: 24
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,7 +244,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 266
+    width: 265.33337
     height: 397.33334
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
@@ -270,8 +270,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 397.33334
-    width: 266
-    height: 469.99997
+    width: 265.33337
+    height: 470.00003
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
   m_ActualView: {fileID: 20}
@@ -289,23 +289,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TestRunnerWindow
+  m_Name: InspectorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1410.6666
+    x: 1409.3334
     y: 0
-    width: 296
-    height: 867.3333
-  m_MinSize: {x: 101, y: 121}
+    width: 297.33337
+    height: 867.3334
+  m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 22}
+  m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
   - {fileID: 22}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -328,8 +328,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 72.66667
-    width: 1143.6666
-    height: 430.33334
+    width: 1143
+    height: 391
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -532,9 +532,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 13.460253, y: -7.0241804, z: 7.143829}
+    m_Target: {x: 13.921222, y: 1.657774, z: 9.913864}
     speed: 2
-    m_Value: {x: 13.460253, y: -7.0241804, z: 7.143829}
+    m_Value: {x: 13.921222, y: 1.657774, z: 9.913864}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -581,9 +581,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.49100137, y: -0.068008065, z: 0.038215313, w: -0.8677447}
+    m_Target: {x: -0.41352257, y: 0.020309132, z: -0.009493361, w: -0.91030663}
     speed: 2
-    m_Value: {x: -0.49096492, y: -0.068003014, z: 0.038212474, w: -0.86768025}
+    m_Value: {x: -0.41348916, y: 0.02030749, z: -0.009492594, w: -0.9102331}
   m_Size:
     m_Target: 10
     speed: 2
@@ -1753,7 +1753,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 26134
+  m_LastSelectedObjectID: -6732
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1775,9 +1775,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 524
-    width: 1143.6666
-    height: 394.99997
+    y: 484.6667
+    width: 1143
+    height: 434.33337
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1789,7 +1789,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1715.5, y: 560.99994}
+  m_TargetSize: {x: 1714.5, y: 620.00006}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -1804,10 +1804,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -571.8334
-    m_HBaseRangeMax: 571.8334
-    m_VBaseRangeMin: -186.99998
-    m_VBaseRangeMax: 186.99998
+    m_HBaseRangeMin: -571.5
+    m_HBaseRangeMax: 571.5
+    m_VBaseRangeMin: -206.66669
+    m_VBaseRangeMax: 206.66669
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -1825,23 +1825,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1143.6666
-      height: 373.99997
-    m_Scale: {x: 0.9999999, y: 0.99999994}
-    m_Translation: {x: 571.8333, y: 186.99998}
+      width: 1143
+      height: 413.33337
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 571.5, y: 206.66669}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -571.8334
-      y: -187
-      width: 1143.6667
-      height: 374
+      x: -571.5
+      y: -206.66669
+      width: 1143
+      height: 413.33337
     m_MinimalGUI: 1
-  m_defaultScale: 0.9999999
-  m_LastWindowPixelSize: {x: 1715.5, y: 592.49994}
+  m_defaultScale: 1
+  m_LastWindowPixelSize: {x: 1714.5, y: 651.50006}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 00000000000000000000
@@ -1867,9 +1867,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1144.6667
+    x: 1144
     y: 72.66667
-    width: 264
+    width: 263.33337
     height: 376.33334
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1881,7 +1881,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: ec90ffff9c94ffff7cb1ffff1ab4ffffc0b5ffff4aeeffffc8f1ffff38f4ffff9ef6ffff32fbffff
+      m_ExpandedIDs: cae5fffff0e5ffff38e8ffff60eaffff30fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1925,10 +1925,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1144.6667
+    x: 1144
     y: 470
-    width: 264
-    height: 448.99997
+    width: 263.33337
+    height: 449.00003
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -2064,10 +2064,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1410.6667
+    x: 1409.3334
     y: 72.66667
-    width: 295
-    height: 846.3333
+    width: 296.33337
+    height: 846.3334
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -2182,9 +2182,9 @@ MonoBehaviour:
       uniqueId: '[Catherine Simulation][suite]'
       name: Catherine Simulation
       fullName: Catherine Simulation
-      resultStatus: 2
-      duration: 0.2001844
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0653473
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2198,9 +2198,9 @@ MonoBehaviour:
       uniqueId: '[EditMode.dll][suite]'
       name: EditMode.dll
       fullName: D:/Unity projects/cath-sim/Catherine Simulation/Library/ScriptAssemblies/EditMode.dll
-      resultStatus: 2
-      duration: 0.1634542
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0385698
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2214,9 +2214,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/[Tests][suite]
       name: Tests
       fullName: Tests
-      resultStatus: 2
-      duration: 0.1626925
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0381041
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2230,9 +2230,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/[EditMode][suite]
       name: EditMode
       fullName: Tests.EditMode
-      resultStatus: 2
-      duration: 0.1624103
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0379469
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2246,9 +2246,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/[Bots][suite]
       name: Bots
       fullName: Tests.EditMode.Bots
-      resultStatus: 2
-      duration: 0.1022739
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0345409
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2262,9 +2262,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Actions][suite]
       name: Actions
       fullName: Tests.EditMode.Bots.Actions
-      resultStatus: 2
-      duration: 0.0545595
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0374668
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2278,9 +2278,9 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/Actions/[EditMode][Tests.EditMode.Bots.Actions.ActionStreamTest][suite]
       name: ActionStreamTest
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest
-      resultStatus: 2
-      duration: 0.0495829
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0332584
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2294,19 +2294,11 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/Actions/ActionStreamTest/[EditMode][Tests.EditMode.Bots.Actions.ActionStreamTest.TestCreateFromPositions]
       name: TestCreateFromPositions
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TestCreateFromPositions
-      resultStatus: 2
-      duration: 0.0276745
-      messages: "  Expected: 4\r\n  But was:  2\r\n"
-      output: 'Failed to generate a movement action from positions
-
-        Failed
-        to generate a movement action from positions
-
-'
-      stacktrace: 'at Tests.EditMode.Bots.Actions.ActionStreamTest.TestCreateFromPositions
-        () [0x000c5] in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\Bots\Actions\ActionStreamTest.cs:51
-
-'
+      resultStatus: 1
+      duration: 0.0169441
+      messages: 
+      output: 
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -2319,25 +2311,11 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/Actions/ActionStreamTest/[EditMode][Tests.EditMode.Bots.Actions.ActionStreamTest.TestDoesNotAddExtraJumps]
       name: TestDoesNotAddExtraJumps
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TestDoesNotAddExtraJumps
-      resultStatus: 2
-      duration: 0.0034124
-      messages: 'System.ArgumentOutOfRangeException : Index must be within the bounds
-        of the List.
-
-        Parameter name: index'
+      resultStatus: 1
+      duration: 0.00094
+      messages: 
       output: 
-      stacktrace: "  at System.Collections.Generic.List`1[T].Insert (System.Int32
-        index, T item) [0x00009] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 \r\n  at
-        Bots.Action.ActionStream.TranslateActionsTo3D (System.Collections.Generic.List`1[T]
-        positions) [0x00087] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\Action\\ActionStream.cs:56
-        \r\n  at Bots.Action.ActionStream.CreateFromPositions (System.Collections.Generic.List`1[T]
-        positions) [0x00059] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\Action\\ActionStream.cs:43
-        \r\n  at Tests.EditMode.Bots.Actions.ActionStreamTest.TestDoesNotAddExtraJumps
-        () [0x000c9] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\Bots\\Actions\\ActionStreamTest.cs:129
-        \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-        at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-        invokeAttr, System.Reflection.Binder binder, System.Object[] parameters,
-        System.Globalization.CultureInfo culture) [0x0006a] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 "
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -2350,25 +2328,11 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/Actions/ActionStreamTest/[EditMode][Tests.EditMode.Bots.Actions.ActionStreamTest.TestJumpsDown]
       name: TestJumpsDown
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TestJumpsDown
-      resultStatus: 2
-      duration: 0.0005591
-      messages: 'System.ArgumentOutOfRangeException : Index must be within the bounds
-        of the List.
-
-        Parameter name: index'
+      resultStatus: 1
+      duration: 0.0006987
+      messages: 
       output: 
-      stacktrace: "  at System.Collections.Generic.List`1[T].Insert (System.Int32
-        index, T item) [0x00009] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 \r\n  at
-        Bots.Action.ActionStream.TranslateActionsTo3D (System.Collections.Generic.List`1[T]
-        positions) [0x00087] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\Action\\ActionStream.cs:56
-        \r\n  at Bots.Action.ActionStream.CreateFromPositions (System.Collections.Generic.List`1[T]
-        positions) [0x00059] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\Action\\ActionStream.cs:43
-        \r\n  at Tests.EditMode.Bots.Actions.ActionStreamTest.TestJumpsDown () [0x00099]
-        in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\Bots\\Actions\\ActionStreamTest.cs:166
-        \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-        at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-        invokeAttr, System.Reflection.Binder binder, System.Object[] parameters,
-        System.Globalization.CultureInfo culture) [0x0006a] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 "
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -2381,30 +2345,11 @@ MonoBehaviour:
       uniqueId: EditMode.dll/Tests/EditMode/Bots/Actions/ActionStreamTest/[EditMode][Tests.EditMode.Bots.Actions.ActionStreamTest.TranslateActionsTo3D]
       name: TranslateActionsTo3D
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TranslateActionsTo3D
-      resultStatus: 2
-      duration: 0.001928
-      messages: 'System.ArgumentOutOfRangeException : Index must be within the bounds
-        of the List.
-
-        Parameter name: index'
-      output: 'Failed to generate a movement action from positions
-
-        Failed
-        to generate a movement action from positions
-
-'
-      stacktrace: "  at System.Collections.Generic.List`1[T].Insert (System.Int32
-        index, T item) [0x00009] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 \r\n  at
-        Bots.Action.ActionStream.TranslateActionsTo3D (System.Collections.Generic.List`1[T]
-        positions) [0x00087] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\Action\\ActionStream.cs:56
-        \r\n  at Bots.Action.ActionStream.CreateFromPositions (System.Collections.Generic.List`1[T]
-        positions) [0x00059] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Scripts\\Bots\\Action\\ActionStream.cs:43
-        \r\n  at Tests.EditMode.Bots.Actions.ActionStreamTest.TranslateActionsTo3D
-        () [0x000bc] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\Bots\\Actions\\ActionStreamTest.cs:88
-        \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-        at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-        invokeAttr, System.Reflection.Binder binder, System.Object[] parameters,
-        System.Globalization.CultureInfo culture) [0x0006a] in <88e4733ac7bc4ae1b496735e6b83bbd3>:0 "
+      resultStatus: 1
+      duration: 0.0007643
+      messages: 
+      output: 
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -2418,7 +2363,7 @@ MonoBehaviour:
       name: BFSTest
       fullName: Tests.EditMode.Bots.BFSTest
       resultStatus: 1
-      duration: 0.0285752
+      duration: 0.0124231
       messages: 
       output: 
       stacktrace: 
@@ -2434,7 +2379,7 @@ MonoBehaviour:
       name: TestReachesDesiredPosition
       fullName: Tests.EditMode.Bots.BFSTest.TestReachesDesiredPosition
       resultStatus: 1
-      duration: 0.0126084
+      duration: 0.0034511
       messages: 
       output: 
       stacktrace: 
@@ -2451,7 +2396,7 @@ MonoBehaviour:
       name: TestShortestPath
       fullName: Tests.EditMode.Bots.BFSTest.TestShortestPath
       resultStatus: 1
-      duration: 0.0019137
+      duration: 0.0024314
       messages: 
       output: 
       stacktrace: 
@@ -2468,7 +2413,7 @@ MonoBehaviour:
       name: DS
       fullName: Tests.EditMode.Bots.DS
       resultStatus: 1
-      duration: 0.0151828
+      duration: 0.0314734
       messages: 
       output: 
       stacktrace: 
@@ -2484,7 +2429,7 @@ MonoBehaviour:
       name: Level2DTest
       fullName: Tests.EditMode.Bots.DS.Level2DTest
       resultStatus: 1
-      duration: 0.0058127
+      duration: 0.0274261
       messages: 
       output: 
       stacktrace: 
@@ -2500,24 +2445,7 @@ MonoBehaviour:
       name: TestGet
       fullName: Tests.EditMode.Bots.DS.Level2DTest.TestGet
       resultStatus: 1
-      duration: 0.0002635
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1026
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/DS/[EditMode][Tests.EditMode.Bots.DS.Level2DTest][suite]
-    - id: 1030
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/DS/Level2DTest/[EditMode][Tests.EditMode.Bots.DS.Level2DTest.TestGetFromCoords]
-      name: TestGetFromCoords
-      fullName: Tests.EditMode.Bots.DS.Level2DTest.TestGetFromCoords
-      resultStatus: 1
-      duration: 0.0001988
+      duration: 0.0148761
       messages: 
       output: 
       stacktrace: 
@@ -2534,7 +2462,7 @@ MonoBehaviour:
       name: TestInitialize
       fullName: Tests.EditMode.Bots.DS.Level2DTest.TestInitialize
       resultStatus: 1
-      duration: 0.0015028
+      duration: 0.0007064
       messages: 
       output: 
       stacktrace: 
@@ -2551,7 +2479,7 @@ MonoBehaviour:
       name: TestTranslateTo2D
       fullName: Tests.EditMode.Bots.DS.Level2DTest.TestTranslateTo2D
       resultStatus: 1
-      duration: 0.0018971
+      duration: 0.0019091
       messages: 
       output: 
       stacktrace: 
@@ -2568,7 +2496,7 @@ MonoBehaviour:
       name: LevelDS
       fullName: Tests.EditMode.LevelDS
       resultStatus: 1
-      duration: 0.0416957
+      duration: 0.041466
       messages: 
       output: 
       stacktrace: 
@@ -2584,7 +2512,7 @@ MonoBehaviour:
       name: GameMatrixTest
       fullName: Tests.EditMode.LevelDS.GameMatrixTest
       resultStatus: 1
-      duration: 0.0116793
+      duration: 0.0065702
       messages: 
       output: 
       stacktrace: 
@@ -2600,7 +2528,7 @@ MonoBehaviour:
       name: DoesNotIncreaseSizeWhenInRange
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.DoesNotIncreaseSizeWhenInRange
       resultStatus: 1
-      duration: 0.0034403
+      duration: 0.0007189
       messages: 
       output: 
       stacktrace: 
@@ -2617,7 +2545,7 @@ MonoBehaviour:
       name: IncreaseSizeLeftIrregularxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftIrregularxyz
       resultStatus: 1
-      duration: 0.0019316
+      duration: 0.0016731
       messages: 
       output: 
       stacktrace: 
@@ -2634,7 +2562,7 @@ MonoBehaviour:
       name: IncreaseSizeLeftxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftxyz
       resultStatus: 1
-      duration: 0.0006862
+      duration: 0.000504
       messages: 
       output: 
       stacktrace: 
@@ -2651,7 +2579,7 @@ MonoBehaviour:
       name: IncreaseSizeRightIrregularlyxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightIrregularlyxyz
       resultStatus: 1
-      duration: 0.0025499
+      duration: 0.0017995
       messages: 
       output: 
       stacktrace: 
@@ -2668,7 +2596,7 @@ MonoBehaviour:
       name: IncreaseSizeRightxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightxyz
       resultStatus: 1
-      duration: 0.0010785
+      duration: 0.000669
       messages: 
       output: 
       stacktrace: 
@@ -2685,7 +2613,7 @@ MonoBehaviour:
       name: Matrix3DTest
       fullName: Tests.EditMode.LevelDS.Matrix3DTest
       resultStatus: 1
-      duration: 0.0205169
+      duration: 0.0292499
       messages: 
       output: 
       stacktrace: 
@@ -2701,7 +2629,7 @@ MonoBehaviour:
       name: DoesNotModifyObjectWhenNIsZero
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.DoesNotModifyObjectWhenNIsZero
       resultStatus: 1
-      duration: 0.0002538
+      duration: 0.0002708
       messages: 
       output: 
       stacktrace: 
@@ -2718,7 +2646,7 @@ MonoBehaviour:
       name: GetBlockInRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.GetBlockInRange
       resultStatus: 1
-      duration: 0.0001971
+      duration: 0.0001754
       messages: 
       output: 
       stacktrace: 
@@ -2735,7 +2663,7 @@ MonoBehaviour:
       name: GetBlockOutOfRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.GetBlockOutOfRange
       resultStatus: 1
-      duration: 0.0023348
+      duration: 0.0171266
       messages: 
       output: 'Trying to get 4, 5, 6; Dims: 4, 4, 4
 
@@ -2754,7 +2682,7 @@ MonoBehaviour:
       name: IncreasesDepthByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesDepthByN
       resultStatus: 1
-      duration: 0.0002436
+      duration: 0.0003185
       messages: 
       output: 
       stacktrace: 
@@ -2771,7 +2699,7 @@ MonoBehaviour:
       name: IncreasesHeightByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesHeightByN
       resultStatus: 1
-      duration: 0.0002442
+      duration: 0.0002652
       messages: 
       output: 
       stacktrace: 
@@ -2788,7 +2716,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInXAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInXAxis
       resultStatus: 1
-      duration: 0.0010531
+      duration: 0.0007545
       messages: 
       output: 
       stacktrace: 
@@ -2805,7 +2733,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInYAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInYAxis
       resultStatus: 1
-      duration: 0.0004916
+      duration: 0.0004687
       messages: 
       output: 
       stacktrace: 
@@ -2822,7 +2750,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInZAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInZAxis
       resultStatus: 1
-      duration: 0.0005949
+      duration: 0.0006029
       messages: 
       output: 
       stacktrace: 
@@ -2839,7 +2767,7 @@ MonoBehaviour:
       name: IncreasesWidthByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesWidthByN
       resultStatus: 1
-      duration: 0.0002798
+      duration: 0.0002646
       messages: 
       output: 
       stacktrace: 
@@ -2856,7 +2784,7 @@ MonoBehaviour:
       name: SetBlockInRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.SetBlockInRange
       resultStatus: 1
-      duration: 0.0003977
+      duration: 0.0002925
       messages: 
       output: 
       stacktrace: 
@@ -2873,7 +2801,7 @@ MonoBehaviour:
       name: SetBlockOutOfRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.SetBlockOutOfRange
       resultStatus: 1
-      duration: 0.0011433
+      duration: 0.0009024
       messages: 
       output: 'Trying to get 4, 4, 4; Dims: 4, 4, 4
 
@@ -2892,7 +2820,7 @@ MonoBehaviour:
       name: ThrowsArgumentExceptionWhenAxisIsWrong
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.ThrowsArgumentExceptionWhenAxisIsWrong
       resultStatus: 1
-      duration: 0.0016337
+      duration: 0.0010995
       messages: 
       output: 
       stacktrace: 
@@ -2909,7 +2837,7 @@ MonoBehaviour:
       name: Tools
       fullName: Tests.EditMode.Tools
       resultStatus: 1
-      duration: 0.0151325
+      duration: 0.0129424
       messages: 
       output: 
       stacktrace: 
@@ -2925,7 +2853,7 @@ MonoBehaviour:
       name: DS
       fullName: Tests.EditMode.Tools.DS
       resultStatus: 1
-      duration: 0.0063211
+      duration: 0.0053318
       messages: 
       output: 
       stacktrace: 
@@ -2941,7 +2869,7 @@ MonoBehaviour:
       name: PriorityQueue
       fullName: Tests.EditMode.Tools.DS.PriorityQueue
       resultStatus: 1
-      duration: 0.005867
+      duration: 0.0050161
       messages: 
       output: 
       stacktrace: 
@@ -2957,7 +2885,7 @@ MonoBehaviour:
       name: TestEnqueueDequeue
       fullName: Tests.EditMode.Tools.DS.PriorityQueue.TestEnqueueDequeue
       resultStatus: 1
-      duration: 0.0010444
+      duration: 0.0010178
       messages: 
       output: 
       stacktrace: 
@@ -2974,7 +2902,7 @@ MonoBehaviour:
       name: TestPeek
       fullName: Tests.EditMode.Tools.DS.PriorityQueue.TestPeek
       resultStatus: 1
-      duration: 0.0003259
+      duration: 0.000324
       messages: 
       output: 
       stacktrace: 
@@ -2986,12 +2914,12 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: EditMode.dll/Tests/EditMode/Tools/DS/[EditMode][Tests.EditMode.Tools.DS.PriorityQueue][suite]
-    m_ResultText: TestGetFromCoords (0,000s)
+    m_ResultText: TestGet (0,015s)
     m_ResultStacktrace: 
     m_TestListState:
-      scrollPos: {x: 0, y: 17}
-      m_SelectedIDs: f0436959
-      m_LastClickedID: 1500070896
+      scrollPos: {x: 0, y: 1}
+      m_SelectedIDs: e62b5238
+      m_LastClickedID: 944909286
       m_ExpandedIDs: b1395ca657b094aa01341eafc9d362c49c4580dcd71c52deab800de8da3f5a04cbc4920daac7351a8b46ec24b1276f448e42d54d4d6b1050899e9c5826732a5f1eb49f61993e88644b5ea47cffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0

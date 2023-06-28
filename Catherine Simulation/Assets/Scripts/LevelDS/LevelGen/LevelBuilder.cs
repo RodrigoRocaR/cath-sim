@@ -49,13 +49,24 @@
             return this;
         }
 
-        public LevelBuilder AddWall(int y, int pos, int height = 2, bool horizontal = true,
+        public LevelBuilder AddWall(int y, int pos, int height = 2,  bool horizontal = true, int length = -1, int start = 0,
             int blockType = GameConstants.SolidBlock)
         {
-            int wallLength = horizontal ? _levelSizeX : _levelSizeZ;
+            int wallLength;
+            if (length == -1)
+            {
+                wallLength = horizontal ? _levelSizeX : _levelSizeZ;
+            }
+            else
+            {
+                wallLength = horizontal
+                    ? (start+length >= _levelSizeX ? _levelSizeX : length)
+                    : (start+length >= _levelSizeZ ? _levelSizeZ : length);
+            }
+
             for (int h = 0; h < height; h++)
             {
-                for (int k = 0; k < wallLength; k++)
+                for (int k = start; k < start+wallLength; k++)
                 {
                     if (horizontal)
                     {
@@ -89,16 +100,19 @@
             return this;
         }
 
-        public LevelBuilder AddSquareBorder(int y, int size, int startX = 0, int startZ = 0)
+        public LevelBuilder AddSquareBorder(int y, int size, int height = 1, int startX = 0, int startZ = 0)
         {
             int sizeX = size + startX < _levelSizeX ? size : _levelSizeX;
             int sizeZ = size + startZ < _levelSizeZ ? size : _levelSizeZ;
-            for (int i = startX; i < sizeX; i++)
+            for (int j = y; j < y+height; j++)
             {
-                for (int k = startZ; k < sizeZ; k++)
+                for (int i = startX; i < sizeX; i++)
                 {
-                    if (i == startX || i == sizeX - 1 || k == startZ || k == sizeZ - 1)
-                        _level.SetBlockInt(i, y, k, GameConstants.SolidBlock);
+                    for (int k = startZ; k < sizeZ; k++)
+                    {
+                        if (i == startX || i == sizeX - 1 || k == startZ || k == sizeZ - 1)
+                            _level.SetBlockInt(i, j, k, GameConstants.SolidBlock);
+                    }
                 }
             }
 
@@ -142,6 +156,21 @@
 
                     if (i < centerZ) y++;
                     else y--;
+                }
+            }
+
+            return this;
+        }
+
+        public LevelBuilder AddWallsFromBinaryMatrix(int[][] m, int y = 0)
+        {
+            for (int i=0; i<m.Length; i++)
+            {
+                for (int j=0; j<m[0].Length; j++)
+                {
+                    if (m[i][j] != 1) continue;
+                    _level.SetBlockInt(j, y, _levelSizeX-i-1,  GameConstants.SolidBlock);
+                    _level.SetBlockInt(j, y+1, _levelSizeX-i-1, GameConstants.SolidBlock);
                 }
             }
 

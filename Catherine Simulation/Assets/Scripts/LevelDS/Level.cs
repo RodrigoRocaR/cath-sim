@@ -33,7 +33,7 @@ namespace LevelDS
             else
             {
                 _levelFactory = new LevelFactory();
-                _level = _levelFactory.GetTestLevel();
+                _level = _levelFactory.GetExploreTest1();
                 SpawnBlocks();
             }
             SetPlayerInitialPosition(sceneName);
