@@ -46,7 +46,8 @@ namespace Bots
             _bfs = new BFS(_level2D);
             Vector3 pos = transform.position;
             _botState.StartExploring();
-            _bfs.Explore((int)pos.x, (int)pos.z, OnFinishExplore); // todo verify this is correct order
+            _bfs.Explore((int)pos.x, (int)pos.z);
+            OnFinishExplore();
         }
 
         private void OnFinishExplore()
@@ -55,7 +56,7 @@ namespace Bots
             thread.Start(_bfs.GetActions());
             
             _bfs = null;
-            //_botState.StopExploring();
+            _botState.StopExploring();
         }
 
         private bool IsFalling()

@@ -58,7 +58,7 @@ namespace Tests.EditMode.Bots
             foreach (var (level2D, desiredPos) in tests)
             {
                 var bfs = new BFS(level2D);
-                bfs.Explore(startPos.Item2, startPos.Item1, () => { });
+                bfs.Explore(startPos.Item2, startPos.Item1);
                 var lastPos = bfs.GetPath()[^1];
                 // Assert
                 Assert.AreEqual(desiredPos, lastPos);
@@ -127,7 +127,7 @@ namespace Tests.EditMode.Bots
             foreach (var (level2D, desiredPos) in tests)
             {
                 var bfs = new BFS(level2D);
-                bfs.Explore(startPos.Item2, startPos.Item1, () => { });
+                bfs.Explore(startPos.Item2, startPos.Item1);
                 var lastPos = bfs.GetPath();
                 // Assert
                 Assert.AreEqual(desiredPos, lastPos);

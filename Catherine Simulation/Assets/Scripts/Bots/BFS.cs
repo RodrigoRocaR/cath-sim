@@ -30,7 +30,7 @@ namespace Bots
             _pathToPos = new Dictionary<(int, int), ((int, int), int)>();
         }
 
-        private void ExploreAlgorithm(int i, int j)
+        public void Explore(int i, int j)
         {
             i /= GameConstants.BlockScale;
             j /= GameConstants.BlockScale;
@@ -66,19 +66,6 @@ namespace Bots
             
             _actionStream.CreateFromPositions(_path);
         }
-
-        public async void Explore(int i, int j, System.Action callback)
-        {
-            await ExploreTask(i, j);
-            callback();
-        }
-
-        private Task ExploreTask(int i, int j)
-        {
-            ExploreAlgorithm(i, j);
-            return Task.CompletedTask;
-        }
-
 
         public ActionStream GetActions()
         {
