@@ -61,8 +61,8 @@ namespace Tests.EditMode.Bots.DS
                         {
                             new[] // x: 0
                             {
-                                new[] { -1, -1, -1 }, // y: 0
-                                new[] { -1, -1, -1 }, // y: 1
+                                new[] { -1, 0, -1 }, // y: 0
+                                new[] { -1, -1, 0 }, // y: 1
                                 new[] { 0, 0, 0 } // y: 2
                             },
                             new[] // x: 1

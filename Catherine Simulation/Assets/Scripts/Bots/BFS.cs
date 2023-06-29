@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bots.Action;
 using Bots.DS;
@@ -18,9 +17,13 @@ namespace Bots
 
         private List<(int, int)> _path;
 
-        public BFS(Level2D level2D)
+        private bool _isMock;
+
+        public BFS(Level2D level2D, bool isMock = false)
         {
             _level2D = level2D;
+            _isMock = isMock;
+
             _actionStream = new ActionStream(level2D);
             _visited = new HashSet<(int, int)>();
             _unvisited = new Queue<(int, int)>();
@@ -33,7 +36,7 @@ namespace Bots
             j /= GameConstants.BlockScale;
             
             _pathToPos[(i, j)] = ((0, 0), 0);
-            EnqueueUnvisited(_level2D, i, j);
+            EnqueueUnvisited(i, j);
 
             (int, int) deepestPointReached = (i, j);
             (int, int) pos;
@@ -47,7 +50,7 @@ namespace Bots
                     deepestPointReached = pos;
                 }
                 
-                EnqueueUnvisited(_level2D, pos.Item1, pos.Item2);
+                EnqueueUnvisited(pos.Item1, pos.Item2);
             }
 
             // Get deepest point and traceback path
@@ -87,36 +90,40 @@ namespace Bots
             return _path;
         }
 
-        private void EnqueueUnvisited(Level2D l2d, int i, int j)
+        private void EnqueueUnvisited(int i, int j)
         {
             _visited.Add((i, j));
-            int currHeight = l2d.Get(i, j);
-            if (i + 1 < l2d.Height() && !_visited.Contains((i + 1, j)) &&
-                IsNotTooHigh(currHeight, l2d.Get(i + 1, j))) // forward
+            int currHeight = _level2D.Get(i, j);
+            int nextHeight = i + 1 < _level2D.Height() ? _level2D.Get(i + 1, j) : GameConstants.EmptyBlock;
+            if (nextHeight != GameConstants.EmptyBlock && !_visited.Contains((i + 1, j)) &&
+                IsNotTooHigh(currHeight, nextHeight)) // forward
             {
                 _unvisited.Enqueue((i + 1, j));
                 AddPath((i + 1, j), (i, j));
                 _visited.Add((i + 1, j));
             }
 
-            if (j + 1 < l2d.Width() && !_visited.Contains((i, j + 1)) &&
-                IsNotTooHigh(currHeight, l2d.Get(i, j + 1))) // right
+            nextHeight = j + 1 < _level2D.Width() ? _level2D.Get(i, j + 1) : GameConstants.EmptyBlock;
+            if (nextHeight != GameConstants.EmptyBlock && !_visited.Contains((i, j + 1)) &&
+                IsNotTooHigh(currHeight, nextHeight)) // right
             {
                 _unvisited.Enqueue((i, j + 1));
                 AddPath((i, j + 1), (i, j));
                 _visited.Add((i, j + 1));
             }
 
-            if (i - 1 >= 0 && !_visited.Contains((i - 1, j)) &&
-                IsNotTooHigh(currHeight, l2d.Get(i - 1, j))) // left
+            nextHeight = i - 1 >= 0 ? _level2D.Get(i - 1, j) : GameConstants.EmptyBlock;
+            if (nextHeight != GameConstants.EmptyBlock && !_visited.Contains((i - 1, j)) &&
+                IsNotTooHigh(currHeight, nextHeight)) // left
             {
                 _unvisited.Enqueue((i - 1, j));
                 AddPath((i - 1, j), (i, j));
                 _visited.Add((i - 1, j));
             }
 
-            if (j - 1 >= 0 && !_visited.Contains((i, j - 1)) &&
-                IsNotTooHigh(currHeight, l2d.Get(i, j - 1))) // back
+            nextHeight = j - 1 >= 0 ? _level2D.Get(i, j - 1) : GameConstants.EmptyBlock;
+            if (nextHeight != GameConstants.EmptyBlock && !_visited.Contains((i, j - 1)) &&
+                IsNotTooHigh(currHeight, nextHeight)) // back
             {
                 _unvisited.Enqueue((i, j - 1));
                 AddPath((i, j - 1), (i, j));
@@ -137,6 +144,33 @@ namespace Bots
         private bool IsNotTooHigh(int currHeight, int targetHeight)
         {
             return currHeight >= targetHeight || targetHeight - currHeight < 2;
+        }
+
+        public Queue<(int, int)> GetUnvisited()
+        {
+            return _isMock ? _unvisited : null;
+        }
+
+        public HashSet<(int, int)> GetVisited()
+        {
+            return _isMock ? _visited : null;
+        }
+
+        public Dictionary<(int, int), ((int, int), int)> GetAllPaths()
+        {
+            return _isMock ? _pathToPos : null;
+        }
+
+        public void SetPathToPos(Dictionary<(int, int), ((int, int), int)> p)
+        {
+            if (!_isMock) return;
+            _pathToPos = p;
+        }
+
+        public void SetVisited(HashSet<(int, int)> visited)
+        {
+            if (!_isMock) return;
+            _visited = visited;
         }
     }
 }

@@ -93,6 +93,11 @@ namespace LevelDS
                 player.transform.position = GameConstants.PlayerInitialPosition[sceneName];
             }
         }
+        
+        public static int GetBlockInt(int x, int y, int z)
+        {
+            return _level.GetBlockInt(x, y, z);
+        }
 
         public static int GetBlockInt(Vector3 pos)
         {
@@ -167,11 +172,15 @@ namespace LevelDS
         {
             return _level?.GetMatrixBlocks();
         }
-        
-        
+
         private static void AssignPlayerIdentity(PlayerIdentity playerIdentity)
         {
             PlayerIdentity = playerIdentity;
+        }
+
+        public static bool IsNull()
+        {
+            return _level == null;
         }
     }
 }
