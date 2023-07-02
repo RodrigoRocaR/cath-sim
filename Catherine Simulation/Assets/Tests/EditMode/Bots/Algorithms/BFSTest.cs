@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bots;
+using Bots.Algorithms;
 using Bots.DS;
 using NUnit.Framework;
 
-namespace Tests.EditMode.Bots
+namespace Tests.EditMode.Bots.Algorithms
 {
     public class BFSTest
     {

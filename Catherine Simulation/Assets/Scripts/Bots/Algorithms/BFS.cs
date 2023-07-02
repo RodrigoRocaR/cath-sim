@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Bots.Action;
 using Bots.DS;
 
-namespace Bots
+namespace Bots.Algorithms
 {
     // ReSharper disable once InconsistentNaming
     public class BFS
