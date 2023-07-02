@@ -11,13 +11,15 @@ namespace LevelDS
         private Matrix3D<IBlock> _level;
         private Vector3Int _negativeExpanding;
 
+        private bool _isMock;
+
         public int Width { get; set; }
 
         public int Height { get; set; }
 
         public int Depth { get; set; }
 
-        public GameMatrix(int width, int height, int depth)
+        public GameMatrix(int width, int height, int depth, bool isMock = false)
         {
             Width = width;
             Height = height;
@@ -25,6 +27,7 @@ namespace LevelDS
             _levelInt = new Matrix3D<int>(width, height, depth, GameConstants.EmptyBlock);
             _level = new Matrix3D<IBlock>(width, height, depth, null);
             _negativeExpanding = new Vector3Int(0, 0, 0);
+            _isMock = isMock;
         }
     
         // Access integer matrix --------------
@@ -181,6 +184,7 @@ namespace LevelDS
 
         private Vector3 ParseCoords(Vector3 coords)
         {
+            if (_isMock) return coords;
             coords.y -= 1;
             coords /= GameConstants.BlockScale;
             return coords;

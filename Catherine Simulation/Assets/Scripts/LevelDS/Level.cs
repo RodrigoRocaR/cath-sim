@@ -20,6 +20,8 @@ namespace LevelDS
         private static GameMatrix _level;
         private static LevelFactory _levelFactory;
 
+        private static bool _isMock;
+
         void Start()
         {
             AssignPlayerIdentity(playerIdentityValue);
@@ -86,6 +88,22 @@ namespace LevelDS
             }
         }
 
+        public void NewMockLevel(int[][][] values)
+        {
+            _isMock = true;
+            _level = new GameMatrix(values.Length, values[0].Length, values[0][0].Length, true);
+            for (int i = 0; i < _level.Width; i++)
+            {
+                for (int j = 0; j < _level.Height; j++)
+                {
+                    for (int k = 0; k < _level.Depth; k++)
+                    {
+                        _level.SetBlockInt(i, j, k, values[i][j][k]);
+                    }
+                }
+            }
+        }
+
         private void SetPlayerInitialPosition(string sceneName)
         {
             if (GameConstants.PlayerInitialPosition.ContainsKey(sceneName))
@@ -102,6 +120,16 @@ namespace LevelDS
         public static int GetBlockInt(Vector3 pos)
         {
             return _level.GetBlockInt(pos);
+        }
+
+        public static bool IsEmpty(Vector3 pos)
+        {
+            return _level.GetBlockInt(pos) == GameConstants.EmptyBlock;
+        }
+        
+        public static bool IsNotEmpty(Vector3 pos)
+        {
+            return !IsEmpty(pos);
         }
 
         public static IBlock GetBlock(Vector3 pos)
@@ -181,6 +209,11 @@ namespace LevelDS
         public static bool IsNull()
         {
             return _level == null;
+        }
+
+        public static bool IsMock()
+        {
+            return _isMock;
         }
     }
 }

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1706.6667
     height: 917.3334
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Test Runner
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 69
+  controlID: 154
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 70
+  controlID: 155
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,8 +165,8 @@ MonoBehaviour:
     y: 0
     width: 1144
     height: 412
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 105
+  controlID: 115
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1881,7 +1881,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 84e9ffff34fbffff
+      m_ExpandedIDs: baeaffffe0eaffff34fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -2116,7 +2116,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_Spl:
-    ID: 245
+    ID: 163
     splitterInitialOffset: 578.6667
     currentActiveSplitter: -1
     realSizes:
@@ -2200,7 +2200,7 @@ MonoBehaviour:
       name: Catherine Simulation
       fullName: Catherine Simulation
       resultStatus: 1
-      duration: 0.1499668
+      duration: 0.299985
       messages: 
       output: 
       stacktrace: 
@@ -2216,7 +2216,7 @@ MonoBehaviour:
       name: EditMode.dll
       fullName: D:/Unity projects/cath-sim/Catherine Simulation/Library/ScriptAssemblies/EditMode.dll
       resultStatus: 1
-      duration: 0.1205819
+      duration: 0.1683801
       messages: 
       output: 
       stacktrace: 
@@ -2232,7 +2232,7 @@ MonoBehaviour:
       name: Tests
       fullName: Tests
       resultStatus: 1
-      duration: 0.1196155
+      duration: 0.156597
       messages: 
       output: 
       stacktrace: 
@@ -2248,7 +2248,7 @@ MonoBehaviour:
       name: EditMode
       fullName: Tests.EditMode
       resultStatus: 1
-      duration: 0.1190451
+      duration: 0.1546151
       messages: 
       output: 
       stacktrace: 
@@ -2264,7 +2264,7 @@ MonoBehaviour:
       name: Bots
       fullName: Tests.EditMode.Bots
       resultStatus: 1
-      duration: 0.0707956
+      duration: 0.0866808
       messages: 
       output: 
       stacktrace: 
@@ -2280,7 +2280,7 @@ MonoBehaviour:
       name: Actions
       fullName: Tests.EditMode.Bots.Actions
       resultStatus: 1
-      duration: 0.0368982
+      duration: 0.0406502
       messages: 
       output: 
       stacktrace: 
@@ -2296,7 +2296,7 @@ MonoBehaviour:
       name: ActionStreamTest
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest
       resultStatus: 1
-      duration: 0.0328137
+      duration: 0.0366137
       messages: 
       output: 
       stacktrace: 
@@ -2312,7 +2312,7 @@ MonoBehaviour:
       name: TestCreateFromPositions
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TestCreateFromPositions
       resultStatus: 1
-      duration: 0.0170453
+      duration: 0.0181916
       messages: 
       output: 
       stacktrace: 
@@ -2329,7 +2329,7 @@ MonoBehaviour:
       name: TestDoesNotAddExtraJumps
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TestDoesNotAddExtraJumps
       resultStatus: 1
-      duration: 0.0009459
+      duration: 0.0010143
       messages: 
       output: 
       stacktrace: 
@@ -2346,7 +2346,7 @@ MonoBehaviour:
       name: TestJumpsDown
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TestJumpsDown
       resultStatus: 1
-      duration: 0.0006319
+      duration: 0.0006633
       messages: 
       output: 
       stacktrace: 
@@ -2363,7 +2363,7 @@ MonoBehaviour:
       name: TranslateActionsTo3D
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TranslateActionsTo3D
       resultStatus: 1
-      duration: 0.0006832
+      duration: 0.0007297
       messages: 
       output: 
       stacktrace: 
@@ -2375,12 +2375,12 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1026
       parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Actions/[EditMode][Tests.EditMode.Bots.Actions.ActionStreamTest][suite]
-    - id: 1023
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.BFSTest][suite]
-      name: BFSTest
-      fullName: Tests.EditMode.Bots.BFSTest
+    - id: 1046
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Algorithms][suite]
+      name: Algorithms
+      fullName: Tests.EditMode.Bots.Algorithms
       resultStatus: 1
-      duration: 0.0194415
+      duration: 0.0256846
       messages: 
       output: 
       stacktrace: 
@@ -2389,31 +2389,47 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1039
+      parentId: 1044
       parentUniqueId: EditMode.dll/Tests/EditMode/[Bots][suite]
-    - id: 1026
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/BFSTest/[EditMode][Tests.EditMode.Bots.BFSTest.TestAddUnvisitedHeightDiff]
-      name: TestAddUnvisitedHeightDiff
-      fullName: Tests.EditMode.Bots.BFSTest.TestAddUnvisitedHeightDiff
-      resultStatus: 1
-      duration: 0.0053491
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1023
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.BFSTest][suite]
     - id: 1027
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/BFSTest/[EditMode][Tests.EditMode.Bots.BFSTest.TestDoesNotRevisit]
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.BFSTest][suite]
+      name: BFSTest
+      fullName: Tests.EditMode.Bots.Algorithms.BFSTest
+      resultStatus: 1
+      duration: 0.0176935
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1046
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Algorithms][suite]
+    - id: 1030
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/BFSTest/[EditMode][Tests.EditMode.Bots.Algorithms.BFSTest.TestAddUnvisitedHeightDiff]
+      name: TestAddUnvisitedHeightDiff
+      fullName: Tests.EditMode.Bots.Algorithms.BFSTest.TestAddUnvisitedHeightDiff
+      resultStatus: 1
+      duration: 0.0064077
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1027
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.BFSTest][suite]
+    - id: 1031
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/BFSTest/[EditMode][Tests.EditMode.Bots.Algorithms.BFSTest.TestDoesNotRevisit]
       name: TestDoesNotRevisit
-      fullName: Tests.EditMode.Bots.BFSTest.TestDoesNotRevisit
+      fullName: Tests.EditMode.Bots.Algorithms.BFSTest.TestDoesNotRevisit
       resultStatus: 1
-      duration: 0.0009558
+      duration: 0.0011418
       messages: 
       output: 
       stacktrace: 
@@ -2423,14 +2439,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1023
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.BFSTest][suite]
-    - id: 1028
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/BFSTest/[EditMode][Tests.EditMode.Bots.BFSTest.TestDoesNotVisitEmptyBLocks]
+      parentId: 1027
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.BFSTest][suite]
+    - id: 1032
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/BFSTest/[EditMode][Tests.EditMode.Bots.Algorithms.BFSTest.TestDoesNotVisitEmptyBLocks]
       name: TestDoesNotVisitEmptyBLocks
-      fullName: Tests.EditMode.Bots.BFSTest.TestDoesNotVisitEmptyBLocks
+      fullName: Tests.EditMode.Bots.Algorithms.BFSTest.TestDoesNotVisitEmptyBLocks
       resultStatus: 1
-      duration: 0.0004768
+      duration: 0.00061
       messages: 
       output: 
       stacktrace: 
@@ -2440,14 +2456,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1023
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.BFSTest][suite]
-    - id: 1024
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/BFSTest/[EditMode][Tests.EditMode.Bots.BFSTest.TestReachesDesiredPosition]
+      parentId: 1027
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.BFSTest][suite]
+    - id: 1028
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/BFSTest/[EditMode][Tests.EditMode.Bots.Algorithms.BFSTest.TestReachesDesiredPosition]
       name: TestReachesDesiredPosition
-      fullName: Tests.EditMode.Bots.BFSTest.TestReachesDesiredPosition
+      fullName: Tests.EditMode.Bots.Algorithms.BFSTest.TestReachesDesiredPosition
       resultStatus: 1
-      duration: 0.0030731
+      duration: 0.0039169
       messages: 
       output: 
       stacktrace: 
@@ -2457,14 +2473,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1023
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.BFSTest][suite]
-    - id: 1025
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/BFSTest/[EditMode][Tests.EditMode.Bots.BFSTest.TestShortestPath]
+      parentId: 1027
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.BFSTest][suite]
+    - id: 1029
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/BFSTest/[EditMode][Tests.EditMode.Bots.Algorithms.BFSTest.TestShortestPath]
       name: TestShortestPath
-      fullName: Tests.EditMode.Bots.BFSTest.TestShortestPath
+      fullName: Tests.EditMode.Bots.Algorithms.BFSTest.TestShortestPath
       resultStatus: 1
-      duration: 0.002184
+      duration: 0.0037787
       messages: 
       output: 
       stacktrace: 
@@ -2474,14 +2490,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1023
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.BFSTest][suite]
+      parentId: 1027
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.BFSTest][suite]
     - id: 1033
       uniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.DS][suite]
       name: DS
       fullName: Tests.EditMode.Bots.DS
       resultStatus: 1
-      duration: 0.0102838
+      duration: 0.0169693
       messages: 
       output: 
       stacktrace: 
@@ -2497,7 +2513,7 @@ MonoBehaviour:
       name: Level2DTest
       fullName: Tests.EditMode.Bots.DS.Level2DTest
       resultStatus: 1
-      duration: 0.0041934
+      duration: 0.0072894
       messages: 
       output: 
       stacktrace: 
@@ -2513,7 +2529,7 @@ MonoBehaviour:
       name: TestGet
       fullName: Tests.EditMode.Bots.DS.Level2DTest.TestGet
       resultStatus: 1
-      duration: 0.0004758
+      duration: 0.0009926
       messages: 
       output: 
       stacktrace: 
@@ -2530,7 +2546,7 @@ MonoBehaviour:
       name: TestInitialize
       fullName: Tests.EditMode.Bots.DS.Level2DTest.TestInitialize
       resultStatus: 1
-      duration: 0.0013117
+      duration: 0.0020166
       messages: 
       output: 
       stacktrace: 
@@ -2547,7 +2563,7 @@ MonoBehaviour:
       name: TestTranslateTo2D
       fullName: Tests.EditMode.Bots.DS.Level2DTest.TestTranslateTo2D
       resultStatus: 1
-      duration: 0.0015256
+      duration: 0.0025659
       messages: 
       output: 
       stacktrace: 
@@ -2564,7 +2580,7 @@ MonoBehaviour:
       name: LevelDS
       fullName: Tests.EditMode.LevelDS
       resultStatus: 1
-      duration: 0.0307362
+      duration: 0.03542
       messages: 
       output: 
       stacktrace: 
@@ -2580,7 +2596,7 @@ MonoBehaviour:
       name: GameMatrixTest
       fullName: Tests.EditMode.LevelDS.GameMatrixTest
       resultStatus: 1
-      duration: 0.0075364
+      duration: 0.0083854
       messages: 
       output: 
       stacktrace: 
@@ -2596,7 +2612,7 @@ MonoBehaviour:
       name: DoesNotIncreaseSizeWhenInRange
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.DoesNotIncreaseSizeWhenInRange
       resultStatus: 1
-      duration: 0.0020458
+      duration: 0.00223
       messages: 
       output: 
       stacktrace: 
@@ -2613,7 +2629,7 @@ MonoBehaviour:
       name: IncreaseSizeLeftIrregularxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftIrregularxyz
       resultStatus: 1
-      duration: 0.0016209
+      duration: 0.0016724
       messages: 
       output: 
       stacktrace: 
@@ -2630,7 +2646,7 @@ MonoBehaviour:
       name: IncreaseSizeLeftxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftxyz
       resultStatus: 1
-      duration: 0.0004705
+      duration: 0.0005383
       messages: 
       output: 
       stacktrace: 
@@ -2647,7 +2663,7 @@ MonoBehaviour:
       name: IncreaseSizeRightIrregularlyxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightIrregularlyxyz
       resultStatus: 1
-      duration: 0.001744
+      duration: 0.0019623
       messages: 
       output: 
       stacktrace: 
@@ -2664,7 +2680,7 @@ MonoBehaviour:
       name: IncreaseSizeRightxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightxyz
       resultStatus: 1
-      duration: 0.0006802
+      duration: 0.0007639
       messages: 
       output: 
       stacktrace: 
@@ -2681,7 +2697,7 @@ MonoBehaviour:
       name: Matrix3DTest
       fullName: Tests.EditMode.LevelDS.Matrix3DTest
       resultStatus: 1
-      duration: 0.0172735
+      duration: 0.0194067
       messages: 
       output: 
       stacktrace: 
@@ -2697,7 +2713,7 @@ MonoBehaviour:
       name: DoesNotModifyObjectWhenNIsZero
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.DoesNotModifyObjectWhenNIsZero
       resultStatus: 1
-      duration: 0.0002488
+      duration: 0.0002771
       messages: 
       output: 
       stacktrace: 
@@ -2714,7 +2730,7 @@ MonoBehaviour:
       name: GetBlockInRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.GetBlockInRange
       resultStatus: 1
-      duration: 0.0001764
+      duration: 0.0001824
       messages: 
       output: 
       stacktrace: 
@@ -2731,9 +2747,12 @@ MonoBehaviour:
       name: GetBlockOutOfRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.GetBlockOutOfRange
       resultStatus: 1
-      duration: 0.0038994
+      duration: 0.0043213
       messages: 
       output: 'Trying to get 4, 5, 6; Dims: 4, 4, 4
+
+        Trying to get 4, 5,
+        6; Dims: 4, 4, 4
 
 '
       stacktrace: 
@@ -2750,7 +2769,7 @@ MonoBehaviour:
       name: IncreasesDepthByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesDepthByN
       resultStatus: 1
-      duration: 0.0002436
+      duration: 0.0002859
       messages: 
       output: 
       stacktrace: 
@@ -2767,7 +2786,7 @@ MonoBehaviour:
       name: IncreasesHeightByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesHeightByN
       resultStatus: 1
-      duration: 0.0002204
+      duration: 0.0002499
       messages: 
       output: 
       stacktrace: 
@@ -2784,7 +2803,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInXAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInXAxis
       resultStatus: 1
-      duration: 0.0007119
+      duration: 0.0008079
       messages: 
       output: 
       stacktrace: 
@@ -2801,7 +2820,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInYAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInYAxis
       resultStatus: 1
-      duration: 0.0003978
+      duration: 0.0004263
       messages: 
       output: 
       stacktrace: 
@@ -2818,7 +2837,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInZAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInZAxis
       resultStatus: 1
-      duration: 0.0004568
+      duration: 0.0004925
       messages: 
       output: 
       stacktrace: 
@@ -2835,7 +2854,7 @@ MonoBehaviour:
       name: IncreasesWidthByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesWidthByN
       resultStatus: 1
-      duration: 0.0002203
+      duration: 0.0002376
       messages: 
       output: 
       stacktrace: 
@@ -2852,7 +2871,7 @@ MonoBehaviour:
       name: SetBlockInRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.SetBlockInRange
       resultStatus: 1
-      duration: 0.0002671
+      duration: 0.0003031
       messages: 
       output: 
       stacktrace: 
@@ -2869,9 +2888,12 @@ MonoBehaviour:
       name: SetBlockOutOfRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.SetBlockOutOfRange
       resultStatus: 1
-      duration: 0.0008054
+      duration: 0.0009048
       messages: 
       output: 'Trying to get 4, 4, 4; Dims: 4, 4, 4
+
+        Trying to get 4, 4,
+        4; Dims: 4, 4, 4
 
 '
       stacktrace: 
@@ -2888,7 +2910,7 @@ MonoBehaviour:
       name: ThrowsArgumentExceptionWhenAxisIsWrong
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.ThrowsArgumentExceptionWhenAxisIsWrong
       resultStatus: 1
-      duration: 0.0025774
+      duration: 0.0026891
       messages: 
       output: 
       stacktrace: 
@@ -2905,7 +2927,7 @@ MonoBehaviour:
       name: Tools
       fullName: Tests.EditMode.Tools
       resultStatus: 1
-      duration: 0.0137497
+      duration: 0.0288595
       messages: 
       output: 
       stacktrace: 
@@ -2921,7 +2943,7 @@ MonoBehaviour:
       name: DS
       fullName: Tests.EditMode.Tools.DS
       resultStatus: 1
-      duration: 0.0059029
+      duration: 0.0203604
       messages: 
       output: 
       stacktrace: 
@@ -2937,7 +2959,7 @@ MonoBehaviour:
       name: PriorityQueue
       fullName: Tests.EditMode.Tools.DS.PriorityQueue
       resultStatus: 1
-      duration: 0.0056488
+      duration: 0.0110129
       messages: 
       output: 
       stacktrace: 
@@ -2953,7 +2975,7 @@ MonoBehaviour:
       name: TestEnqueueDequeue
       fullName: Tests.EditMode.Tools.DS.PriorityQueue.TestEnqueueDequeue
       resultStatus: 1
-      duration: 0.0008548
+      duration: 0.0009565
       messages: 
       output: 
       stacktrace: 
@@ -2970,7 +2992,7 @@ MonoBehaviour:
       name: TestPeek
       fullName: Tests.EditMode.Tools.DS.PriorityQueue.TestPeek
       resultStatus: 1
-      duration: 0.0002588
+      duration: 0.0002829
       messages: 
       output: 
       stacktrace: 
