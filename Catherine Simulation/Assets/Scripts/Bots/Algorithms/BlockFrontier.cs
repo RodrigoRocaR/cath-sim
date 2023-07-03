@@ -30,7 +30,19 @@ namespace Bots.Algorithms
                 {
                     currBlock = _bh.Up(currBlock);
                     AddBlock(currBlock); // the block in the way
-                    AddBlock(_bh.Up(currBlock, depthDelta: 1)); // the one above of it
+                    if (Level.IsNotEmpty(_bh.Up(currBlock)))
+                    { // this is a wall, cannot continue
+                        if (exploringRight)
+                        {
+                            exploringRight = false;
+                            currBlock = pos;
+                        }
+                        else finished = true;
+                    }
+                    else
+                    {
+                        AddBlock(_bh.Up(currBlock, depthDelta: 1)); // the one in the wall above the single block
+                    }
                 }
                 else if (Level.IsNotEmpty(currBlock))
                 {
