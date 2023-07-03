@@ -29,7 +29,7 @@ namespace Tests.EditMode.Bots.Actions
             
             Assert.AreEqual(examplePositions.Count-1, expectedMovements.Count, "The fixture is wrong");
 
-            ActionStream actionStream = new ActionStream(new Level2D());
+            ActionStream actionStream = new ActionStream(new FloorLevel2D());
             actionStream.CreateFromPositions(examplePositions);
             
             var movements = actionStream.GetAsList();
@@ -64,7 +64,7 @@ namespace Tests.EditMode.Bots.Actions
                 Action.Backward,
                 Action.Jump
             };
-            Level2D level2D = new Level2D(new[]
+            Level2D level2D = new FloorLevel2D(new[]
             {
                 new [] { 0, 1},
                 new [] { 1, 1},
@@ -105,7 +105,7 @@ namespace Tests.EditMode.Bots.Actions
                 Action.Jump,
                 Action.Forward
             };
-            Level2D level2D = new Level2D(new[]
+            Level2D level2D = new FloorLevel2D(new[]
             {
                 new [] { 0, 0, 0, 1, 0, 0, 3, 4, 5}
             });
@@ -141,7 +141,7 @@ namespace Tests.EditMode.Bots.Actions
                 Action.Jump,
                 Action.Forward
             };
-            Level2D level2D = new Level2D(new[]
+            Level2D level2D = new FloorLevel2D(new[]
             {
                 new [] { 0, 1, 0, 0, 0, 4}
             });

@@ -16,7 +16,7 @@ namespace Tests.EditMode.Bots.Algorithms
             Dictionary<Level2D, (int, int)> tests = new Dictionary<Level2D, (int, int)>
             {
                 {
-                    new Level2D(new[]
+                    new FloorLevel2D(new[]
                     {
                         new[] { 0, 0, 0 },
                         new[] { 0, 0, 0 },
@@ -25,7 +25,7 @@ namespace Tests.EditMode.Bots.Algorithms
                     (0, 2)
                 },
                 {
-                    new Level2D(new[]
+                    new FloorLevel2D(new[]
                     {
                         new[] { 0, 1, 0, 1 },
                         new[] { 0, 1, 0, 1 },
@@ -34,7 +34,7 @@ namespace Tests.EditMode.Bots.Algorithms
                     (0, 3)
                 },
                 {
-                    new Level2D(new[]
+                    new FloorLevel2D(new[]
                     {
                         new[] { 0, 2, 0, 0 },
                         new[] { 0, 2, 0, 1 },
@@ -43,7 +43,7 @@ namespace Tests.EditMode.Bots.Algorithms
                     (1, 3)
                 },
                 {
-                    new Level2D(new[]
+                    new FloorLevel2D(new[]
                     {
                         new[] { 1, 2, -1, -1 },
                         new[] { 1, 2, 3, -1 },
@@ -73,7 +73,7 @@ namespace Tests.EditMode.Bots.Algorithms
             Dictionary<Level2D, List<(int, int)>> tests = new Dictionary<Level2D, List<(int, int)>>
             {
                 {
-                    new Level2D(new[]
+                    new FloorLevel2D(new[]
                     {
                         new[] { 0, 0, 0 },
                         new[] { 0, 0, 0 },
@@ -87,7 +87,7 @@ namespace Tests.EditMode.Bots.Algorithms
                     }
                 },
                 {
-                    new Level2D(new[]
+                    new FloorLevel2D(new[]
                     {
                         new[] { 0, 0, 0, 2 },
                         new[] { 0, 2, 0, 2 },
@@ -104,7 +104,7 @@ namespace Tests.EditMode.Bots.Algorithms
                     }
                 },
                 {
-                    new Level2D(new[]
+                    new FloorLevel2D(new[]
                     {
                         new[] { 1, 2, -1, -1 },
                         new[] { 1, 2, 3, -1 },
@@ -137,7 +137,7 @@ namespace Tests.EditMode.Bots.Algorithms
         [Test]
         public void TestAddUnvisitedHeightDiff()
         {
-            Level2D level2D = new Level2D(new[]
+            Level2D level2D = new FloorLevel2D(new[]
             {
                 new[] { 1, 2, 0 },
                 new[] { 2, 0, 0 },
@@ -163,7 +163,7 @@ namespace Tests.EditMode.Bots.Algorithms
         [Test]
         public void TestDoesNotRevisit()
         {
-            Level2D level2D = new Level2D(new[]
+            Level2D level2D = new FloorLevel2D(new[]
             {
                 new[] { 1, 0, 1 },
                 new[] { 0, 0, 0 },
@@ -186,7 +186,7 @@ namespace Tests.EditMode.Bots.Algorithms
         [Test]
         public void TestDoesNotVisitEmptyBLocks()
         {
-            Level2D level2D = new Level2D(new[]
+            Level2D level2D = new FloorLevel2D(new[]
             {
                 new[] { -1, -1, -1 },
                 new[] { -1, 0, -1 },

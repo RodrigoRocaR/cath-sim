@@ -21,7 +21,7 @@ namespace Bots
         {
             _inputs = Inputs.GetInstance();
             _actionExecutor = new ActionExecutor(_inputs);
-            _level2D = new Level2D(Level.GetLevelAsMatrixInt());
+            _level2D = new FloorLevel2D(Level.GetLevelAsMatrixInt());
             _botState = new BotState();
             _rb = GetComponent<Rigidbody>();
         }

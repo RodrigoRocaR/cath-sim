@@ -2,73 +2,69 @@
 
 namespace Bots.DS
 {
-    /**
-     * Made to make some algorithms work easier with the level data by flattening the level into 2 dimensions
-     * Each cell stores height
-     */
-    public class Level2D
+    public abstract class Level2D
     {
-        private Matrix2D<int> _level2D;
+        protected readonly Matrix2D<int> Elements;
 
-        public Level2D(Matrix3D<int> m)
+        protected Level2D(Matrix3D<int> m)
         {
-            _level2D = new Matrix2D<int>(m.Depth, m.Width);
+            Elements = new Matrix2D<int>(m.Depth, m.Width);
             TranslateTo2D(m);
         }
 
-        public Level2D(int[][] values)
+        protected Level2D(int[][] values)
         {
             // for tests
-            _level2D = new Matrix2D<int>(values);
+            Elements = new Matrix2D<int>(values);
         }
 
-        public Level2D()
+        protected Level2D()
         {
             // for tests
-            _level2D = new Matrix2D<int>(new int[][] { });
+            Elements = new Matrix2D<int>(new int[][] { });
         }
-
-
-        /**
-         *  The y in 2D represents the z value in the level
-         *  The x value correlates
-         *  Integers represent absolute height coords (world coordinates) instead of the type of the block
-         */
-        private void TranslateTo2D(Matrix3D<int> m)
-        {
-            for (int i = 0; i < m.Width; i++)
-            {
-                for (int j = 0; j < m.Height; j++)
-                {
-                    for (int k = 0; k < m.Depth; k++)
-                    {
-                        if (m[i, j, k] != GameConstants.EmptyBlock)
-                        {
-                            _level2D[i, k] = j;
-                        }
-                    }
-                }
-            }
-        }
+        
+        protected abstract void TranslateTo2D(Matrix3D<int> m);
 
         public int Width()
         {
-            return _level2D.GetWidth();
+            return Elements.GetWidth();
         }
 
         public int Height()
         {
-            return _level2D.GetHeight();
+            return Elements.GetHeight();
         }
 
         public int Get(int x, int y)
         {
-            return _level2D[x, y];
+            return Elements[x, y];
         }
         
         public int GetFromCoords(int coordx, int coordy)
         {
-            return _level2D[coordx / GameConstants.BlockScale, coordy / GameConstants.BlockScale];
+            return Elements[coordx / GameConstants.BlockScale, coordy / GameConstants.BlockScale];
+        }
+        
+        public bool AreLevel2DEqual(Level2D l2)
+        {
+            if (Width() != l2.Width() || Height() != l2.Height())
+            {
+                return false;
+            }
+
+            for (int i = 0; i < Width(); i++)
+            {
+                for (int j = 0; j < Width(); j++)
+                {
+                    if (Get(i, j) != l2.Get(i, j))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }
