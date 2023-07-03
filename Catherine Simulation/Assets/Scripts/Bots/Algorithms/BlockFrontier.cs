@@ -17,6 +17,13 @@ namespace Bots.Algorithms
             GetFrontierFromPos(playerPos); // todo: check if this is the block the player is above at (stepping on)
         }
 
+        public BlockFrontier(HashSet<Vector3> frontier)
+        {
+            // for testing
+            _frontier = frontier;
+            _bh = new BlockHelper();
+        }
+
         private void GetFrontierFromPos(Vector3 pos)
         {
             AddBlock(_bh.Up(pos, depthDelta:1));

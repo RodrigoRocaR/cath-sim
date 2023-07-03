@@ -12,14 +12,14 @@ namespace Blocks
             _offset = Level.IsMock() ? 1 : GameConstants.BlockScale;
         }
 
-        public Vector3 Right(Vector3 pos, int depthDelta = 0)
+        public Vector3 Right(Vector3 pos, int multiplier = 1, int depthDelta = 0)
         {
-            return new Vector3(pos.x + _offset, pos.y, pos.z + depthDelta * _offset);
+            return new Vector3(pos.x + _offset * multiplier, pos.y, pos.z + depthDelta * _offset);
         }
 
-        public Vector3 Left(Vector3 pos, int depthDelta = 0)
+        public Vector3 Left(Vector3 pos, int multiplier = 1, int depthDelta = 0)
         {
-            return new Vector3(pos.x - _offset, pos.y, pos.z + depthDelta * _offset);
+            return new Vector3(pos.x - _offset * multiplier, pos.y, pos.z + depthDelta * _offset);
         }
 
         public Vector3 Up(Vector3 pos, int multiplier = 1, int depthDelta = 0)
@@ -34,14 +34,14 @@ namespace Blocks
                 pos.z + depthDelta * _offset);
         }
 
-        public Vector3 Forward(Vector3 pos)
+        public Vector3 Forward(Vector3 pos, int multiplier = 1)
         {
-            return new Vector3(pos.x, pos.y, pos.z + _offset);
+            return new Vector3(pos.x, pos.y, pos.z + _offset * multiplier);
         }
 
-        public Vector3 Backward(Vector3 pos)
+        public Vector3 Backward(Vector3 pos, int multiplier = 1)
         {
-            return new Vector3(pos.x, pos.y, pos.z - _offset);
+            return new Vector3(pos.x, pos.y, pos.z - _offset * multiplier);
         }
 
         public Vector3 TopRight(Vector3 pos, int depthDelta = 0)
