@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bots.DS.TreeModel;
+using Bots.Algorithms;
 using LevelDS;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Tests.EditMode.Bots.DS.TreeModel
+namespace Tests.EditMode.Bots.Algorithms
 {
     public class BlockFrontierTest
     {

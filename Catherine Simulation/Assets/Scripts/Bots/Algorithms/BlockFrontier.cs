@@ -3,7 +3,7 @@ using Blocks;
 using LevelDS;
 using UnityEngine;
 
-namespace Bots.DS.TreeModel
+namespace Bots.Algorithms
 {
     public class BlockFrontier
     {
