@@ -10,6 +10,9 @@ namespace Bots.Algorithms
         private HashSet<Vector3> _frontier;
         private BlockHelper _bh;
 
+        /**
+         * PlayerPos needs to be in the index domain
+         */
         public BlockFrontier(Vector3 playerPos)
         {
             _bh = new BlockHelper();
@@ -53,7 +56,9 @@ namespace Bots.Algorithms
                 }
                 else if (Level.IsNotEmpty(currBlock))
                 {
-                    AddBlock(_bh.Up(currBlock, depthDelta: 1)); // ground level
+                    // ground level front and back
+                    AddBlock(_bh.Up(currBlock, depthDelta: 1)); 
+                    AddBlock(_bh.Up(currBlock, depthDelta: -1));
                 }
                 else if (Level.IsNotEmpty(_bh.Down(currBlock)))
                 {

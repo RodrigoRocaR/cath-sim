@@ -97,7 +97,7 @@ namespace Tests.EditMode.Bots.Algorithms
                             new[] { -1, 0, 0 }, // y:0
                             new[] { -1, 0, 0 }, // y:1
                             new[] { -1, 0, 0 }, // y:2
-                            new[] { -1, 0, 0 }, // y:2
+                            new[] { -1, 0, 0 }, // y:3
                         },
                         new[] // x: 1
                         {
@@ -143,6 +143,63 @@ namespace Tests.EditMode.Bots.Algorithms
                     $"Obtained frontier does not match (order does not matter)\n" +
                     $"{string.Join("\n", frontier.Zip(obtainedFrontier, (elem1, elem2) => $"Expected: {elem1} --- Obtained: {elem2}").ToArray())}");
             }
+        }
+
+        [Test]
+        public void TestWorksWithAsymmetricPlayerPos()
+        {
+            Vector3 initialPostion = new Vector3(2, 6, 3);
+            
+            GameObject mockObject = new GameObject();
+            var mockLevel = mockObject.AddComponent<Level>();
+            mockLevel.NewMockLevel(new[]
+            {
+                new[] // x: 0
+                {
+                    new[] { -1, -1, -1, -1, -1 }, // y:0
+                    new[] { -1, -1, -1, -1, -1 }, // y:1
+                    new[] { -1, -1, -1, -1, -1 }, // y:2
+                    new[] { -1, -1, -1, -1, -1 }, // y:3
+                    new[] { -1, -1, -1, -1, -1 }, // y:4
+                    new[] { -1, -1, -1, -1, -1 }, // y:5
+                    new[] { -1, -1, -1, 0, -1 }, // y:6
+                    new[] { -1, -1, -1, -1, 0 }, // y:7
+                },
+                new[] // x: 1
+                {
+                    new[] { -1, -1, -1, -1, -1 }, // y:0
+                    new[] { -1, -1, -1, -1, -1 }, // y:1
+                    new[] { -1, -1, -1, -1, -1 }, // y:2
+                    new[] { -1, -1, -1, -1, -1 }, // y:3
+                    new[] { -1, -1, -1, -1, -1 }, // y:4
+                    new[] { -1, -1, -1, -1, -1 }, // y:5
+                    new[] { -1, -1, -1, 0, -1 }, // y:6
+                    new[] { -1, -1, 0, -1, 0 }, // y:7
+                },
+                new[] // x: 2
+                {
+                    new[] { -1, -1, -1, -1, -1 }, // y:0
+                    new[] { -1, -1, -1, -1, -1 }, // y:1
+                    new[] { -1, -1, -1, -1, -1 }, // y:2
+                    new[] { -1, -1, -1, -1, -1 }, // y:3
+                    new[] { -1, -1, -1, -1, -1 }, // y:4
+                    new[] { -1, -1, -1, -1, -1 }, // y:5
+                    new[] { -1, -1, -1, 0, -1 }, // y:6
+                    new[] { -1, -1, -1, -1, 0 }, // y:7
+                },
+            });
+
+            var expected = new List<Vector3>
+            {
+                new Vector3(2, 7, 4),
+                new Vector3(1, 7, 2),
+                new Vector3(1, 7, 4),
+                new Vector3(0, 7, 4),
+            };
+
+            var obtained = new BlockFrontier(initialPostion).GetFrontier();
+            
+            CollectionAssert.AreEquivalent(expected, obtained);
         }
     }
 }
