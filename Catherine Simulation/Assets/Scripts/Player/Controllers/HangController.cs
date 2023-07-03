@@ -78,7 +78,7 @@ namespace Player.Controllers
             }
             else if (_playerState.IsHangingOnBorder() && _inputs.Forward()) // get back up
             {
-                if (!Level.IsBlock(PlayerPos2BlockInFrontPos(_transform.position) +
+                if (Level.IsNotEmpty(PlayerPos2BlockInFrontPos(_transform.position) +
                                    Vector3.up * GameConstants.BlockScale))
                 {
                     SetupGetBack();
@@ -137,8 +137,8 @@ namespace Player.Controllers
 
 
             checkPos += targetHangDirection * GameConstants.BlockScale;
-            bool isBlockSameLevel = Level.IsBlock(checkPos);
-            bool isBlockInTheWay = Level.IsBlock(checkPos - playerLookingDirection * GameConstants.BlockScale);
+            bool isBlockSameLevel = Level.IsNotEmpty(checkPos);
+            bool isBlockInTheWay = Level.IsNotEmpty(checkPos - playerLookingDirection * GameConstants.BlockScale);
 
             if (isBlockSameLevel && !isBlockInTheWay) // Slide horizontally on the same wall
             {

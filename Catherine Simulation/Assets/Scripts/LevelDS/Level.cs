@@ -137,11 +137,6 @@ namespace LevelDS
             return _level.GetBlock(pos);
         }
 
-        public static bool IsBlock(Vector3 pos)
-        {
-            return _level.GetBlockInt(pos) != GameConstants.EmptyBlock;
-        }
-
         public static void UpdateMovedBlock(Vector3 pos, Vector3 finalPos)
         {
             // Set up the new one
