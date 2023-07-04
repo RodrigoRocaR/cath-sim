@@ -1,4 +1,6 @@
-﻿using LevelDS;
+﻿using Bots.Algorithms;
+using LevelDS;
+using UnityEngine;
 
 namespace Bots.DS
 {
@@ -8,6 +10,8 @@ namespace Bots.DS
      */
     public class WallLevel2D : Level2D
     {
+        private readonly WallHelper _wallHelper;
+        
         public WallLevel2D(Matrix3D<int> m) : base(m)
         {
         }
@@ -19,8 +23,36 @@ namespace Bots.DS
         public WallLevel2D() : base()
         {
         }
+
+        public WallLevel2D(WallHelper wh)
+        {
+            _wallHelper = wh;
+            TranslateTo2D();
+        }
         
         /**
+         *  Similar to translate to 2D but transforms a section of the level instead for performance reasons
+         */
+        private void TranslateTo2D()
+        {
+            for (int i = _wallHelper.GetStartX(); i < _wallHelper.GetStopX(); i++)
+            {
+                for (int j = _wallHelper.GetStartY(); j < _wallHelper.GetHeight(); j++)
+                {
+                    for (int k = 0; k < Level.Depth(); k++)
+                    {
+                        if (Level.IsNotEmpty(i, j, k))
+                        {
+                            Elements[i, j] = k;
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        /**
+         *  (Recommended only for testing)
          *  The x and y values should correlate
          *  Integers represent absolute depth coords (world coordinates) instead of the type of the block
          */

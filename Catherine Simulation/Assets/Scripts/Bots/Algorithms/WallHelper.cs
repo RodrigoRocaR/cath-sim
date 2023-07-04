@@ -14,11 +14,13 @@ namespace Bots.Algorithms
         private int _height;
         private int _targetZ;
         private Vector3 _playerPos;
+        private (int, int) _totalWallRangeX;
 
         public WallHelper(Vector3 playerPos)
         {
             _targetZ = (int)playerPos.z + 1;
             _playerPos = playerPos;
+            _totalWallRangeX = (0, 0);
             GetWallHeight();
         }
 
@@ -79,20 +81,31 @@ namespace Bots.Algorithms
                 {
                     wallRange.Item1 = i;
                     chainStarted = true;
+
+                    if (_totalWallRangeX.Item1 < i) _totalWallRangeX.Item1 = i;
                 }
 
                 if (Level.IsEmpty(i, j, _targetZ) && chainStarted)
                 {
                     wallRange.Item2 = i;
+                    
+                    if (_totalWallRangeX.Item2 < i) _totalWallRangeX.Item2 = i;
+                    
                     return wallRange;
                 }
             }
 
             wallRange.Item2 = Level.Width() - 1;
+            if (_totalWallRangeX.Item2 < wallRange.Item2) _totalWallRangeX.Item2 = wallRange.Item2;
             return wallRange;
         }
 
         public int GetHeight()
+        {
+            return (int)_playerPos.y + _height;
+        }
+        
+        public int GetRelativeHeight()
         {
             return _height;
         }
@@ -100,6 +113,21 @@ namespace Bots.Algorithms
         public int GetTargetZ()
         {
             return _targetZ;
+        }
+
+        public int GetStartX()
+        {
+            return _totalWallRangeX.Item1;
+        }
+
+        public int GetStopX()
+        {
+            return _totalWallRangeX.Item2 + 1;
+        }
+
+        public int GetStartY()
+        {
+            return (int)_playerPos.y;
         }
     }
 }
