@@ -36,7 +36,7 @@ namespace Tests.EditMode.Bots.DS
                                 new[] { -1, 0, -1 }
                             },
                         }),
-                    new WallLevel2D(new[] // similar to a bird's eye view of the level
+                    new WallLevel2D(new[]
                     {
                         new[] { 1, 1, 1 }, // x: 0
                         new[] { 1, 1, 1 }, // x: 1
@@ -66,7 +66,7 @@ namespace Tests.EditMode.Bots.DS
                                 new[] { 0, -1, -1 }
                             },
                         }),
-                    new WallLevel2D(new[] // similar to a bird's eye view of the level
+                    new WallLevel2D(new[]
                     {
                         new[] { -1, 2, 2 }, // x: 0
                         new[] { 1, 2, -1 }, // x: 1

@@ -127,9 +127,19 @@ namespace LevelDS
             return _level.GetBlockInt(pos) == GameConstants.EmptyBlock;
         }
         
+        public static bool IsEmpty(int x, int y, int z)
+        {
+            return _level.GetBlockInt(x, y, z) == GameConstants.EmptyBlock;
+        }
+        
         public static bool IsNotEmpty(Vector3 pos)
         {
             return !IsEmpty(pos);
+        }
+        
+        public static bool IsNotEmpty(int x, int y, int z)
+        {
+            return !IsEmpty(x, y, z);
         }
 
         public static IBlock GetBlock(Vector3 pos)
@@ -209,6 +219,21 @@ namespace LevelDS
         public static bool IsMock()
         {
             return _isMock;
+        }
+
+        public static int Width()
+        {
+            return _level.Width;
+        }
+        
+        public static int Height()
+        {
+            return _level.Height;
+        }
+        
+        public static int Depth()
+        {
+            return _level.Depth;
         }
     }
 }
