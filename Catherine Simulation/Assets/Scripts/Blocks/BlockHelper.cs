@@ -105,5 +105,31 @@ namespace Blocks
 
             return newPos;
         }
+        
+        public static Vector3 GetNewPlayerPos(Vector3 oldPos, PushPullAction action)
+        {
+            if (action.IsPushAction()) return oldPos;
+
+            Vector3 newPos;
+            switch (action.Action)
+            {
+                case PushPullAction.Actions.PullForward:
+                    newPos = new Vector3(oldPos.x, oldPos.y, oldPos.z - GameConstants.BlockScale);
+                    break;
+                case PushPullAction.Actions.PullRight:
+                    newPos = new Vector3(oldPos.x + GameConstants.BlockScale, oldPos.y, oldPos.z);
+                    break;
+                case PushPullAction.Actions.PullBackward:
+                    newPos = new Vector3(oldPos.x, oldPos.y, oldPos.z + GameConstants.BlockScale);
+                    break;
+                case PushPullAction.Actions.PullLeft:
+                    newPos = new Vector3(oldPos.x - GameConstants.BlockScale, oldPos.y, oldPos.z);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return newPos;
+        }
     }
 }

@@ -56,6 +56,11 @@ namespace Bots.DS.MonteCarlo
             return Action is Actions.PushBackward or Actions.PullForward;
         }
 
+        public bool IsPushAction()
+        {
+            return Action is Actions.PushBackward or Actions.PushForward or Actions.PushLeft or Actions.PushRight;
+        }
+
         public static List<PushPullAction> GetViableActions(BlockFrontier bf)
         {
             var actionDict = GetViableActionsAsDict(bf);

@@ -101,11 +101,14 @@ namespace Tests.EditMode.Bots.DS
                 new PushPullAction(new Vector3(2, 2, 2), PushPullAction.Actions.PushForward));
             
             Assert.AreEqual(1, level2.Get(1, 1));
+            Assert.AreEqual(2, level.Get(1, 1));
             
             var level3 = new WallLevel2D(level,
                 new PushPullAction(new Vector3(0, 4, 0), PushPullAction.Actions.PullForward));
             
             Assert.AreEqual(3, level3.Get(0, 2));
+            Assert.AreEqual(2, level2.Get(0, 2));
+            Assert.AreEqual(2, level.Get(0, 2));
         }
     }
 }

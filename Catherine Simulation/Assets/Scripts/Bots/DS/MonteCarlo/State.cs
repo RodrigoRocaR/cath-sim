@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Blocks;
 using Bots.Algorithms;
 using Bots.DS.TreeModel;
 using UnityEngine;
@@ -9,22 +9,22 @@ namespace Bots.DS.MonteCarlo
     {
         private WallLevel2D _wallLevel2D;
         private Vector3 _playerPos;
-
-        private WallHelper _wh;
+        
         private BlockFrontier _blockFrontier;
         
         public State(Vector3 playerPos)
         {
-            _wallLevel2D = new WallLevel2D(_wh);
+            _wallLevel2D = new WallLevel2D(new WallHelper(playerPos));
             _playerPos = playerPos;
             
-            _wh = new WallHelper(playerPos);
             _blockFrontier = new BlockFrontier(playerPos);
         }
 
         public State(State previous, PushPullAction action)
         {
-            // todo; this
+            _playerPos = BlockHelper.GetNewPlayerPos(previous._playerPos, action);
+            _wallLevel2D = new WallLevel2D(previous._wallLevel2D, action);
+            _blockFrontier = new BlockFrontier(_playerPos);
         }
 
         public int Evaluate()
@@ -44,10 +44,9 @@ namespace Bots.DS.MonteCarlo
 
             foreach (var action in possibleActions)
             {
-                //currNode.AddChild(state, action);
+                currNode.AddChild(new State(this, action), action);
             }
         }
-
 
         private void LogErrorWrongNode()
         {
