@@ -194,7 +194,7 @@ namespace Tests.EditMode.Bots.Algorithms
             {
                 mockLevel.NewMockLevel(levelValues);
                 var wallhelper = new WallHelper(initialPos);
-                Assert.AreEqual(expectedHeight, wallhelper.GetHeight());
+                Assert.AreEqual(expectedHeight, wallhelper.GetRelativeHeight());
             }
         }
 
@@ -255,7 +255,7 @@ namespace Tests.EditMode.Bots.Algorithms
                         {
                             new[] { -1, -1, -1, -1, -1, -1 },
                             new[] { -1, -1, -1, -1, -1, -1 },
-                            new[] { -1, -1, -1, -1, 0, -1 }, 
+                            new[] { -1, -1, -1, -1, 0, -1 },
                             new[] { -1, -1, -1, -1, -1, 0 }, // y:3
                             new[] { -1, -1, -1, -1, -1, 0 },
                             new[] { -1, -1, -1, -1, -1, -1 },
