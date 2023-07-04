@@ -18,6 +18,10 @@ namespace Bots.Algorithms
 
         public WallHelper(Vector3 playerPos)
         {
+            if (!Level.IsMock())
+            {
+                playerPos = Level.TransformToIndexDomain(playerPos);
+            }
             _targetZ = (int)playerPos.z + 1;
             _playerPos = playerPos;
             _totalWallRangeX = (0, 0);

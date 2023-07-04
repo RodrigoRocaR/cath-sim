@@ -9,12 +9,13 @@ namespace Bots.Algorithms
     {
         private HashSet<Vector3> _frontier;
         private BlockHelper _bh;
-
-        /**
-         * PlayerPos needs to be in the index domain
-         */
+        
         public BlockFrontier(Vector3 playerPos)
         {
+            if (!Level.IsMock())
+            {
+                playerPos = Level.TransformToIndexDomain(playerPos);
+            }
             _bh = new BlockHelper();
             _frontier = new HashSet<Vector3>();
             GetFrontierFromPos(playerPos); // todo: check if this is the block the player is above at (stepping on)

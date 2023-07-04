@@ -4,7 +4,7 @@ namespace Bots.DS
 {
     public abstract class Level2D
     {
-        protected readonly Matrix2D<int> Elements;
+        protected Matrix2D<int> Elements;
 
         protected Level2D(Matrix3D<int> m)
         {
@@ -40,12 +40,12 @@ namespace Bots.DS
         {
             return Elements[x, y];
         }
-        
-        public int GetFromCoords(int coordx, int coordy)
+
+        protected Matrix2D<int> GetWholeLevel()
         {
-            return Elements[coordx / GameConstants.BlockScale, coordy / GameConstants.BlockScale];
+            return new Matrix2D<int>(Elements.GetClonedElements());
         }
-        
+
         public bool AreLevel2DEqual(Level2D l2)
         {
             if (Width() != l2.Width() || Height() != l2.Height())

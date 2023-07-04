@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Bots.DS;
+using Bots.DS.MonteCarlo;
 using LevelDS;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace Tests.EditMode.Bots.DS
 {
@@ -83,6 +85,27 @@ namespace Tests.EditMode.Bots.DS
                 // Assert
                 Assert.True(l2d.AreLevel2DEqual(levelPair.Value));
             }
+        }
+
+        [Test]
+        public void TestModifyWithActionDepth()
+        {
+            var level = new WallLevel2D(new[]
+            {
+                new[] { -1, 2, 2 }, // x: 0
+                new[] { 1, 2, -1 }, // x: 1
+                new[] { -1, -1, 0 } // x: 2
+            });
+
+            var level2 = new WallLevel2D(level,
+                new PushPullAction(new Vector3(2, 2, 2), PushPullAction.Actions.PushForward));
+            
+            Assert.AreEqual(1, level2.Get(1, 1));
+            
+            var level3 = new WallLevel2D(level,
+                new PushPullAction(new Vector3(0, 4, 0), PushPullAction.Actions.PullForward));
+            
+            Assert.AreEqual(3, level3.Get(0, 2));
         }
     }
 }

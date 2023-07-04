@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Bots.DS
 {
@@ -74,6 +75,26 @@ namespace Bots.DS
             {
                 Debug.LogError("Cannot properly initialize Matrix due unknown start value");
             }
+        }
+
+        public T[][] GetClonedElements()
+        {
+            return DeepCopyElements();
+        }
+        
+        private T[][] DeepCopyElements()
+        {
+            T[][] copy = new T[_elements.Length][];
+
+            for (int i = 0; i < _elements.Length; i++)
+            {
+                T[] innerArray = _elements[i];
+                T[] innerArrayCopy = new T[innerArray.Length];
+                Array.Copy(innerArray, innerArrayCopy, innerArray.Length);
+                copy[i] = innerArrayCopy;
+            }
+
+            return copy;
         }
     }
 }

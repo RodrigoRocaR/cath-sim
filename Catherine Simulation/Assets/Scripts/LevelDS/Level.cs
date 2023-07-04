@@ -13,9 +13,9 @@ namespace LevelDS
         public GameObject player;
         public PlayerIdentity playerIdentityValue;
         public static PlayerIdentity PlayerIdentity;
-        
+
         private readonly Vector3 _startCoords = new Vector3(0, 0.5f, 0);
-        
+
         private static bool _isCleared, _isGameOver;
         private static GameMatrix _level;
         private static LevelFactory _levelFactory;
@@ -30,7 +30,7 @@ namespace LevelDS
             if (sceneName != "TestScene")
             {
                 _level = new GameMatrix(50, 250, 250);
-                GetBlocksFromScene();   
+                GetBlocksFromScene();
             }
             else
             {
@@ -38,6 +38,7 @@ namespace LevelDS
                 _level = _levelFactory.GetExploreTest1();
                 SpawnBlocks();
             }
+
             SetPlayerInitialPosition(sceneName);
         }
 
@@ -84,6 +85,7 @@ namespace LevelDS
                 {
                     _level.SetBlockInt(pos, GameConstants.VictoryBlock);
                 }
+
                 _level.SetBlock(pos, block.GetComponent<GenericBlockController>().GetBlockInstantiate());
             }
         }
@@ -111,7 +113,7 @@ namespace LevelDS
                 player.transform.position = GameConstants.PlayerInitialPosition[sceneName];
             }
         }
-        
+
         public static int GetBlockInt(int x, int y, int z)
         {
             return _level.GetBlockInt(x, y, z);
@@ -126,17 +128,17 @@ namespace LevelDS
         {
             return _level.GetBlockInt(pos) == GameConstants.EmptyBlock;
         }
-        
+
         public static bool IsEmpty(int x, int y, int z)
         {
             return _level.GetBlockInt(x, y, z) == GameConstants.EmptyBlock;
         }
-        
+
         public static bool IsNotEmpty(Vector3 pos)
         {
             return !IsEmpty(pos);
         }
-        
+
         public static bool IsNotEmpty(int x, int y, int z)
         {
             return !IsEmpty(x, y, z);
@@ -200,7 +202,7 @@ namespace LevelDS
         {
             return _level?.GetMatrixInt();
         }
-        
+
         public static Matrix3D<IBlock> GetLevelAsMatrixBlocks()
         {
             return _level?.GetMatrixBlocks();
@@ -225,15 +227,29 @@ namespace LevelDS
         {
             return _level.Width;
         }
-        
+
         public static int Height()
         {
             return _level.Height;
         }
-        
+
         public static int Depth()
         {
             return _level.Depth;
+        }
+
+        public static Vector3 TransformToIndexDomain(Vector3 vector3)
+        {
+            return new Vector3((int) (vector3.x / GameConstants.BlockScale),
+                (int) (vector3.y / GameConstants.BlockScale),
+                (int) (vector3.z / GameConstants.BlockScale));
+        }
+        
+        public static (int, int, int) TransformToIndexDomainAsTuple(Vector3 vector3)
+        {
+            return ((int) (vector3.x / GameConstants.BlockScale),
+                (int) (vector3.y / GameConstants.BlockScale),
+                (int) (vector3.z / GameConstants.BlockScale));
         }
     }
 }

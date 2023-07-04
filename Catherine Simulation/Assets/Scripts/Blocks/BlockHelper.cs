@@ -1,4 +1,6 @@
-﻿using LevelDS;
+﻿using System;
+using Bots.DS.MonteCarlo;
+using LevelDS;
 using UnityEngine;
 
 namespace Blocks
@@ -6,7 +8,7 @@ namespace Blocks
     public class BlockHelper
     {
         private int _offset;
-        
+
         public BlockHelper()
         {
             _offset = Level.IsMock() ? 1 : GameConstants.BlockScale;
@@ -66,6 +68,42 @@ namespace Blocks
         {
             return new Vector3(pos.x - _offset, pos.y - _offset,
                 pos.z + depthDelta * _offset);
+        }
+
+        public static Vector3 GetNewBlockPos(Vector3 blockPos, PushPullAction a)
+        {
+            Vector3 newPos;
+            switch (a.Action)
+            {
+                case PushPullAction.Actions.PushForward:
+                    newPos = new Vector3(blockPos.x, blockPos.y, blockPos.z + GameConstants.BlockScale);
+                    break;
+                case PushPullAction.Actions.PushBackward:
+                    newPos = new Vector3(blockPos.x, blockPos.y, blockPos.z - GameConstants.BlockScale);
+                    break;
+                case PushPullAction.Actions.PushRight:
+                    newPos = new Vector3(blockPos.x + GameConstants.BlockScale, blockPos.y, blockPos.z);
+                    break;
+                case PushPullAction.Actions.PushLeft:
+                    newPos = new Vector3(blockPos.x - GameConstants.BlockScale, blockPos.y, blockPos.z);
+                    break;
+                case PushPullAction.Actions.PullForward:
+                    newPos = new Vector3(blockPos.x, blockPos.y, blockPos.z - GameConstants.BlockScale);
+                    break;
+                case PushPullAction.Actions.PullBackward:
+                    newPos = new Vector3(blockPos.x, blockPos.y, blockPos.z + GameConstants.BlockScale);
+                    break;
+                case PushPullAction.Actions.PullRight:
+                    newPos = new Vector3(blockPos.x - GameConstants.BlockScale, blockPos.y, blockPos.z);
+                    break;
+                case PushPullAction.Actions.PullLeft:
+                    newPos = new Vector3(blockPos.x + GameConstants.BlockScale, blockPos.y, blockPos.z);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return newPos;
         }
     }
 }

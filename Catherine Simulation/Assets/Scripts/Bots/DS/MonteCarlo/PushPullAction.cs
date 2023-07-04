@@ -22,10 +22,61 @@ namespace Bots.DS.MonteCarlo
             PullLeft,
         }
 
-        public static Dictionary<Vector3, List<Actions>> GetViableActions(BlockFrontier bf)
+        public Vector3 BlockPos { set; get; }
+        public Actions Action { set; get; }
+
+        public PushPullAction(Vector3 blockPos, Actions action)
+        {
+            BlockPos = blockPos;
+            Action = action;
+        }
+
+        public bool IsAxisXMove()
+        {
+            return Action is Actions.PushRight or Actions.PushLeft or Actions.PullRight or Actions.PullLeft;
+        }
+
+        public bool IsLeftMove()
+        {
+            return Action is Actions.PushRight or Actions.PullLeft;
+        }
+        
+        public bool IsRightMove()
+        {
+            return Action is Actions.PushLeft or Actions.PullRight;
+        }
+        
+        public bool IsForwardMove()
+        {
+            return Action is Actions.PushForward or Actions.PullBackward;
+        }
+        
+        public bool IsBackwardMove()
+        {
+            return Action is Actions.PushBackward or Actions.PullForward;
+        }
+
+        public static List<PushPullAction> GetViableActions(BlockFrontier bf)
+        {
+            var actionDict = GetViableActionsAsDict(bf);
+
+            List<PushPullAction> ans = new List<PushPullAction>();
+
+            foreach (var (blockPos, actionsList) in actionDict)
+            {
+                foreach (var action in actionsList)
+                {
+                    ans.Add(new PushPullAction(blockPos, action));
+                }
+            }
+
+            return ans;
+        }
+
+        public static Dictionary<Vector3, List<Actions>> GetViableActionsAsDict(BlockFrontier bf)
         {
             Dictionary<Vector3, List<Actions>> viableActions = new Dictionary<Vector3, List<Actions>>();
-
+            
             foreach (var blockPos in bf.GetFrontier())
             {
                 viableActions.Add(blockPos, new List<Actions>());

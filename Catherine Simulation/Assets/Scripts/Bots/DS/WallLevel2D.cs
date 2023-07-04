@@ -1,4 +1,5 @@
 ﻿using Bots.Algorithms;
+using Bots.DS.MonteCarlo;
 using LevelDS;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Bots.DS
      */
     public class WallLevel2D : Level2D
     {
+        private const int LookUpDepthAfterBlockMove = 5;
         private readonly WallHelper _wallHelper;
         
         public WallLevel2D(Matrix3D<int> m) : base(m)
@@ -28,6 +30,40 @@ namespace Bots.DS
         {
             _wallHelper = wh;
             TranslateTo2D();
+        }
+        
+        public WallLevel2D(WallLevel2D prev, PushPullAction pushPullAction)
+        {
+            Elements = prev.GetWholeLevel(); // deep copy
+            ModifyWithAction(pushPullAction);
+        }
+
+        private void ModifyWithAction(PushPullAction pushPullAction)
+        {
+            Vector3 blockPos = pushPullAction.BlockPos;
+            PushPullAction.Actions a = pushPullAction.Action;
+            (int i, int j, int k) = Level.TransformToIndexDomainAsTuple(blockPos);
+            if (pushPullAction.IsAxisXMove())
+            {
+                // Check if it has blocks behind
+                Elements[i, j] = GameConstants.EmptyBlock;
+                for (int l = k; l < k+LookUpDepthAfterBlockMove; l++)
+                {
+                    if (Level.IsNotEmpty(i, j, l))
+                    {
+                        Elements[i, j] = l;
+                    }
+                }
+            } 
+            else if (pushPullAction.IsBackwardMove())
+            {
+                Elements[i, j]++;
+            }
+            else
+            {
+                Elements[i, j]--;
+            }
+
         }
         
         /**
