@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace Bots.Algorithms
 {
+    // todo: check that it works with wall
+    // todo: check that it works when player is hanging
+    // todo: check that it works when there is a fall??
+    // todo: add boolean flag when it is possible to add blocks of above wall (next Z?)
     public class BlockFrontier
     {
         private HashSet<Vector3> _frontier;

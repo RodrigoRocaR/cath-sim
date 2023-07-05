@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Bots.Action;
 using Bots.DS;
+using UnityEngine;
 
 namespace Bots.Algorithms
 {
@@ -33,7 +34,7 @@ namespace Bots.Algorithms
         {
             i /= GameConstants.BlockScale;
             j /= GameConstants.BlockScale;
-            
+
             _pathToPos[(i, j)] = ((0, 0), 0);
             EnqueueUnvisited(i, j);
 
@@ -48,7 +49,7 @@ namespace Bots.Algorithms
                 {
                     deepestPointReached = pos;
                 }
-                
+
                 EnqueueUnvisited(pos.Item1, pos.Item2);
             }
 
@@ -60,15 +61,23 @@ namespace Bots.Algorithms
                 _path.Add(_pathToPos[pos].Item1);
                 pos = _pathToPos[pos].Item1;
             }
-            
+
             _path.Reverse(); // from deepest point --> start to start --> deepest point
-            
+
             _actionStream.CreateFromPositions(_path);
         }
 
         public ActionStream GetActions()
         {
             return _actionStream;
+        }
+
+        public Vector3 GetEndPlayerPos()
+        {
+            (int x, int z) = _path[^1];
+            int y = _level2D.Get(x, z);
+            return new Vector3(x * GameConstants.BlockScale, y * GameConstants.BlockScale,
+                z * GameConstants.BlockScale);
         }
 
         public List<(int, int)> GetPath()

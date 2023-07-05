@@ -13,8 +13,10 @@ namespace Bots
         private ActionExecutor _actionExecutor;
         private Level2D _level2D;
         private BotState _botState;
-        private BFS _bfs;
         private Rigidbody _rb;
+        
+        private BFS _bfs;
+        private MonteCarlo _mcts;
 
         private void Start()
         {
@@ -36,7 +38,7 @@ namespace Bots
             } 
             else if (_botState.CanClimb())
             {
-                
+                Climb();
             }
         }
 
@@ -48,13 +50,26 @@ namespace Bots
             _bfs.Explore((int)pos.x, (int)pos.z);
             
             BotEventManager.OnExplorationFinished += OnFinishExplore;
+            LookForClimbingRoutes();
             StartCoroutine(_actionExecutor.Execute(_bfs.GetActions(), ActionExecutorPurpose.Exploration));
+        }
+
+        private void Climb()
+        {
+            var actions = _mcts.GetActions();
+            // todo: execute them
         }
 
         private void OnFinishExplore()
         {
             _bfs = null;
             _botState.StopExploring();
+        }
+
+        private void LookForClimbingRoutes()
+        {
+            _mcts = new MonteCarlo(_bfs.GetEndPlayerPos());
+            StartCoroutine(_mcts.LookForClimbingRoutes());
         }
 
         private bool IsFalling()
