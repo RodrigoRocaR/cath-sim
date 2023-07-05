@@ -8,46 +8,54 @@ namespace Bots.DS.MonteCarlo
 {
     public class State
     {
-        public static int RolloutDepth = 10;
-        
         private WallLevel2D _wallLevel2D;
         private Vector3 _playerPos;
+
+        public int N { get; set; } // number of visits
+        public int T { get; set; } // total score
 
         private BlockFrontier _blockFrontier;
         private List<PushPullAction> _possibleActions;
 
-        public State(Vector3 playerPos)
+        private WallHelper _wallHelper;
+
+        public State(WallHelper wh, Vector3 playerPos)
         {
-            _wallLevel2D = new WallLevel2D(new WallHelper(playerPos));
+            _wallHelper = wh;
+            _wallLevel2D = new WallLevel2D(wh);
             _playerPos = playerPos;
 
             _blockFrontier = new BlockFrontier(playerPos);
         }
 
-        public State(State previous, PushPullAction action)
+        private State(State previous, PushPullAction action)
         {
             _playerPos = BlockHelper.GetNewPlayerPos(previous._playerPos, action);
             _wallLevel2D = new WallLevel2D(previous._wallLevel2D, action);
             _blockFrontier = new BlockFrontier(_playerPos);
         }
 
-        public int Evaluate()
+        private int Evaluate()
         {
-            var wallHelper = new WallHelper(_playerPos);
-            int score = wallHelper.GetRelativeHeight();
-            if ((int)_playerPos.z >= wallHelper.GetTargetZ())
+            int score = 0;
+            if ((int)_playerPos.z >= _wallHelper.GetTargetZ())
             {
                 score += 99;
             }
+            else
+            {
+                score += _wallHelper.GetRelativeHeight();
+            }
+
             return score;
         }
 
-        public void Expand(TreeNode<State, PushPullAction> currNode)
+        public TreeNode<State, PushPullAction> Expand(TreeNode<State, PushPullAction> currNode)
         {
             if (currNode.Value != this)
             {
                 LogErrorWrongNode();
-                return;
+                return null;
             }
 
             _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier);
@@ -56,14 +64,21 @@ namespace Bots.DS.MonteCarlo
             {
                 currNode.AddChild(new State(this, action), action);
             }
+
+            return currNode.Forest[0];
         }
 
-        public int Rollout(int depth)
+        public int Rollout()
+        {
+            return Rollout(Parameters.RolloutDepth);
+        }
+
+        private int Rollout(int depth)
         {
             if (depth == 0) return Evaluate();
             _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier);
             var action = _possibleActions[Random.Range(0, _possibleActions.Count)];
-            return new State(this, action).Rollout(depth-1);
+            return new State(this, action).Rollout(depth - 1);
         }
 
         private void LogErrorWrongNode()
