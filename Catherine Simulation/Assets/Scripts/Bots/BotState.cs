@@ -34,6 +34,11 @@
         {
             return _canExplore && !_isExploring;
         }
+
+        public bool CanClimb()
+        {
+            return !_canExplore && !_isClimbing;
+        }
         
         
         

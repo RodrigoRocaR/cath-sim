@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Player;
+using UnityEngine;
 
 namespace Bots.Action
 {
     public class ActionExecutor
     {
-        private readonly Dictionary<Action, int> _actionDelay = new Dictionary<Action, int>
+        private readonly Dictionary<Action, int> _actionDelayMs = new Dictionary<Action, int>
         {
             { Action.Forward, 100 },
             { Action.Backward, 100 },
@@ -17,7 +18,7 @@ namespace Bots.Action
             { Action.Pull, 100 }
         };
 
-        private readonly Dictionary<Action, int> _postActionDelay = new Dictionary<Action, int>
+        private readonly Dictionary<Action, int> _postActionDelayMs = new Dictionary<Action, int>
         {
             { Action.Forward, 1000 },
             { Action.Backward, 1000 },
@@ -38,18 +39,17 @@ namespace Bots.Action
         /**
          * Should be called as a  separate thread
          */
-        public void Execute(object actionStreamObject)
+        public IEnumerator Execute(ActionStream actionStream, ActionExecutorPurpose actionExecutorPurpose)
         {
             // Cast the parameter to its appropriate type
-            ActionStream actionStream = (ActionStream)actionStreamObject;
-
             foreach (var action in actionStream.GetAsList())
             {
                 _inputs.StartAction(action);
-                Thread.Sleep(_actionDelay[action]);
+                yield return new WaitForSeconds(_actionDelayMs[action] / 1000f);
                 _inputs.StopAction(action);
-                Thread.Sleep(_postActionDelay[action]);
+                yield return new WaitForSeconds(_postActionDelayMs[action] / 1000f);
             }
+            BotEventManager.ActionExecutorFinished(actionExecutorPurpose);
         }
     }
 }

@@ -35,11 +35,10 @@ namespace Bots
             {
                 Explore();
             } 
-            else
+            else if (_botState.CanClimb())
             {
-                // climb
+                
             }
-
         }
 
         private void Explore()
@@ -48,14 +47,13 @@ namespace Bots
             Vector3 pos = transform.position;
             _botState.StartExploring();
             _bfs.Explore((int)pos.x, (int)pos.z);
-            OnFinishExplore();
+            
+            BotEventManager.OnExplorationFinished += OnFinishExplore;
+            StartCoroutine(_actionExecutor.Execute(_bfs.GetActions(), ActionExecutorPurpose.Exploration));
         }
 
         private void OnFinishExplore()
         {
-            Thread thread = new Thread(_actionExecutor.Execute);
-            thread.Start(_bfs.GetActions());
-            
             _bfs = null;
             _botState.StopExploring();
         }
