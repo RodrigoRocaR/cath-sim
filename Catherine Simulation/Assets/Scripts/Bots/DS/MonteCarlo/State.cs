@@ -29,7 +29,9 @@ namespace Bots.DS.MonteCarlo
 
         public int Evaluate()
         {
-            return 0;
+            var wallHelper = new WallHelper(_playerPos);
+            int score = wallHelper.GetRelativeHeight();
+            return score;
         }
 
         public void Expand(TreeNode<State, PushPullAction> currNode)

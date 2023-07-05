@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 88
+  controlID: 87
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 156
+  controlID: 88
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,8 +165,8 @@ MonoBehaviour:
     y: 0
     width: 1144
     height: 412
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 20
+  controlID: 122
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -246,8 +246,8 @@ MonoBehaviour:
     y: 0
     width: 210
     height: 397.33334
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -532,9 +532,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 4.104363, y: -0.7473242, z: 18.209606}
+    m_Target: {x: -1.7826891, y: 0.044029474, z: 10.188334}
     speed: 2
-    m_Value: {x: 4.104363, y: -0.7473242, z: 18.209606}
+    m_Value: {x: -1.7826891, y: 0.044029474, z: 10.188334}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -581,9 +581,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.16656649, y: 0.3756616, z: -0.06935546, w: -0.90915227}
+    m_Target: {x: -0.11071433, y: 0.6447781, z: -0.09577349, w: -0.7503792}
     speed: 2
-    m_Value: {x: -0.166547, y: 0.37561765, z: -0.06934734, w: -0.9090459}
+    m_Value: {x: -0.11070116, y: 0.64470136, z: -0.0957621, w: -0.7502899}
   m_Size:
     m_Target: 10
     speed: 2
@@ -1753,7 +1753,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -157324
+  m_LastSelectedObjectID: 26436
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1827,7 +1827,7 @@ MonoBehaviour:
       y: 21
       width: 1143
       height: 413.3333
-    m_Scale: {x: 0.99999994, y: 0.99999994}
+    m_Scale: {x: 0.9999999, y: 0.99999994}
     m_Translation: {x: 571.5, y: 206.66666}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -1881,7 +1881,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: e8c0feff20cefefff4dafeffc8e7feff10f5feff4802ffff380fffff661cfffff02affff2838ffff9645ffffac59ffff7c68fffff477ffff1085fffff093ffff28a1fffffcadffffd0baffff2ec8ffff02d5ffff52e4ffff32fbffff
+      m_ExpandedIDs: 4034fdffca41fdffd64ffdffd460fdff606efdff987bfdff6c88fdff1498fdff98a6fdffecb3fdff68c1fdfff0cffdff80ddfdfff0eafdff36f8fdffa605feffec12feff4020feff702dfeffb43afeffec47feffdc54feff1462feffda6efeffbc7bfeff1089feff0096feff0ca3feffe0affeff9abdfeffcacafeff90d7feffb8e4fefff0f1feffc4fefeffd60bffff1219ffff4a26ffff0834ffff6a41ffff144efffffa5cffff4e6affff6478ffff2a85ffff2892ffff269fffff24acffffd6b9ffff46c7ffff8cd4ffff08e3ffff3af9ffff32fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1960,7 +1960,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: bc5a0000
     m_LastClickedID: 23228
-    m_ExpandedIDs: 000000009e6c0000a06c0000a26c0000a46c0000a66c0000a86c0000aa6c0000ac6c0000ae6c0000b06c0000b26c0000b46c0000b66c0000b86c0000ba6c0000bc6c0000be6c0000c06c0000c26c0000c46c0000c66c0000c86c0000ca6c0000cc6c0000ce6c0000d06c0000d26c0000d46c0000d66c0000
+    m_ExpandedIDs: 00000000ac6c0000ae6c0000b06c0000b26c0000b46c0000b66c0000b86c0000ba6c0000bc6c0000be6c0000c06c0000c26c0000c46c0000c66c0000c86c0000ca6c0000cc6c0000ce6c0000d06c0000d26c0000d46c0000d66c0000d86c0000da6c0000dc6c0000de6c0000e06c0000e26c0000e46c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1988,7 +1988,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff000000009e6c0000a06c0000a26c0000a46c0000a66c0000a86c0000aa6c0000ac6c0000ae6c0000b06c0000b26c0000b46c0000b66c0000b86c0000ba6c0000bc6c0000be6c0000c06c0000c26c0000c46c0000c66c0000c86c0000ca6c0000cc6c0000ce6c0000d06c0000d26c0000d46c0000d66c0000
+    m_ExpandedIDs: ffffffff00000000ac6c0000ae6c0000b06c0000b26c0000b46c0000b66c0000b86c0000ba6c0000bc6c0000be6c0000c06c0000c26c0000c46c0000c66c0000c86c0000ca6c0000cc6c0000ce6c0000d06c0000d26c0000d46c0000d66c0000d86c0000da6c0000dc6c0000de6c0000e06c0000e26c0000e46c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2117,14 +2117,14 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_Spl:
     ID: 164
-    splitterInitialOffset: 578.6667
+    splitterInitialOffset: 665.6667
     currentActiveSplitter: -1
     realSizes:
-    - 509.33337
-    - 266.66663
+    - 598.3334
+    - 177.66663
     relativeSizes:
-    - 0.65635747
-    - 0.34364253
+    - 0.7710482
+    - 0.22895181
     minSizes:
     - 32
     - 32
@@ -2200,7 +2200,7 @@ MonoBehaviour:
       name: Catherine Simulation
       fullName: Catherine Simulation
       resultStatus: 1
-      duration: 0.1075814
+      duration: 0.3013921
       messages: 
       output: 
       stacktrace: 
@@ -2216,7 +2216,7 @@ MonoBehaviour:
       name: EditMode.dll
       fullName: D:/Unity projects/cath-sim/Catherine Simulation/Library/ScriptAssemblies/EditMode.dll
       resultStatus: 1
-      duration: 0.0683422
+      duration: 0.2656344
       messages: 
       output: 
       stacktrace: 
@@ -2232,7 +2232,7 @@ MonoBehaviour:
       name: Tests
       fullName: Tests
       resultStatus: 1
-      duration: 0.0675138
+      duration: 0.2646952
       messages: 
       output: 
       stacktrace: 
@@ -2248,7 +2248,7 @@ MonoBehaviour:
       name: EditMode
       fullName: Tests.EditMode
       resultStatus: 1
-      duration: 0.0671361
+      duration: 0.2644012
       messages: 
       output: 
       stacktrace: 
@@ -2264,7 +2264,7 @@ MonoBehaviour:
       name: Bots
       fullName: Tests.EditMode.Bots
       resultStatus: 1
-      duration: 0.0630573
+      duration: 0.1825347
       messages: 
       output: 
       stacktrace: 
@@ -2280,7 +2280,7 @@ MonoBehaviour:
       name: Actions
       fullName: Tests.EditMode.Bots.Actions
       resultStatus: 1
-      duration: 0.0408076
+      duration: 0.0463154
       messages: 
       output: 
       stacktrace: 
@@ -2296,7 +2296,7 @@ MonoBehaviour:
       name: ActionStreamTest
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest
       resultStatus: 1
-      duration: 0.0378029
+      duration: 0.0417168
       messages: 
       output: 
       stacktrace: 
@@ -2312,7 +2312,7 @@ MonoBehaviour:
       name: TestCreateFromPositions
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TestCreateFromPositions
       resultStatus: 1
-      duration: 0.0201182
+      duration: 0.0234065
       messages: 
       output: 
       stacktrace: 
@@ -2329,7 +2329,7 @@ MonoBehaviour:
       name: TestDoesNotAddExtraJumps
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TestDoesNotAddExtraJumps
       resultStatus: 1
-      duration: 0.0008305
+      duration: 0.000813
       messages: 
       output: 
       stacktrace: 
@@ -2346,7 +2346,7 @@ MonoBehaviour:
       name: TestJumpsDown
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TestJumpsDown
       resultStatus: 1
-      duration: 0.0003881
+      duration: 0.0003788
       messages: 
       output: 
       stacktrace: 
@@ -2363,7 +2363,7 @@ MonoBehaviour:
       name: TranslateActionsTo3D
       fullName: Tests.EditMode.Bots.Actions.ActionStreamTest.TranslateActionsTo3D
       resultStatus: 1
-      duration: 0.0004441
+      duration: 0.0003932
       messages: 
       output: 
       stacktrace: 
@@ -2380,7 +2380,7 @@ MonoBehaviour:
       name: Algorithms
       fullName: Tests.EditMode.Bots.Algorithms
       resultStatus: 1
-      duration: 0.0593742
+      duration: 0.0644045
       messages: 
       output: 
       stacktrace: 
@@ -2396,7 +2396,7 @@ MonoBehaviour:
       name: BFSTest
       fullName: Tests.EditMode.Bots.Algorithms.BFSTest
       resultStatus: 1
-      duration: 0.0175915
+      duration: 0.0148843
       messages: 
       output: 
       stacktrace: 
@@ -2412,7 +2412,7 @@ MonoBehaviour:
       name: TestAddUnvisitedHeightDiff
       fullName: Tests.EditMode.Bots.Algorithms.BFSTest.TestAddUnvisitedHeightDiff
       resultStatus: 1
-      duration: 0.0059145
+      duration: 0.0056234
       messages: 
       output: 
       stacktrace: 
@@ -2429,7 +2429,7 @@ MonoBehaviour:
       name: TestDoesNotRevisit
       fullName: Tests.EditMode.Bots.Algorithms.BFSTest.TestDoesNotRevisit
       resultStatus: 1
-      duration: 0.0009743
+      duration: 0.0009288
       messages: 
       output: 
       stacktrace: 
@@ -2446,7 +2446,7 @@ MonoBehaviour:
       name: TestDoesNotVisitEmptyBLocks
       fullName: Tests.EditMode.Bots.Algorithms.BFSTest.TestDoesNotVisitEmptyBLocks
       resultStatus: 1
-      duration: 0.0005057
+      duration: 0.0003906
       messages: 
       output: 
       stacktrace: 
@@ -2463,7 +2463,7 @@ MonoBehaviour:
       name: TestReachesDesiredPosition
       fullName: Tests.EditMode.Bots.Algorithms.BFSTest.TestReachesDesiredPosition
       resultStatus: 1
-      duration: 0.0037478
+      duration: 0.0035875
       messages: 
       output: 
       stacktrace: 
@@ -2480,7 +2480,7 @@ MonoBehaviour:
       name: TestShortestPath
       fullName: Tests.EditMode.Bots.Algorithms.BFSTest.TestShortestPath
       resultStatus: 1
-      duration: 0.0020676
+      duration: 0.0021041
       messages: 
       output: 
       stacktrace: 
@@ -2497,7 +2497,7 @@ MonoBehaviour:
       name: BlockFrontierTest
       fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest
       resultStatus: 1
-      duration: 0.0545493
+      duration: 0.0245947
       messages: 
       output: 
       stacktrace: 
@@ -2513,7 +2513,7 @@ MonoBehaviour:
       name: TestGetFrontier
       fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestGetFrontier
       resultStatus: 1
-      duration: 0.0332954
+      duration: 0.0130216
       messages: 
       output: 
       stacktrace: 
@@ -2530,7 +2530,7 @@ MonoBehaviour:
       name: TestWorksWithAsymmetricPlayerPos
       fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestWorksWithAsymmetricPlayerPos
       resultStatus: 1
-      duration: 0.0040214
+      duration: 0.0022446
       messages: 
       output: 
       stacktrace: 
@@ -2542,12 +2542,62 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1039
       parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.BlockFrontierTest][suite]
+    - id: 1042
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.WallHelperTest][suite]
+      name: WallHelperTest
+      fullName: Tests.EditMode.Bots.Algorithms.WallHelperTest
+      resultStatus: 1
+      duration: 0.0156941
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1059
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Algorithms][suite]
+    - id: 1043
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/WallHelperTest/[EditMode][Tests.EditMode.Bots.Algorithms.WallHelperTest.TestGetWallHeight]
+      name: TestGetWallHeight
+      fullName: Tests.EditMode.Bots.Algorithms.WallHelperTest.TestGetWallHeight
+      resultStatus: 1
+      duration: 0.0038524
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1042
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.WallHelperTest][suite]
+    - id: 1044
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/WallHelperTest/[EditMode][Tests.EditMode.Bots.Algorithms.WallHelperTest.TestWallBoundaries]
+      name: TestWallBoundaries
+      fullName: Tests.EditMode.Bots.Algorithms.WallHelperTest.TestWallBoundaries
+      resultStatus: 1
+      duration: 0.0024268
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1042
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.WallHelperTest][suite]
     - id: 1033
       uniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.DS][suite]
       name: DS
       fullName: Tests.EditMode.Bots.DS
       resultStatus: 1
-      duration: 0.0587415
+      duration: 0.0682521
       messages: 
       output: 
       stacktrace: 
@@ -2563,7 +2613,7 @@ MonoBehaviour:
       name: FloorLevel2DTest
       fullName: Tests.EditMode.Bots.DS.FloorLevel2DTest
       resultStatus: 1
-      duration: 0.0041455
+      duration: 0.0078529
       messages: 
       output: 
       stacktrace: 
@@ -2579,7 +2629,7 @@ MonoBehaviour:
       name: TestGet
       fullName: Tests.EditMode.Bots.DS.FloorLevel2DTest.TestGet
       resultStatus: 1
-      duration: 0.0002722
+      duration: 0.000254
       messages: 
       output: 
       stacktrace: 
@@ -2596,7 +2646,7 @@ MonoBehaviour:
       name: TestInitialize
       fullName: Tests.EditMode.Bots.DS.FloorLevel2DTest.TestInitialize
       resultStatus: 1
-      duration: 0.0009857
+      duration: 0.0008846
       messages: 
       output: 
       stacktrace: 
@@ -2613,7 +2663,7 @@ MonoBehaviour:
       name: TestTranslateTo2D
       fullName: Tests.EditMode.Bots.DS.FloorLevel2DTest.TestTranslateTo2D
       resultStatus: 1
-      duration: 0.0015874
+      duration: 0.0015439
       messages: 
       output: 
       stacktrace: 
@@ -2630,7 +2680,7 @@ MonoBehaviour:
       name: MonteCarlo
       fullName: Tests.EditMode.Bots.DS.MonteCarlo
       resultStatus: 1
-      duration: 0.0556226
+      duration: 0.0193874
       messages: 
       output: 
       stacktrace: 
@@ -2646,7 +2696,7 @@ MonoBehaviour:
       name: PushPullActionTest
       fullName: Tests.EditMode.Bots.DS.MonteCarlo.PushPullActionTest
       resultStatus: 1
-      duration: 0.0513278
+      duration: 0.0109365
       messages: 
       output: 
       stacktrace: 
@@ -2662,7 +2712,7 @@ MonoBehaviour:
       name: TestGetViableActions
       fullName: Tests.EditMode.Bots.DS.MonteCarlo.PushPullActionTest.TestGetViableActions
       resultStatus: 1
-      duration: 0.0356226
+      duration: 0.0101608
       messages: 
       output: 
       stacktrace: 
@@ -2679,7 +2729,7 @@ MonoBehaviour:
       name: TreeModel
       fullName: Tests.EditMode.Bots.DS.TreeModel
       resultStatus: 1
-      duration: 0.0199085
+      duration: 0.0134795
       messages: 
       output: 
       stacktrace: 
@@ -2695,7 +2745,7 @@ MonoBehaviour:
       name: TreeTest
       fullName: Tests.EditMode.Bots.DS.TreeModel.TreeTest
       resultStatus: 1
-      duration: 0.0101513
+      duration: 0.003383
       messages: 
       output: 
       stacktrace: 
@@ -2711,7 +2761,7 @@ MonoBehaviour:
       name: TestForestAndEdgesCorrelate
       fullName: Tests.EditMode.Bots.DS.TreeModel.TreeTest.TestForestAndEdgesCorrelate
       resultStatus: 1
-      duration: 0.0016479
+      duration: 0.0020205
       messages: 
       output: 
       stacktrace: 
@@ -2728,7 +2778,7 @@ MonoBehaviour:
       name: WallLevel2DTest
       fullName: Tests.EditMode.Bots.DS.WallLevel2DTest
       resultStatus: 1
-      duration: 0.0295637
+      duration: 0.0117907
       messages: 
       output: 
       stacktrace: 
@@ -2739,12 +2789,29 @@ MonoBehaviour:
       categories: []
       parentId: 1051
       parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.DS][suite]
+    - id: 1029
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/DS/WallLevel2DTest/[EditMode][Tests.EditMode.Bots.DS.WallLevel2DTest.TestModifyWithActionDepth]
+      name: TestModifyWithActionDepth
+      fullName: Tests.EditMode.Bots.DS.WallLevel2DTest.TestModifyWithActionDepth
+      resultStatus: 1
+      duration: 0.0013889
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1027
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/DS/[EditMode][Tests.EditMode.Bots.DS.WallLevel2DTest][suite]
     - id: 1028
       uniqueId: EditMode.dll/Tests/EditMode/Bots/DS/WallLevel2DTest/[EditMode][Tests.EditMode.Bots.DS.WallLevel2DTest.TestTranslateTo2D]
       name: TestTranslateTo2D
       fullName: Tests.EditMode.Bots.DS.WallLevel2DTest.TestTranslateTo2D
       resultStatus: 1
-      duration: 0.0151335
+      duration: 0.0010567
       messages: 
       output: 
       stacktrace: 
@@ -2761,7 +2828,7 @@ MonoBehaviour:
       name: LevelDS
       fullName: Tests.EditMode.LevelDS
       resultStatus: 1
-      duration: 0.0485866
+      duration: 0.0450987
       messages: 
       output: 
       stacktrace: 
@@ -2777,7 +2844,7 @@ MonoBehaviour:
       name: GameMatrixTest
       fullName: Tests.EditMode.LevelDS.GameMatrixTest
       resultStatus: 1
-      duration: 0.0094
+      duration: 0.0083534
       messages: 
       output: 
       stacktrace: 
@@ -2793,7 +2860,7 @@ MonoBehaviour:
       name: DoesNotIncreaseSizeWhenInRange
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.DoesNotIncreaseSizeWhenInRange
       resultStatus: 1
-      duration: 0.0010206
+      duration: 0.0008624
       messages: 
       output: 
       stacktrace: 
@@ -2810,7 +2877,7 @@ MonoBehaviour:
       name: IncreaseSizeLeftIrregularxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftIrregularxyz
       resultStatus: 1
-      duration: 0.0020377
+      duration: 0.0018751
       messages: 
       output: 
       stacktrace: 
@@ -2827,7 +2894,7 @@ MonoBehaviour:
       name: IncreaseSizeLeftxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeLeftxyz
       resultStatus: 1
-      duration: 0.0007049
+      duration: 0.000672
       messages: 
       output: 
       stacktrace: 
@@ -2844,7 +2911,7 @@ MonoBehaviour:
       name: IncreaseSizeRightIrregularlyxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightIrregularlyxyz
       resultStatus: 1
-      duration: 0.0024593
+      duration: 0.0023662
       messages: 
       output: 
       stacktrace: 
@@ -2861,7 +2928,7 @@ MonoBehaviour:
       name: IncreaseSizeRightxyz
       fullName: Tests.EditMode.LevelDS.GameMatrixTest.IncreaseSizeRightxyz
       resultStatus: 1
-      duration: 0.0009659
+      duration: 0.0009118
       messages: 
       output: 
       stacktrace: 
@@ -2878,7 +2945,7 @@ MonoBehaviour:
       name: Matrix3DTest
       fullName: Tests.EditMode.LevelDS.Matrix3DTest
       resultStatus: 1
-      duration: 0.0275327
+      duration: 0.0268684
       messages: 
       output: 
       stacktrace: 
@@ -2894,7 +2961,7 @@ MonoBehaviour:
       name: DoesNotModifyObjectWhenNIsZero
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.DoesNotModifyObjectWhenNIsZero
       resultStatus: 1
-      duration: 0.0002608
+      duration: 0.000262
       messages: 
       output: 
       stacktrace: 
@@ -2911,7 +2978,7 @@ MonoBehaviour:
       name: GetBlockInRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.GetBlockInRange
       resultStatus: 1
-      duration: 0.0002088
+      duration: 0.0001817
       messages: 
       output: 
       stacktrace: 
@@ -2928,7 +2995,7 @@ MonoBehaviour:
       name: GetBlockOutOfRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.GetBlockOutOfRange
       resultStatus: 1
-      duration: 0.0050464
+      duration: 0.005007
       messages: 
       output: 'Trying to get 4, 5, 6; Dims: 4, 4, 4
 
@@ -2947,7 +3014,7 @@ MonoBehaviour:
       name: IncreasesDepthByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesDepthByN
       resultStatus: 1
-      duration: 0.0002789
+      duration: 0.0002634
       messages: 
       output: 
       stacktrace: 
@@ -2964,7 +3031,7 @@ MonoBehaviour:
       name: IncreasesHeightByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesHeightByN
       resultStatus: 1
-      duration: 0.0002348
+      duration: 0.0002225
       messages: 
       output: 
       stacktrace: 
@@ -2981,7 +3048,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInXAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInXAxis
       resultStatus: 1
-      duration: 0.0010487
+      duration: 0.0009588
       messages: 
       output: 
       stacktrace: 
@@ -2998,7 +3065,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInYAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInYAxis
       resultStatus: 1
-      duration: 0.0005009
+      duration: 0.0005084
       messages: 
       output: 
       stacktrace: 
@@ -3015,7 +3082,7 @@ MonoBehaviour:
       name: IncreasesNumberOfElementsInZAxis
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesNumberOfElementsInZAxis
       resultStatus: 1
-      duration: 0.0005591
+      duration: 0.0005985
       messages: 
       output: 
       stacktrace: 
@@ -3032,7 +3099,7 @@ MonoBehaviour:
       name: IncreasesWidthByN
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.IncreasesWidthByN
       resultStatus: 1
-      duration: 0.0002423
+      duration: 0.0002439
       messages: 
       output: 
       stacktrace: 
@@ -3049,7 +3116,7 @@ MonoBehaviour:
       name: SetBlockInRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.SetBlockInRange
       resultStatus: 1
-      duration: 0.0003493
+      duration: 0.0003461
       messages: 
       output: 
       stacktrace: 
@@ -3066,7 +3133,7 @@ MonoBehaviour:
       name: SetBlockOutOfRange
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.SetBlockOutOfRange
       resultStatus: 1
-      duration: 0.0011223
+      duration: 0.0010424
       messages: 
       output: 'Trying to get 4, 4, 4; Dims: 4, 4, 4
 
@@ -3085,7 +3152,7 @@ MonoBehaviour:
       name: ThrowsArgumentExceptionWhenAxisIsWrong
       fullName: Tests.EditMode.LevelDS.Matrix3DTest.ThrowsArgumentExceptionWhenAxisIsWrong
       resultStatus: 1
-      duration: 0.0036238
+      duration: 0.0056736
       messages: 
       output: 
       stacktrace: 
@@ -3102,7 +3169,7 @@ MonoBehaviour:
       name: Tools
       fullName: Tests.EditMode.Tools
       resultStatus: 1
-      duration: 0.019181
+      duration: 0.0335663
       messages: 
       output: 
       stacktrace: 
@@ -3118,7 +3185,7 @@ MonoBehaviour:
       name: DS
       fullName: Tests.EditMode.Tools.DS
       resultStatus: 1
-      duration: 0.0046856
+      duration: 0.0029737
       messages: 
       output: 
       stacktrace: 
@@ -3134,7 +3201,7 @@ MonoBehaviour:
       name: PriorityQueue
       fullName: Tests.EditMode.Tools.DS.PriorityQueue
       resultStatus: 1
-      duration: 0.0023198
+      duration: 0.0022098
       messages: 
       output: 
       stacktrace: 
@@ -3150,7 +3217,7 @@ MonoBehaviour:
       name: TestEnqueueDequeue
       fullName: Tests.EditMode.Tools.DS.PriorityQueue.TestEnqueueDequeue
       resultStatus: 1
-      duration: 0.0010365
+      duration: 0.0009347
       messages: 
       output: 
       stacktrace: 
@@ -3167,7 +3234,7 @@ MonoBehaviour:
       name: TestPeek
       fullName: Tests.EditMode.Tools.DS.PriorityQueue.TestPeek
       resultStatus: 1
-      duration: 0.0002848
+      duration: 0.0003085
       messages: 
       output: 
       stacktrace: 
@@ -3179,13 +3246,13 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: EditMode.dll/Tests/EditMode/Tools/DS/[EditMode][Tests.EditMode.Tools.DS.PriorityQueue][suite]
-    m_ResultText: BlockFrontierTest (0,055s)
+    m_ResultText: TestModifyWithActionDepth (0,001s)
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 119d9eaa
-      m_LastClickedID: -1432445679
-      m_ExpandedIDs: d4204888b1395ca657b094aa119d9eaa01341eafc9d362c49c4580dcd71c52deae501ce1ab800de8da3f5a0471d78804cbc4920d1f505919aac7351a8b46ec247f23a83eb1276f448e42d54d4d6b1050899e9c5826732a5f1eb49f61993e8864d897757b4b5ea47c2cebfe7dffffff7f
+      m_SelectedIDs: 8795d07a
+      m_LastClickedID: 2060490119
+      m_ExpandedIDs: d4204888b1395ca657b094aa119d9eaa01341eafc9d362c49c4580dcd71c52deae501ce1ab800de8da3f5a0471d78804a72b7a06cbc4920d1f505919aac7351a8b46ec247f23a83eb1276f448e42d54d4d6b1050899e9c5826732a5f1eb49f61993e8864d897757b4b5ea47c2cebfe7dffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
