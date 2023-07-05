@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using Bots.Action;
+﻿using Bots.Action;
 using Bots.Algorithms;
 using Bots.DS;
 using LevelDS;

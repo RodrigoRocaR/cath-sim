@@ -14,7 +14,7 @@ namespace Bots.Algorithms
             _searchTreeRoot = new TreeNode<State, PushPullAction>(new State(wh, playerPos));
         }
 
-        public void ExploreTree()
+        public void Climb()
         {
             var root = _searchTreeRoot;
             while (true)
