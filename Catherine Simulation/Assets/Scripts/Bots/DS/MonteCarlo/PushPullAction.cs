@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Blocks;
 using Bots.Algorithms;
 using LevelDS;
@@ -30,6 +31,12 @@ namespace Bots.DS.MonteCarlo
             BlockPos = blockPos;
             Action = action;
         }
+        
+        public PushPullAction(Actions action)
+        {
+            BlockPos = new Vector3();
+            Action = action;
+        }
 
         public bool IsAxisXMove()
         {
@@ -40,17 +47,17 @@ namespace Bots.DS.MonteCarlo
         {
             return Action is Actions.PushRight or Actions.PullLeft;
         }
-        
+
         public bool IsRightMove()
         {
             return Action is Actions.PushLeft or Actions.PullRight;
         }
-        
+
         public bool IsForwardMove()
         {
             return Action is Actions.PushForward or Actions.PullBackward;
         }
-        
+
         public bool IsBackwardMove()
         {
             return Action is Actions.PushBackward or Actions.PullForward;
@@ -61,7 +68,33 @@ namespace Bots.DS.MonteCarlo
             return Action is Actions.PushBackward or Actions.PushForward or Actions.PushLeft or Actions.PushRight;
         }
 
-        public static List<PushPullAction> GetViableActions(BlockFrontier bf)
+        public static Actions GetOppositeAction(PushPullAction pushPullAction)
+        {
+            var a = pushPullAction.Action;
+            return a switch
+            {
+                Actions.PushForward => Actions.PullForward,
+                Actions.PushRight => Actions.PullRight,
+                Actions.PushBackward => Actions.PullBackward,
+                Actions.PushLeft => Actions.PullLeft,
+                Actions.PullForward => Actions.PushForward,
+                Actions.PullRight => Actions.PushRight,
+                Actions.PullBackward => Actions.PushBackward,
+                Actions.PullLeft => Actions.PushLeft,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+
+        private static bool AreSameAction(Actions? a1, PushPullAction a2)
+        {
+            if (a2 == null || a1 == null)
+            {
+                return false;
+            }
+            return a1 == a2.Action;
+        }
+
+        public static List<PushPullAction> GetViableActions(BlockFrontier bf, PushPullAction excludedAction = null)
         {
             var actionDict = GetViableActionsAsDict(bf);
 
@@ -71,7 +104,8 @@ namespace Bots.DS.MonteCarlo
             {
                 foreach (var action in actionsList)
                 {
-                    ans.Add(new PushPullAction(blockPos, action));
+                    if (AreSameAction(action, excludedAction))
+                        ans.Add(new PushPullAction(blockPos, action));
                 }
             }
 
@@ -81,7 +115,7 @@ namespace Bots.DS.MonteCarlo
         public static Dictionary<Vector3, List<Actions>> GetViableActionsAsDict(BlockFrontier bf)
         {
             Dictionary<Vector3, List<Actions>> viableActions = new Dictionary<Vector3, List<Actions>>();
-            
+
             foreach (var blockPos in bf.GetFrontier())
             {
                 viableActions.Add(blockPos, new List<Actions>());
@@ -116,8 +150,8 @@ namespace Bots.DS.MonteCarlo
 
             return viableActions;
         }
-        
-        
+
+
         private static bool IsWalkable(Vector3 pos)
         {
             // IsEmpty and has a block below it

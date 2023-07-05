@@ -18,6 +18,7 @@ namespace Bots.DS.MonteCarlo
         private List<PushPullAction> _possibleActions;
 
         private WallHelper _wallHelper;
+        private PushPullAction _excludedAction;
 
         public State(WallHelper wh, Vector3 playerPos)
         {
@@ -33,6 +34,7 @@ namespace Bots.DS.MonteCarlo
             _playerPos = BlockHelper.GetNewPlayerPos(previous._playerPos, action);
             _wallLevel2D = new WallLevel2D(previous._wallLevel2D, action);
             _blockFrontier = new BlockFrontier(_playerPos);
+            _excludedAction = new PushPullAction(PushPullAction.GetOppositeAction(action));
         }
 
         private int Evaluate()
@@ -58,7 +60,7 @@ namespace Bots.DS.MonteCarlo
                 return null;
             }
 
-            _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier);
+            _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier, _excludedAction);
 
             foreach (var action in _possibleActions)
             {
@@ -76,7 +78,7 @@ namespace Bots.DS.MonteCarlo
         private int Rollout(int depth)
         {
             if (depth == 0) return Evaluate();
-            _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier);
+            _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier, _excludedAction);
             var action = _possibleActions[Random.Range(0, _possibleActions.Count)];
             return new State(this, action).Rollout(depth - 1);
         }
