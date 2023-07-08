@@ -34,11 +34,12 @@ namespace Bots.Algorithms
 
         private void GetFrontierFromPos(Vector3 pos)
         {
-            AddBlock(_bh.Up(pos, depthDelta: 1));
-
             bool finished = false;
             bool exploringRight = true;
-            Vector3 currBlock = _bh.Right(pos);
+            Vector3 currBlock = pos;
+            
+            MoveUntilCanGetOnBlock(pos);
+            currBlock = NextBlock();
             while (!finished)
             {
                 if (Level.IsNotEmpty(_bh.Up(currBlock))) // Case 1: block in the way
@@ -48,6 +49,7 @@ namespace Bots.Algorithms
                     {
                         // We try to hang before giving up
                         if (!CanHang()) FinishExploration();
+                        currBlock = NextBlock(); // first available block
                         Hang();
                     }
                     else // 1.B) Just one block
@@ -81,6 +83,7 @@ namespace Bots.Algorithms
                 {
                     exploringRight = false;
                     currBlock = pos;
+                    MoveUntilCanGetOnBlock(pos);
                 }
                 else finished = true;
             }
@@ -100,21 +103,69 @@ namespace Bots.Algorithms
                 return Level.IsNotEmpty(currBlock) && Level.IsNotEmpty(NextBlock());
             }
 
-            void Hang()
+            bool CanNotGetUp()
             {
-                currBlock = NextBlock(); // first available block
+                return Level.IsNotEmpty(_bh.Up(currBlock)) ||
+                       Level.IsNotEmpty(_bh.Up(currBlock, multiplier: 2));
+            }
+
+            void Hang(bool exploreMode = true)
+            {
                 bool dontRunOutOfBlocks = Level.IsNotEmpty(currBlock);
-                while (dontRunOutOfBlocks && (Level.IsNotEmpty(_bh.Up(currBlock)) ||
-                                              Level.IsNotEmpty(_bh.Up(currBlock, multiplier: 2))))
+                while (dontRunOutOfBlocks && CanNotGetUp())
                 {
                     // We can continue hanging but we can not get up to the block since it is blocked
                     currBlock = NextBlock();
                     dontRunOutOfBlocks = Level.IsNotEmpty(currBlock);
                 }
-                // Since after this call we plan to continue iterating we have to set the block to the block previous
-                // to the available one (or empty one and hence finish exploring)
-                currBlock = PrevBlock();
-                if (dontRunOutOfBlocks) AddBlock(_bh.Up(currBlock)); // wall to the left will not be added otherwise when width >= 2
+                // If on exploreMode, after this we plan to continue iterating until we have to set the block 
+                // to the block previous to the available one (or empty one and hence finish exploring)
+                if (exploreMode) currBlock = PrevBlock();
+                if (dontRunOutOfBlocks)
+                {
+                    if (!exploreMode)
+                    {
+                        if (exploringRight) AddBlock(_bh.TopLeft(currBlock));
+                        else AddBlock(_bh.TopRight(currBlock));
+                    }
+                    else AddBlock(_bh.Up(currBlock)); // wall to the left will not be added otherwise when width >= 2
+                }
+            }
+
+            void MoveUntilCanGetOnBlock(Vector3 p)
+            {
+                if (!Level.IsEmpty(p)) // Assume player is theoretically floating in the block (block obtained is backward)
+                {
+                    AddInitialBlock();
+                    return;
+                } 
+                currBlock = _bh.Forward(p);
+                if (!CanNotGetUp()) // Can get up, no need to hang
+                {
+                    AddInitialBlock();
+                    return;
+                } 
+                
+                Hang(exploreMode: false);
+                if (Level.IsEmpty(currBlock) && exploringRight) // We ran out of blocks --> go to the left
+                {
+                    currBlock = _bh.Forward(pos);
+                    exploringRight = false;
+                    Hang(exploreMode: false);
+                    if (Level.IsEmpty(currBlock)) // Ran out of blocks again
+                        finished = true;
+                }
+                else if (Level.IsEmpty(currBlock) && !exploringRight) // Going to the left and ran out of blocks
+                {
+                    finished = true;
+                    return;
+                }
+                AddInitialBlock();
+            }
+
+            void AddInitialBlock()
+            {
+                AddBlock(_bh.Up(currBlock, depthDelta: 1));
             }
         }
 

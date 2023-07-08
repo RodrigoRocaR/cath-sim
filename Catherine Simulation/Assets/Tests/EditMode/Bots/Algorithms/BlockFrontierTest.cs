@@ -25,7 +25,7 @@ namespace Tests.EditMode.Bots.Algorithms
                     $"{string.Join("\n", frontier.Zip(obtainedFrontier, (elem1, elem2) => $"Expected: {elem1} --- Obtained: {elem2}").ToArray())}");
             }
         }
-        
+
         [Test]
         public void TestGetFrontier()
         {
@@ -106,7 +106,8 @@ namespace Tests.EditMode.Bots.Algorithms
                         new Vector3(3, 2, 1),
                     }
                 },
-                { // trapped in walls
+                {
+                    // trapped in walls
                     new[]
                     {
                         new[] // x: 0
@@ -152,200 +153,10 @@ namespace Tests.EditMode.Bots.Algorithms
         }
 
         [Test]
-        public void TestGetFrontierWithWall()
-        {
-            Vector3 initialPostion = new Vector3(0, 0, 1);
-            Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
-            {
-                { // hanging from first block and wall at x = 2
-                    new[]
-                    {
-                        new[] // x: 0
-                        {
-                            new[] { -1, 0, 0 }, // y:0
-                            new[] { -1, -1, 0 }, // y:1
-                            new[] { -1, -1, 0 }, // y:2
-                        },
-                        new[] // x: 1
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                        new[] // x: 2
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                        },
-                        new[] // x: 3
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                        new[] // x: 4
-                        {
-                            new[] { -1, -1, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                    },
-                    new List<Vector3>
-                    {
-                        new Vector3(0, 1, 2),
-                        new Vector3(1, 1, 2),
-                        new Vector3(2, 1, 1),
-                        new Vector3(3, 1, 2),
-                        new Vector3(4, 1, 1),
-                        new Vector3(4, 2, 2),
-                    }
-                },
-                { // test does not get up when there is no space
-                    new[]
-                    {
-                        new[] // x: 0
-                        {
-                            new[] { -1, 0, 0 }, // y:0
-                            new[] { -1, -1, 0 }, // y:1
-                            new[] { -1, -1, 0 }, // y:2
-                        },
-                        new[] // x: 1
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                        },
-                        new[] // x: 2
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                            new[] { -1, 0, 0 },
-                        },
-                        new[] // x: 3
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                        new[] // x: 4
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                    },
-                    new List<Vector3>
-                    {
-                        new Vector3(0, 1, 2),
-                        new Vector3(1, 1, 1),
-                        new Vector3(3, 1, 1),
-                        new Vector3(4, 1, 2),
-                    }
-                },
-                { // test cannot get back up
-                    new[]
-                    {
-                        new[] // x: 0
-                        {
-                            new[] { -1, 0, 0 }, // y:0
-                            new[] { -1, -1, 0 }, // y:1
-                            new[] { -1, -1, 0 }, // y:2
-                        },
-                        new[] // x: 1
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                        },
-                        new[] // x: 2
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                            new[] { -1, 0, 0 },
-                        },
-                        new[] // x: 3
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                        new[] // x: 4
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                    },
-                    new List<Vector3>
-                    {
-                        new Vector3(0, 1, 2),
-                        new Vector3(1, 1, 1),
-                    }
-                },
-            };
-            TestGetFrontierWithCases(cases, initialPostion);
-        }
-        
-        
-        [Test]
-        public void TestGetFrontierWhileHanging()
-        {
-            Vector3 initialPostion = new Vector3(0, 0, 0);
-            Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
-            {
-                { // hanging from first block and wall at x = 2
-                    new[]
-                    {
-                        new[] // x: 0
-                        {
-                            new[] { -1, 0, 0 }, // y:0
-                            new[] { -1, -1, 0 }, // y:1
-                            new[] { -1, -1, 0 }, // y:2
-                        },
-                        new[] // x: 1
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                        new[] // x: 2
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                        },
-                        new[] // x: 3
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                        new[] // x: 4
-                        {
-                            new[] { -1, -1, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                    },
-                    new List<Vector3>
-                    {
-                        new Vector3(0, 1, 2),
-                        new Vector3(1, 1, 2),
-                        new Vector3(2, 1, 1),
-                        new Vector3(3, 1, 2),
-                        new Vector3(4, 1, 1),
-                    }
-                },
-            };
-            TestGetFrontierWithCases(cases, initialPostion);
-        }
-
-        [Test]
-        public void TestWorksWithAsymmetricPlayerPos()
+        public void TestWithAsymmetricPlayerPos()
         {
             Vector3 initialPostion = new Vector3(2, 6, 3);
-            
+
             GameObject mockObject = new GameObject();
             var mockLevel = mockObject.AddComponent<Level>();
             mockLevel.NewMockLevel(new[]
@@ -394,8 +205,420 @@ namespace Tests.EditMode.Bots.Algorithms
             };
 
             var obtained = new BlockFrontier(initialPostion).GetFrontier();
-            
+
             CollectionAssert.AreEquivalent(expected, obtained);
+        }
+
+        [Test]
+        public void TestWithWall()
+        {
+            Vector3 initialPostion = new Vector3(0, 0, 1);
+            Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
+            {
+                {
+                    // hanging from first block and wall at x = 2
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(0, 1, 2),
+                        new Vector3(1, 1, 2),
+                        new Vector3(2, 1, 1),
+                        new Vector3(3, 1, 2),
+                        new Vector3(4, 1, 1),
+                        new Vector3(4, 2, 2),
+                    }
+                },
+                {
+                    // test does not get up when there is no space
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(0, 1, 2),
+                        new Vector3(1, 1, 1),
+                        new Vector3(3, 1, 1),
+                        new Vector3(4, 1, 2),
+                    }
+                },
+                {
+                    // test cannot get back up
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(0, 1, 2),
+                        new Vector3(1, 1, 1),
+                    }
+                },
+            };
+            TestGetFrontierWithCases(cases, initialPostion);
+        }
+
+        [Test]
+        public void TestWhileHanging()
+        {
+            Vector3 initialPostion = new Vector3(0, 0, 0);
+            Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
+            {
+                {
+                    // hanging from first block and wall at x = 2
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(0, 1, 2),
+                        new Vector3(1, 1, 2),
+                        new Vector3(2, 1, 1),
+                        new Vector3(3, 1, 2),
+                        new Vector3(4, 1, 1),
+                        new Vector3(4, 2, 2),
+                    }
+                },
+            };
+            TestGetFrontierWithCases(cases, initialPostion);
+        }
+
+        [Test]
+        public void TestHangingCannotGetUp()
+        {
+            Vector3 initialPostion = new Vector3(3, 0, 0);
+            Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
+            {
+                { // has space on both sides
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 5
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 6
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(0, 1, 2),
+                        new Vector3(1, 1, 1),
+                        new Vector3(5, 1, 1),
+                        new Vector3(6, 1, 2),
+                    }
+                },
+                { // runs out of blocks on the right, but has space on the left
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 5
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 6
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(0, 1, 2),
+                        new Vector3(1, 1, 1),
+                    }
+                },
+                { // only has space on the right
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, 0, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 5
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 6
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(5, 1, 1),
+                        new Vector3(6, 1, 2),
+                    }
+                },
+                { // has no space
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, 0, 0 }, // y:2
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 5
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 6
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                    }
+                },
+            };
+            TestGetFrontierWithCases(cases, initialPostion);
         }
     }
 }
