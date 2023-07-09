@@ -688,5 +688,88 @@ namespace Tests.EditMode.Bots.Algorithms
             };
             TestGetFrontierWithCases(cases, initialPostion);
         }
+
+        [Test]
+        public void TestCanHangOnZAxis()
+        {
+            Vector3 initialPostion = new Vector3(0, 1, 1);
+            Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
+            {
+                { // basic: hang backwards one time
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0, 0 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, -1, 0, 0 },
+                            new[] { -1, -1, -1, 0 },
+                            new[] { -1, -1, -1, 0 },
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, -1, 0, 0 },
+                            new[] { -1, -1, -1, 0 },
+                            new[] { -1, -1, -1, 0 },
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, -1, 0, 0 },
+                            new[] { -1, -1, 0, 0 },
+                            new[] { -1, -1, -1, 0 },
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, -1, 0, 0 },
+                            new[] { -1, -1, 0, 0 },
+                            new[] { -1, -1, -1, 0 },
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(3, 2, 3),
+                        new Vector3(4, 2, 3),
+                    }
+                },
+                {
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, -1, 0, 0, 0 }, 
+                            new[] { -1, -1, 0, 0, 0 }, 
+                            new[] { -1, -1, 0, 0, 0 }, 
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, -1, 0, 0, 0 }, 
+                            new[] { -1, -1, -1, -1, 0 }, 
+                            new[] { -1, -1, -1, -1, 0 }, 
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, -1, 0, 0, 0 }, 
+                            new[] { -1, -1, -1, -1, 0 }, 
+                            new[] { -1, -1, -1, -1, 0 }, 
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, -1, 0, 0, 0 }, 
+                            new[] { -1, -1, -1, -1, 0 }, 
+                            new[] { -1, -1, -1, -1, -1 }, 
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(2, 2, 4),
+                    }
+                },
+            };
+            TestGetFrontierWithCases(cases, initialPostion);
+        }
     }
 }

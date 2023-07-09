@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 18
+  controlID: 125
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 127
+  controlID: 103
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 150
+  controlID: 61
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1879,9 +1879,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 72ecffff
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6e74fcfffc8dfcff1c8efcff3a9bfcff4ea8fcff0ab6fcff36c3fcff62d0fcff26ddfcfffae9fcffa6f6fcff5804fdff4015fdffd622fdffb630fdffc23dfdff764afdff3a57fdff7e64fdffc672fdff6c7ffdff368cfdffea98fdff9ea5fdff6ab2fdffb4bffdffeccefdffb0e0fdff6cedfdffa6fbfdff0209feff9e15feff6a22feff903bfeffb03bfeffc648feff8a55feff3662feff6a6ffeff167cfeff6289feffec96feffa8a3feffccb0fefff8bdfeffa4cafeff50d8feffbce6feff58f3feff0c00ffff200dffff141affffb026ffff5c33ffffac40ffff584dffff245affff4867ffff7c74ffff9881ffff4c8efffff09affffaca7ffff58b4ffff24c3ffff48d0fffff4dcffff1ceaffff34fbffff
+      m_ExpandedIDs: 06d1ffff1edeffffe6ebffff34fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -2079,7 +2079,7 @@ MonoBehaviour:
     m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -5006
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -2200,7 +2200,7 @@ MonoBehaviour:
       name: Catherine Simulation
       fullName: Catherine Simulation
       resultStatus: 2
-      duration: 87.4102
+      duration: 0.0759931
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2216,7 +2216,7 @@ MonoBehaviour:
       name: EditMode.dll
       fullName: D:/Unity projects/cath-sim/Catherine Simulation/Library/ScriptAssemblies/EditMode.dll
       resultStatus: 2
-      duration: 87.3778
+      duration: 0.049154
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2232,7 +2232,7 @@ MonoBehaviour:
       name: Tests
       fullName: Tests
       resultStatus: 2
-      duration: 87.37716
+      duration: 0.0487151
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2248,7 +2248,7 @@ MonoBehaviour:
       name: EditMode
       fullName: Tests.EditMode
       resultStatus: 2
-      duration: 87.37691
+      duration: 0.0485533
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2264,7 +2264,7 @@ MonoBehaviour:
       name: Bots
       fullName: Tests.EditMode.Bots
       resultStatus: 2
-      duration: 87.37372
+      duration: 0.0450849
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2380,7 +2380,7 @@ MonoBehaviour:
       name: Algorithms
       fullName: Tests.EditMode.Bots.Algorithms
       resultStatus: 2
-      duration: 87.37055
+      duration: 0.0414447
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2497,7 +2497,7 @@ MonoBehaviour:
       name: BlockFrontierTest
       fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest
       resultStatus: 2
-      duration: 87.36583
+      duration: 0.0373225
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2508,12 +2508,37 @@ MonoBehaviour:
       categories: []
       parentId: 1051
       parentUniqueId: EditMode.dll/Tests/EditMode/Bots/[EditMode][Tests.EditMode.Bots.Algorithms][suite]
+    - id: 1047
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/BlockFrontierTest/[EditMode][Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestCanHangOnZAxis]
+      name: TestCanHangOnZAxis
+      fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestCanHangOnZAxis
+      resultStatus: 2
+      duration: 0.0249313
+      messages: "  Expected: 2\r\n  But was:  0\r\n"
+      output: 
+      stacktrace: 'at Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestGetFrontierWithCases
+        (System.Collections.Generic.Dictionary`2[TKey,TValue] cases, UnityEngine.Vector3
+        initialPostion) [0x00045] in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\Bots\Algorithms\BlockFrontierTest.cs:22
+
+        at
+        Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestCanHangOnZAxis () [0x00187]
+        in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\Bots\Algorithms\BlockFrontierTest.cs:739
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1040
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.BlockFrontierTest][suite]
     - id: 1036
       uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/BlockFrontierTest/[EditMode][Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestGetFrontier]
       name: TestGetFrontier
       fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestGetFrontier
       resultStatus: 1
-      duration: 0.03469
+      duration: 0.0283265
       messages: 
       output: 
       stacktrace: 
@@ -2526,22 +2551,31 @@ MonoBehaviour:
       parentId: 1035
       parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.BlockFrontierTest][suite]
     - id: 1045
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/BlockFrontierTest/[EditMode][Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestHagingCannotGetUp]
-      name: TestHagingCannotGetUp
-      fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestHagingCannotGetUp
-      resultStatus: 2
-      duration: 87.347885
-      messages: "  Expected: 4\r\n  But was:  2\r\n"
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/BlockFrontierTest/[EditMode][Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestHangingCannotGetUp]
+      name: TestHangingCannotGetUp
+      fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestHangingCannotGetUp
+      resultStatus: 1
+      duration: 0.002069
+      messages: 
       output: 
-      stacktrace: 'at Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestGetFrontierWithCases
-        (System.Collections.Generic.Dictionary`2[TKey,TValue] cases, UnityEngine.Vector3
-        initialPostion) [0x00051] in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\Bots\Algorithms\BlockFrontierTest.cs:22
-
-        at
-        Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestHagingCannotGetUp ()
-        [0x00211] in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\Bots\Algorithms\BlockFrontierTest.cs:467
-
-'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1040
+      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/[EditMode][Tests.EditMode.Bots.Algorithms.BlockFrontierTest][suite]
+    - id: 1046
+      uniqueId: EditMode.dll/Tests/EditMode/Bots/Algorithms/BlockFrontierTest/[EditMode][Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestNeedsToHangButDoesNotStartHanging]
+      name: TestNeedsToHangButDoesNotStartHanging
+      fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestNeedsToHangButDoesNotStartHanging
+      resultStatus: 1
+      duration: 0.0294394
+      messages: 
+      output: 
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -2555,7 +2589,7 @@ MonoBehaviour:
       name: TestWhileHanging
       fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestWhileHanging
       resultStatus: 1
-      duration: 0.0007003
+      duration: 0.0007268
       messages: 
       output: 
       stacktrace: 
@@ -2572,7 +2606,7 @@ MonoBehaviour:
       name: TestWithAsymmetricPlayerPos
       fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestWithAsymmetricPlayerPos
       resultStatus: 1
-      duration: 0.003486
+      duration: 0.0036063
       messages: 
       output: 
       stacktrace: 
@@ -2589,7 +2623,7 @@ MonoBehaviour:
       name: TestWithWall
       fullName: Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestWithWall
       resultStatus: 1
-      duration: 0.0012739
+      duration: 0.0012972
       messages: 
       output: 
       stacktrace: 
@@ -3305,25 +3339,25 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: EditMode.dll/Tests/EditMode/Tools/DS/[EditMode][Tests.EditMode.Tools.DS.PriorityQueue][suite]
-    m_ResultText: "TestHagingCannotGetUp (87,348s)\n---\nExpected: 4\r\n  But was: 
-      2\n---\nat Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestGetFrontierWithCases
-      (System.Collections.Generic.Dictionary`2[TKey,TValue] cases, UnityEngine.Vector3
-      initialPostion) [0x00051] in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\Bots\\Algorithms\\BlockFrontierTest.cs:22\r\nat
-      Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestHagingCannotGetUp () [0x00211]
-      in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\Bots\\Algorithms\\BlockFrontierTest.cs:467"
+    m_ResultText: "TestCanHangOnZAxis (0,025s)\n---\nExpected: 2\r\n  But was:  0\n---\nat
+      Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestGetFrontierWithCases (System.Collections.Generic.Dictionary`2[TKey,TValue]
+      cases, UnityEngine.Vector3 initialPostion) [0x00045] in D:\\Unity projects\\cath-sim\\Catherine
+      Simulation\\Assets\\Tests\\EditMode\\Bots\\Algorithms\\BlockFrontierTest.cs:22\r\nat
+      Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestCanHangOnZAxis () [0x00187]
+      in D:\\Unity projects\\cath-sim\\Catherine Simulation\\Assets\\Tests\\EditMode\\Bots\\Algorithms\\BlockFrontierTest.cs:739"
     m_ResultStacktrace: 'at Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestGetFrontierWithCases
       (System.Collections.Generic.Dictionary`2[TKey,TValue] cases, UnityEngine.Vector3
-      initialPostion) [0x00051] in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\Bots\Algorithms\BlockFrontierTest.cs:22
+      initialPostion) [0x00045] in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\Bots\Algorithms\BlockFrontierTest.cs:22
 
       at
-      Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestHagingCannotGetUp () [0x00211]
-      in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\Bots\Algorithms\BlockFrontierTest.cs:467
+      Tests.EditMode.Bots.Algorithms.BlockFrontierTest.TestCanHangOnZAxis () [0x00187]
+      in D:\Unity projects\cath-sim\Catherine Simulation\Assets\Tests\EditMode\Bots\Algorithms\BlockFrontierTest.cs:739
 
 '
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ce87d18f
-      m_LastClickedID: -1882093618
+      m_SelectedIDs: be48350a
+      m_LastClickedID: 171264190
       m_ExpandedIDs: d420488857b094aa119d9eaa01341eafc9d362c4d71c52deae501ce1ab800de8da3f5a0471d78804a72b7a061f505919aac7351a8b46ec247f23a83eb1276f448e42d54d4d6b1050899e9c5826732a5f1eb49f61993e8864d897757b4b5ea47c2cebfe7dffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0

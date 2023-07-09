@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Bots.Algorithms
 {
-    // todo: check that it works when player is hanging
     // todo: check that it works when there is a fall??
     // todo: add boolean flag when it is possible to add blocks of above wall (next Z?)
     public class BlockFrontier
@@ -37,7 +36,7 @@ namespace Bots.Algorithms
             bool finished = false;
             bool exploringRight = true;
             Vector3 currBlock = pos;
-            
+
             MoveUntilCanGetOnBlock(pos);
             currBlock = NextBlock();
             while (!finished)
@@ -92,7 +91,7 @@ namespace Bots.Algorithms
             {
                 return exploringRight ? _bh.Right(currBlock) : _bh.Left(currBlock);
             }
-            
+
             Vector3 PrevBlock()
             {
                 return exploringRight ? _bh.Left(currBlock) : _bh.Right(currBlock);
@@ -109,15 +108,11 @@ namespace Bots.Algorithms
                        Level.IsNotEmpty(_bh.Up(currBlock, multiplier: 2));
             }
 
+            // todo: do hang horizontally and logic to move on Z axis
             void Hang(bool exploreMode = true)
             {
-                bool dontRunOutOfBlocks = Level.IsNotEmpty(currBlock);
-                while (dontRunOutOfBlocks && CanNotGetUp())
-                {
-                    // We can continue hanging but we can not get up to the block since it is blocked
-                    currBlock = NextBlock();
-                    dontRunOutOfBlocks = Level.IsNotEmpty(currBlock);
-                }
+                bool dontRunOutOfBlocks = HangHorizontally();
+
                 // If on exploreMode, after this we plan to continue iterating until we have to set the block 
                 // to the block previous to the available one (or empty one and hence finish exploring)
                 if (exploreMode) currBlock = PrevBlock();
@@ -132,20 +127,40 @@ namespace Bots.Algorithms
                 }
             }
 
+            bool HangHorizontally()
+            {
+                bool dontRunOutOfBlocks = Level.IsNotEmpty(currBlock);
+                while (dontRunOutOfBlocks && CanNotGetUp())
+                {
+                    currBlock = NextBlock();
+                    // There are blocks in the way, so we have to hang on them instead: (hang backwards)
+                    while (Level.IsNotEmpty(_bh.Backward(currBlock))) currBlock = _bh.Backward(currBlock);
+                    // We dont have more blocks to hang, try to hang forward
+                    while (Level.IsEmpty(currBlock) && Level.IsNotEmpty(PrevBlock()))
+                        currBlock = _bh.Forward(currBlock);
+                    
+                    dontRunOutOfBlocks = Level.IsNotEmpty(currBlock);
+                }
+
+                return dontRunOutOfBlocks;
+            }
+
             void MoveUntilCanGetOnBlock(Vector3 p)
             {
-                if (!Level.IsEmpty(p)) // Assume player is theoretically floating in the block (block obtained is backward)
+                if (!Level.IsEmpty(
+                        p)) // Assume player is theoretically floating in the block (block obtained is backward)
                 {
                     AddInitialBlock();
                     return;
-                } 
+                }
+
                 currBlock = _bh.Forward(p);
                 if (!CanNotGetUp()) // Can get up, no need to hang
                 {
                     AddInitialBlock();
                     return;
-                } 
-                
+                }
+
                 Hang(exploreMode: false);
                 if (Level.IsEmpty(currBlock) && exploringRight) // We ran out of blocks --> go to the left
                 {
@@ -160,6 +175,7 @@ namespace Bots.Algorithms
                     finished = true;
                     return;
                 }
+
                 AddInitialBlock();
             }
 
