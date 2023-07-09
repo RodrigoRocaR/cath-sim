@@ -2,13 +2,14 @@
 using Blocks;
 using Bots.Algorithms;
 using Bots.DS.TreeModel;
+using LevelDS;
 using UnityEngine;
 
 namespace Bots.DS.MonteCarlo
 {
     public class State
     {
-        private WallLevel2D _wallLevel2D;
+        private GameMatrix _currentLevel;
         private Vector3 _playerPos;
 
         public int N { get; set; } // number of visits
@@ -16,14 +17,12 @@ namespace Bots.DS.MonteCarlo
 
         private BlockFrontier _blockFrontier;
         private List<PushPullAction> _possibleActions;
-
-        private WallHelper _wallHelper;
+        
         private PushPullAction _excludedAction;
 
-        public State(WallHelper wh, Vector3 playerPos)
+        public State(Vector3 playerPos) // root node constructor
         {
-            _wallHelper = wh;
-            _wallLevel2D = new WallLevel2D(wh);
+            _currentLevel = Level.GetGameMatrix();
             _playerPos = playerPos;
 
             _blockFrontier = new BlockFrontier(playerPos);
@@ -32,7 +31,7 @@ namespace Bots.DS.MonteCarlo
         private State(State previous, PushPullAction action)
         {
             _playerPos = BlockHelper.GetNewPlayerPos(previous._playerPos, action);
-            _wallLevel2D = new WallLevel2D(previous._wallLevel2D, action);
+            _currentLevel = new GameMatrix(previous._currentLevel, action);
             _blockFrontier = new BlockFrontier(_playerPos);
             _excludedAction = new PushPullAction(PushPullAction.GetOppositeAction(action));
         }
@@ -40,6 +39,7 @@ namespace Bots.DS.MonteCarlo
         private int Evaluate()
         {
             int score = 0;
+            /*
             if ((int)_playerPos.z >= _wallHelper.GetTargetZ())
             {
                 score += 99;
@@ -47,7 +47,7 @@ namespace Bots.DS.MonteCarlo
             else
             {
                 score += _wallHelper.GetRelativeHeight();
-            }
+            }*/
 
             return score;
         }

@@ -251,5 +251,10 @@ namespace LevelDS
                 (int) (vector3.y / GameConstants.BlockScale),
                 (int) (vector3.z / GameConstants.BlockScale));
         }
+
+        public static GameMatrix GetGameMatrix()
+        {
+            return _level;
+        }
     }
 }

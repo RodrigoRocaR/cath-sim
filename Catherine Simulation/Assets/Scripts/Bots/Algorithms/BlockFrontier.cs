@@ -107,8 +107,7 @@ namespace Bots.Algorithms
                 return Level.IsNotEmpty(_bh.Up(currBlock)) ||
                        Level.IsNotEmpty(_bh.Up(currBlock, multiplier: 2));
             }
-
-            // todo: do hang horizontally and logic to move on Z axis
+            
             void Hang(bool exploreMode = true)
             {
                 bool dontRunOutOfBlocks = HangHorizontally();

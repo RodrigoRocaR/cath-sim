@@ -1,5 +1,7 @@
 using System;
+using Blocks;
 using Blocks.BlockTypes;
+using Bots.DS.MonteCarlo;
 using UnityEngine;
 
 namespace LevelDS
@@ -24,10 +26,29 @@ namespace LevelDS
             Width = width;
             Height = height;
             Depth = depth;
-            _levelInt = new Matrix3D<int>(width, height, depth, GameConstants.EmptyBlock);
-            _level = new Matrix3D<IBlock>(width, height, depth, null);
+            _levelInt = new Matrix3D<int>(Width, Height, Depth, GameConstants.EmptyBlock);
+            _level = new Matrix3D<IBlock>(Width, Height, Depth, null);
             _negativeExpanding = new Vector3Int(0, 0, 0);
             _isMock = isMock;
+        }
+        
+        public GameMatrix(GameMatrix prev, PushPullAction action)
+        {
+            Width = prev.Width;
+            Height = prev.Height;
+            Depth = prev.Depth;
+            _levelInt = new Matrix3D<int>(Width, Height, Depth, GameConstants.EmptyBlock);
+            _negativeExpanding = new Vector3Int(0, 0, 0);
+            _isMock = false;
+            ModifyWithAction(action);
+        }
+        
+        private void ModifyWithAction(PushPullAction pushPullAction)
+        {
+            Vector3 blockPos = pushPullAction.BlockPos;
+            int type = _levelInt[blockPos];
+            _levelInt[blockPos] = GameConstants.EmptyBlock;
+            _levelInt[BlockHelper.GetNewBlockPos(blockPos, pushPullAction)] = type;
         }
     
         // Access integer matrix --------------

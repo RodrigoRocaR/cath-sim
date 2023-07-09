@@ -14,8 +14,7 @@ namespace Bots.Algorithms
 
         public MonteCarlo(Vector3 playerPos)
         {
-            var wh = new WallHelper(playerPos);
-            _searchTreeRoot = new TreeNode<State, PushPullAction>(new State(wh, playerPos));
+            _searchTreeRoot = new TreeNode<State, PushPullAction>(new State(playerPos));
             BotEventManager.OnExplorationFinished += TriggerStopIterating;
         }
 
