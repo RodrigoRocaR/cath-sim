@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Bots.Algorithms
 {
-    // todo: add boolean flag when it is possible to add blocks of above wall (next Z?)
     public class BlockFrontier
     {
         private HashSet<Vector3> _frontier;
@@ -242,6 +241,21 @@ namespace Bots.Algorithms
         public HashSet<Vector3> GetFrontier()
         {
             return _frontier;
+        }
+
+        public bool ContainsBlocksWithZValue(int k)
+        {
+            foreach (var blockPos in _frontier)
+            {
+                if ((int)blockPos.z == k) return true;
+            }
+
+            return false;
+        }
+
+        public int Length()
+        {
+            return _frontier.Count;
         }
     }
 }

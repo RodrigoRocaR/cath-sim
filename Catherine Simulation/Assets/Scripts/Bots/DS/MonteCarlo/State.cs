@@ -39,15 +39,16 @@ namespace Bots.DS.MonteCarlo
         private int Evaluate()
         {
             int score = 0;
-            /*
-            if ((int)_playerPos.z >= _wallHelper.GetTargetZ())
+            
+            if (_blockFrontier.ContainsBlocksWithZValue((int)_playerPos.z+2)) // reached goal
             {
+                // It needs to be z+2 since it can always manipulate z+1 blocks from the wall
                 score += 99;
             }
             else
             {
-                score += _wallHelper.GetRelativeHeight();
-            }*/
+                score += _blockFrontier.Length();
+            }
 
             return score;
         }
