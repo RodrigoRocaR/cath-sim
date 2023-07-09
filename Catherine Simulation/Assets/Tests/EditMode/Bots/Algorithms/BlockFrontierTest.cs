@@ -216,6 +216,47 @@ namespace Tests.EditMode.Bots.Algorithms
             Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
             {
                 {
+                    // test cannot get back up
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, 0, 0 },
+                            new[] { -1, 0, 0 },
+                            new[] { -1, -1, 0 },
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(0, 1, 2),
+                        new Vector3(1, 1, 1),
+                    }
+                },
+                {
                     // hanging from first block and wall at x = 2
                     new[]
                     {
@@ -301,47 +342,8 @@ namespace Tests.EditMode.Bots.Algorithms
                         new Vector3(1, 1, 1),
                         new Vector3(3, 1, 1),
                         new Vector3(4, 1, 2),
-                    }
-                },
-                {
-                    // test cannot get back up
-                    new[]
-                    {
-                        new[] // x: 0
-                        {
-                            new[] { -1, 0, 0 }, // y:0
-                            new[] { -1, -1, 0 }, // y:1
-                            new[] { -1, -1, 0 }, // y:2
-                        },
-                        new[] // x: 1
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                        },
-                        new[] // x: 2
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                            new[] { -1, 0, 0 },
-                        },
-                        new[] // x: 3
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                        new[] // x: 4
-                        {
-                            new[] { -1, 0, 0 },
-                            new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
-                        },
-                    },
-                    new List<Vector3>
-                    {
-                        new Vector3(0, 1, 2),
-                        new Vector3(1, 1, 1),
+                        new Vector3(3, 2, 2),
+                        new Vector3(2, 2, 1),
                     }
                 },
             };
@@ -461,6 +463,12 @@ namespace Tests.EditMode.Bots.Algorithms
                         new Vector3(1, 1, 1),
                         new Vector3(5, 1, 1),
                         new Vector3(6, 1, 2),
+                        // above blocks
+                        new Vector3(5, 2, 2),
+                        new Vector3(4, 2, 2),
+                        new Vector3(3, 2, 1),
+                        new Vector3(2, 2, 2),
+                        new Vector3(1, 2, 2),
                     }
                 },
                 { // runs out of blocks on the right, but has space on the left
@@ -552,7 +560,7 @@ namespace Tests.EditMode.Bots.Algorithms
                         {
                             new[] { -1, 0, 0 },
                             new[] { -1, 0, 0 },
-                            new[] { -1, -1, 0 },
+                            new[] { -1, 0, 0 },
                         },
                         new[] // x: 6
                         {
@@ -733,6 +741,11 @@ namespace Tests.EditMode.Bots.Algorithms
                     {
                         new Vector3(3, 2, 3),
                         new Vector3(4, 2, 3),
+                        // blocks that can trigger after hanging:
+                        new Vector3(2, 1, 3),
+                        new Vector3(1, 1, 3),
+                        new Vector3(0, 1, 2),
+                        new Vector3(3, 1, 2),
                     }
                 },
                 {
@@ -766,6 +779,108 @@ namespace Tests.EditMode.Bots.Algorithms
                     new List<Vector3>
                     {
                         new Vector3(2, 2, 4),
+                    }
+                },
+            };
+            TestGetFrontierWithCases(cases, initialPostion);
+        }
+
+        [Test]
+        public void TestMultiLevelFrontier()
+        {
+            Vector3 initialPostion = new Vector3(4, 0, 1);
+            Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
+            {
+                {
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, -1, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1, -1 }, // y:1
+                            new[] { -1, -1, 0, -1, -1 }, // y:2
+                            new[] { -1, -1, 0, -1, -1 }, // y:3
+                            new[] { -1, -1, 0, 0, 0 }, // y:4
+                            new[] { -1, -1, -1, -1, 0 }, // y:5
+                            new[] { -1, -1, -1, -1, 0 }, // y:6
+                            new[] { -1, -1, -1, -1, -1 }, // y:7
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, -1, -1, -1 }, // y:0
+                            new[] { -1, 0, 0, -1, -1 }, // y:1
+                            new[] { -1, -1, 0, -1, -1 }, // y:2
+                            new[] { -1, -1, 0, -1, -1 }, // y:3
+                            new[] { -1, -1, 0, 0, 0 }, // y:4
+                            new[] { -1, -1, -1, -1, 0 }, // y:5
+                            new[] { -1, -1, -1, -1, 0 }, // y:6
+                            new[] { -1, -1, -1, -1, -1 }, // y:7
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, -1, -1, -1 }, // y:0
+                            new[] { -1, 0, 0, -1, -1 }, // y:1
+                            new[] { -1, 0, 0, -1, -1 }, // y:2
+                            new[] { -1, -1, 0, -1, -1 }, // y:3
+                            new[] { -1, -1, 0, 0, 0 }, // y:4
+                            new[] { -1, -1, -1, -1, 0 }, // y:5
+                            new[] { -1, -1, -1, -1, 0 }, // y:6
+                            new[] { -1, -1, -1, -1, -1 }, // y:7
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, -1, -1, -1 }, // y:0
+                            new[] { -1, 0, 0, -1, -1 }, // y:1
+                            new[] { -1, 0, 0, -1, -1 }, // y:2
+                            new[] { -1, 0, 0, -1, -1 }, // y:3
+                            new[] { -1, -1, 0, 0, 0 }, // y:4
+                            new[] { -1, -1, -1, -1, 0 }, // y:5
+                            new[] { -1, -1, -1, -1, 0 }, // y:6
+                            new[] { -1, -1, -1, -1, -1 }, // y:7
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, 0, -1, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1, -1 }, // y:1
+                            new[] { -1, -1, 0, -1, -1 }, // y:2
+                            new[] { -1, -1, 0, -1, -1 }, // y:3
+                            new[] { -1, -1, 0, 0, 0 }, // y:4
+                            new[] { -1, -1, -1, -1, 0 }, // y:5
+                            new[] { -1, -1, -1, -1, 0 }, // y:6
+                            new[] { -1, -1, -1, -1, -1 }, // y:7
+                        },
+                        new[] // x: 5
+                        {
+                            new[] { -1, 0, -1, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1, -1 }, // y:1
+                            new[] { -1, -1, 0, -1, -1 }, // y:2
+                            new[] { -1, -1, 0, -1, -1 }, // y:3
+                            new[] { -1, -1, 0, 0, 0 }, // y:4
+                            new[] { -1, -1, -1, -1, 0 }, // y:5
+                            new[] { -1, -1, -1, -1, 0 }, // y:6
+                            new[] { -1, -1, -1, -1, -1 }, // y:7
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(3, 1, 1),
+                        new Vector3(4, 1, 2),
+                        new Vector3(5, 1, 2),
+                        new Vector3(0, 1, 2),
+                        // stair
+                        new Vector3(1, 1, 1),
+                        new Vector3(1, 2, 2),
+                        new Vector3(2, 2, 1),
+                        new Vector3(2, 3, 2),
+                        new Vector3(3, 3, 1),
+                        new Vector3(3, 4, 2),
+                        // next level
+                        new Vector3(0, 5, 4),
+                        new Vector3(1, 5, 4),
+                        new Vector3(2, 5, 4),
+                        new Vector3(3, 5, 4),
+                        new Vector3(4, 5, 4),
+                        new Vector3(5, 5, 4),
                     }
                 },
             };

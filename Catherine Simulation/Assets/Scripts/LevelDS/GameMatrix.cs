@@ -45,7 +45,7 @@ namespace LevelDS
         
         private void ModifyWithAction(PushPullAction pushPullAction)
         {
-            Vector3 blockPos = AdaptNegativeCoords(ParseCoords(pushPullAction.BlockPos));
+            Vector3 blockPos = ParseCoords(AdaptNegativeCoords(pushPullAction.BlockPos));
             int type = _levelInt[blockPos];
             _levelInt[blockPos] = GameConstants.EmptyBlock;
             _levelInt[BlockHelper.GetNewBlockPos(blockPos, pushPullAction)] = type;

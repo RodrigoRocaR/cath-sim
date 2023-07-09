@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace Bots.Algorithms
 {
-    // todo: check that it works when there is a fall??
     // todo: add boolean flag when it is possible to add blocks of above wall (next Z?)
     public class BlockFrontier
     {
         private HashSet<Vector3> _frontier;
         private BlockHelper _bh;
         private readonly GameMatrix _currentLevel;
+        private List<Vector3> _interestPoints;
 
         public BlockFrontier(Vector3 playerPos, GameMatrix currentLevel)
         {
@@ -23,7 +23,8 @@ namespace Bots.Algorithms
             _currentLevel = currentLevel;
             _bh = new BlockHelper();
             _frontier = new HashSet<Vector3>();
-            GetFrontierFromPos(playerPos); // todo: check if this is the block the player is above at (stepping on)
+            _interestPoints = new List<Vector3> { playerPos };
+            GetFrontierAlgorithm();
         }
 
         public BlockFrontier(HashSet<Vector3> frontier)
@@ -33,13 +34,21 @@ namespace Bots.Algorithms
             _bh = new BlockHelper();
         }
 
+        private void GetFrontierAlgorithm(int i = 0)
+        { 
+            GetFrontierFromPos(_interestPoints[i]);
+            if (i+1 < _interestPoints.Count) GetFrontierAlgorithm(i + 1);
+        }
+
         private void GetFrontierFromPos(Vector3 pos)
         {
             bool finished = false;
             bool exploringRight = true;
+            bool iterationNotOfInterest = false;
             Vector3 currBlock = pos;
 
-            MoveUntilCanGetOnBlock(pos);
+            GoForwardUntilWall();
+            MoveUntilCanGetOnBlock(currBlock);
             currBlock = NextBlock();
             while (!finished)
             {
@@ -80,6 +89,8 @@ namespace Bots.Algorithms
 
             void FinishExploration() // Local function to terminate exploring the current direction
             {
+                currBlock = PrevBlock();
+                if (!_interestPoints.Contains(currBlock) && !iterationNotOfInterest) _interestPoints.Add(currBlock);
                 if (exploringRight)
                 {
                     exploringRight = false;
@@ -87,6 +98,8 @@ namespace Bots.Algorithms
                     MoveUntilCanGetOnBlock(pos);
                 }
                 else finished = true;
+
+                iterationNotOfInterest = false;
             }
 
             Vector3 NextBlock()
@@ -109,7 +122,7 @@ namespace Bots.Algorithms
                 return _currentLevel.IsNotEmpty(_bh.Up(currBlock)) ||
                        _currentLevel.IsNotEmpty(_bh.Up(currBlock, multiplier: 2));
             }
-            
+
             void Hang(bool exploreMode = true)
             {
                 bool dontRunOutOfBlocks = HangHorizontally();
@@ -126,6 +139,10 @@ namespace Bots.Algorithms
                     }
                     else AddBlock(_bh.Up(currBlock)); // wall to the left will not be added otherwise when width >= 2
                 }
+                else
+                { // ran out of blocks, we would add empty blocks infinitely
+                    iterationNotOfInterest = true;
+                }
             }
 
             bool HangHorizontally()
@@ -139,7 +156,7 @@ namespace Bots.Algorithms
                     // We dont have more blocks to hang, try to hang forward
                     while (_currentLevel.IsEmpty(currBlock) && _currentLevel.IsNotEmpty(PrevBlock()))
                         currBlock = _bh.Forward(currBlock);
-                    
+
                     dontRunOutOfBlocks = _currentLevel.IsNotEmpty(currBlock);
                 }
 
@@ -183,6 +200,34 @@ namespace Bots.Algorithms
             void AddInitialBlock()
             {
                 AddBlock(_bh.Up(currBlock, depthDelta: 1));
+            }
+
+            void GoForwardUntilWall()
+            {
+                bool reachedWall = false;
+                while (!reachedWall)
+                {
+                    if (CanGoForward(currBlock))
+                    {
+                        currBlock = _bh.Forward(currBlock);
+                    }
+                    else if (_currentLevel.IsNotEmpty(currBlock) && CanGoForward(_bh.Up(currBlock)))
+                    {
+                        // go up by 1 (cannot do this if hanging)
+                        currBlock = _bh.TopForward(currBlock);
+                    }
+                    else
+                    {
+                        reachedWall = true;
+                    }
+                }
+            }
+
+            bool CanGoForward(Vector3 p)
+            {
+                return _currentLevel.IsNotEmpty(_bh.Forward(p)) &&
+                       _currentLevel.IsEmpty(_bh.Forward(_bh.Up(p))) &&
+                       _currentLevel.IsEmpty(_bh.TopForward(_bh.Up(p)));
             }
         }
 

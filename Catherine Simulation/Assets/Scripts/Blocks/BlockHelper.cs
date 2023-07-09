@@ -58,6 +58,12 @@ namespace Blocks
                 pos.z + depthDelta * _offset);
         }
 
+        public Vector3 TopForward(Vector3 pos)
+        {
+            return new Vector3(pos.x, pos.y + _offset,
+                pos.z + _offset);
+        }
+
         public Vector3 BottomRight(Vector3 pos, int depthDelta = 0)
         {
             return new Vector3(pos.x + _offset, pos.y - _offset,
@@ -105,7 +111,7 @@ namespace Blocks
 
             return newPos;
         }
-        
+
         public static Vector3 GetNewPlayerPos(Vector3 oldPos, PushPullAction action)
         {
             if (action.IsPushAction()) return oldPos;
