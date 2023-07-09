@@ -45,7 +45,7 @@ namespace LevelDS
         
         private void ModifyWithAction(PushPullAction pushPullAction)
         {
-            Vector3 blockPos = pushPullAction.BlockPos;
+            Vector3 blockPos = AdaptNegativeCoords(ParseCoords(pushPullAction.BlockPos));
             int type = _levelInt[blockPos];
             _levelInt[blockPos] = GameConstants.EmptyBlock;
             _levelInt[BlockHelper.GetNewBlockPos(blockPos, pushPullAction)] = type;
@@ -90,6 +90,27 @@ namespace LevelDS
                 coord = AdaptNegativeCoords(coord);
             }
             _levelInt[coord] = val;
+        }
+
+        public bool IsEmpty(int i, int j, int k)
+        {
+            return _levelInt[i, j, k] == GameConstants.EmptyBlock;
+        }
+        
+        public bool IsNotEmpty(int i, int j, int k)
+        {
+            return !IsEmpty();
+        }
+        
+        public bool IsEmpty(Vector3 pos)
+        {
+            var coords = ParseCoords(AdaptNegativeCoords(pos));
+            return !IsCoordWithinLevel(coords) || _levelInt[coords] == GameConstants.EmptyBlock;
+        }
+
+        public bool IsNotEmpty(Vector3 pos)
+        {
+            return !IsEmpty(pos);
         }
         
         

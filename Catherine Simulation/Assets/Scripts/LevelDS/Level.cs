@@ -126,12 +126,12 @@ namespace LevelDS
 
         public static bool IsEmpty(Vector3 pos)
         {
-            return _level.GetBlockInt(pos) == GameConstants.EmptyBlock;
+            return _level.IsEmpty(pos);
         }
 
         public static bool IsEmpty(int x, int y, int z)
         {
-            return _level.GetBlockInt(x, y, z) == GameConstants.EmptyBlock;
+            return _level.IsEmpty(x, y, z);
         }
 
         public static bool IsNotEmpty(Vector3 pos)

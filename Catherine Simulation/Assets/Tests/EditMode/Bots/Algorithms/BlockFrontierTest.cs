@@ -17,7 +17,7 @@ namespace Tests.EditMode.Bots.Algorithms
             foreach (var (levelValues, frontier) in cases)
             {
                 mockLevel.NewMockLevel(levelValues);
-                var f = new BlockFrontier(initialPostion);
+                var f = new BlockFrontier(initialPostion, Level.GetGameMatrix());
                 var obtainedFrontier = f.GetFrontier();
                 Assert.AreEqual(frontier.Count, obtainedFrontier.Count);
                 Assert.True(frontier.All(obtainedFrontier.Contains),
@@ -204,7 +204,7 @@ namespace Tests.EditMode.Bots.Algorithms
                 new Vector3(0, 7, 4),
             };
 
-            var obtained = new BlockFrontier(initialPostion).GetFrontier();
+            var obtained = new BlockFrontier(initialPostion, Level.GetGameMatrix()).GetFrontier();
 
             CollectionAssert.AreEquivalent(expected, obtained);
         }

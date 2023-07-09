@@ -11,14 +11,16 @@ namespace Bots.Algorithms
     {
         private HashSet<Vector3> _frontier;
         private BlockHelper _bh;
+        private readonly GameMatrix _currentLevel;
 
-        public BlockFrontier(Vector3 playerPos)
+        public BlockFrontier(Vector3 playerPos, GameMatrix currentLevel)
         {
             if (!Level.IsMock())
             {
                 playerPos = Level.TransformToIndexDomain(playerPos);
             }
 
+            _currentLevel = currentLevel;
             _bh = new BlockHelper();
             _frontier = new HashSet<Vector3>();
             GetFrontierFromPos(playerPos); // todo: check if this is the block the player is above at (stepping on)
@@ -41,10 +43,10 @@ namespace Bots.Algorithms
             currBlock = NextBlock();
             while (!finished)
             {
-                if (Level.IsNotEmpty(_bh.Up(currBlock))) // Case 1: block in the way
+                if (_currentLevel.IsNotEmpty(_bh.Up(currBlock))) // Case 1: block in the way
                 {
                     AddBlock(_bh.Up(currBlock));
-                    if (Level.IsNotEmpty(_bh.Up(currBlock, multiplier: 2))) // 1.A) Wall
+                    if (_currentLevel.IsNotEmpty(_bh.Up(currBlock, multiplier: 2))) // 1.A) Wall
                     {
                         // We try to hang before giving up
                         if (!CanHang()) FinishExploration();
@@ -57,12 +59,12 @@ namespace Bots.Algorithms
                         AddBlock(_bh.Up(currBlock, depthDelta: 1));
                     }
                 }
-                else if (Level.IsNotEmpty(currBlock)) // Case 2: Flat terrain
+                else if (_currentLevel.IsNotEmpty(currBlock)) // Case 2: Flat terrain
                 {
                     AddBlock(_bh.Up(currBlock, depthDelta: 1));
                     AddBlock(_bh.Up(currBlock, depthDelta: -1));
                 }
-                else if (Level.IsNotEmpty(_bh.Down(currBlock))) // Case 3: block 1 level below
+                else if (_currentLevel.IsNotEmpty(_bh.Down(currBlock))) // Case 3: block 1 level below
                 {
                     AddBlock(_bh.Forward(currBlock));
                     AddBlock(_bh.Left(currBlock));
@@ -99,13 +101,13 @@ namespace Bots.Algorithms
 
             bool CanHang()
             {
-                return Level.IsNotEmpty(currBlock) && Level.IsNotEmpty(NextBlock());
+                return _currentLevel.IsNotEmpty(currBlock) && _currentLevel.IsNotEmpty(NextBlock());
             }
 
             bool CanNotGetUp()
             {
-                return Level.IsNotEmpty(_bh.Up(currBlock)) ||
-                       Level.IsNotEmpty(_bh.Up(currBlock, multiplier: 2));
+                return _currentLevel.IsNotEmpty(_bh.Up(currBlock)) ||
+                       _currentLevel.IsNotEmpty(_bh.Up(currBlock, multiplier: 2));
             }
             
             void Hang(bool exploreMode = true)
@@ -128,17 +130,17 @@ namespace Bots.Algorithms
 
             bool HangHorizontally()
             {
-                bool dontRunOutOfBlocks = Level.IsNotEmpty(currBlock);
+                bool dontRunOutOfBlocks = _currentLevel.IsNotEmpty(currBlock);
                 while (dontRunOutOfBlocks && CanNotGetUp())
                 {
                     currBlock = NextBlock();
                     // There are blocks in the way, so we have to hang on them instead: (hang backwards)
-                    while (Level.IsNotEmpty(_bh.Backward(currBlock))) currBlock = _bh.Backward(currBlock);
+                    while (_currentLevel.IsNotEmpty(_bh.Backward(currBlock))) currBlock = _bh.Backward(currBlock);
                     // We dont have more blocks to hang, try to hang forward
-                    while (Level.IsEmpty(currBlock) && Level.IsNotEmpty(PrevBlock()))
+                    while (_currentLevel.IsEmpty(currBlock) && _currentLevel.IsNotEmpty(PrevBlock()))
                         currBlock = _bh.Forward(currBlock);
                     
-                    dontRunOutOfBlocks = Level.IsNotEmpty(currBlock);
+                    dontRunOutOfBlocks = _currentLevel.IsNotEmpty(currBlock);
                 }
 
                 return dontRunOutOfBlocks;
@@ -146,7 +148,7 @@ namespace Bots.Algorithms
 
             void MoveUntilCanGetOnBlock(Vector3 p)
             {
-                if (!Level.IsEmpty(
+                if (!_currentLevel.IsEmpty(
                         p)) // Assume player is theoretically floating in the block (block obtained is backward)
                 {
                     AddInitialBlock();
@@ -161,15 +163,15 @@ namespace Bots.Algorithms
                 }
 
                 Hang(exploreMode: false);
-                if (Level.IsEmpty(currBlock) && exploringRight) // We ran out of blocks --> go to the left
+                if (_currentLevel.IsEmpty(currBlock) && exploringRight) // We ran out of blocks --> go to the left
                 {
                     currBlock = _bh.Forward(pos);
                     exploringRight = false;
                     Hang(exploreMode: false);
-                    if (Level.IsEmpty(currBlock)) // Ran out of blocks again
+                    if (_currentLevel.IsEmpty(currBlock)) // Ran out of blocks again
                         finished = true;
                 }
-                else if (Level.IsEmpty(currBlock) && !exploringRight) // Going to the left and ran out of blocks
+                else if (_currentLevel.IsEmpty(currBlock) && !exploringRight) // Going to the left and ran out of blocks
                 {
                     finished = true;
                     return;
@@ -186,7 +188,7 @@ namespace Bots.Algorithms
 
         private void AddBlock(Vector3 blockPos)
         {
-            if (Level.IsNotEmpty(blockPos))
+            if (_currentLevel.IsNotEmpty(blockPos))
             {
                 _frontier.Add(blockPos);
             }

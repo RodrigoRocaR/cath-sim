@@ -25,14 +25,14 @@ namespace Bots.DS.MonteCarlo
             _currentLevel = Level.GetGameMatrix();
             _playerPos = playerPos;
 
-            _blockFrontier = new BlockFrontier(playerPos);
+            _blockFrontier = new BlockFrontier(playerPos, _currentLevel);
         }
 
         private State(State previous, PushPullAction action)
         {
             _playerPos = BlockHelper.GetNewPlayerPos(previous._playerPos, action);
             _currentLevel = new GameMatrix(previous._currentLevel, action);
-            _blockFrontier = new BlockFrontier(_playerPos);
+            _blockFrontier = new BlockFrontier(_playerPos, _currentLevel);
             _excludedAction = new PushPullAction(PushPullAction.GetOppositeAction(action));
         }
 
