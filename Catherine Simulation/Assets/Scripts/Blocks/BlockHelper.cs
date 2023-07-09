@@ -7,12 +7,7 @@ namespace Blocks
 {
     public class BlockHelper
     {
-        private int _offset;
-
-        public BlockHelper()
-        {
-            _offset = Level.IsMock() ? 1 : GameConstants.BlockScale;
-        }
+        private int _offset = 1;
 
         public Vector3 Right(Vector3 pos, int multiplier = 1, int depthDelta = 0)
         {

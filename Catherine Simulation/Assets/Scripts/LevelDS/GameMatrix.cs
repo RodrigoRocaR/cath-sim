@@ -104,8 +104,7 @@ namespace LevelDS
         
         public bool IsEmpty(Vector3 pos)
         {
-            var coords = ParseCoords(AdaptNegativeCoords(pos));
-            return !IsCoordWithinLevel(coords) || _levelInt[coords] == GameConstants.EmptyBlock;
+            return !IsCoordWithinLevel(pos) || _levelInt[pos] == GameConstants.EmptyBlock;
         }
 
         public bool IsNotEmpty(Vector3 pos)

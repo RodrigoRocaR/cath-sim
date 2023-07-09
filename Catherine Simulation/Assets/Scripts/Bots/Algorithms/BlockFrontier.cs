@@ -164,8 +164,7 @@ namespace Bots.Algorithms
 
             void MoveUntilCanGetOnBlock(Vector3 p)
             {
-                if (!_currentLevel.IsEmpty(
-                        p)) // Assume player is theoretically floating in the block (block obtained is backward)
+                if (_currentLevel.IsNotEmpty(p))
                 {
                     AddInitialBlock();
                     return;
