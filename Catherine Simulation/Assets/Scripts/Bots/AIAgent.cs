@@ -1,4 +1,5 @@
-﻿using Bots.Action;
+﻿using System.Threading;
+using Bots.Action;
 using Bots.Algorithms;
 using Bots.DS;
 using LevelDS;
@@ -69,7 +70,8 @@ namespace Bots
         private void LookForClimbingRoutes()
         {
             _mcts = new MonteCarlo(_bfs.GetEndPlayerPos());
-            StartCoroutine(_mcts.LookForClimbingRoutes());
+            Thread t = new Thread(_mcts.LookForClimbingRoutes);
+            t.Start();
         }
 
         private bool IsFalling()

@@ -18,7 +18,7 @@ namespace Bots.Algorithms
             BotEventManager.OnExplorationFinished += TriggerStopIterating;
         }
 
-        public IEnumerator LookForClimbingRoutes()
+        public void LookForClimbingRoutes()
         {
             var root = _searchTreeRoot;
             int i = 0;
@@ -28,14 +28,12 @@ namespace Bots.Algorithms
                 int v = nodeToRollout.Value.Rollout();
                 Backpropagate(v, nodeToRollout);
                 i++;
-                yield return null;
             }
 
             if (i >= Parameters.MaxIterations)
             {
                 Debug.LogWarning("MonteCarlo: I give up");
             }
-            yield return null;
         }
 
         private TreeNode<State, PushPullAction> TraverseAndExpand(TreeNode<State, PushPullAction> current)

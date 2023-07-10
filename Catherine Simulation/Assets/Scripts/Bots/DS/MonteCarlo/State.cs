@@ -9,6 +9,8 @@ namespace Bots.DS.MonteCarlo
 {
     public class State
     {
+        private static System.Random _random = new System.Random();
+        
         private GameMatrix _currentLevel;
         private Vector3 _playerPos;
 
@@ -81,7 +83,11 @@ namespace Bots.DS.MonteCarlo
             if (depth == 0) return Evaluate();
             _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier, _excludedAction);
             if (_possibleActions.Count == 0) return Evaluate();
-            var action = _possibleActions[Random.Range(0, _possibleActions.Count)];
+            PushPullAction action;
+            lock (_random)
+            {
+                action = _possibleActions[_random.Next(0, _possibleActions.Count)];
+            }
             return new State(this, action).Rollout(depth - 1);
         }
 
