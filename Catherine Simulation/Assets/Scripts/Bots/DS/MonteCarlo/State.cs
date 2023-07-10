@@ -24,13 +24,13 @@ namespace Bots.DS.MonteCarlo
 
         public State(Vector3 playerPos) // root node constructor
         {
-            playerPos = Level.TransformToIndexDomain(playerPos);
+            _playerPos = Level.TransformToIndexDomain(playerPos);
             _currentLevel = Level.GetGameMatrix();
             _playerPos = playerPos;
             _blockFrontier = new BlockFrontier(playerPos, _currentLevel);
         }
 
-        private State(State previous, PushPullAction action)
+        public State(State previous, PushPullAction action)
         {
             _playerPos = BlockHelper.GetNewPlayerPos(action);
             _currentLevel = new GameMatrix(previous._currentLevel, action);
