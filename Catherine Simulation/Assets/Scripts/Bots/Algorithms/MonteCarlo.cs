@@ -21,11 +21,19 @@ namespace Bots.Algorithms
         public IEnumerator LookForClimbingRoutes()
         {
             var root = _searchTreeRoot;
-            while (!_stopIterating)
+            int i = 0;
+            while (!_stopIterating && i < Parameters.MaxIterations)
             {
                 var nodeToRollout = TraverseAndExpand(root);
                 int v = nodeToRollout.Value.Rollout();
                 Backpropagate(v, nodeToRollout);
+                i++;
+                yield return null;
+            }
+
+            if (i >= Parameters.MaxIterations)
+            {
+                Debug.LogWarning("MonteCarlo: I give up");
             }
             yield return null;
         }
