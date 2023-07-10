@@ -37,7 +37,7 @@ namespace LevelDS
             Width = prev.Width;
             Height = prev.Height;
             Depth = prev.Depth;
-            _levelInt = new Matrix3D<int>(Width, Height, Depth, GameConstants.EmptyBlock);
+            _levelInt = prev._levelInt.GetDeepCopy();
             _negativeExpanding = new Vector3Int(0, 0, 0);
             _isMock = false;
             ModifyWithAction(action);
@@ -45,7 +45,7 @@ namespace LevelDS
         
         private void ModifyWithAction(PushPullAction pushPullAction)
         {
-            Vector3 blockPos = ParseCoords(AdaptNegativeCoords(pushPullAction.BlockPos));
+            Vector3 blockPos = pushPullAction.BlockPos;
             int type = _levelInt[blockPos];
             _levelInt[blockPos] = GameConstants.EmptyBlock;
             _levelInt[BlockHelper.GetNewBlockPos(blockPos, pushPullAction)] = type;

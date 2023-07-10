@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace LevelDS
@@ -30,14 +29,8 @@ namespace LevelDS
             Height = height;
             Depth = depth;
 
-            if (typeof(T) == typeof(int))
-            { 
-                _startValue = (T)(object)GameConstants.EmptyBlock;
-            }
-            else
-            {
-                Debug.LogError("Cannot properly initialize Matrix due unknown start value");
-            }
+            if (typeof(T) == typeof(int)) _startValue = (T)(object)GameConstants.EmptyBlock;
+            else Debug.LogError("Cannot properly initialize Matrix due unknown start value");
             
             _elements =  new List<List<List<T>>>();
             Initiliaze(_startValue);
@@ -59,14 +52,19 @@ namespace LevelDS
             Height = _elements[0].Count;
             Depth = _elements[0][0].Count;
             
-            if (typeof(T) == typeof(int))
-            { 
-                _startValue = (T)(object)GameConstants.EmptyBlock;
-            }
-            else
-            {
-                Debug.LogError("Cannot properly initialize Matrix due unknown start value");
-            }
+            if (typeof(T) == typeof(int)) _startValue = (T)(object)GameConstants.EmptyBlock;
+            else Debug.LogError("Cannot properly initialize Matrix due unknown start value");
+        }
+        
+        public Matrix3D(List<List<List<T>>> values)
+        {
+            _elements = values;
+            Width = _elements.Count;
+            Height = _elements[0].Count;
+            Depth = _elements[0][0].Count;
+            
+            if (typeof(T) == typeof(int)) _startValue = (T)(object)GameConstants.EmptyBlock;
+            else Debug.LogError("Cannot properly initialize Matrix due unknown start value");
         }
 
         public void IncreaseSize(int axis, int n)
@@ -305,5 +303,24 @@ namespace LevelDS
             Debug.LogError("Trying to get " + x + "; Dims: " + Width);
         }
         
+        public Matrix3D<T> GetDeepCopy()
+        {
+            List<List<List<T>>> copy = new List<List<List<T>>>();
+
+            foreach (List<List<T>> outerList in _elements)
+            {
+                List<List<T>> outerCopy = new List<List<T>>();
+
+                foreach (List<T> innerList in outerList)
+                {
+                    List<T> innerCopy = new List<T>(innerList);
+                    outerCopy.Add(innerCopy);
+                }
+
+                copy.Add(outerCopy);
+            }
+
+            return new Matrix3D<T>(copy);
+        }
     }
 }
