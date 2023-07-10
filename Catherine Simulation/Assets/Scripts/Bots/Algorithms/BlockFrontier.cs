@@ -14,11 +14,6 @@ namespace Bots.Algorithms
 
         public BlockFrontier(Vector3 playerPos, GameMatrix currentLevel)
         {
-            if (!Level.IsMock())
-            {
-                playerPos = Level.TransformToIndexDomain(playerPos);
-            }
-
             _currentLevel = currentLevel;
             _bh = new BlockHelper();
             _frontier = new HashSet<Vector3>();
@@ -170,7 +165,7 @@ namespace Bots.Algorithms
                     return;
                 }
 
-                currBlock = _bh.Forward(p);
+                currBlock = GetHangingBlock(p);
                 if (!CanNotGetUp()) // Can get up, no need to hang
                 {
                     AddInitialBlock();
@@ -193,6 +188,29 @@ namespace Bots.Algorithms
                 }
 
                 AddInitialBlock();
+            }
+            
+            Vector3 GetHangingBlock(Vector3 p)
+            {
+                
+                if (_currentLevel.IsNotEmpty(_bh.Forward(p)))
+                {
+                    return _bh.Forward(p);
+                }
+                if (_currentLevel.IsNotEmpty(_bh.Left(p)))
+                {
+                    return _bh.Left(p);
+                }
+                if (_currentLevel.IsNotEmpty(_bh.Right(p)))
+                {
+                    return _bh.Right(p);
+                }
+                if (_currentLevel.IsNotEmpty(_bh.Backward(p)))
+                {
+                    return _bh.Backward(p);
+                }
+                Debug.LogWarning("I am hanging in the void");
+                return p;
             }
 
             void AddInitialBlock()
