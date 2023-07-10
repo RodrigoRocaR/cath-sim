@@ -22,15 +22,15 @@ namespace Bots.DS.MonteCarlo
 
         public State(Vector3 playerPos) // root node constructor
         {
+            playerPos = Level.TransformToIndexDomain(playerPos);
             _currentLevel = Level.GetGameMatrix();
             _playerPos = playerPos;
-
             _blockFrontier = new BlockFrontier(playerPos, _currentLevel);
         }
 
         private State(State previous, PushPullAction action)
         {
-            _playerPos = BlockHelper.GetNewPlayerPos(previous._playerPos, action);
+            _playerPos = BlockHelper.GetNewPlayerPos(action);
             _currentLevel = new GameMatrix(previous._currentLevel, action);
             _blockFrontier = new BlockFrontier(_playerPos, _currentLevel);
             _excludedAction = new PushPullAction(PushPullAction.GetOppositeAction(action));
@@ -80,6 +80,7 @@ namespace Bots.DS.MonteCarlo
         {
             if (depth == 0) return Evaluate();
             _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier, _excludedAction);
+            if (_possibleActions.Count == 0) return Evaluate();
             var action = _possibleActions[Random.Range(0, _possibleActions.Count)];
             return new State(this, action).Rollout(depth - 1);
         }
