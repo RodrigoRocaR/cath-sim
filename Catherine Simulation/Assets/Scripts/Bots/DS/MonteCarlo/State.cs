@@ -26,8 +26,7 @@ namespace Bots.DS.MonteCarlo
         {
             _playerPos = Level.TransformToIndexDomain(playerPos);
             _currentLevel = Level.GetGameMatrix();
-            _playerPos = playerPos;
-            _blockFrontier = new BlockFrontier(playerPos, _currentLevel);
+            _blockFrontier = new BlockFrontier(_playerPos, _currentLevel);
         }
 
         public State(State previous, PushPullAction action)
