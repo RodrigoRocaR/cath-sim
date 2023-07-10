@@ -104,7 +104,7 @@ namespace Bots.DS.MonteCarlo
             {
                 foreach (var action in actionsList)
                 {
-                    if (AreSameAction(action, excludedAction))
+                    if (!AreSameAction(action, excludedAction))
                         ans.Add(new PushPullAction(blockPos, action));
                 }
             }
