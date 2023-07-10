@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Bots.DS.MonteCarlo;
 using Bots.DS.TreeModel;
 using UnityEngine;
@@ -44,7 +43,7 @@ namespace Bots.Algorithms
                 current = current.Forest[childIndex];
             }
 
-            if (current.Value.N > 0)
+            if (current.Value.N > 0 || current.IsRoot())
             {
                 return current.Value.Expand(current);
             }
