@@ -10,6 +10,7 @@ namespace Bots.Algorithms
         private TreeNode<State, PushPullAction> _searchTreeRoot;
         private List<PushPullAction> _actions;
         private bool _stopIterating;
+        private bool _solutionFound;
 
         public MonteCarlo(Vector3 playerPos)
         {
@@ -27,6 +28,9 @@ namespace Bots.Algorithms
                 int v = nodeToRollout.Value.Rollout();
                 Backpropagate(v, nodeToRollout);
                 i++;
+                if (!_solutionFound) continue;
+                Debug.Log("Found a solution");
+                break;
             }
 
             if (i >= Parameters.MaxIterations)
@@ -56,6 +60,7 @@ namespace Bots.Algorithms
             if (node == null) return;
             node.Value.N++;
             node.Value.T += v;
+            if (node.Value.T >= 10_000) _solutionFound = true;
             Backpropagate(v, node.Parent);
         }
 

@@ -44,7 +44,7 @@ namespace Bots.DS.MonteCarlo
             if (_blockFrontier.ContainsBlocksWithZValue((int)_playerPos.z+2)) // reached goal
             {
                 // It needs to be z+2 since it can always manipulate z+1 blocks from the wall
-                score += 99;
+                score += 10_000;
             }
             else
             {
