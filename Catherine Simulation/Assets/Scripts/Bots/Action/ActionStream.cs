@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Bots.DS;
+using Bots.DS.MonteCarlo;
 using LevelDS;
 using UnityEngine;
 
@@ -62,29 +63,29 @@ namespace Bots.Action
 
         private Action? GetActionFromPosDiff((int, int) original, (int, int) target)
         {
+            return GetActionFromPosDiffX(original, target) ?? GetActionFromPosDiffZ(original, target);;
+        }
+
+        private Action? GetActionFromPosDiffZ((int, int) original, (int, int) target)
+        {
             int zDiff = original.Item2 - target.Item2;
-            switch (zDiff)
+            return zDiff switch
             {
-                case -1:
-                    return Action.Forward;
-                case 1:
-                    return Action.Backward;
-                
-            }
-            
+                < 0 => Action.Forward,
+                > 0 => Action.Backward,
+                _ => null
+            };
+        }
+
+        private Action? GetActionFromPosDiffX((int, int) original, (int, int) target)
+        {
             int xDiff = original.Item1 - target.Item1;
-            switch (xDiff)
+            return xDiff switch
             {
-                case -1:
-                    return Action.Right;
-                case 1:
-                    return Action.Left;
-                case 0: // same pos, no action required
-                    return null;
-                default:
-                    Debug.LogError("Failed to generate a movement action from positions");
-                    return Action.Forward;
-            }
+                < 0 => Action.Right,
+                > 0 => Action.Left,
+                _ => null
+            };
         }
     }
 }
