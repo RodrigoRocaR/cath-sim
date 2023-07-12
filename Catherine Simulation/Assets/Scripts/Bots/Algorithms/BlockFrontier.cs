@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Blocks;
 using LevelDS;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace Bots.Algorithms
         private BlockHelper _bh;
         private readonly GameMatrix _currentLevel;
         private List<Vector3> _interestPoints;
+
+        private int _wallZValue;
 
         public BlockFrontier(Vector3 playerPos, GameMatrix currentLevel)
         {
@@ -237,6 +240,8 @@ namespace Bots.Algorithms
                         reachedWall = true;
                     }
                 }
+
+                _wallZValue = Mathf.Max((int)currBlock.z+1, _wallZValue);
             }
 
             bool CanGoForward(Vector3 p)
@@ -260,11 +265,11 @@ namespace Bots.Algorithms
             return _frontier;
         }
 
-        public bool ContainsBlocksWithZValue(int k)
+        public bool ContainsBlocksOfNextWall()
         {
             foreach (var blockPos in _frontier)
             {
-                if ((int)blockPos.z == k) return true;
+                if ((int)blockPos.z > _wallZValue) return true;
             }
 
             return false;
