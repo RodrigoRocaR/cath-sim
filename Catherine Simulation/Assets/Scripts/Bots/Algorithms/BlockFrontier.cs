@@ -265,11 +265,11 @@ namespace Bots.Algorithms
             return _frontier;
         }
 
-        public bool ContainsBlocksOfNextWall()
+        public bool ContainsBlocksWithGreaterEqualZValue(int zValue)
         {
             foreach (var blockPos in _frontier)
             {
-                if ((int)blockPos.z > _wallZValue) return true;
+                if ((int)blockPos.z >= zValue) return true;
             }
 
             return false;
@@ -278,6 +278,11 @@ namespace Bots.Algorithms
         public int Length()
         {
             return _frontier.Count;
+        }
+
+        public int GetWallZ()
+        {
+            return _wallZValue;
         }
     }
 }

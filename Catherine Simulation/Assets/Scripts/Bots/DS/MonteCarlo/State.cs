@@ -21,12 +21,14 @@ namespace Bots.DS.MonteCarlo
         private List<PushPullAction> _possibleActions;
         
         private PushPullAction _excludedAction;
+        private int _targetZ;
 
         public State(Vector3 playerPos) // root node constructor
         {
             _playerPos = Level.TransformToIndexDomain(playerPos);
             _currentLevel = Level.GetGameMatrix();
             _blockFrontier = new BlockFrontier(_playerPos, _currentLevel);
+            _targetZ = _blockFrontier.GetWallZ()+1;
         }
 
         public State(State previous, PushPullAction action)
@@ -35,13 +37,14 @@ namespace Bots.DS.MonteCarlo
             _currentLevel = new GameMatrix(previous._currentLevel, action);
             _blockFrontier = new BlockFrontier(_playerPos, _currentLevel);
             _excludedAction = new PushPullAction(PushPullAction.GetOppositeAction(action));
+            _targetZ = previous._targetZ;
         }
 
         private int Evaluate()
         {
             int score = 0;
             
-            if (_blockFrontier.ContainsBlocksOfNextWall()) // reached goal
+            if (_blockFrontier.ContainsBlocksWithGreaterEqualZValue(_targetZ)) // reached goal
             {
                 // It needs to be z+2 since it can always manipulate z+1 blocks from the wall
                 score += 10_000;
