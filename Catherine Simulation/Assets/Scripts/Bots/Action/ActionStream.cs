@@ -1,19 +1,27 @@
 ﻿using System.Collections.Generic;
+using Blocks;
 using Bots.DS;
 using Bots.DS.MonteCarlo;
-using LevelDS;
 using UnityEngine;
 
 namespace Bots.Action
 {
     public class ActionStream
     {
+        private enum Axis
+        {
+            X,
+            Z
+        }
+
         private List<Action> _actions;
+        private List<(int, int)> _positions;
         private readonly Level2D _level2D;
 
         public ActionStream(Level2D level2D)
         {
             _actions = new List<Action>();
+            _positions = new List<(int, int)>();
             _level2D = level2D;
         }
 
@@ -29,41 +37,89 @@ namespace Bots.Action
         */
         public void CreateFromPositions(List<(int, int)> positions)
         {
-            var previousPos = positions[0];
-            for (int i = 1; i < positions.Count; i++)
+            _positions = positions;
+            var previousPos = _positions[0];
+            for (int i = 1; i < _positions.Count; i++)
             {
-                Action? a = GetActionFromPosDiff(previousPos, positions[i]);
+                Action? a = GetActionFromPosDiff(previousPos, _positions[i]);
                 if (a != null)
                 {
                     _actions.Add((Action)a);
                 }
-                
-                previousPos = positions[i];
+
+                previousPos = _positions[i];
             }
 
-            TranslateActionsTo3D(positions);
+            TranslateActionsTo3D();
         }
 
-        public void TranslateActionsTo3D(List<(int, int)> positions)
+
+        public void CreateFromPushPullActions(Vector3 start, List<PushPullAction> pushPullActions)
+        {
+            Vector3 currPos = start;
+            foreach (var pushPullAction in pushPullActions)
+            {
+                var nextPos = BlockHelper.GetExpectedPlayerPos(pushPullAction);
+                // 1. Move one or several blocks to needed pos
+                currPos = MoveTorwardsPosAxis(currPos, nextPos, Axis.X);
+                currPos = MoveTorwardsPosAxis(currPos, nextPos, Axis.Z);
+                // 2. Look at block
+                _actions.Add(BlockHelper.GetActionToLookTorwardsBlock(pushPullAction));
+                // 3. Push / Pull it
+                _actions.Add(pushPullAction.GetAction());
+            }
+        }
+
+        private Vector3 MoveTorwardsPosAxis(Vector3 current, Vector3 target, Axis axis)
+        {
+            int diff = axis switch
+            {
+                Axis.X => (int)Mathf.Abs(current.x - target.x),
+                Axis.Z => (int)Mathf.Abs(current.z - target.z),
+                _ => 0
+            };
+            Action? actionNullable = GetActionFromPosDiff(current, target);
+            if (actionNullable == null) return current;
+
+            Action action = (Action)actionNullable;
+            (int, int) currPos = ((int)current.x, (int)current.z);
+            
+            // todo: add hanging logic here
+            for (int i=0; i<diff; i++)
+            {
+                _actions.Add(action);
+                currPos = BlockHelper.GetNextPos(currPos, action);
+                _positions.Add(currPos);
+            }
+
+            return new Vector3(currPos.Item1, _level2D.Get(currPos), currPos.Item2);
+        }
+
+        private void TranslateActionsTo3D()
         {
             if (_level2D.Width() == 0 || _level2D.Height() == 0) return;
-            int currheightLevel = _level2D.Get(positions[0].Item1, positions[0].Item2);
+            int currheightLevel = _level2D.Get(_positions[0].Item1, _positions[0].Item2);
             int offset = 0;
-            for (int i=1; i<positions.Count; i++)
+            for (int i = 1; i < _positions.Count; i++)
             {
-                int newHeight = _level2D.Get(positions[i].Item1, positions[i].Item2);
+                int newHeight = _level2D.Get(_positions[i].Item1, _positions[i].Item2);
                 if (newHeight != currheightLevel)
                 {
-                    _actions.Insert(i+offset, Action.Jump);
+                    _actions.Insert(i + offset, Action.Jump);
                     currheightLevel = newHeight;
                     offset++;
                 }
             }
         }
 
+        private Action? GetActionFromPosDiff(Vector3 original, Vector3 target)
+        {
+            return GetActionFromPosDiff(((int)original.x, (int)original.z), ((int)target.x, (int)target.z));
+        }
+
         private Action? GetActionFromPosDiff((int, int) original, (int, int) target)
         {
-            return GetActionFromPosDiffX(original, target) ?? GetActionFromPosDiffZ(original, target);;
+            return GetActionFromPosDiffX(original, target) ?? GetActionFromPosDiffZ(original, target);
         }
 
         private Action? GetActionFromPosDiffZ((int, int) original, (int, int) target)

@@ -157,5 +157,10 @@ namespace Bots.DS.MonteCarlo
             // IsEmpty and has a block below it
             return Level.IsEmpty(pos) && Level.IsNotEmpty(_bh.Down(pos));
         }
+
+        public Action.Action GetAction()
+        {
+            return IsPushAction() ? Bots.Action.Action.Push : Bots.Action.Action.Pull;
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Bots.DS.MonteCarlo;
-using UnityEngine;
+using UnityEngine;using Bots.Action;
+using Action = Bots.Action.Action;
 
 namespace Blocks
 {
@@ -142,6 +143,94 @@ namespace Blocks
             }
 
             return newPos;
+        }
+        
+        public static Vector3 GetExpectedPlayerPos(PushPullAction action)
+        {
+            Vector3 oldBlockPos = action.BlockPos;
+            Vector3 newPos;
+            switch (action.Action)
+            {
+                case PushPullAction.Actions.PullForward:
+                    newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z - Offset);
+                    break;
+                case PushPullAction.Actions.PullRight:
+                    newPos = new Vector3(oldBlockPos.x + Offset, oldBlockPos.y, oldBlockPos.z);
+                    break;
+                case PushPullAction.Actions.PullBackward:
+                    newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z + Offset);
+                    break;
+                case PushPullAction.Actions.PullLeft:
+                    newPos = new Vector3(oldBlockPos.x - Offset, oldBlockPos.y, oldBlockPos.z);
+                    break;
+                case PushPullAction.Actions.PushForward:
+                    newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z - Offset);
+                    break;
+                case PushPullAction.Actions.PushRight:
+                    newPos = new Vector3(oldBlockPos.x + Offset, oldBlockPos.y, oldBlockPos.z);
+                    break;
+                case PushPullAction.Actions.PushBackward:
+                    newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z + Offset);
+                    break;
+                case PushPullAction.Actions.PushLeft:
+                    newPos = new Vector3(oldBlockPos.x - Offset, oldBlockPos.y, oldBlockPos.z);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return newPos;
+        }
+
+        public static Action GetActionToLookTorwardsBlock(PushPullAction action)
+        {
+            Action a;
+            switch (action.Action)
+            {
+                case PushPullAction.Actions.PullForward:
+                case PushPullAction.Actions.PushForward:
+                    a = Action.Forward;
+                    break;
+                case PushPullAction.Actions.PullRight:
+                case PushPullAction.Actions.PushRight:
+                    a = Action.Right;
+                    break;
+                case PushPullAction.Actions.PullBackward:
+                case PushPullAction.Actions.PushBackward:
+                    a = Action.Backward;
+                    break;
+                case PushPullAction.Actions.PullLeft:
+                case PushPullAction.Actions.PushLeft:
+                    a = Action.Left;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return a;
+        }
+        
+        public static (int, int) GetNextPos((int, int) p, Action action)
+        {
+            // x, z
+            (int, int) ans = p;
+            switch (action)
+            {
+                case Action.Forward:
+                    ans = (p.Item1, p.Item2 + 1);
+                    break;
+                case Action.Right:
+                    ans = (p.Item1 + 1, p.Item2);
+                    break;
+                case Action.Backward:
+                    ans = (p.Item1, p.Item2 - 1);
+                    break;
+                case Action.Left:
+                    ans = (p.Item1 - 1, p.Item2);
+                    break;
+            }
+
+            return ans;
         }
     }
 }

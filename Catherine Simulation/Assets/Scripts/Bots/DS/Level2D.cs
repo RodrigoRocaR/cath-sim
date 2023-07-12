@@ -40,6 +40,11 @@ namespace Bots.DS
         {
             return Elements[x, y];
         }
+        
+        public int Get((int, int) xy)
+        {
+            return Elements[xy.Item1, xy.Item2];
+        }
 
         protected Matrix2D<int> GetWholeLevel()
         {

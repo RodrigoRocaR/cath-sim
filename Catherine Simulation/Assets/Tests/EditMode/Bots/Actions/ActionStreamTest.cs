@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Bots.Action;
 using Bots.DS;
+using Bots.DS.MonteCarlo;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace Tests.EditMode.Bots.Actions
 {
@@ -156,6 +158,42 @@ namespace Tests.EditMode.Bots.Actions
             {
                 Assert.AreEqual(expectedMovements[i], movements[i]);
             }
+        }
+
+        [Test]
+        public void TestCreateFromPushPullActions()
+        {
+            Vector3 initialPos = new Vector3(0, 0);
+
+            Level2D level2D = new FloorLevel2D(new[]
+            {
+                new []{ 0, 0, 2 },
+                new []{ 0, 0, 2 },
+                new []{ 0, 2, 2 },
+                new []{ 0, 0, 2 },
+                new []{ 0, 2, 2 },
+                new []{ 0, 0, 0 },
+            });
+
+            List<PushPullAction> pushPullActions = new List<PushPullAction>
+            {
+                new PushPullAction(new Vector3(3, 0, 2), PushPullAction.Actions.PushForward)
+            };
+
+            List<Action> expectedMovements = new List<Action>
+            {
+                Action.Right,
+                Action.Right,
+                Action.Right,
+                Action.Forward,
+                Action.Forward, // look at the block
+                Action.Push
+            };
+            
+            ActionStream actionStream = new ActionStream(level2D);
+            actionStream.CreateFromPushPullActions(initialPos, pushPullActions);
+            
+            CollectionAssert.AreEqual(expectedMovements, actionStream.GetAsList());
         }
     }
 }
