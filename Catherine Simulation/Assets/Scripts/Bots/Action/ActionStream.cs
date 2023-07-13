@@ -2,6 +2,7 @@
 using Blocks;
 using Bots.DS;
 using Bots.DS.MonteCarlo;
+using LevelDS;
 using UnityEngine;
 
 namespace Bots.Action
@@ -56,7 +57,8 @@ namespace Bots.Action
 
         public void CreateFromPushPullActions(Vector3 start, List<PushPullAction> pushPullActions)
         {
-            Vector3 currPos = start;
+            Vector3 currPos = Level.TransformToIndexDomain(start);
+            _positions.Add(((int)currPos.x, (int)currPos.z));
             foreach (var pushPullAction in pushPullActions)
             {
                 var nextPos = BlockHelper.GetExpectedPlayerPos(pushPullAction);
@@ -68,6 +70,7 @@ namespace Bots.Action
                 // 3. Push / Pull it
                 _actions.Add(pushPullAction.GetAction());
             }
+            TranslateActionsTo3D();
         }
 
         private Vector3 MoveTorwardsPosAxis(Vector3 current, Vector3 target, Axis axis)
@@ -83,13 +86,21 @@ namespace Bots.Action
 
             Action action = (Action)actionNullable;
             (int, int) currPos = ((int)current.x, (int)current.z);
-            
-            // todo: add hanging logic here
-            for (int i=0; i<diff; i++)
+
+            int currHeight = _level2D.Get(currPos);
+            for (int i = 0; i < diff; i++)
             {
-                _actions.Add(action);
                 currPos = BlockHelper.GetNextPos(currPos, action);
+                var nextHeight = _level2D.Get(currPos);
+
+                if (Mathf.Abs(nextHeight - currHeight) > 1 || nextHeight == GameConstants.EmptyBlock)
+                {
+                    currPos = Hang(diff-i-1, action, currPos, currHeight);
+                    break; // we go until the end
+                }
+                _actions.Add(action);
                 _positions.Add(currPos);
+                currHeight = nextHeight;
             }
 
             return new Vector3(currPos.Item1, _level2D.Get(currPos), currPos.Item2);
@@ -102,8 +113,8 @@ namespace Bots.Action
             int offset = 0;
             for (int i = 1; i < _positions.Count; i++)
             {
-                int newHeight = _level2D.Get(_positions[i].Item1, _positions[i].Item2);
-                if (newHeight != currheightLevel)
+                int newHeight = _level2D.Get(_positions[i]);
+                if (newHeight != currheightLevel && newHeight != -1)
                 {
                     _actions.Insert(i + offset, Action.Jump);
                     currheightLevel = newHeight;
@@ -142,6 +153,44 @@ namespace Bots.Action
                 > 0 => Action.Left,
                 _ => null
             };
+        }
+
+        private (int, int) Hang(int diff, Action a, (int, int) currPos, int startheight)
+        {
+            _actions.Add(Action.Backward);
+            _actions.Add(a);
+            _positions.Add(PosBackward());
+            while (diff > 0) // At this point we know we can perform the actions so we just go
+            {
+                _actions.Add(a);
+                currPos = BlockHelper.GetNextPos(currPos, a);
+                _positions.Add(PosBackward());
+                
+                // There are blocks in the way, so we have to hang on them instead: (hang backwards)
+                while (_level2D.Get(PosBackward()) == startheight)
+                {
+                    _actions.Add(a);
+                    currPos.Item2--;
+                }
+                
+                // We dont have more blocks to hang, try to hang forward
+                while (Level.GetBlockInt(currPos, startheight) == GameConstants.EmptyBlock)
+                {
+                    _actions.Add(a);
+                    currPos.Item2++;
+                }
+
+                diff--;
+            }
+
+            _actions.Add(Action.Forward);
+            _positions.Add(currPos);
+            return currPos;
+
+            (int, int) PosBackward()
+            {
+                return (currPos.Item1, currPos.Item2 - 1);
+            }
         }
     }
 }

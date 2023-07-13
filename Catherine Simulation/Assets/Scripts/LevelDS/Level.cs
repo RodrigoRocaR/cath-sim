@@ -118,6 +118,11 @@ namespace LevelDS
         {
             return _level.GetBlockInt(x, y, z);
         }
+        
+        public static int GetBlockInt((int, int) xz, int y)
+        {
+            return _level.GetBlockInt(xz.Item1, y, xz.Item2);
+        }
 
         public static int GetBlockInt(Vector3 pos)
         {
