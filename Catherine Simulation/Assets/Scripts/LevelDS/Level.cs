@@ -245,6 +245,7 @@ namespace LevelDS
 
         public static Vector3 TransformToIndexDomain(Vector3 vector3)
         {
+            if (_isMock) return vector3;
             return new Vector3((int) (vector3.x / GameConstants.BlockScale),
                 (int) (vector3.y / GameConstants.BlockScale),
                 (int) (vector3.z / GameConstants.BlockScale));
