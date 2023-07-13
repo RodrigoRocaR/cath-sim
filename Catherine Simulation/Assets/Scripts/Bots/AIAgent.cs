@@ -59,12 +59,19 @@ namespace Bots
         {
             ActionStream actionStream = new ActionStream(_level2D);
             actionStream.CreateFromPushPullActions(_bfs.GetEndPlayerPos(), _mcts.GetActions());
-            StartCoroutine(_actionExecutor.Execute(actionStream, ActionExecutorPurpose.Exploration));
+            _botState.StartClimbing();
+            BotEventManager.OnClimbFinished += OnFinishClimb;
+            StartCoroutine(_actionExecutor.Execute(actionStream, ActionExecutorPurpose.Climbing));
         }
 
         private void OnFinishExplore()
         {
             _botState.StopExploring();
+        }
+
+        private void OnFinishClimb()
+        {
+            _botState.StartClimbing();
         }
 
         private void LookForClimbingRoutes()
