@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Bots.DS.MonteCarlo;
+using Bots.DS.TreeModel;
 using LevelDS;
 using NUnit.Framework;
 using UnityEngine;
@@ -12,11 +13,6 @@ namespace Tests.EditMode.Bots.DS.MonteCarlo
         [Test]
         public void TestEvaluate()
         {
-            Type type = typeof(State);
-            MethodInfo methodInfo = type.GetMethod("Evaluate", BindingFlags.NonPublic | BindingFlags.Instance);
-            if (methodInfo == null) Assert.Fail("Could not get Evaluate method");
-
-
             GameObject mockObject = new GameObject();
             var mockLevel = mockObject.AddComponent<Level>();
             mockLevel.NewMockLevel(new[]
@@ -51,13 +47,78 @@ namespace Tests.EditMode.Bots.DS.MonteCarlo
                 },
             });
             State s = new State(new Vector3(0, 0, 1));
+            
+            var method = MethodGetter.GetPrivateMethod(s, "Evaluate");
 
-            int score = Convert.ToInt32(methodInfo.Invoke(s, null));
+            int score = Convert.ToInt32(method.Invoke(s, null));
             Assert.AreEqual(4, score);
 
             State s2 = new State(s, new PushPullAction(new Vector3(1, 1, 2), PushPullAction.Actions.PullForward));
-            int score2 = Convert.ToInt32(methodInfo.Invoke(s2, null));
+            int score2 = Convert.ToInt32(method.Invoke(s2, null));
             Assert.Greater(score2, score);
+        }
+
+        [Test]
+        public void TestExpand()
+        {
+            GameObject mockObject = new GameObject();
+            var mockLevel = mockObject.AddComponent<Level>();
+            mockLevel.NewMockLevel(new[]
+            {
+                new[] // x: 0
+                {
+                    new[] { -1, 0, 0, -1 },
+                    new[] { -1, -1, 0, 0 }, 
+                    new[] { -1, -1, 0, 0 }, 
+                    new[] { -1, -1, -1, 0 }, 
+                    new[] { -1, -1, -1, 0 }, 
+                },
+                new[] // x: 1
+                {
+                    new[] { -1, 0, 0, -1 },
+                    new[] { -1, 0, 0, 0 },
+                    new[] { -1, -1, 0, 0 },
+                    new[] { -1, -1, 0, 0 },
+                    new[] { -1, -1, -1, 0 }, 
+                },
+                new[] // x: 2
+                {
+                    new[] { -1, 0, 0, -1 },
+                    new[] { -1, -1, 0, 0 },
+                    new[] { -1, -1, 0, 0 },
+                    new[] { -1, -1, -1, 0 },
+                    new[] { -1, -1, -1, 0 }, 
+                },
+                new[] // x: 3
+                {
+                    new[] { -1, 0, 0, -1 },
+                    new[] { -1, -1, 0, 0 },
+                    new[] { -1, -1, 0, 0 },
+                    new[] { -1, -1, -1, 0 },
+                    new[] { -1, -1, -1, 0 }, 
+                },
+                new[] // x: 3
+                {
+                    new[] { -1, 0, 0, -1 },
+                    new[] { -1, 0, 0, 0 },
+                    new[] { -1, -1, 0, 0 },
+                    new[] { -1, -1, 0, 0 },
+                    new[] { -1, -1, -1, 0 }, 
+                },
+                new[] // x: 3
+                {
+                    new[] { -1, 0, 0, -1 },
+                    new[] { -1, 0, 0, 0 },
+                    new[] { -1, -1, 0, 0 },
+                    new[] { -1, -1, 0, 0 },
+                    new[] { -1, -1, -1, 0 }, 
+                },
+            });
+            State s = new State(new Vector3(0, 0, 1));
+            TreeNode<State, PushPullAction> root = new TreeNode<State, PushPullAction>(s);
+            var firstChild = s.Expand(root);
+            
+            Assert.AreEqual(root.Forest[0], firstChild);
         }
     }
 }
