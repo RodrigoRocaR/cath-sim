@@ -57,13 +57,13 @@ namespace Bots
 
         private void Climb()
         {
-            var actions = _mcts.GetActions();
-            // todo: execute them
+            ActionStream actionStream = new ActionStream(_level2D);
+            actionStream.CreateFromPushPullActions(_bfs.GetEndPlayerPos(), _mcts.GetActions());
+            StartCoroutine(_actionExecutor.Execute(actionStream, ActionExecutorPurpose.Exploration));
         }
 
         private void OnFinishExplore()
         {
-            _bfs = null;
             _botState.StopExploring();
         }
 

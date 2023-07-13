@@ -81,6 +81,7 @@ namespace Bots.Algorithms
             var node = _searchTreeRoot;
             if (node == null) return;
 
+            _actions = new List<PushPullAction>();
             while (!node.IsLeafNode())
             {
                 var childIndex = GetChildThatMaximizesUCB1(node, true);
@@ -121,7 +122,6 @@ namespace Bots.Algorithms
         public List<PushPullAction> GetActions()
         {
             CollectBestCourseOfAction();
-            // todo: transform into atomic actions
             return _actions;
         }
     }
