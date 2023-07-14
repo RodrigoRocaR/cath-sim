@@ -35,7 +35,7 @@ namespace LevelDS
             else
             {
                 _levelFactory = new LevelFactory();
-                _level = _levelFactory.GetExploreTest1();
+                _level = _levelFactory.GetTestHangingLevel();
                 SpawnBlocks();
             }
 
@@ -163,6 +163,11 @@ namespace LevelDS
             // Erase old
             _level.SetBlockInt(pos, GameConstants.EmptyBlock);
             _level.SetBlock(pos, null);
+        }
+        
+        public static bool IsBlock(Vector3 pos)
+        {
+            return _level.GetBlockInt(pos) != GameConstants.EmptyBlock;
         }
 
         public static bool IsInBlockSpaceCoords(Vector3 playerPos)

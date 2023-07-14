@@ -21,6 +21,7 @@
             int levelSize = 11;
             return new LevelBuilder(levelSize, levelSize, levelSize)
                 .AddSquareBorder(0, levelSize)
+                .AddIndividualBlock(1, 0, 1, GameConstants.SolidBlock)
                 .AddBlockRowX(5, 0)
                 .AddBlockRowZ(5, 0)
                 .AddPyramid2D(1, 5, 10, 4)
