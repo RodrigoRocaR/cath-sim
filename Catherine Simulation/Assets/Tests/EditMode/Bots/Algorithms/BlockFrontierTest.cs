@@ -411,7 +411,8 @@ namespace Tests.EditMode.Bots.Algorithms
             Vector3 initialPostion = new Vector3(3, 0, 0);
             Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
             {
-                { // has space on both sides
+                {
+                    // has space on both sides
                     new[]
                     {
                         new[] // x: 0
@@ -471,7 +472,8 @@ namespace Tests.EditMode.Bots.Algorithms
                         new Vector3(1, 2, 2),
                     }
                 },
-                { // runs out of blocks on the right, but has space on the left
+                {
+                    // runs out of blocks on the right, but has space on the left
                     new[]
                     {
                         new[] // x: 0
@@ -523,7 +525,8 @@ namespace Tests.EditMode.Bots.Algorithms
                         new Vector3(1, 1, 1),
                     }
                 },
-                { // only has space on the right
+                {
+                    // only has space on the right
                     new[]
                     {
                         new[] // x: 0
@@ -575,7 +578,8 @@ namespace Tests.EditMode.Bots.Algorithms
                         new Vector3(6, 1, 2),
                     }
                 },
-                { // has no space
+                {
+                    // has no space
                     new[]
                     {
                         new[] // x: 0
@@ -703,7 +707,8 @@ namespace Tests.EditMode.Bots.Algorithms
             Vector3 initialPostion = new Vector3(0, 1, 1);
             Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
             {
-                { // basic: hang backwards one time
+                {
+                    // basic: hang backwards one time
                     new[]
                     {
                         new[] // x: 0
@@ -753,27 +758,27 @@ namespace Tests.EditMode.Bots.Algorithms
                     {
                         new[] // x: 0
                         {
-                            new[] { -1, -1, 0, 0, 0 }, 
-                            new[] { -1, -1, 0, 0, 0 }, 
-                            new[] { -1, -1, 0, 0, 0 }, 
+                            new[] { -1, -1, 0, 0, 0 },
+                            new[] { -1, -1, 0, 0, 0 },
+                            new[] { -1, -1, 0, 0, 0 },
                         },
                         new[] // x: 1
                         {
-                            new[] { -1, -1, 0, 0, 0 }, 
-                            new[] { -1, -1, -1, -1, 0 }, 
-                            new[] { -1, -1, -1, -1, 0 }, 
+                            new[] { -1, -1, 0, 0, 0 },
+                            new[] { -1, -1, -1, -1, 0 },
+                            new[] { -1, -1, -1, -1, 0 },
                         },
                         new[] // x: 2
                         {
-                            new[] { -1, -1, 0, 0, 0 }, 
-                            new[] { -1, -1, -1, -1, 0 }, 
-                            new[] { -1, -1, -1, -1, 0 }, 
+                            new[] { -1, -1, 0, 0, 0 },
+                            new[] { -1, -1, -1, -1, 0 },
+                            new[] { -1, -1, -1, -1, 0 },
                         },
                         new[] // x: 3
                         {
-                            new[] { -1, -1, 0, 0, 0 }, 
-                            new[] { -1, -1, -1, -1, 0 }, 
-                            new[] { -1, -1, -1, -1, -1 }, 
+                            new[] { -1, -1, 0, 0, 0 },
+                            new[] { -1, -1, -1, -1, 0 },
+                            new[] { -1, -1, -1, -1, -1 },
                         },
                     },
                     new List<Vector3>
@@ -791,6 +796,76 @@ namespace Tests.EditMode.Bots.Algorithms
             Vector3 initialPostion = new Vector3(4, 0, 1);
             Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
             {
+                {
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, 0, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 5
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(3, 1, 2),
+                        new Vector3(4, 1, 2),
+                        new Vector3(5, 1, 2),
+                        new Vector3(2, 1, 2),
+                        new Vector3(1, 1, 1),
+                        new Vector3(1, 2, 2),
+                        new Vector3(0, 1, 2),
+                        // Row above
+                        new Vector3(0, 3, 3),
+                        new Vector3(1, 3, 3),
+                        new Vector3(2, 3, 3),
+                        new Vector3(3, 3, 3),
+                        new Vector3(4, 3, 3),
+                        new Vector3(5, 3, 3),
+                    }
+                },
                 {
                     new[]
                     {
@@ -893,7 +968,8 @@ namespace Tests.EditMode.Bots.Algorithms
             Vector3 initialPostion = new Vector3(4, 1, 1);
             Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
             {
-                { // Hangs on the right extreme and cannot get up
+                {
+                    // Hangs on the right extreme and cannot get up
                     new[]
                     {
                         new[] // x: 0

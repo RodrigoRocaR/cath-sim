@@ -80,6 +80,9 @@ namespace Bots.Algorithms
                 {
                     FinishExploration();
                 }
+                
+                if (CanGoForward(currBlock)) _interestPoints.Add(_bh.Forward(currBlock));
+                if (CanGoTopForward(currBlock)) _interestPoints.Add(_bh.TopForward(currBlock));
 
                 currBlock = NextBlock();
             }
@@ -249,6 +252,13 @@ namespace Bots.Algorithms
                 return _currentLevel.IsNotEmpty(_bh.Forward(p)) &&
                        _currentLevel.IsEmpty(_bh.Forward(_bh.Up(p))) &&
                        _currentLevel.IsEmpty(_bh.TopForward(_bh.Up(p)));
+            }
+            
+            bool CanGoTopForward(Vector3 p)
+            {
+                return _currentLevel.IsNotEmpty(_bh.TopForward(p)) &&
+                       _currentLevel.IsEmpty(_bh.Forward(_bh.Up(p, multiplier: 2))) &&
+                       _currentLevel.IsEmpty(_bh.Forward(_bh.Up(p, multiplier: 3)));
             }
         }
 
