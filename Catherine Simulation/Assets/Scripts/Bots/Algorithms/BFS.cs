@@ -183,7 +183,7 @@ namespace Bots.Algorithms
                 goRight = false;
                 actions = Hang();
             }
-            
+            actions.Add(Action.Action.Forward); // get back up
             _actionStream.AddActions(actions);
             
             
