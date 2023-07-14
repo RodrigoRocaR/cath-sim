@@ -7,6 +7,7 @@ namespace Bots.DS.TreeModel
         public List<Edge<T, K>> Edges { get; set; }
         public List<TreeNode<T, K>> Forest { get; set; }
         public TreeNode<T, K> Parent { get; set; }
+        public Edge<T, K> ParentEdge { get; set; }
         public T Value { get; set; }
 
         public TreeNode(T value, TreeNode<T, K> parent)
@@ -26,11 +27,13 @@ namespace Bots.DS.TreeModel
             Parent = null;
         }
 
-        public void AddChild(T value, K edge)
+        public void AddChild(T value, K edgevalue)
         {
             var childNode = new TreeNode<T, K>(value, this);
+            var edge = new Edge<T, K>(this, childNode, edgevalue);
             Forest.Add(childNode);
-            Edges.Add(new Edge<T, K>(this, childNode, edge));
+            Edges.Add(edge);
+            childNode.ParentEdge = edge;
         }
 
         public bool IsLeafNode()

@@ -57,13 +57,15 @@ namespace Bots.DS.MonteCarlo
             return score;
         }
 
-        public TreeNode<State, PushPullAction> Expand(TreeNode<State, PushPullAction> currNode)
+        public (TreeNode<State, PushPullAction>, bool) Expand(TreeNode<State, PushPullAction> currNode)
         {
             if (currNode.Value != this)
             {
                 LogErrorWrongNode();
-                return null;
+                return (null, false);
             }
+
+            if (IsTerminal()) return (currNode, true);
 
             _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier, _excludedAction);
 
@@ -72,7 +74,7 @@ namespace Bots.DS.MonteCarlo
                 currNode.AddChild(new State(this, action), action);
             }
 
-            return currNode.Forest[0];
+            return (currNode.Forest[0], false);
         }
 
         public int Rollout()
@@ -82,7 +84,7 @@ namespace Bots.DS.MonteCarlo
 
         private int Rollout(int depth)
         {
-            if (depth == 0) return Evaluate();
+            if (depth == 0 || IsTerminal()) return Evaluate();
             _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier, _excludedAction);
             if (_possibleActions.Count == 0) return Evaluate();
             PushPullAction action;
@@ -96,6 +98,11 @@ namespace Bots.DS.MonteCarlo
         private void LogErrorWrongNode()
         {
             Debug.LogError("When expanding the node does not contain the state desired to expand");
+        }
+
+        public bool IsTerminal()
+        {
+            return _blockFrontier.ContainsBlocksWithGreaterEqualZValue(_targetZ);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Bots.Algorithms
         private TreeNode<State, PushPullAction> _searchTreeRoot;
         private List<PushPullAction> _actions;
         private bool _stopIterating;
-        private bool _solutionFound;
+        private TreeNode<State, PushPullAction> _terminalNode;
 
         public MonteCarlo(Vector3 playerPos)
         {
@@ -24,22 +24,33 @@ namespace Bots.Algorithms
             int i = 0;
             while (!_stopIterating && i < Parameters.MaxIterations)
             {
-                var nodeToRollout = TraverseAndExpand(root);
+                var (nodeToRollout, isTerminal) = TraverseAndExpand(root);
+                if (isTerminal)
+                {
+                    _terminalNode = nodeToRollout;
+                    break;
+                }
                 int v = nodeToRollout.Value.Rollout();
                 Backpropagate(v, nodeToRollout);
                 i++;
-                if (!_solutionFound) continue;
-                Debug.Log("Found a solution");
-                break;
+                
             }
 
             if (i >= Parameters.MaxIterations)
             {
                 Debug.LogWarning("MonteCarlo: I give up");
             }
+            else if (!_stopIterating)
+            {
+                Debug.Log("Found a solution!");
+            }
+            else
+            {
+                Debug.Log("Ran out of time");
+            }
         }
 
-        private TreeNode<State, PushPullAction> TraverseAndExpand(TreeNode<State, PushPullAction> current)
+        private (TreeNode<State, PushPullAction>, bool) TraverseAndExpand(TreeNode<State, PushPullAction> current)
         {
             if (!current.IsLeafNode())
             {
@@ -52,7 +63,7 @@ namespace Bots.Algorithms
                 return current.Value.Expand(current);
             }
 
-            return current;
+            return (current, false);
         }
 
         private void Backpropagate(int v, TreeNode<State, PushPullAction> node)
@@ -60,7 +71,6 @@ namespace Bots.Algorithms
             if (node == null) return;
             node.Value.N++;
             node.Value.T += v;
-            if (node.Value.T >= 10_000) _solutionFound = true;
             Backpropagate(v, node.Parent);
         }
 
@@ -78,6 +88,12 @@ namespace Bots.Algorithms
 
         private void CollectBestCourseOfAction()
         {
+            if (_terminalNode != null)
+            {
+                CollectFromTerminalNode();
+                return;
+            }
+            
             var node = _searchTreeRoot;
             if (node == null) return;
 
@@ -93,6 +109,17 @@ namespace Bots.Algorithms
                 _actions.Add(node.Edges[childIndex].Value);
                 node = node.Forest[childIndex];
             }
+        }
+
+        private void CollectFromTerminalNode()
+        {
+            var node = _terminalNode;
+            while (!node.IsRoot())
+            {
+                _actions.Add(node.ParentEdge.Value);
+                node = node.Parent;
+            }
+            _actions.Reverse();
         }
         
         private int GetChildThatMaximizesUCB1(TreeNode<State, PushPullAction> exploreNode, bool collectMode = false)
