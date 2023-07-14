@@ -48,6 +48,7 @@ namespace Bots
             _bfs = new BFS(_level2D);
             Vector3 pos = transform.position;
             _botState.StartExploring();
+            _bfs.GetUpIfHanging(pos);
             _bfs.Explore((int)pos.x, (int)pos.z);
             
             BotEventManager.OnExplorationFinished += OnFinishExplore;
@@ -71,7 +72,7 @@ namespace Bots
 
         private void OnFinishClimb()
         {
-            _botState.StartClimbing();
+            _botState.StopClimbing();
         }
 
         private void LookForClimbingRoutes()

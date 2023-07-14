@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using Blocks;
 using Bots.Action;
 using Bots.DS;
+using LevelDS;
 using UnityEngine;
 
 namespace Bots.Algorithms
@@ -166,6 +168,78 @@ namespace Bots.Algorithms
         {
             if (!_isMock) return;
             _visited = visited;
+        }
+
+        public void GetUpIfHanging(Vector3 playerPos)
+        {
+            if (Level.IsNotEmpty(playerPos)) return;
+
+            BlockHelper _bh = new BlockHelper();
+            bool goRight = true;
+            Vector3 currPos = playerPos;
+            var actions = Hang();
+            if (actions.Count == 0)
+            {
+                goRight = false;
+                actions = Hang();
+            }
+            
+            _actionStream.AddActions(actions);
+            
+            
+            bool CanNotGetUp()
+            {
+                return Level.IsNotEmpty(_bh.Up(currPos)) ||
+                       Level.IsNotEmpty(_bh.Up(currPos, multiplier: 2));
+            }
+            
+            List<Action.Action> Hang()
+            {
+                bool dontRunOutOfBlocks = Level.IsNotEmpty(currPos);
+                List<Action.Action> localactions = new List<Action.Action>();
+                while (dontRunOutOfBlocks && CanNotGetUp())
+                {
+                    currPos = NextBlock();
+                    AddAction();
+                    // There are blocks in the way, so we have to hang on them instead: (hang backwards)
+                    while (Level.IsNotEmpty(_bh.Backward(currPos)))
+                    {
+                        AddAction();
+                        currPos = _bh.Backward(currPos);
+                    }
+                    // We dont have more blocks to hang, try to hang forward
+                    while (Level.IsEmpty(currPos) && Level.IsNotEmpty(PrevBlock()))
+                    {
+                        AddAction();
+                        currPos = _bh.Forward(currPos);
+                    }
+                        
+
+                    dontRunOutOfBlocks = Level.IsNotEmpty(currPos);
+
+                    void AddAction()
+                    {
+                        localactions.Add(goRight ? Action.Action.Right : Action.Action.Left);
+                    }
+                }
+
+                if (!dontRunOutOfBlocks)
+                {
+                    return new List<Action.Action>();
+                }
+
+                return localactions;
+            }
+            
+            Vector3 NextBlock()
+            {
+                return goRight ? _bh.Right(currPos) : _bh.Left(currPos);
+            }
+
+            Vector3 PrevBlock()
+            {
+                return goRight ? _bh.Left(currPos) : _bh.Right(currPos);
+            }
         }
     }
 }

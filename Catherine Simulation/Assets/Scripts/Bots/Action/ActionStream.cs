@@ -31,6 +31,11 @@ namespace Bots.Action
             return _actions;
         }
 
+        public void AddActions(IEnumerable<Action> actions)
+        {
+            _actions.AddRange(actions);
+        }
+
 
         /**
          * We assume the first position is the starting position and then we create n-1 actions to move to
