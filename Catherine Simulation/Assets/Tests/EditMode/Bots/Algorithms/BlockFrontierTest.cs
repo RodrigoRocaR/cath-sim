@@ -11,18 +11,26 @@ namespace Tests.EditMode.Bots.Algorithms
     {
         private void TestGetFrontierWithCases(Dictionary<int[][][], List<Vector3>> cases, Vector3 initialPostion)
         {
+            TestGetFrontierWithCases(cases, new List<Vector3> { initialPostion });
+        }
+
+        private void TestGetFrontierWithCases(Dictionary<int[][][], List<Vector3>> cases, List<Vector3> initialPostions)
+        {
             GameObject mockObject = new GameObject();
             var mockLevel = mockObject.AddComponent<Level>();
 
             foreach (var (levelValues, frontier) in cases)
             {
                 mockLevel.NewMockLevel(levelValues);
-                var f = new BlockFrontier(initialPostion, Level.GetGameMatrix());
-                var obtainedFrontier = f.GetFrontier();
-                Assert.AreEqual(frontier.Count, obtainedFrontier.Count);
-                Assert.True(frontier.All(obtainedFrontier.Contains),
-                    $"Obtained frontier does not match (order does not matter)\n" +
-                    $"{string.Join("\n", frontier.Zip(obtainedFrontier, (elem1, elem2) => $"Expected: {elem1} --- Obtained: {elem2}").ToArray())}");
+                foreach (var pos in initialPostions)
+                {
+                    var f = new BlockFrontier(pos, Level.GetGameMatrix());
+                    var obtainedFrontier = f.GetFrontier();
+                    Assert.AreEqual(frontier.Count, obtainedFrontier.Count);
+                    Assert.True(frontier.All(obtainedFrontier.Contains),
+                        $"Obtained frontier does not match (order does not matter)\n" +
+                        $"{string.Join("\n", frontier.Zip(obtainedFrontier, (elem1, elem2) => $"Expected: {elem1} --- Obtained: {elem2}").ToArray())}");
+                }
             }
         }
 
@@ -793,9 +801,84 @@ namespace Tests.EditMode.Bots.Algorithms
         [Test]
         public void TestMultiLevelFrontier()
         {
-            Vector3 initialPostion = new Vector3(4, 0, 1);
+            List<Vector3>  initialPostions = new List<Vector3>
+            {
+                new Vector3(1, 0, 0),
+                new Vector3(4, 0, 1),
+                new Vector3(4, 0, 1),
+            };
             Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
             {
+                {
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, 0, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 4
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 5
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(3, 1, 2),
+                        new Vector3(4, 1, 2),
+                        new Vector3(5, 1, 2),
+                        new Vector3(2, 1, 2),
+                        new Vector3(1, 1, 1),
+                        new Vector3(1, 2, 2),
+                        new Vector3(0, 1, 2),
+                        // Row above
+                        new Vector3(0, 3, 3),
+                        new Vector3(1, 3, 3),
+                        new Vector3(2, 3, 3),
+                        new Vector3(3, 3, 3),
+                        new Vector3(4, 3, 3),
+                        new Vector3(5, 3, 3),
+                    }
+                },
                 {
                     new[]
                     {
@@ -959,7 +1042,7 @@ namespace Tests.EditMode.Bots.Algorithms
                     }
                 },
             };
-            TestGetFrontierWithCases(cases, initialPostion);
+            TestGetFrontierWithCases(cases, initialPostions);
         }
 
         [Test]
