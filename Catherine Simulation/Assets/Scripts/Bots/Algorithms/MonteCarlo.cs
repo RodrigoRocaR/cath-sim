@@ -63,7 +63,7 @@ namespace Bots.Algorithms
                 return current.Value.Expand(current);
             }
 
-            return (current, false);
+            return (current, current.Value.IsTerminal());
         }
 
         private void Backpropagate(int v, TreeNode<State, PushPullAction> node)
@@ -88,6 +88,7 @@ namespace Bots.Algorithms
 
         private void CollectBestCourseOfAction()
         {
+            _actions = new List<PushPullAction>();
             if (_terminalNode != null)
             {
                 CollectFromTerminalNode();
@@ -96,8 +97,7 @@ namespace Bots.Algorithms
             
             var node = _searchTreeRoot;
             if (node == null) return;
-
-            _actions = new List<PushPullAction>();
+            
             while (!node.IsLeafNode())
             {
                 var childIndex = GetChildThatMaximizesUCB1(node, true);
