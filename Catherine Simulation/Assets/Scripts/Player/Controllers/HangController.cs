@@ -1,33 +1,12 @@
 using LevelDS;
 using Tools.Lerps;
 using UnityEngine;
+using static HangConstants;
 
 namespace Player.Controllers
 {
     public class HangController
     {
-        // Distance constants
-        private const float DistancePercentageToBlock = 1.5f;
-
-        private const float HorizontalOffset =
-            GameConstants.BlockScale / 2f * DistancePercentageToBlock;
-
-        private const float VerticalOffset = GameConstants.BlockScale / (0.75f * GameConstants.BlockScale);
-
-        private const float CorneringForwardDistanceFromMidPosToTarget = GameConstants.BlockScale * 0.75f;
-        private const float CorneringBackwardDistanceFromMidPosToTarget = GameConstants.BlockScale * 0.25f;
-
-        // Times
-        private const float FromBlockToEdgeTime = 0.35f;
-        private const float FromBlockToEdgeTimeWhenGrabbing = 0.15f;
-        private const float FromEdgeToHangTime = 0.15f;
-
-        private const float HangSlideTime = 0.5f;
-
-        private const float HangSlideToCornerEdgeTime = 0.25f;
-        private const float HangSlideFromCornerEdgeToTargetTime = 0.25f;
-
-        private const float SeparateFromBorderToFallTime = 0.35f;
 
         private readonly Inputs _inputs;
         private readonly Transform _transform;

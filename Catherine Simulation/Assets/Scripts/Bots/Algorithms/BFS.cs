@@ -3,6 +3,7 @@ using Blocks;
 using Bots.Action;
 using Bots.DS;
 using LevelDS;
+using Player.Controllers;
 using UnityEngine;
 
 namespace Bots.Algorithms
@@ -172,7 +173,10 @@ namespace Bots.Algorithms
             BlockHelper _bh = new BlockHelper();
             Vector3 currPos = _bh.Forward(Level.TransformToIndexDomain(playerPos));
 
-            if (!CanNotGetUp()) return _bh.Backward(currPos);
+            if (!HangConstants.IsHanging(playerPos.y))
+            {
+                return _bh.Backward(currPos);
+            }
             
             
             bool goRight = true;
