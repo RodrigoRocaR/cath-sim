@@ -152,28 +152,20 @@ namespace Blocks
             switch (action.Action)
             {
                 case PushPullAction.Actions.PullForward:
-                    newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z - Offset);
-                    break;
-                case PushPullAction.Actions.PullRight:
-                    newPos = new Vector3(oldBlockPos.x + Offset, oldBlockPos.y, oldBlockPos.z);
-                    break;
-                case PushPullAction.Actions.PullBackward:
-                    newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z + Offset);
-                    break;
-                case PushPullAction.Actions.PullLeft:
-                    newPos = new Vector3(oldBlockPos.x - Offset, oldBlockPos.y, oldBlockPos.z);
-                    break;
                 case PushPullAction.Actions.PushForward:
                     newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z - Offset);
                     break;
+                case PushPullAction.Actions.PullRight:
                 case PushPullAction.Actions.PushRight:
+                    newPos = new Vector3(oldBlockPos.x - Offset, oldBlockPos.y, oldBlockPos.z);
+                    break;
+                case PushPullAction.Actions.PullLeft:
+                case PushPullAction.Actions.PushLeft:
                     newPos = new Vector3(oldBlockPos.x + Offset, oldBlockPos.y, oldBlockPos.z);
                     break;
                 case PushPullAction.Actions.PushBackward:
+                case PushPullAction.Actions.PullBackward:
                     newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z + Offset);
-                    break;
-                case PushPullAction.Actions.PushLeft:
-                    newPos = new Vector3(oldBlockPos.x - Offset, oldBlockPos.y, oldBlockPos.z);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
