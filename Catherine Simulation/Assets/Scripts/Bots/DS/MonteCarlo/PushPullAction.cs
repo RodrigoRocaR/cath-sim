@@ -31,7 +31,7 @@ namespace Bots.DS.MonteCarlo
             BlockPos = blockPos;
             Action = action;
         }
-        
+
         public PushPullAction(Actions action)
         {
             BlockPos = new Vector3();
@@ -91,6 +91,7 @@ namespace Bots.DS.MonteCarlo
             {
                 return false;
             }
+
             return a1 == a2.Action;
         }
 
@@ -121,28 +122,28 @@ namespace Bots.DS.MonteCarlo
                 viableActions.Add(blockPos, new List<Actions>());
                 if (IsWalkable(_bh.Left(blockPos)))
                 {
-                    viableActions[blockPos].Add(Actions.PushRight);
+                    if (Level.IsEmpty(_bh.Right(blockPos))) viableActions[blockPos].Add(Actions.PushRight);
                     if (Level.IsEmpty(_bh.Left(blockPos, multiplier: 2)))
                         viableActions[blockPos].Add(Actions.PullRight);
                 }
 
                 if (IsWalkable(_bh.Right(blockPos)))
                 {
-                    viableActions[blockPos].Add(Actions.PushLeft);
+                    if (Level.IsEmpty(_bh.Left(blockPos))) viableActions[blockPos].Add(Actions.PushLeft);
                     if (Level.IsEmpty(_bh.Right(blockPos, multiplier: 2)))
                         viableActions[blockPos].Add(Actions.PullLeft);
                 }
 
                 if (IsWalkable(_bh.Backward(blockPos)))
                 {
-                    viableActions[blockPos].Add(Actions.PushForward);
+                    if (Level.IsEmpty(_bh.Forward(blockPos))) viableActions[blockPos].Add(Actions.PushForward);
                     if (Level.IsEmpty(_bh.Backward(blockPos, multiplier: 2)))
                         viableActions[blockPos].Add(Actions.PullForward);
                 }
 
                 if (IsWalkable(_bh.Forward(blockPos)))
                 {
-                    viableActions[blockPos].Add(Actions.PushBackward);
+                    if (Level.IsEmpty(_bh.Backward(blockPos))) viableActions[blockPos].Add(Actions.PushBackward);
                     if (Level.IsEmpty(_bh.Forward(blockPos, multiplier: 2)))
                         viableActions[blockPos].Add(Actions.PullBackward);
                 }

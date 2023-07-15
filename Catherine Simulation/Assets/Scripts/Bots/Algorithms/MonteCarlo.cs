@@ -14,6 +14,10 @@ namespace Bots.Algorithms
 
         public MonteCarlo(Vector3 playerPos)
         {
+            if (playerPos.y > 45)
+            {
+                var a = 0;
+            }
             _searchTreeRoot = new TreeNode<State, PushPullAction>(new State(playerPos));
             BotEventManager.OnExplorationFinished += TriggerStopIterating;
         }
