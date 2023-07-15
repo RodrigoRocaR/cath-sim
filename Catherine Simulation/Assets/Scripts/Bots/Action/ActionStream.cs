@@ -45,6 +45,7 @@ namespace Bots.Action
         {
             _positions = positions;
             var previousPos = _positions[0];
+            int initialOffset = _actions.Count;
             for (int i = 1; i < _positions.Count; i++)
             {
                 Action? a = GetActionFromPosDiff(previousPos, _positions[i]);
@@ -56,7 +57,7 @@ namespace Bots.Action
                 previousPos = _positions[i];
             }
 
-            TranslateActionsTo3D();
+            TranslateActionsTo3D(initialOffset);
         }
 
 
@@ -111,7 +112,7 @@ namespace Bots.Action
             return new Vector3(currPos.Item1, _level2D.Get(currPos), currPos.Item2);
         }
 
-        private void TranslateActionsTo3D()
+        private void TranslateActionsTo3D(int initialOffset = 0)
         {
             if (_level2D.Width() == 0 || _level2D.Height() == 0) return;
             int currheightLevel = _level2D.Get(_positions[0].Item1, _positions[0].Item2);
@@ -121,7 +122,7 @@ namespace Bots.Action
                 int newHeight = _level2D.Get(_positions[i]);
                 if (newHeight != currheightLevel && newHeight != -1)
                 {
-                    _actions.Insert(i + offset, Action.Jump);
+                    _actions.Insert(i + offset + initialOffset, Action.Jump);
                     currheightLevel = newHeight;
                     offset++;
                 }

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1706.6667
     height: 917.3334
   m_ShowMode: 4
-  m_Title: Test Runner
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 90
+  controlID: 140
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 136
+  controlID: 141
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -221,12 +221,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1104.6666
     y: 0
-    width: 129.33337
+    width: 240.66675
     height: 867.3333
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 42
+  controlID: 101
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,7 +244,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 129.33337
+    width: 240.66675
     height: 397.33334
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
@@ -270,7 +270,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 397.33334
-    width: 129.33337
+    width: 240.66675
     height: 469.99997
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
@@ -289,23 +289,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TestRunnerWindow
+  m_Name: InspectorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1234
+    x: 1345.3334
     y: 0
-    width: 472.66663
+    width: 361.33325
     height: 867.3333
-  m_MinSize: {x: 100, y: 100}
+  m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 22}
+  m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
   - {fileID: 22}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -326,9 +326,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1234
+    x: 1345.3334
     y: 72.66667
-    width: 471.66663
+    width: 360.33325
     height: 846.3333
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1795,7 +1795,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -30382
+  m_LastSelectedObjectID: -27918
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1911,7 +1911,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1104.6667
     y: 72.66667
-    width: 127.333374
+    width: 238.66675
     height: 376.33334
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1921,9 +1921,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 3c53fdff7460fdff0c6ffdffb67bfdff708efdff7e9bfdff18a8fdffbab4fdff6cc1fdff4cd0fdff50edfdff84edfdff2afafdffd006feff7613feff4820feffde2cfeff7c39feff8a46feff6a54feff7661feff446efeff707bfeffa088feff8a97feff28a4feffc8b0feff42befeff48cbfeff4ed8feff06e5feff16f2feff9afffeffaa0cffff2e19ffff5826ffff2834ffff5241ffff9a4fffffba5cffffba69ffff5c76ffff5c83ffff5c90fffff69cfffff8a9fffffab6ffffb0c6ffffb2d3ffff54e0ffffc2edffff2afbffff
+      m_SelectedIDs: f292ffff
+      m_LastClickedID: -27918
+      m_ExpandedIDs: 929bffff38eaffff34fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1969,7 +1969,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1104.6667
     y: 470
-    width: 127.333374
+    width: 238.66675
     height: 448.99997
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1988,7 +1988,8 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
-    m_Folders: []
+    m_Folders:
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 0
@@ -2002,7 +2003,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: bc5a0000
     m_LastClickedID: 23228
-    m_ExpandedIDs: 00000000b26c0000b46c0000b66c0000b86c0000ba6c0000bc6c0000be6c0000c06c0000c26c0000c46c0000c66c0000c86c0000ca6c0000cc6c0000ce6c0000d06c0000d26c0000d46c0000d66c0000d86c0000da6c0000dc6c0000de6c0000e06c0000e26c0000e46c0000e66c0000e86c0000ea6c0000
+    m_ExpandedIDs: 00000000b06c0000b26c0000b46c0000b66c0000b86c0000ba6c0000bc6c0000be6c0000c06c0000c26c0000c46c0000c66c0000c86c0000ca6c0000cc6c0000ce6c0000d06c0000d26c0000d46c0000d66c0000d86c0000da6c0000dc6c0000de6c0000e06c0000e26c0000e46c0000e66c0000e86c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2030,7 +2031,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000b26c0000b46c0000b66c0000b86c0000ba6c0000bc6c0000be6c0000c06c0000c26c0000c46c0000c66c0000c86c0000ca6c0000cc6c0000ce6c0000d06c0000d26c0000d46c0000d66c0000d86c0000da6c0000dc6c0000de6c0000e06c0000e26c0000e46c0000e66c0000e86c0000ea6c0000
+    m_ExpandedIDs: ffffffff00000000b06c0000b26c0000b46c0000b66c0000b86c0000ba6c0000bc6c0000be6c0000c06c0000c26c0000c46c0000c66c0000c86c0000ca6c0000cc6c0000ce6c0000d06c0000d26c0000d46c0000d66c0000d86c0000da6c0000dc6c0000de6c0000e06c0000e26c0000e46c0000e66c0000e86c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2106,9 +2107,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1234
+    x: 1345.3334
     y: 72.66667
-    width: 471.66663
+    width: 360.33325
     height: 846.3333
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -2116,7 +2117,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_Spl:
-    ID: 229
+    ID: 164
     splitterInitialOffset: 665.6667
     currentActiveSplitter: -1
     realSizes:
@@ -2849,23 +2850,6 @@ MonoBehaviour:
       fullName: Tests.EditMode.Bots.DS.MonteCarlo.StateTest.TestEvaluate
       resultStatus: 1
       duration: 0.0064724
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1034
-      parentUniqueId: EditMode.dll/Tests/EditMode/Bots/DS/MonteCarlo/[EditMode][Tests.EditMode.Bots.DS.MonteCarlo.StateTest][suite]
-    - id: 1036
-      uniqueId: EditMode.dll/Tests/EditMode/Bots/DS/MonteCarlo/StateTest/[EditMode][Tests.EditMode.Bots.DS.MonteCarlo.StateTest.TestExpand]
-      name: TestExpand
-      fullName: Tests.EditMode.Bots.DS.MonteCarlo.StateTest.TestExpand
-      resultStatus: 1
-      duration: 0.0478064
       messages: 
       output: 
       stacktrace: 

@@ -34,9 +34,6 @@ namespace Bots.Algorithms
 
         public void Explore(int i, int j)
         {
-            i /= GameConstants.BlockScale;
-            j /= GameConstants.BlockScale;
-
             _pathToPos[(i, j)] = ((0, 0), 0);
             EnqueueUnvisited(i, j);
 
@@ -170,13 +167,15 @@ namespace Bots.Algorithms
             _visited = visited;
         }
 
-        public void GetUpIfHanging(Vector3 playerPos)
+        public Vector3 GetUpIfHanging(Vector3 playerPos)
         {
-            if (Level.IsNotEmpty(playerPos)) return;
-
             BlockHelper _bh = new BlockHelper();
+            Vector3 currPos = _bh.Forward(Level.TransformToIndexDomain(playerPos));
+
+            if (!CanNotGetUp()) return _bh.Backward(currPos);
+            
+            
             bool goRight = true;
-            Vector3 currPos = playerPos;
             var actions = Hang();
             if (actions.Count == 0)
             {
@@ -185,6 +184,8 @@ namespace Bots.Algorithms
             }
             actions.Add(Action.Action.Forward); // get back up
             _actionStream.AddActions(actions);
+
+            return currPos;
             
             
             bool CanNotGetUp()

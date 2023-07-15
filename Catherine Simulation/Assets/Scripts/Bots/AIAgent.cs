@@ -23,7 +23,6 @@ namespace Bots
         {
             _inputs = Inputs.GetInstance();
             _actionExecutor = new ActionExecutor(_inputs);
-            _level2D = new FloorLevel2D(Level.GetLevelAsMatrixInt());
             _botState = new BotState();
             _rb = GetComponent<Rigidbody>();
         }
@@ -45,11 +44,12 @@ namespace Bots
 
         private void Explore()
         {
+            _level2D = new FloorLevel2D(Level.GetLevelAsMatrixInt()); // level changed after climbing or not ini
             _bfs = new BFS(_level2D);
             Vector3 pos = transform.position;
             _botState.StartExploring();
-            _bfs.GetUpIfHanging(pos);
-            _bfs.Explore((int)pos.x, (int)pos.z);
+            var endPos = _bfs.GetUpIfHanging(pos);
+            _bfs.Explore((int)endPos.x, (int)endPos.z);
             
             BotEventManager.OnExplorationFinished += OnFinishExplore;
             LookForClimbingRoutes();
