@@ -44,9 +44,8 @@ namespace Bots.DS.MonteCarlo
         {
             int score = 0;
             
-            if (_blockFrontier.ContainsBlocksWithGreaterEqualZValue(_targetZ)) // reached goal
+            if (IsTerminal()) // reached goal
             {
-                // It needs to be z+2 since it can always manipulate z+1 blocks from the wall
                 score += 10_000;
             }
             else
@@ -67,7 +66,7 @@ namespace Bots.DS.MonteCarlo
 
             if (IsTerminal()) return (currNode, true);
 
-            _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier, _excludedAction);
+            _possibleActions ??= PushPullAction.GetViableActions(_currentLevel, _blockFrontier, _excludedAction);
 
             foreach (var action in _possibleActions)
             {
@@ -85,7 +84,7 @@ namespace Bots.DS.MonteCarlo
         private int Rollout(int depth)
         {
             if (depth == 0 || IsTerminal()) return Evaluate();
-            _possibleActions ??= PushPullAction.GetViableActions(_blockFrontier, _excludedAction);
+            _possibleActions ??= PushPullAction.GetViableActions(_currentLevel, _blockFrontier, _excludedAction);
             if (_possibleActions.Count == 0) return Evaluate();
             PushPullAction action;
             lock (_random)
@@ -102,7 +101,12 @@ namespace Bots.DS.MonteCarlo
 
         public bool IsTerminal()
         {
-            return _blockFrontier.ContainsBlocksWithGreaterEqualZValue(_targetZ);
+            return _blockFrontier.ReachedGoal(_targetZ);
+        }
+
+        public GameMatrix GetStateLevel()
+        {
+            return _currentLevel;
         }
     }
 }

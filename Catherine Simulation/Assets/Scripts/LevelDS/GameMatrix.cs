@@ -116,6 +116,11 @@ namespace LevelDS
         {
             return IsCoordWithinLevel(pos) && GameConstants.MovableBlocks.Contains(_levelInt[pos]);
         }
+
+        public bool IsVictoryBlock(Vector3 pos)
+        {
+            return IsCoordWithinLevel(pos) && _levelInt[pos] == GameConstants.VictoryBlock;
+        }
         
         
         // Access GameObject matrix --------------

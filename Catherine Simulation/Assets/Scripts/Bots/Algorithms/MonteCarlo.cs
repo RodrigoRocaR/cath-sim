@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Bots.DS.MonteCarlo;
 using Bots.DS.TreeModel;
+using LevelDS;
 using UnityEngine;
 
 namespace Bots.Algorithms
@@ -14,10 +15,11 @@ namespace Bots.Algorithms
 
         public MonteCarlo(Vector3 playerPos)
         {
-            if (playerPos.y > 45)
+            if (playerPos.y > 55)
             {
                 var a = 0;
             }
+
             _searchTreeRoot = new TreeNode<State, PushPullAction>(new State(playerPos));
             BotEventManager.OnExplorationFinished += TriggerStopIterating;
         }
@@ -34,10 +36,10 @@ namespace Bots.Algorithms
                     _terminalNode = nodeToRollout;
                     break;
                 }
+
                 int v = nodeToRollout.Value.Rollout();
                 Backpropagate(v, nodeToRollout);
                 i++;
-                
             }
 
             if (i >= Parameters.MaxIterations)
@@ -57,9 +59,8 @@ namespace Bots.Algorithms
         private (TreeNode<State, PushPullAction>, bool) TraverseAndExpand(TreeNode<State, PushPullAction> current)
         {
             if (!current.IsLeafNode())
-            {
-                int childIndex = GetChildThatMaximizesUCB1(current);
-                current = current.Forest[childIndex];
+            { 
+                current = GetChildThatMaximizesUCB1(current);
             }
 
             if (current.Value.N > 0 || current.IsRoot())
@@ -90,32 +91,26 @@ namespace Bots.Algorithms
             return explorationTerm + Parameters.C * exploitationTerm;
         }
 
-        private void CollectBestCourseOfAction()
+        private GameMatrix CollectBestCourseOfAction()
         {
             _actions = new List<PushPullAction>();
             if (_terminalNode != null)
             {
-                CollectFromTerminalNode();
-                return;
+                return CollectFromTerminalNode();
             }
-            
-            var node = _searchTreeRoot;
-            if (node == null) return;
-            
-            while (!node.IsLeafNode())
-            {
-                var childIndex = GetChildThatMaximizesUCB1(node, true);
-                if (childIndex == -1)
-                { // all child nodes are unexplored so it is like a leaf node
-                    break;
-                }
 
-                _actions.Add(node.Edges[childIndex].Value);
-                node = node.Forest[childIndex];
+            var node = _searchTreeRoot;
+            if (node == null)
+            {
+                Debug.LogError("root is null");
+                return null;
             }
+
+            var childNode = GetChildThatMaximizesUCB1(node, true);
+            return childNode.Value.GetStateLevel();
         }
 
-        private void CollectFromTerminalNode()
+        private GameMatrix CollectFromTerminalNode()
         {
             var node = _terminalNode;
             while (!node.IsRoot())
@@ -123,26 +118,41 @@ namespace Bots.Algorithms
                 _actions.Add(node.ParentEdge.Value);
                 node = node.Parent;
             }
+
             _actions.Reverse();
+            return _terminalNode.Value.GetStateLevel();
         }
-        
-        private int GetChildThatMaximizesUCB1(TreeNode<State, PushPullAction> exploreNode, bool collectMode = false)
+
+        private TreeNode<State, PushPullAction> GetChildThatMaximizesUCB1(TreeNode<State, PushPullAction> exploreNode,
+            bool collectMode = false)
         {
-            int ans = -1;
-            float max = float.MinValue;
-            for (int i = 0; i < exploreNode.Forest.Count; i++)
+            if (exploreNode == null) return null;
+
+            while (!exploreNode.IsLeafNode())
             {
-                var score = UCB1(exploreNode.Forest[i]);
-                if (max < score)
+                int ans = -1;
+                float max = float.MinValue;
+                for (int i = 0; i < exploreNode.Forest.Count; i++)
                 {
-                    if (collectMode && float.IsPositiveInfinity(score)) continue;
-                    max = score;
-                    ans = i;
-                    if (float.IsPositiveInfinity(max)) break;
+                    var score = UCB1(exploreNode.Forest[i]);
+                    if (max < score)
+                    {
+                        if (collectMode && float.IsPositiveInfinity(score)) continue;
+                        max = score;
+                        ans = i;
+                        if (float.IsPositiveInfinity(max)) break;
+                    }
                 }
+
+                if (collectMode)
+                {
+                    _actions.Add(exploreNode.Edges[ans].Value);
+                }
+
+                exploreNode = exploreNode.Forest[ans];
             }
 
-            return ans;
+            return exploreNode;
         }
 
         private void TriggerStopIterating()
@@ -150,10 +160,10 @@ namespace Bots.Algorithms
             _stopIterating = true;
         }
 
-        public List<PushPullAction> GetActions()
+        public (List<PushPullAction>, GameMatrix) GetActions()
         {
-            CollectBestCourseOfAction();
-            return _actions;
+            var currLevel = CollectBestCourseOfAction();
+            return (_actions, currLevel);
         }
     }
 }

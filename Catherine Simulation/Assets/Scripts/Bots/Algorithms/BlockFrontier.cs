@@ -280,12 +280,23 @@ namespace Bots.Algorithms
             return _frontier;
         }
 
-        public bool ContainsBlocksWithGreaterEqualZValue(int zValue)
+        public bool ReachedGoal(int zValue)
         {
+            bool thereIsWall = false;
             foreach (var blockPos in _frontier)
             {
                 if ((int)blockPos.z >= zValue) return true;
+                if ((int)blockPos.z == zValue - 1) thereIsWall = true;
             }
+
+            if (thereIsWall) return false;
+            
+            // last block frontier, check if we can reach victory
+            foreach (var blockPos in _frontier)
+            {
+                if (_currentLevel.IsVictoryBlock(blockPos)) return true;
+            }
+
 
             return false;
         }

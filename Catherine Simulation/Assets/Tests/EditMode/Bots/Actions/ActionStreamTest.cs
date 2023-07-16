@@ -24,13 +24,13 @@ namespace Tests.EditMode.Bots.Actions
             GameObject mockObject = new GameObject();
             var mockLevel = mockObject.AddComponent<Level>();
             mockLevel.NewMockLevel(tc.LevelValues);
-            
+
             ActionStream actionStream = new ActionStream(tc.Level2D);
             actionStream.CreateFromPushPullActions(tc.InitialPos, tc.PushPullActions);
             CollectionAssert.AreEqual(tc.ExpectedMovements, actionStream.GetAsList());
         }
-        
-        
+
+
         [Test]
         public void TestCreateFromPositions()
         {
@@ -50,18 +50,18 @@ namespace Tests.EditMode.Bots.Actions
                 Action.Backward,
                 Action.Left,
             };
-            
-            Assert.AreEqual(examplePositions.Count-1, expectedMovements.Count, "The fixture is wrong");
+
+            Assert.AreEqual(examplePositions.Count - 1, expectedMovements.Count, "The fixture is wrong");
 
             ActionStream actionStream = new ActionStream(new FloorLevel2D());
             actionStream.CreateFromPositions(examplePositions);
-            
+
             var movements = actionStream.GetAsList();
             int n = movements.Count;
-            
-            Assert.AreEqual(examplePositions.Count-1, n);
+
+            Assert.AreEqual(examplePositions.Count - 1, n);
             Assert.AreEqual(expectedMovements.Count, n);
-            for (int i=0; i<n; i++)
+            for (int i = 0; i < n; i++)
             {
                 Assert.AreEqual(expectedMovements[i], movements[i]);
             }
@@ -90,22 +90,22 @@ namespace Tests.EditMode.Bots.Actions
             };
             Level2D level2D = new FloorLevel2D(new[]
             {
-                new [] { 0, 1},
-                new [] { 1, 1},
+                new[] { 0, 1 },
+                new[] { 1, 1 },
             });
 
             ActionStream actionStream = new ActionStream(level2D);
             actionStream.CreateFromPositions(examplePositions);
-            
+
             var movements = actionStream.GetAsList();
             int n = movements.Count;
 
-            for (int i=0; i<n; i++)
+            for (int i = 0; i < n; i++)
             {
                 Assert.AreEqual(expectedMovements[i], movements[i]);
             }
         }
-        
+
         [Test]
         public void TestDoesNotAddExtraJumps()
         {
@@ -131,21 +131,21 @@ namespace Tests.EditMode.Bots.Actions
             };
             Level2D level2D = new FloorLevel2D(new[]
             {
-                new [] { 0, 0, 0, 1, 0, 0, 3, 4, 5}
+                new[] { 0, 0, 0, 1, 0, 0, 3, 4, 5 }
             });
 
             ActionStream actionStream = new ActionStream(level2D);
             actionStream.CreateFromPositions(examplePositions);
-            
+
             var movements = actionStream.GetAsList();
             int n = movements.Count;
 
-            for (int i=0; i<n; i++)
+            for (int i = 0; i < n; i++)
             {
                 Assert.AreEqual(expectedMovements[i], movements[i]);
             }
         }
-        
+
         [Test]
         public void TestJumpsDown()
         {
@@ -167,16 +167,16 @@ namespace Tests.EditMode.Bots.Actions
             };
             Level2D level2D = new FloorLevel2D(new[]
             {
-                new [] { 0, 1, 0, 0, 0, 4}
+                new[] { 0, 1, 0, 0, 0, 4 }
             });
 
             ActionStream actionStream = new ActionStream(level2D);
             actionStream.CreateFromPositions(examplePositions);
-            
+
             var movements = actionStream.GetAsList();
             int n = movements.Count;
 
-            for (int i=0; i<n; i++)
+            for (int i = 0; i < n; i++)
             {
                 Assert.AreEqual(expectedMovements[i], movements[i]);
             }
@@ -189,12 +189,12 @@ namespace Tests.EditMode.Bots.Actions
 
             Level2D level2D = new FloorLevel2D(new[]
             {
-                new []{ 0, 0, 2 },
-                new []{ 0, 0, 2 },
-                new []{ 0, 2, 2 },
-                new []{ 0, 0, 2 },
-                new []{ 0, 2, 2 },
-                new []{ 0, 0, 0 },
+                new[] { 0, 0, 2 },
+                new[] { 0, 0, 2 },
+                new[] { 0, 2, 2 },
+                new[] { 0, 0, 2 },
+                new[] { 0, 2, 2 },
+                new[] { 0, 0, 0 },
             });
 
             List<PushPullAction> pushPullActions = new List<PushPullAction>
@@ -211,10 +211,10 @@ namespace Tests.EditMode.Bots.Actions
                 Action.Forward, // look at the block
                 Action.Push
             };
-            
+
             ActionStream actionStream = new ActionStream(level2D);
             actionStream.CreateFromPushPullActions(initialPos, pushPullActions);
-            
+
             CollectionAssert.AreEqual(expectedMovements, actionStream.GetAsList());
         }
 
@@ -228,51 +228,51 @@ namespace Tests.EditMode.Bots.Actions
                     InitialPos = new Vector3(0, 0, 1),
                     Level2D = new FloorLevel2D(new[]
                     {
-                        new []{ -1, 0, 2 },
-                        new []{ -1, 0, 2 },
-                        new []{ -1, 2, 2 },
-                        new []{ -1, 0, 2 },
-                        new []{ -1, 2, 2 },
-                        new []{ -1, 0, 2 },
+                        new[] { -1, 0, 2 },
+                        new[] { -1, 0, 2 },
+                        new[] { -1, 2, 2 },
+                        new[] { -1, 0, 2 },
+                        new[] { -1, 2, 2 },
+                        new[] { -1, 0, 2 },
                     }),
-                    LevelValues = new []
+                    LevelValues = new[]
                     {
-                      new [] // x:0
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:1
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:2
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, 0, 0 }, // y:1
-                          new [] { -1, 0, 0 }, // y:2
-                      },
-                      new [] // x:3
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:4
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, 0, 0 }, // y:1
-                          new [] { -1, 0, 0 }, // y:2
-                      },
-                      new [] // x:5
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
+                        new[] // x:0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:1
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:2
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, 0, 0 }, // y:1
+                            new[] { -1, 0, 0 }, // y:2
+                        },
+                        new[] // x:3
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:4
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, 0, 0 }, // y:1
+                            new[] { -1, 0, 0 }, // y:2
+                        },
+                        new[] // x:5
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
                     },
                     PushPullActions = new List<PushPullAction>
                     {
@@ -296,51 +296,51 @@ namespace Tests.EditMode.Bots.Actions
                     InitialPos = new Vector3(0, 0, 1),
                     Level2D = new FloorLevel2D(new[]
                     {
-                        new []{ -1, 0, 2 },
-                        new []{ -1, 0, 2 },
-                        new []{ -1, 1, 2 },
-                        new []{ -1, 0, 2 },
-                        new []{ -1, 1, 2 },
-                        new []{ -1, 0, 2 },
+                        new[] { -1, 0, 2 },
+                        new[] { -1, 0, 2 },
+                        new[] { -1, 1, 2 },
+                        new[] { -1, 0, 2 },
+                        new[] { -1, 1, 2 },
+                        new[] { -1, 0, 2 },
                     }),
-                    LevelValues = new []
+                    LevelValues = new[]
                     {
-                      new [] // x:0
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:1
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:2
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, 0, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:3
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:4
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, 0, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:5
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
+                        new[] // x:0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:1
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:2
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, 0, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:3
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:4
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, 0, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:5
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
                     },
                     PushPullActions = new List<PushPullAction>
                     {
@@ -352,11 +352,11 @@ namespace Tests.EditMode.Bots.Actions
                         Action.Right, // look at block
                         Action.Jump, // x:2
                         Action.Right, // look at next
-                        Action.Jump,  // x:3
+                        Action.Jump, // x:3
                         Action.Right, // look
                         Action.Jump, // x:4
                         Action.Right, // x:look
-                        Action.Jump,  // x:5
+                        Action.Jump, // x:5
                         Action.Forward, // look at block
                         Action.Push
                     }
@@ -366,51 +366,51 @@ namespace Tests.EditMode.Bots.Actions
                     InitialPos = new Vector3(0, 0, 1),
                     Level2D = new FloorLevel2D(new[]
                     {
-                        new []{ -1, 0, 2 },
-                        new []{ -1, 0, 2 },
-                        new []{ -1, -1, 2 },
-                        new []{ -1, -1, 2 },
-                        new []{ -1, -1, 2 },
-                        new []{ -1, 0, 2 },
+                        new[] { -1, 0, 2 },
+                        new[] { -1, 0, 2 },
+                        new[] { -1, -1, 2 },
+                        new[] { -1, -1, 2 },
+                        new[] { -1, -1, 2 },
+                        new[] { -1, 0, 2 },
                     }),
-                    LevelValues = new []
+                    LevelValues = new[]
                     {
-                      new [] // x:0
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:1
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:2
-                      {
-                          new [] { -1, -1, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:3
-                      {
-                          new [] { -1, -1, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:4
-                      {
-                          new [] { -1, -1, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
-                      new [] // x:5
-                      {
-                          new [] { -1, 0, 0 }, // y:0
-                          new [] { -1, -1, 0 }, // y:1
-                          new [] { -1, -1, 0 }, // y:2
-                      },
+                        new[] // x:0
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:1
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:2
+                        {
+                            new[] { -1, -1, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:3
+                        {
+                            new[] { -1, -1, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:4
+                        {
+                            new[] { -1, -1, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
+                        new[] // x:5
+                        {
+                            new[] { -1, 0, 0 }, // y:0
+                            new[] { -1, -1, 0 }, // y:1
+                            new[] { -1, -1, 0 }, // y:2
+                        },
                     },
                     PushPullActions = new List<PushPullAction>
                     {

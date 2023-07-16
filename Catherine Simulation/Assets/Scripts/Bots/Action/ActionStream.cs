@@ -17,7 +17,7 @@ namespace Bots.Action
 
         private List<Action> _actions;
         private List<(int, int)> _positions;
-        private readonly Level2D _level2D;
+        private Level2D _level2D;
 
         public ActionStream(Level2D level2D)
         {
@@ -122,7 +122,10 @@ namespace Bots.Action
                 int newHeight = _level2D.Get(_positions[i]);
                 if (newHeight != currheightLevel && newHeight != -1)
                 {
-                    _actions.Insert(i + offset + initialOffset, Action.Jump);
+                    int pushPullOffset = 0;
+                    if (i+offset+1 < _actions.Count && _actions[i+offset+1] is Action.Push or Action.Pull) continue;
+                    if (_actions[i+offset-1] is Action.Push) pushPullOffset = 1;
+                    _actions.Insert(i + offset + initialOffset + pushPullOffset, Action.Jump);
                     currheightLevel = newHeight;
                     offset++;
                 }

@@ -95,9 +95,10 @@ namespace Bots.DS.MonteCarlo
             return a1 == a2.Action;
         }
 
-        public static List<PushPullAction> GetViableActions(BlockFrontier bf, PushPullAction excludedAction = null)
+        public static List<PushPullAction> GetViableActions(GameMatrix currLevel, BlockFrontier bf,
+            PushPullAction excludedAction = null)
         {
-            var actionDict = GetViableActionsAsDict(bf);
+            var actionDict = GetViableActionsAsDict(currLevel, bf);
 
             List<PushPullAction> ans = new List<PushPullAction>();
 
@@ -113,52 +114,52 @@ namespace Bots.DS.MonteCarlo
             return ans;
         }
 
-        public static Dictionary<Vector3, List<Actions>> GetViableActionsAsDict(BlockFrontier bf)
+        public static Dictionary<Vector3, List<Actions>> GetViableActionsAsDict(GameMatrix currLevel, BlockFrontier bf)
         {
             Dictionary<Vector3, List<Actions>> viableActions = new Dictionary<Vector3, List<Actions>>();
 
             foreach (var blockPos in bf.GetFrontier())
             {
-                if (!Level.CanBeMoved(blockPos)) continue;
+                if (!currLevel.CanBeMoved(blockPos)) continue;
                 viableActions.Add(blockPos, new List<Actions>());
                 if (IsWalkable(_bh.Left(blockPos)))
                 {
-                    if (Level.IsEmpty(_bh.Right(blockPos))) viableActions[blockPos].Add(Actions.PushRight);
-                    if (Level.IsEmpty(_bh.Left(blockPos, multiplier: 2)))
+                    if (currLevel.IsEmpty(_bh.Right(blockPos))) viableActions[blockPos].Add(Actions.PushRight);
+                    if (currLevel.IsEmpty(_bh.Left(blockPos, multiplier: 2)))
                         viableActions[blockPos].Add(Actions.PullRight);
                 }
 
                 if (IsWalkable(_bh.Right(blockPos)))
                 {
-                    if (Level.IsEmpty(_bh.Left(blockPos))) viableActions[blockPos].Add(Actions.PushLeft);
-                    if (Level.IsEmpty(_bh.Right(blockPos, multiplier: 2)))
+                    if (currLevel.IsEmpty(_bh.Left(blockPos))) viableActions[blockPos].Add(Actions.PushLeft);
+                    if (currLevel.IsEmpty(_bh.Right(blockPos, multiplier: 2)))
                         viableActions[blockPos].Add(Actions.PullLeft);
                 }
 
                 if (IsWalkable(_bh.Backward(blockPos)))
                 {
-                    if (Level.IsEmpty(_bh.Forward(blockPos))) viableActions[blockPos].Add(Actions.PushForward);
-                    if (Level.IsEmpty(_bh.Backward(blockPos, multiplier: 2)))
+                    if (currLevel.IsEmpty(_bh.Forward(blockPos))) viableActions[blockPos].Add(Actions.PushForward);
+                    if (currLevel.IsEmpty(_bh.Backward(blockPos, multiplier: 2)))
                         viableActions[blockPos].Add(Actions.PullForward);
                 }
 
                 if (IsWalkable(_bh.Forward(blockPos)))
                 {
-                    if (Level.IsEmpty(_bh.Backward(blockPos))) viableActions[blockPos].Add(Actions.PushBackward);
-                    if (Level.IsEmpty(_bh.Forward(blockPos, multiplier: 2)))
+                    if (currLevel.IsEmpty(_bh.Backward(blockPos))) viableActions[blockPos].Add(Actions.PushBackward);
+                    if (currLevel.IsEmpty(_bh.Forward(blockPos, multiplier: 2)))
                         viableActions[blockPos].Add(Actions.PullBackward);
                 }
             }
 
             return viableActions;
+            
+            
+            bool IsWalkable(Vector3 pos)
+            {
+                return currLevel.IsEmpty(pos) && currLevel.IsNotEmpty(_bh.Down(pos));
+            }
         }
-
-
-        private static bool IsWalkable(Vector3 pos)
-        {
-            // IsEmpty and has a block below it
-            return Level.IsEmpty(pos) && Level.IsNotEmpty(_bh.Down(pos));
-        }
+        
 
         public Action.Action GetAction()
         {

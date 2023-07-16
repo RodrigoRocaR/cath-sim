@@ -93,7 +93,7 @@ namespace Tests.EditMode.Bots.DS.MonteCarlo
                 };
             
             // Act
-            var obtained = PushPullAction.GetViableActionsAsDict(blockFrontier);
+            var obtained = PushPullAction.GetViableActionsAsDict(Level.GetGameMatrix(), blockFrontier);
             
             // Assert
             foreach (var (blockPos, viableActionsList) in obtained)
@@ -184,7 +184,7 @@ namespace Tests.EditMode.Bots.DS.MonteCarlo
                 };
             
             // Act
-            var obtained = PushPullAction.GetViableActionsAsDict(blockFrontier);
+            var obtained = PushPullAction.GetViableActionsAsDict(Level.GetGameMatrix(), blockFrontier);
             
             // Assert
             foreach (var (blockPos, viableActionsList) in obtained)

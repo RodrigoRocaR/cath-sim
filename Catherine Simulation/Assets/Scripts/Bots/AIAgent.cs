@@ -58,8 +58,9 @@ namespace Bots
 
         private void Climb()
         {
-            ActionStream actionStream = new ActionStream(_level2D);
-            actionStream.CreateFromPushPullActions(_bfs.GetEndPlayerPos(), _mcts.GetActions());
+            var (pushpullActions, currentGameMatrix) = _mcts.GetActions();
+            ActionStream actionStream = new ActionStream(new FloorLevel2D(currentGameMatrix.GetMatrixInt()));
+            actionStream.CreateFromPushPullActions(_bfs.GetEndPlayerPos(), pushpullActions);
             _botState.StartClimbing();
             BotEventManager.OnClimbFinished += OnFinishClimb;
             StartCoroutine(_actionExecutor.Execute(actionStream, ActionExecutorPurpose.Climbing));
