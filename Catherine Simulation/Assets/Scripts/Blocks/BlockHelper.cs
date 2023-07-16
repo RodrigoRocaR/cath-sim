@@ -118,25 +118,25 @@ namespace Blocks
                     newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z - 2*Offset);
                     break;
                 case PushPullAction.Actions.PullRight:
-                    newPos = new Vector3(oldBlockPos.x + 2*Offset, oldBlockPos.y, oldBlockPos.z);
+                    newPos = new Vector3(oldBlockPos.x - 2*Offset, oldBlockPos.y, oldBlockPos.z);
                     break;
                 case PushPullAction.Actions.PullBackward:
                     newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z + 2*Offset);
                     break;
                 case PushPullAction.Actions.PullLeft:
-                    newPos = new Vector3(oldBlockPos.x - 2*Offset, oldBlockPos.y, oldBlockPos.z);
+                    newPos = new Vector3(oldBlockPos.x + 2*Offset, oldBlockPos.y, oldBlockPos.z);
                     break;
                 case PushPullAction.Actions.PushForward:
                     newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z - Offset);
                     break;
                 case PushPullAction.Actions.PushRight:
-                    newPos = new Vector3(oldBlockPos.x + Offset, oldBlockPos.y, oldBlockPos.z);
+                    newPos = new Vector3(oldBlockPos.x - Offset, oldBlockPos.y, oldBlockPos.z);
                     break;
                 case PushPullAction.Actions.PushBackward:
                     newPos = new Vector3(oldBlockPos.x, oldBlockPos.y, oldBlockPos.z + Offset);
                     break;
                 case PushPullAction.Actions.PushLeft:
-                    newPos = new Vector3(oldBlockPos.x - Offset, oldBlockPos.y, oldBlockPos.z);
+                    newPos = new Vector3(oldBlockPos.x + Offset, oldBlockPos.y, oldBlockPos.z);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Blocks;
 using LevelDS;
 using UnityEngine;
@@ -46,6 +45,7 @@ namespace Bots.Algorithms
 
             GoForwardUntilWall();
             MoveUntilCanGetOnBlock(currBlock);
+            MarkAsInterestPointsIfCanGoForward();
             currBlock = NextBlock();
             while (!finished)
             {
@@ -80,9 +80,8 @@ namespace Bots.Algorithms
                 {
                     FinishExploration();
                 }
-                
-                if (CanGoForward(currBlock)) _interestPoints.Add(_bh.Forward(currBlock));
-                if (CanGoTopForward(currBlock)) _interestPoints.Add(_bh.TopForward(currBlock));
+
+                MarkAsInterestPointsIfCanGoForward();
 
                 currBlock = NextBlock();
             }
@@ -259,6 +258,12 @@ namespace Bots.Algorithms
                 return _currentLevel.IsNotEmpty(_bh.TopForward(p)) &&
                        _currentLevel.IsEmpty(_bh.Forward(_bh.Up(p, multiplier: 2))) &&
                        _currentLevel.IsEmpty(_bh.Forward(_bh.Up(p, multiplier: 3)));
+            }
+
+            void MarkAsInterestPointsIfCanGoForward()
+            {
+                if (CanGoForward(currBlock)) _interestPoints.Add(_bh.Forward(currBlock));
+                if (CanGoTopForward(currBlock)) _interestPoints.Add(_bh.TopForward(currBlock));
             }
         }
 

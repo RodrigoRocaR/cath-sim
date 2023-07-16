@@ -111,6 +111,11 @@ namespace LevelDS
         {
             return !IsEmpty(pos);
         }
+
+        public bool CanBeMoved(Vector3 pos)
+        {
+            return IsCoordWithinLevel(pos) && GameConstants.MovableBlocks.Contains(_levelInt[pos]);
+        }
         
         
         // Access GameObject matrix --------------

@@ -119,6 +119,7 @@ namespace Bots.DS.MonteCarlo
 
             foreach (var blockPos in bf.GetFrontier())
             {
+                if (!Level.CanBeMoved(blockPos)) continue;
                 viableActions.Add(blockPos, new List<Actions>());
                 if (IsWalkable(_bh.Left(blockPos)))
                 {

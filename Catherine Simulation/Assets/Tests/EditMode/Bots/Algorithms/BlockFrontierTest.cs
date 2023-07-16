@@ -1093,5 +1093,64 @@ namespace Tests.EditMode.Bots.Algorithms
             };
             TestGetFrontierWithCases(cases, initialPostion);
         }
+
+        [Test]
+        public void TestCanGoForwardIfItsStartingBlock()
+        {
+            Vector3 initialPostion = new Vector3(2, 1, 1);
+            Dictionary<int[][][], List<Vector3>> cases = new Dictionary<int[][][], List<Vector3>>
+            {
+                {
+                    new[]
+                    {
+                        new[] // x: 0
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 1
+                        {
+                            new[] { -1, 0, -1, -1 }, // y:0
+                            new[] { -1, -1, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 2
+                        {
+                            new[] { -1, -1, -1, -1 }, // y:0
+                            new[] { -1, 0, 0, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                        new[] // x: 3
+                        {
+                            new[] { -1, -1, -1, -1 }, // y:0
+                            new[] { -1, -1, -1, -1 }, // y:1
+                            new[] { -1, -1, 0, 0 }, // y:2
+                            new[] { -1, -1, -1, 0 }, // y:3
+                            new[] { -1, -1, -1, 0 }, // y:4
+                        },
+                    },
+                    new List<Vector3>
+                    {
+                        new Vector3(2, 2, 2),
+                        new Vector3(2, 1, 1),
+                        new Vector3(1, 1, 2),
+                        new Vector3(0, 1, 2),
+                        // Row above
+                        new Vector3(0, 3, 3),
+                        new Vector3(1, 3, 3),
+                        new Vector3(2, 3, 3),
+                        new Vector3(3, 3, 3),
+                    }
+                },
+            };
+            TestGetFrontierWithCases(cases, initialPostion);
+        }
     }
 }

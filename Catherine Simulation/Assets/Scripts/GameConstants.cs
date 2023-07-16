@@ -9,6 +9,8 @@ public static class GameConstants
     public const int SolidBlock = 0;
     public const int VictoryBlock = 1;
     public const int ImmovableBlock = 2;
+    
+    public static readonly List<int> MovableBlocks = new List<int>{ SolidBlock };
 
     public const string SolidBlockName = "BlockSolid";
     public const string VictoryBlockName = "BlockVictory";

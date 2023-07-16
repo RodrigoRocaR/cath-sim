@@ -267,5 +267,10 @@ namespace LevelDS
         {
             return _level;
         }
+
+        public static bool CanBeMoved(Vector3 pos)
+        {
+            return _level.CanBeMoved(pos);
+        }
     }
 }
