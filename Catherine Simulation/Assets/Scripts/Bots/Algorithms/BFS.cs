@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Blocks;
 using Bots.Action;
 using Bots.DS;
@@ -54,8 +55,12 @@ namespace Bots.Algorithms
             }
 
             // Get deepest point and traceback path
-            _path = new List<(int, int)> { deepestPointReached };
             pos = deepestPointReached;
+            if (pos == (i, j))
+            {
+                pos = GetLeftMostPoint(j);
+            }
+            _path = new List<(int, int)> { pos };
             while (_pathToPos[pos].Item2 > 0)
             {
                 _path.Add(_pathToPos[pos].Item1);
@@ -245,6 +250,13 @@ namespace Bots.Algorithms
             {
                 return goRight ? _bh.Left(currPos) : _bh.Right(currPos);
             }
+        }
+
+        private (int, int) GetLeftMostPoint(int currentZ)
+        {
+            return _visited.Where(t => t.Item2 == currentZ)
+                .OrderBy(t => t.Item1)
+                .FirstOrDefault();
         }
     }
 }

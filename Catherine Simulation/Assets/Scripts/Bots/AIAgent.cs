@@ -30,6 +30,7 @@ namespace Bots
         private void Update()
         {
             if (Level.GetPlayerIdentity() != PlayerIdentity.AI) return;
+            if (Level.IsCleared() || Level.IsGameOver()) return;
             if (IsFalling()) return;
 
             if (_botState.CanExplore())
