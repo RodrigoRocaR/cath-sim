@@ -42,18 +42,7 @@ namespace Bots.DS.MonteCarlo
 
         private int Evaluate()
         {
-            int score = 0;
-            
-            if (IsTerminal()) // reached goal
-            {
-                score += 10_000;
-            }
-            else
-            {
-                score += _blockFrontier.Length();
-            }
-
-            return score;
+            return _blockFrontier.Length();
         }
 
         public (TreeNode<State, PushPullAction>, bool) Expand(TreeNode<State, PushPullAction> currNode)

@@ -15,11 +15,6 @@ namespace Bots.Algorithms
 
         public MonteCarlo(Vector3 playerPos)
         {
-            if (playerPos.y > 55)
-            {
-                var a = 0;
-            }
-
             _searchTreeRoot = new TreeNode<State, PushPullAction>(new State(playerPos));
             BotEventManager.OnExplorationFinished += TriggerStopIterating;
         }
@@ -41,7 +36,7 @@ namespace Bots.Algorithms
                 Backpropagate(v, nodeToRollout);
                 i++;
             }
-
+            /*
             if (i >= Parameters.MaxIterations)
             {
                 Debug.LogWarning("MonteCarlo: I give up");
@@ -54,6 +49,7 @@ namespace Bots.Algorithms
             {
                 Debug.Log("Ran out of time");
             }
+            */
         }
 
         private (TreeNode<State, PushPullAction>, bool) TraverseAndExpand(TreeNode<State, PushPullAction> current)

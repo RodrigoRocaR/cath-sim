@@ -356,7 +356,6 @@ namespace Tests.EditMode.Bots.Actions
                         Action.Right, // look
                         Action.Jump, // x:4
                         Action.Right, // x:look
-                        Action.Jump, // x:5
                         Action.Forward, // look at block
                         Action.Push
                     }
